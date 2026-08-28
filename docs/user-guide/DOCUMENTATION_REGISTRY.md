@@ -28,6 +28,11 @@ Desktop and Mobile annotated copy served from
 placeholder for every step without that mapping; this runtime behavior does not
 upgrade the article status.
 
+Each article URL is a journey overview with an ordered step list and an
+explicit start link. Step URLs remain deep-linkable and retain the selected
+Desktop/Mobile presentation; overview navigation does not imply that any
+pending step has been runtime-verified.
+
 The canonical master guide and evidence-scoped ebook reuse the corresponding
 annotated pairs from `docs/images/` beside accepted B01, B02, B04, B09, S07,
 A01, A05 and A09 evidence. Pending or UAT-only assets remain excluded from
