@@ -2,7 +2,8 @@
 
 ## Status
 
-Current reconciled production UAT is recorded against Front-End `8157ffa`:
+Current reconciled production UAT evidence is recorded against Front-End
+`8157ffa`; the current deployed Front-End revision is `13c18f4`:
 246 discovered, 237/237 applicable passed, 0 failed, 3 not applicable audit/
 source records and 6 unsafe hosted local-only executions across
 Desktop/Laptop/Mobile. The first sandbox attempt was denied network access; the
@@ -10,9 +11,9 @@ approved browser run passed. Provider-dependent mutation walkthroughs and
 product-owner signoff remain pending.
 Backend test/build/Prisma validation passed, while the separate check-only
 backend lint audit remains open under `AF-TECH-002`.
-Fresh read-only health verification returned HTTP 200 for the production site
-and API health endpoint; the origin served `index-CxegpUGG.js` and
-`index-DxaeItKP.css`.
+Fresh post-deploy read-only health verification returned HTTP 200 for the
+production site and API health endpoint; the Journey Center page served
+`index-XCtZYzZQ.js` and `index-ClA14ylN.css`.
 
 ## Scope
 
@@ -191,8 +192,10 @@ Run the interactive product-owner browser walkthrough on the deployed demo, capt
 - Local evidence: build, targeted lint, Help/Journey tests and combined public/
   permission/responsive regression passed; credential-dependent skips remain
   intentional.
-- Production deployment and production visual evidence are pending. Do not
-  mark the new articles `VERIFIED` in production from local evidence alone.
+- Front-End revision `13c18f4` was deployed through the normal `main` workflow;
+  the B04 overview/start-step, deep link and Desktop/Mobile selector were
+  retested in production. Remaining feature-flow and visual evidence is still
+  partial, so do not mark the new articles `VERIFIED` from shell evidence alone.
 - Open product blockers remain canonical in `docs/UAT_ISSUES.md`, especially
   checkout quote (`AF-B-003`), QR execution (`AF-Q-001`) and suspended Admin
   identity.
@@ -1080,5 +1083,5 @@ The local Journey Center now binds the accepted B04 cart Desktop/Mobile annotate
 assets to the `/help/buyer/first-purchase/cart` step. Focused help-content tests
 pass `19/19`, the Front-End production build passes, and localhost runtime checks
 confirmed viewport auto-selection plus the manual platform switch with no console
-errors. This is source/local evidence only; production revision `8157ffa` and B04
-journey status remain unchanged until deployment and production retest.
+errors. The selector behavior is now production-retested on `13c18f4`; B04
+journey status remains `PARTIAL` because feature-flow evidence is still incomplete.

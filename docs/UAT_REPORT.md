@@ -12,17 +12,19 @@ vẫn còn ngoài phạm vi chạy an toàn.
 - Frontend repository: `https://github.com/Ecommerce-Anti-Fake/Front-End`
 - Backend repository: `https://github.com/Ecommerce-Anti-Fake/Back-End`
 - Website: `https://antifake.io.vn`
-- Current Front-End deployed revision: `8157ffa`; deployment run `33071400901`
+- Current Front-End deployed revision: `13c18f4`; deployment run `33149975815`
   completed successfully.
 - Current Back-End local revision: `3b59ab9`; repository remained clean after
   the non-mutating audit.
-- Current reconciled production UAT: 246 discovered, 237 applicable passed,
+- Current reconciled production UAT evidence remains recorded against Front-End
+  `8157ffa`: 246 discovered, 237 applicable passed,
   0 failed, 3 not applicable audit/source records and 6 unsafe hosted
   local-only executions across Desktop/Laptop/Mobile. Historical revisions and
   earlier baseline counts remain below as audit history.
-- Fresh public health check 2026-08-27 returned HTTP 200 for both
+- Fresh post-deploy health check 2026-08-28 returned HTTP 200 for both
   `https://antifake.io.vn/` and `https://api.antifake.io.vn/api/health`; the
-  origin served `/assets/index-CxegpUGG.js` and `/assets/index-DxaeItKP.css`.
+  Journey Center page served `/assets/index-XCtZYzZQ.js` and
+  `/assets/index-ClA14ylN.css`.
 - Deployment status: Completed; website health check trả HTTP 200.
 
 ## Kết quả định lượng
@@ -1449,15 +1451,16 @@ UAT_STATUS=COMPLETE — 237/237 applicable executions; 0 failures
 DOCUMENTATION_STATUS=IN_PROGRESS — 22 PARTIAL, 2 SOURCE_VERIFIED, 4 NOT_IMPLEMENTED
 JOURNEY_CENTER_STATUS=IN_PROGRESS — production overview/start-step, deep-link and Desktop/Mobile regression passed on `13c18f4`; remaining journey content coverage remains partial
 VISUAL_EVIDENCE_STATUS=IN_PROGRESS — existing accepted assets retained; two PII-safe post-deploy overview captures were observed at Desktop/Mobile but could not be persisted by the browser tool to the canonical path, so no new final visual pair was registered; full-flow visuals remain pending
-WORKSPACE_STATUS=PUSHED — WorkSpace documentation chain is pushed to canonical `main` at `334af0d`
+WORKSPACE_STATUS=PUSHED — WorkSpace documentation chain is pushed to canonical `main`
 GOAL_STATUS=BLOCKED — remaining documentation/visual evidence requires exact external fixtures or provider access, and the browser capture path cannot persist the new overview pair
 ```
 
 Local Journey Center increment: Front-End commit `02fcbfb` adds session-scoped
 persistence for the manual Desktop/Mobile choice. Focused content tests,
 build, changed-file lint and Desktop/Laptop/Mobile browser verification pass
-locally; production revision `8157ffa` has not changed, so deployment and
-production retest remain open.
+locally. The change is included in deployed Front-End revision `13c18f4`,
+whose production Journey Center regression covered the manual selector at
+Desktop `1440×900` and Mobile `390×844`.
 
 Local Journey Center overview increment: Front-End commit `13c18f4` gives an
 article URL a real journey overview with an explicit start-step link and keeps
