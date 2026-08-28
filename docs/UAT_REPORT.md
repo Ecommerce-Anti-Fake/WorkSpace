@@ -1452,6 +1452,12 @@ WORKSPACE_STATUS=COMMIT_CREATED_PENDING_OWNER_PUSH — WorkSpace local documenta
 GOAL_STATUS=ACTIVE — documentation, visual evidence and provider-dependent journey portions remain open
 ```
 
+Local Journey Center increment: Front-End commit `02fcbfb` adds session-scoped
+persistence for the manual Desktop/Mobile choice. Focused content tests,
+build, changed-file lint and Desktop/Laptop/Mobile browser verification pass
+locally; production revision `8157ffa` has not changed, so deployment and
+production retest remain open.
+
 These statuses are intentionally independent: the completed applicable UAT
 scope does not sign off the incomplete documentation workstream, and the
 documented external limitations do not create a product failure.

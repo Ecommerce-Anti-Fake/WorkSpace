@@ -7,6 +7,11 @@ matching runtime evidence.
 
 ## Audit boundary
 
+Local Journey Center follow-up: Front-End commit `02fcbfb` persists a manually
+selected Desktop/Mobile platform in session storage and has focused local
+browser coverage. This is not production evidence; the deployed revision
+remains `8157ffa` until deployment and cross-viewport retest.
+
 | Area | Source entry points inspected | Source finding | Documentation consequence |
 |---|---|---|---|
 | Public discovery | `Front-End/src/App.tsx` routes for `/`, `/search`, `/categories`, `/product/:id`, `/shop/:shopId`, `/community`, `/live` and `/live/:id` | Guest discovery and catalog shells are present | Guide may describe navigation; product actions remain evidence-scoped |
