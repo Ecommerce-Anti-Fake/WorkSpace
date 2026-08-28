@@ -94,8 +94,9 @@ The same pre-state, mutation and restoration were verified at Desktop
 returned HTTP `200`; no console errors or 5xx responses were observed. The
 post-cleanup cart returned to four lines, second-line quantity `2`, and badge
 `7`, matching the intended baseline. This is `SAFE_UAT_MUTATION` evidence only;
-it is not order, payment or fulfillment evidence. No persistent raw/annotated
-documentation asset was accepted from this capture.
+it is not order, payment or fulfillment evidence. Sanitized raw/annotated
+Desktop/Mobile assets from the restored capture were accepted and registered
+under `docs/images/buyer/` for the cart quantity/badge step.
 
 ### Retained report discrepancy resolution — 2026-08-28
 
