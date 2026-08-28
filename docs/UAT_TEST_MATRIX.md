@@ -1,8 +1,9 @@
 # AntiFake UAT test matrix
 
-> Trạng thái hiện tại: UAT đang thực hiện. Public/permission smoke đã có bằng
-> chứng production trên ba viewport; các dòng `Blocked` hoặc `Chưa chạy`
-> không được hiểu là đã đạt.
+> Trạng thái UAT hiện tại: `237/237` executions thuộc applicable scope đã
+> passed, không có failure hoặc external blocker. Các dòng `Blocked` hoặc
+> `Chưa chạy` bên dưới là lịch sử/fixture scope và không được hiểu là đã đạt;
+> documentation status được theo dõi độc lập.
 
 ## Vai trò và dữ liệu kiểm thử
 

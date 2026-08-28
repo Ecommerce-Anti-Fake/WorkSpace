@@ -855,7 +855,7 @@ findings; `AF-TECH-001` is resolved locally.
 - Required action: schedule a scoped backend lint cleanup, review the resulting
   diff, then rerun the check-only lint, tests, build and Prisma validation.
 - Status: **Open.**
-## AF-UAT-008 - Current skipped scope reconciled
+## AF-UAT-008 - Current skipped scope reconciled (superseded by AF-UAT-010)
 
 - Severity: Major for acceptance tracking; no new product defect identified
 - Role: UAT owner / release maintainer

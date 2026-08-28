@@ -1343,11 +1343,12 @@ provider separation, Admin gap reconciliation, AF-TECH-002 baseline analysis,
 documentation boundary, denominator and 28-journey status are maintained in
 [`docs/UAT_SKIP_RECONCILIATION.md`](UAT_SKIP_RECONCILIATION.md).
 
-Primary denominator: `TOTAL_DISCOVERED=246`,
+Historical pre-reconciliation denominator (superseded): `TOTAL_DISCOVERED=246`,
 `TOTAL_APPLICABLE=237`, `PASSED=198`, `FAILED=0`,
 `BLOCKED_EXTERNAL=39`, `NOT_APPLICABLE=2`, `NOT_IMPLEMENTED=0`, `UNSAFE=6`,
-`OTHER_EXTERNAL_BLOCKER=1`. The current executable applicable result is
-`198/237`; this does not promote partial documentation journeys or repeat
+`OTHER_EXTERNAL_BLOCKER=1`. The historical executable applicable result was
+`198/237`; this snapshot is superseded by the seed/demo and cart closeout
+below, and does not promote partial documentation journeys or repeat
 already-valid public evidence.
 
 ## Seed/demo account re-audit and authenticated UAT — 2026-08-28 (read-only checkpoint; superseded by closeout)
