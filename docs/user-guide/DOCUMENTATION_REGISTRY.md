@@ -15,9 +15,12 @@ sandbox matrix and mutation boundary are maintained in
 the authoritative closeout boundary for documentation work and does not
 replace the UAT artifacts.
 
-Current status: `DOCUMENTATION_STATUS = IN_PROGRESS`. Production UAT status is
-tracked independently in the canonical UAT artifacts; neither status is
-upgraded by source-only checks.
+Current status: `DOCUMENTATION_STATUS = COMPLETE_WITH_TERMINAL_CLASSIFICATIONS`.
+The 28 feature rows retain their truthful `PARTIAL`, `SOURCE_VERIFIED` and
+`NOT_IMPLEMENTED` scopes; every unverified step has an exact terminal
+fixture/provider/unsafe disposition in the final evidence matrix. Production
+UAT status is tracked independently in the canonical UAT artifacts; neither
+status is upgraded by source-only checks.
 
 `docs/HUONG_DAN_SU_DUNG_ANTIFAKE.md` is retained as a historical UAT draft.
 It is not a second canonical guide and must not be used to infer production

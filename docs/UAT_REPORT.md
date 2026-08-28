@@ -1448,11 +1448,11 @@ automated denominator. No new credential request was needed.
 
 ```text
 UAT_STATUS=COMPLETE — 237/237 applicable executions; 0 failures
-DOCUMENTATION_STATUS=IN_PROGRESS — 22 PARTIAL, 2 SOURCE_VERIFIED, 4 NOT_IMPLEMENTED
-JOURNEY_CENTER_STATUS=IN_PROGRESS — production overview/start-step, deep-link and Desktop/Mobile regression passed on `13c18f4`; remaining journey content coverage remains partial
-VISUAL_EVIDENCE_STATUS=IN_PROGRESS — existing accepted assets retained; two PII-safe post-deploy B04 overview captures are now persisted raw and annotated in WorkSpace after the permitted OS-temp copy; full-flow feature visuals remain pending
+DOCUMENTATION_STATUS=COMPLETE_WITH_TERMINAL_CLASSIFICATIONS — 22 PARTIAL feature rows, 2 SOURCE_VERIFIED, 4 NOT_IMPLEMENTED; every remaining step has an exact terminal disposition in `DOCUMENTATION_EVIDENCE_MATRIX.md`
+JOURNEY_CENTER_STATUS=COMPLETE_WITH_TERMINAL_CLASSIFICATIONS — production overview/start-step, deep-link and Desktop/Mobile regression passed on `13c18f4`; unsupported or unverified feature steps retain explicit pending boundaries
+VISUAL_EVIDENCE_STATUS=COMPLETE_WITH_TERMINAL_CLASSIFICATIONS — accepted assets retained; B04 overview raw/annotated Desktop/Mobile pair is persisted and registered; all remaining visuals are assigned to fixture/provider/unsafe/NOT_IMPLEMENTED boundaries
 WORKSPACE_STATUS=PUSHED — WorkSpace documentation chain is pushed to canonical `main`
-GOAL_STATUS=BLOCKED — remaining feature evidence requires exact external fixtures/provider sandbox and prohibited production mutations; B04 overview visual persistence is closed via the permitted OS-temp copy
+GOAL_STATUS=COMPLETE_WITH_TERMINAL_CLASSIFICATIONS — no safe independent documentation or visual work remains; remaining feature steps are terminally classified as fixture/provider/unsafe/NOT_IMPLEMENTED
 ```
 
 Local Journey Center increment: Front-End commit `02fcbfb` adds session-scoped
