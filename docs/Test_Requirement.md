@@ -148,7 +148,7 @@ Các tài khoản dự kiến:
 - Admin: `admin@antifake.io.vn`
 - User/Seller 1: `seed.user01@antifake.local`
 - User/Seller 2: `seed.user02@antifake.local`
-- Mật khẩu chung: `antifake@2026`
+- Mật khẩu: cung cấp qua môi trường UAT bảo mật; không ghi trong tài liệu.
 
 Không được chỉ tin vào danh sách trên. Phải đối chiếu với code seed và dữ liệu production.
 

@@ -36,5 +36,6 @@ or deployment step.
 
 ## Accounts
 
-All seeded accounts use `antifake@2026`. The admin account is
+Seeded-account passwords are supplied through the approved secure UAT
+mechanism and are not recorded in documentation. The admin login identifier is
 `admin@antifake.io.vn`.
