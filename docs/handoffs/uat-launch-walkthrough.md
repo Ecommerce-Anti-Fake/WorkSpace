@@ -1073,5 +1073,5 @@ The integrated WorkSpace package was committed locally as `af9a59f` with
 `docs(uat): integrate AntiFake UAT and user documentation`. The push to the
 shared `main` branch was not completed: external publication review rejected
 the push as a sensitive egress to an unverified shared repository. No bypass or
-retry was attempted. Owner action is to review and push the local WorkSpace
-chain `af9a59f`, `f145bc1`, `7cadbfb`, then verify `origin/main`.
+retry was attempted. Owner action is to review and push the current local
+WorkSpace `main`, then verify `origin/main`.
