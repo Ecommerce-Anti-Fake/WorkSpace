@@ -20,10 +20,22 @@ asset. The current served copies are kept in
 | A05 pending | `/journey-visuals/admin-product-review-desktop.png` | `/journey-visuals/admin-product-review-mobile.png` | Admin read-only product-registration queue only; A05 remains `PARTIAL` |
 | A09 list | `/journey-visuals/admin-promotions-desktop.png` | `/journey-visuals/admin-promotions-mobile.png` | Admin read-only voucher workspace only; A09 remains `PARTIAL` |
 | S07 program | `/journey-visuals/affiliate-program-desktop.png` | `/journey-visuals/affiliate-program-mobile.png` | Authenticated Affiliate program read-only view only; binding verified after deployment `622b1e9`; S07 remains `PARTIAL` |
-| B04 cart | `/journey-visuals/b04-cart-desktop.png` | `/journey-visuals/b04-cart-mobile.png` | Local binding for the accepted seeded-cart Desktop/Mobile evidence at `8157ffa`; deployment and production retest pending; B04 remains `PARTIAL` |
+| B04 cart | `/journey-visuals/b04-cart-desktop.png` | `/journey-visuals/b04-cart-mobile.png` | Production binding retested after deployed revision `13c18f4`; accepted seeded-cart Desktop/Mobile evidence remains at `8157ffa`; B04 remains `PARTIAL` |
 
 Steps without a registered visual continue to show the evidence-pending
 placeholder. These bindings do not upgrade a journey's UAT status.
+
+## Post-deployment Journey Center regression — 2026-08-28
+
+The B04 article overview and its explicit start-step link were retested on
+production revision `13c18f4` at Desktop `1440×900` and Mobile `390×844`.
+Manual Desktop/Mobile selection, overview progress (`6` steps), and the
+overview-to-`discover` deep link rendered correctly. The page and static
+bundle returned HTTP `200` (the overview document may be `304` on reload) and
+the browser reported no console messages. Two PII-safe viewport captures were
+made during this regression, but the browser capture tool could not write to
+the canonical WorkSpace path; they are therefore not registered as final
+manifest assets or promoted to annotated visuals.
 
 | Journey/step | Platform | Original | Annotated | Viewport | Status |
 |---|---|---|---|---|---|
@@ -107,7 +119,7 @@ visual or a production verification claim.
 | B01 | `/help/buyer/account-start` | Desktop 1440×900 + Mobile 390×844 | `docs/images/auth/login-desktop-production-6b24be3.png`, `login-mobile-production-6b24be3.png`, `registration-desktop-production-6b24be3.png`, `registration-mobile-production-6b24be3.png` | Matching Desktop/Mobile annotated auth pairs under `docs/images/auth/` | Public login and registration entry plus authenticated profile/address read-only surfaces are evidenced; registration and mutations remain `Pending`, so B01 is `PARTIAL` |
 | B02 | `/help/buyer/discover` | Desktop 1440×900 + Mobile 390×844 | `catalog-home`, `catalog-categories`, `catalog-category-results`, `catalog-search-results`, `shop-detail` and `product-detail` raw pairs under `docs/images/buyer/` | Matching Desktop/Mobile annotated pairs under `docs/images/buyer/` | Public home, category, filtered-results, search, Shop-detail and product-detail surfaces captured with clean browser diagnostics; Pending sort/review/provenance/authenticated actions remain open, so B02 is `PARTIAL` |
 | B03 | `/help/qr/verify-product` | Desktop 1440×900 + Mobile 390×844 | `docs/images/qr/verification-desktop-production-a0b74c4.png`, `docs/images/qr/verification-mobile-production-a0b74c4.png` (UAT evidence only) | `docs/images/qr/verification-desktop-production-a0b74c4-annotated.png`, `docs/images/qr/verification-mobile-production-a0b74c4-annotated.png` (UAT evidence only) | Do not publish as final; production code/link/image negative paths are verified; raw and annotated unknown-result evidence is captured at both viewports; known positive fixture and final feature capture remain pending |
-| B04 | `/help/buyer/first-purchase` | Desktop 1440×900 + Mobile 390×844 | `docs/images/buyer/cart-desktop-production-8157ffa.png`, `docs/images/buyer/cart-mobile-production-8157ffa.png` | `docs/images/buyer/cart-desktop-production-8157ffa-annotated.png`, `docs/images/buyer/cart-mobile-production-8157ffa-annotated.png` | Cart quantity/badge step is persistently captured and registered; `Pending`: cart quote/order/payment and full first-purchase evidence remain open, so B04 stays `PARTIAL` |
+| B04 | `/help/buyer/first-purchase` | Desktop 1440×900 + Mobile 390×844 | `docs/images/buyer/cart-desktop-production-8157ffa.png`, `docs/images/buyer/cart-mobile-production-8157ffa.png` | `docs/images/buyer/cart-desktop-production-8157ffa-annotated.png`, `docs/images/buyer/cart-mobile-production-8157ffa-annotated.png` | Article overview/start-step and Desktop/Mobile selector retested on production `13c18f4`; accepted cart badge visuals remain registered at `8157ffa`; `Pending`: cart quote/order/payment and full first-purchase evidence remain open, so B04 stays `PARTIAL` |
 | B05 | `/help/buyer/orders` | Desktop 1440×900 + Mobile 390×844 | Pending PII-safe owned order-detail capture | Pending | The existing seeded detail is readable but exposes recipient fields; receive/review/dispute state-transition evidence and a PII-safe final capture remain pending |
 | B06 | `/help/buyer/voucher` | Desktop 1440×900 + Mobile 390×844 | Pending authenticated voucher capture | Pending | Eligibility/application runtime and a final Desktop/Mobile capture remain pending |
 | B07 | `/help/buyer/chat-shop` | Desktop 1440×900 + Mobile 390×844 | Pending PII-safe two-session chat capture | Pending | The existing history is readable but exposes participant names; send/receive/reconnect, supported metadata and a PII-safe final capture remain pending |

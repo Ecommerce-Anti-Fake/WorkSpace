@@ -1447,10 +1447,10 @@ automated denominator. No new credential request was needed.
 ```text
 UAT_STATUS=COMPLETE — 237/237 applicable executions; 0 failures
 DOCUMENTATION_STATUS=IN_PROGRESS — 22 PARTIAL, 2 SOURCE_VERIFIED, 4 NOT_IMPLEMENTED
-JOURNEY_CENTER_STATUS=IN_PROGRESS — platform-aware shell, journey overview/start links and B04 cart visual binding verified locally; production deployment/retest and content coverage remain partial
-VISUAL_EVIDENCE_STATUS=IN_PROGRESS — existing accepted assets retained; B04 cart badge raw/annotated Desktop/Mobile pair registered and bound locally; full-flow visuals remain pending
-WORKSPACE_STATUS=COMMIT_CREATED_PENDING_OWNER_PUSH — WorkSpace local documentation chain validated locally; external push review required
-GOAL_STATUS=ACTIVE — documentation, visual evidence and provider-dependent journey portions remain open
+JOURNEY_CENTER_STATUS=IN_PROGRESS — production overview/start-step, deep-link and Desktop/Mobile regression passed on `13c18f4`; remaining journey content coverage remains partial
+VISUAL_EVIDENCE_STATUS=IN_PROGRESS — existing accepted assets retained; two PII-safe post-deploy overview captures were observed at Desktop/Mobile but could not be persisted by the browser tool to the canonical path, so no new final visual pair was registered; full-flow visuals remain pending
+WORKSPACE_STATUS=PUSHED — WorkSpace documentation chain is pushed to canonical `main` at `12565eb`
+GOAL_STATUS=BLOCKED — remaining documentation/visual evidence requires exact external fixtures or provider access, and the browser capture path cannot persist the new overview pair
 ```
 
 Local Journey Center increment: Front-End commit `02fcbfb` adds session-scoped
@@ -1461,9 +1461,12 @@ production retest remain open.
 
 Local Journey Center overview increment: Front-End commit `13c18f4` gives an
 article URL a real journey overview with an explicit start-step link and keeps
-step deep links intact. The Help/Journey regression passed locally across
-Desktop, Laptop and Mobile; this is local implementation evidence only and
-does not change the production revision or journey status distribution.
+step deep links intact. It was pushed and deployed by the normal `main` workflow
+(`33149975815`), then retested in production at Desktop `1440×900` and Mobile
+`390×844`; the bundle contained the overview markers, page/static requests were
+successful, and no console messages were reported. This verifies the Journey
+Center shell behavior only and does not change the 28-journey status
+distribution.
 
 These statuses are intentionally independent: the completed applicable UAT
 scope does not sign off the incomplete documentation workstream, and the

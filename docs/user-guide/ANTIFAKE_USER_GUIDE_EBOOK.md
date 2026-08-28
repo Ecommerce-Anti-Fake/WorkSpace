@@ -150,9 +150,12 @@ mutations remain unverified.
 
 The existing Buyer first-purchase Journey Center shell captures remain non-final
 for steps whose feature visual is still awaiting matching runtime evidence. The
-B04 cart step now has accepted production raw/annotated Desktop/Mobile assets and
-a local Journey Center binding, but deployment and production retest are still
-pending. These assets remain traceability evidence, not full-purchase sign-off.
+B04 cart step now has accepted production raw/annotated Desktop/Mobile assets
+and a production Journey Center binding retested on revision `13c18f4`. The
+overview/start-step and Desktop/Mobile selector work at the required
+`1440×900` and `390×844` viewports. These cart assets remain traceability
+evidence, not full-purchase sign-off; checkout, order and payment evidence is
+still pending.
 
 #### A05 and A09 read-only Admin visuals
 
@@ -304,8 +307,8 @@ The public Help Center is available at `/help`. Search by role, feature or
 journey, then open the article. Journey Center deep links preserve the selected
 step, show progress, provide previous/next navigation and offer Desktop/Mobile
 selection with viewport-aware defaults. The real article-overview/start-step
-state is implemented locally in Front-End `13c18f4`; production deployment and
-retest against `8157ffa` remain pending.
+state is deployed in Front-End `13c18f4` and was retested in production at
+Desktop `1440×900` and Mobile `390×844`.
 Where the registry has an accepted platform binding, the Journey Center
 displays that matching annotated visual; steps without runtime evidence remain
 visibly pending.

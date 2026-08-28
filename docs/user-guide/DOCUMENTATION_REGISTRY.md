@@ -31,7 +31,9 @@ upgrade the article status.
 Each article URL is a journey overview with an ordered step list and an
 explicit start link. Step URLs remain deep-linkable and retain the selected
 Desktop/Mobile presentation; overview navigation does not imply that any
-pending step has been runtime-verified.
+pending step has been runtime-verified. The B04 overview/start-step behavior
+was retested on production revision `13c18f4` at Desktop `1440×900` and Mobile
+`390×844`; the remaining step-level evidence is still tracked separately.
 
 The canonical master guide and evidence-scoped ebook reuse the corresponding
 annotated pairs from `docs/images/` beside accepted B01, B02, B04, B09, S07,
@@ -70,7 +72,7 @@ not a production sign-off.
 
 | Role | Journey slug | Article route | Status | Visual status |
 |---|---|---|---|---|
-| Buyer | `first-purchase` | `/help/buyer/first-purchase` | PARTIAL | Production Desktop/Laptop/Mobile Buy Now/quote read-only evidence accepted; seeded-demo cart badge `7 -> 8 -> 7` passed with restoration; accepted cart Desktop/Mobile visuals are bound locally; deployment/retest, order/payment and final feature visuals remain pending |
+| Buyer | `first-purchase` | `/help/buyer/first-purchase` | PARTIAL | Production Desktop/Laptop/Mobile Buy Now/quote read-only evidence accepted; seeded-demo cart badge `7 -> 8 -> 7` passed with restoration; article overview/start-step and Desktop/Mobile selector retested on production `13c18f4`; accepted cart Desktop/Mobile visuals remain bound at `8157ffa`; order/payment and final feature visuals remain pending |
 | Buyer | `orders` | `/help/buyer/orders` | PARTIAL | Authenticated order-list/detail read-only pass; existing detail exposes recipient fields, so receive/review/dispute state-transition evidence and a PII-safe final Desktop/Mobile visual remain pending |
 | Buyer | `voucher` | `/help/buyer/voucher` | SOURCE_VERIFIED | Source and permission review complete; authenticated eligibility/application runtime and final Desktop/Mobile visual remain pending |
 | Buyer | `chat-shop` | `/help/buyer/chat-shop` | PARTIAL | Authenticated entry/history read-only pass; existing history exposes participant names, while two-session send/receive, reconnect, supported metadata and a PII-safe final Desktop/Mobile visual remain pending |
@@ -96,7 +98,7 @@ coverage required by the documentation specification:
 | Buyer | `B01` | `/help/buyer/account-start` | PARTIAL | Public login and registration entry captures at Desktop/Mobile; authenticated profile/address read-only pass; registration and mutations remain pending |
 | Buyer | `B02` | `/help/buyer/discover` | PARTIAL | Public home, category, filtered-results, search, Shop-detail and product-detail steps captured and annotated at Desktop/Mobile; sort/review/provenance/authenticated actions remain partial |
 | Buyer | `B03` | `/help/qr/verify-product` | PARTIAL | Public article and code/link/image negative paths pass production; known positive fixture and final capture pending |
-| Buyer | `B04` | `/help/buyer/first-purchase` | PARTIAL | Production Desktop/Laptop/Mobile Buy Now/quote read-only pass (`GHN_1`, `158,001 VND`); seeded-demo cart badge `7 -> 8 -> 7` passed with restoration; Desktop/Mobile cart badge raw/annotated visuals registered and locally bound to the cart step; deployment/retest, cart quote/order/payment remain pending |
+| Buyer | `B04` | `/help/buyer/first-purchase` | PARTIAL | Production Desktop/Laptop/Mobile Buy Now/quote read-only pass (`GHN_1`, `158,001 VND`); seeded-demo cart badge `7 -> 8 -> 7` passed with restoration; article overview/start-step and Desktop/Mobile selector retested on production `13c18f4`; Desktop/Mobile cart badge raw/annotated visuals remain registered at `8157ffa`; cart quote/order/payment remain pending |
 | Buyer | `B05` | `/help/buyer/orders` | PARTIAL | Authenticated order-list/detail read-only pass; existing detail exposes recipient fields, so receive/review/dispute state-transition evidence and a PII-safe final Desktop/Mobile visual remain pending |
 | Buyer | `B06` | `/help/buyer/voucher` | SOURCE_VERIFIED | Source and permission review complete; authenticated voucher eligibility/application runtime and final visual pending |
 | Buyer | `B07` | `/help/buyer/chat-shop` | PARTIAL | Authenticated entry/history read-only pass; existing history exposes participant names, while two-session send/receive, reconnect, supported metadata and a PII-safe final Desktop/Mobile visual remain pending |
