@@ -1449,7 +1449,7 @@ UAT_STATUS=COMPLETE — 237/237 applicable executions; 0 failures
 DOCUMENTATION_STATUS=IN_PROGRESS — 22 PARTIAL, 2 SOURCE_VERIFIED, 4 NOT_IMPLEMENTED
 JOURNEY_CENTER_STATUS=IN_PROGRESS — production overview/start-step, deep-link and Desktop/Mobile regression passed on `13c18f4`; remaining journey content coverage remains partial
 VISUAL_EVIDENCE_STATUS=IN_PROGRESS — existing accepted assets retained; two PII-safe post-deploy overview captures were observed at Desktop/Mobile but could not be persisted by the browser tool to the canonical path, so no new final visual pair was registered; full-flow visuals remain pending
-WORKSPACE_STATUS=PUSHED — WorkSpace documentation chain is pushed to canonical `main` at `12565eb`
+WORKSPACE_STATUS=PUSHED — WorkSpace documentation chain is pushed to canonical `main` at `334af0d`
 GOAL_STATUS=BLOCKED — remaining documentation/visual evidence requires exact external fixtures or provider access, and the browser capture path cannot persist the new overview pair
 ```
 
