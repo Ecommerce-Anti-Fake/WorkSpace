@@ -375,7 +375,10 @@ this journey remains `PARTIAL`.
 
 - **Help Center:** search by title, feature, role or journey and open an article.
 - **Journey Center:** open a goal, read one step at a time, move backward or
-  forward, return to the overview and switch Desktop/Mobile.
+  forward and switch Desktop/Mobile. The real journey-overview/start-step state
+  is implemented locally in Front-End `13c18f4` but remains pending production
+  deployment and retest; do not treat the article URL on `8157ffa` as verified
+  overview evidence.
 - **Registered visuals:** accepted evidence-backed steps show the matching
   annotated Desktop or Mobile visual; steps without matching evidence keep an
   explicit visual-pending placeholder.
