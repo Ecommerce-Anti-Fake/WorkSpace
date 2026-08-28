@@ -369,7 +369,7 @@ Documentation path: D:\Work\TMDT_CHG\ecommerce-anti-fake\WorkSpace\docs
 Git worktree: YES (WorkSpace; branch main)
 Canonical repository: Ecommerce-Anti-Fake/WorkSpace
 Commit possible: YES (local commit created)
-Required action: owner review/push local WorkSpace commit `af9a59f`; the loose source mirror remains retained locally
+Required action: owner review/push local WorkSpace commits `af9a59f` and `f145bc1`; the loose source mirror remains retained locally
 ```
 
 The source mirror remains at `D:\Work\TMDT_CHG\ecommerce-anti-fake\docs`; the canonical
