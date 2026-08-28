@@ -29,9 +29,9 @@ placeholder for every step without that mapping; this runtime behavior does not
 upgrade the article status.
 
 The canonical master guide and evidence-scoped ebook reuse the corresponding
-annotated pairs from `docs/images/` beside the accepted B01, B02 and B09
-journey evidence. Pending or UAT-only assets remain excluded from final feature
-claims.
+annotated pairs from `docs/images/` beside accepted B01, B02, B04, B09, S07,
+A01, A05 and A09 evidence. Pending or UAT-only assets remain excluded from
+final feature claims.
 
 Each entry contains:
 
