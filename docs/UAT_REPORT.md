@@ -1446,7 +1446,7 @@ automated denominator. No new credential request was needed.
 ```text
 UAT_STATUS=COMPLETE — 237/237 applicable executions; 0 failures
 DOCUMENTATION_STATUS=IN_PROGRESS — 22 PARTIAL, 2 SOURCE_VERIFIED, 4 NOT_IMPLEMENTED
-JOURNEY_CENTER_STATUS=IN_PROGRESS — platform-aware shell and B04 cart visual binding verified locally; production deployment/retest and content coverage remain partial
+JOURNEY_CENTER_STATUS=IN_PROGRESS — platform-aware shell, journey overview/start links and B04 cart visual binding verified locally; production deployment/retest and content coverage remain partial
 VISUAL_EVIDENCE_STATUS=IN_PROGRESS — existing accepted assets retained; B04 cart badge raw/annotated Desktop/Mobile pair registered and bound locally; full-flow visuals remain pending
 WORKSPACE_STATUS=COMMIT_CREATED_PENDING_OWNER_PUSH — WorkSpace local documentation chain validated locally; external push review required
 GOAL_STATUS=ACTIVE — documentation, visual evidence and provider-dependent journey portions remain open
@@ -1457,6 +1457,12 @@ persistence for the manual Desktop/Mobile choice. Focused content tests,
 build, changed-file lint and Desktop/Laptop/Mobile browser verification pass
 locally; production revision `8157ffa` has not changed, so deployment and
 production retest remain open.
+
+Local Journey Center overview increment: Front-End commit `13c18f4` gives an
+article URL a real journey overview with an explicit start-step link and keeps
+step deep links intact. The Help/Journey regression passed locally across
+Desktop, Laptop and Mobile; this is local implementation evidence only and
+does not change the production revision or journey status distribution.
 
 These statuses are intentionally independent: the completed applicable UAT
 scope does not sign off the incomplete documentation workstream, and the

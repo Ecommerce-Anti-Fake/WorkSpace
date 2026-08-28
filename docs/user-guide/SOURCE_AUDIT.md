@@ -8,14 +8,15 @@ matching runtime evidence.
 ## Audit boundary
 
 Local Journey Center follow-up: Front-End commit `02fcbfb` persists a manually
-selected Desktop/Mobile platform in session storage and has focused local
-browser coverage. This is not production evidence; the deployed revision
-remains `8157ffa` until deployment and cross-viewport retest.
+selected Desktop/Mobile platform in session storage, and commit `13c18f4` adds
+a real journey overview state with explicit start-step links. Focused local
+browser coverage passes. This is not production evidence; the deployed
+revision remains `8157ffa` until deployment and cross-viewport retest.
 
 | Area | Source entry points inspected | Source finding | Documentation consequence |
 |---|---|---|---|
 | Public discovery | `Front-End/src/App.tsx` routes for `/`, `/search`, `/categories`, `/product/:id`, `/shop/:shopId`, `/community`, `/live` and `/live/:id` | Guest discovery and catalog shells are present | Guide may describe navigation; product actions remain evidence-scoped |
-| Help and journeys | `Front-End/src/App.tsx` `/help/*`; `Front-End/src/data/helpCenter.ts`; `Front-End/src/pages/help/index.tsx`; `Front-End/src/components/help/contextualHelpLink.tsx`; `Front-End/src/components/layout/footer.tsx` | Role filters, search, deep step links, progress, previous/next, platform override and contextual-help links are implemented | Help links can be source-verified; final visual claims still require captured evidence |
+| Help and journeys | `Front-End/src/App.tsx` `/help/*`; `Front-End/src/data/helpCenter.ts`; `Front-End/src/pages/help/index.tsx`; `Front-End/src/components/help/contextualHelpLink.tsx`; `Front-End/src/components/layout/footer.tsx` | Role filters, search, journey overview/start links, deep step links, progress, previous/next, platform override and contextual-help links are implemented | Help links can be source-verified; final visual claims still require captured evidence |
 | Authentication | `Front-End/src/routes/protectedRoute.tsx`; `back-end/libs/security/src/guards/jwt-auth.guard.ts`; `active-user.guard.ts`; `roles.guard.ts` | Protected routes and backend identity/role checks are separate boundaries | Help copy must not imply that hidden UI bypasses authorization |
 | Buyer purchase | `Front-End/src/pages/cart/index.tsx`; `src/pages/checkout/index.tsx`; `src/services/cart.api.ts`; `src/services/product.api.ts`; `back-end/libs/orders/src/presentation/rpc/orders.rpc-controller.ts` | Cart, shipping options and cart/Buy Now quote contracts exist; the seeded-demo cart badge quantity check passed with restoration and has sanitized Desktop/Mobile visual pairs, and the Buy Now read-only quote path passed Desktop/Laptop/Mobile, while cart quote/order runtime remains blocked by AF-B-003 | Checkout article remains `PARTIAL`; describe badge feedback separately and never promise an order without a successful quote |
 | Buyer account | `Front-End/src/pages/profile/userProfile.tsx`; `Front-End/src/pages/profile/addressPage.tsx`; `Front-End/src/pages/profile/ordersPage.tsx`; `Front-End/src/pages/profile/walletPage.tsx`; `Front-End/src/components/layout/profileSidebar.tsx`; `Front-End/src/App.tsx` protected profile routes | Authenticated production read-only profile, address, order-list and wallet surfaces passed; the former `/profile/verify-history` sidebar target now points to supported public `/qr` navigation in `3c512a8`, with production regression passing 3/3 across Desktop/Laptop/Mobile | B01 and B05 remain `PARTIAL`; mutations, ownership-after-reload, order transitions/review/dispute and server-backed QR history remain pending |
