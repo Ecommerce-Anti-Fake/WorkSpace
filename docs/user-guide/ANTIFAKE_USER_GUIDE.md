@@ -166,6 +166,16 @@ and [Mobile cart](../images/buyer/cart-mobile-production-8157ffa-annotated.png).
 They point out the header quantity badge and the quantity control; they do not
 represent a completed quote, order or payment.
 
+#### B04 cart badge visuals
+
+| Platform | Annotated visual |
+|---|---|
+| Desktop 1440x900 | ![Cart quantity badge on Desktop](../images/buyer/cart-desktop-production-8157ffa-annotated.png) |
+| Mobile 390x844 | ![Cart quantity badge on Mobile](../images/buyer/cart-mobile-production-8157ffa-annotated.png) |
+
+These visuals cover the reversible quantity/badge check only. B04 remains
+`PARTIAL` until the quote, order and payment portions have matching evidence.
+
 ### Track an order
 
 Use [Theo dõi đơn hàng](/help/buyer/orders). Open only orders owned by the

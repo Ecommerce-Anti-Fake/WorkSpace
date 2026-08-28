@@ -62,6 +62,17 @@ from a guide article.
   visuals at [`Desktop`](../images/buyer/cart-desktop-production-8157ffa-annotated.png)
   and [`Mobile`](../images/buyer/cart-mobile-production-8157ffa-annotated.png).
   They document badge/quantity feedback only; B04 remains `PARTIAL`.
+
+#### B04 cart badge visuals
+
+| Platform | Annotated visual |
+|---|---|
+| Desktop 1440x900 | ![Cart quantity badge on Desktop](../images/buyer/cart-desktop-production-8157ffa-annotated.png) |
+| Mobile 390x844 | ![Cart quantity badge on Mobile](../images/buyer/cart-mobile-production-8157ffa-annotated.png) |
+
+These images document the reversible quantity/badge check only. They do not
+claim quote, order creation or payment evidence.
+
 - Most buyer feature screenshots remain pending until the corresponding runtime
   journey is verified. The public B02 discovery subset below is an explicit
   partial exception; the Help Center shell captures are not product-flow
