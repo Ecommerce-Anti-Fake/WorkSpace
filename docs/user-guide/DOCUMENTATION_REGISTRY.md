@@ -9,6 +9,12 @@ The companion source/evidence traceability audit is
 [`SOURCE_AUDIT.md`](SOURCE_AUDIT.md). It is the required source-side review
 before adding or upgrading guide claims.
 
+The final per-journey evidence axes, minimum fixture definitions, provider
+sandbox matrix and mutation boundary are maintained in
+[`DOCUMENTATION_EVIDENCE_MATRIX.md`](DOCUMENTATION_EVIDENCE_MATRIX.md). It is
+the authoritative closeout boundary for documentation work and does not
+replace the UAT artifacts.
+
 Current status: `DOCUMENTATION_STATUS = IN_PROGRESS`. Production UAT status is
 tracked independently in the canonical UAT artifacts; neither status is
 upgraded by source-only checks.

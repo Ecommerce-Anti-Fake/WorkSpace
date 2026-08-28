@@ -33,9 +33,10 @@ Manual Desktop/Mobile selection, overview progress (`6` steps), and the
 overview-to-`discover` deep link rendered correctly. The page and static
 bundle returned HTTP `200` (the overview document may be `304` on reload) and
 the browser reported no console messages. Two PII-safe viewport captures were
-made during this regression, but the browser capture tool could not write to
-the canonical WorkSpace path; they are therefore not registered as final
-manifest assets or promoted to annotated visuals.
+written to the permitted OS temporary directory, privacy-reviewed, annotated
+deterministically, and copied into the preferred WorkSpace asset tree. Direct
+browser writes to repository paths still returned the configured-workspace
+root error, so the temp-to-WorkSpace copy is the persistence record.
 
 | Journey/step | Platform | Original | Annotated | Viewport | Status |
 |---|---|---|---|---|---|
@@ -67,6 +68,9 @@ manifest assets or promoted to annotated visuals.
 | QR page unknown-result evidence | Mobile | `docs/images/qr/verification-mobile-production-a0b74c4.png` | `docs/images/qr/verification-mobile-production-a0b74c4-annotated.png` | 390×844 | Production raw + deterministic annotation after `a0b74c4`; unknown fixture returns server-owned `NOT_FOUND`; UAT evidence only |
 | Seller getting started checklist | Desktop/Mobile | Pending `/seller/dashboard` capture with approved Seller fixture and backend-derived checklist state | Pending raw + annotated Desktop/Mobile pair | 1440×900 / 390×844 | Capture only after authenticated read-only checklist load; retain the actual completed count and do not mutate Shop, product, voucher or order data |
 | Guest Admin redirect | Desktop/Mobile | `docs/images/uat-guest-admin-redirect-*` | Do not publish as guide | 1440×900 / 390×844 | Security/UAT evidence only |
+
+| B04 Journey Center overview | Desktop | `docs/images/guide/help/b04-overview-production-13c18f4-desktop.png` | `docs/images/guide/help/b04-overview-production-13c18f4-desktop-annotated.png` | 1440x900 | PII-safe production overview capture after `13c18f4`; persisted via OS temp to WorkSpace; annotation identifies the platform selector; shell evidence only |
+| B04 Journey Center overview | Mobile | `docs/images/guide/help/b04-overview-production-13c18f4-mobile.png` | `docs/images/guide/help/b04-overview-production-13c18f4-mobile-annotated.png` | 390x844 | PII-safe production overview capture after `13c18f4`; persisted via OS temp to WorkSpace; annotation identifies the platform selector; shell evidence only |
 
 ## Capture traceability
 

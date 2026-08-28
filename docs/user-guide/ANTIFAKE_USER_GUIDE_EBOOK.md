@@ -329,6 +329,17 @@ articles rather than creating a second source of truth:
 
 The status of each shortcut remains the status in the journey tables above.
 
+### B04 Journey Center overview evidence — 2026-08-28
+
+The production B04 overview shell was captured after Front-End `13c18f4` at
+Desktop `1440x900` and Mobile `390x844`. This is shell/selector evidence only;
+checkout, payment and order completion remain separate pending steps.
+
+| Platform | Raw | Annotated |
+|---|---|---|
+| Desktop | [B04 overview raw](../images/guide/help/b04-overview-production-13c18f4-desktop.png) | [B04 overview annotated](../images/guide/help/b04-overview-production-13c18f4-desktop-annotated.png) |
+| Mobile | [B04 overview raw](../images/guide/help/b04-overview-production-13c18f4-mobile.png) | [B04 overview annotated](../images/guide/help/b04-overview-production-13c18f4-mobile-annotated.png) |
+
 ## Troubleshooting
 
 - If a private route redirects to authentication, use an approved active test

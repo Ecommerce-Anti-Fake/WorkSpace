@@ -5,6 +5,11 @@ Internal bridge between source audit, UAT evidence and user documentation.
 Source-side route, API, schema and permission findings are recorded in
 [`SOURCE_AUDIT.md`](SOURCE_AUDIT.md); this matrix remains the status summary.
 
+The detailed per-journey `SOURCE`, `RUNTIME`, `DESKTOP_VISUAL`,
+`MOBILE_VISUAL`, `ANNOTATED_VISUAL`, `GUIDE_CONTENT` and `JOURNEY_CENTER` axes,
+plus exact fixture/provider requirements, are recorded in
+[`DOCUMENTATION_EVIDENCE_MATRIX.md`](DOCUMENTATION_EVIDENCE_MATRIX.md).
+
 ## Journey/UAT traceability bridge
 
 This table connects the canonical journey IDs to the existing UAT cases. A

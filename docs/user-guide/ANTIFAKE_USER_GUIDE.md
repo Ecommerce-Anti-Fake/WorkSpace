@@ -409,6 +409,18 @@ are part of the product surface:
 The table is a navigation map, not a production sign-off. Supporting features
 inherit the same source/runtime/evidence status rules as the main journeys.
 
+### B04 Journey Center overview evidence — 2026-08-28
+
+The production B04 overview shell was captured after Front-End `13c18f4` at
+Desktop `1440x900` and Mobile `390x844`. These images document the overview,
+the six-step summary and the Desktop/Mobile selector only; they do not claim
+that checkout, payment or order completion is verified.
+
+| Platform | Raw | Annotated |
+|---|---|---|
+| Desktop | [B04 overview raw](../images/guide/help/b04-overview-production-13c18f4-desktop.png) | [B04 overview annotated](../images/guide/help/b04-overview-production-13c18f4-desktop-annotated.png) |
+| Mobile | [B04 overview raw](../images/guide/help/b04-overview-production-13c18f4-mobile.png) | [B04 overview annotated](../images/guide/help/b04-overview-production-13c18f4-mobile-annotated.png) |
+
 ## Troubleshooting
 
 | What you see | What to do |
