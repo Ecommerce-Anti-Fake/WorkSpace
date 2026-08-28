@@ -1068,3 +1068,10 @@ not write directly to WorkSpace, so captures were exported to an approved
 temporary directory, inspected, copied into WorkSpace, and the annotation DOM
 was removed. B04 remains `PARTIAL` because quote/order/payment evidence is
 still open.
+
+The integrated WorkSpace package was committed locally as `af9a59f` with
+`docs(uat): integrate AntiFake UAT and user documentation`. The push to the
+shared `main` branch was not completed: external publication review rejected
+the push as a sensitive egress to an unverified shared repository. No bypass or
+retry was attempted. Owner action is to review and push `af9a59f`, then verify
+`origin/main`.
