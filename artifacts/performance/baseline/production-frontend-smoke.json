@@ -1,0 +1,91 @@
+{
+  "measuredAt": "2026-08-04T09:16:46.456Z",
+  "baseUrl": "https://antifake.io.vn",
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "finalUrl": "/",
+      "durationMs": 3184.7422,
+      "bytes": 551
+    },
+    {
+      "path": "/auth",
+      "status": 200,
+      "finalUrl": "/auth",
+      "durationMs": 9.324600000000373,
+      "bytes": 551
+    },
+    {
+      "path": "/search",
+      "status": 200,
+      "finalUrl": "/search",
+      "durationMs": 8.311999999999898,
+      "bytes": 551
+    },
+    {
+      "path": "/categories",
+      "status": 200,
+      "finalUrl": "/categories",
+      "durationMs": 14.729100000000017,
+      "bytes": 551
+    },
+    {
+      "path": "/live",
+      "status": 200,
+      "finalUrl": "/live",
+      "durationMs": 7.797700000000077,
+      "bytes": 551
+    },
+    {
+      "path": "/community",
+      "status": 200,
+      "finalUrl": "/community",
+      "durationMs": 12.38070000000016,
+      "bytes": 551
+    },
+    {
+      "path": "/cart",
+      "status": 200,
+      "finalUrl": "/cart",
+      "durationMs": 15.267499999999927,
+      "bytes": 551
+    },
+    {
+      "path": "/profile",
+      "status": 200,
+      "finalUrl": "/profile",
+      "durationMs": 13.019199999999728,
+      "bytes": 551
+    },
+    {
+      "path": "/notification",
+      "status": 200,
+      "finalUrl": "/notification",
+      "durationMs": 10.039499999999862,
+      "bytes": 551
+    },
+    {
+      "path": "/messages",
+      "status": 200,
+      "finalUrl": "/messages",
+      "durationMs": 12.198899999999867,
+      "bytes": 551
+    },
+    {
+      "path": "/seller",
+      "status": 200,
+      "finalUrl": "/seller",
+      "durationMs": 12.586499999999887,
+      "bytes": 551
+    },
+    {
+      "path": "/admin",
+      "status": 200,
+      "finalUrl": "/admin",
+      "durationMs": 13.961099999999988,
+      "bytes": 551
+    }
+  ],
+  "note": "Read-only GET smoke. No credentials, request bodies or response bodies are logged."
+}

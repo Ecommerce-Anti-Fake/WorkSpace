@@ -1,0 +1,155 @@
+# Tiered Distributor Pricing Handoff
+
+## Feature Overview
+Wholesale distribution now enforces the manufacturer -> level 1 -> level 2 -> level 3 chain and applies the fixed distributor benefit policy from the product spec.
+
+## Completed Work
+- In-network wholesale pricing requires the buyer distribution node to be a direct child of the seller offer's distribution node.
+- Lower-tier distributors cannot bypass the parent tier by buying directly from manufacturer or another upstream branch.
+- Seller distribution node must be active before in-network pricing applies.
+- Dealer invitations now return network, brand, manufacturer, invited shop, and parent-shop context for acceptance review.
+- Distribution UI shows parent-child approval path and tier benefits before sending or accepting an invitation.
+- Default tier benefits apply when no explicit policy is configured:
+  - Level 1 buyer: 15% distributor discount, 5% platform fee.
+  - Level 2 buyer: 10% distributor discount, 10% platform fee.
+  - Level 3 buyer: 5% distributor discount, 15% platform fee.
+- Distribution order economics now use list value as the base:
+  - `discountAmount = baseAmount * tierDiscount`
+  - `platformFeeAmount = baseAmount * (20% - tierDiscount)`
+  - `buyerPayableAmount = baseAmount - discountAmount`
+  - `sellerReceivableAmount = baseAmount * 80%`
+- Seed data now includes deterministic active manufacturer/L1/L2/L3 distribution fixtures with wholesale offers attached to the manufacturer, L1, and L2 nodes.
+- Backend E2E coverage now verifies distributor invite, invite acceptance, and L1 wholesale purchase pricing through real repositories/use cases.
+- Frontend smoke coverage now guards the manufacturer/dealer invitation UI hooks, accept action, derived tier benefit panel, and seeded fixture linkage.
+- Product-visible wholesale purchase flow is now enabled:
+  - `/wholesale` and `/wholesale/:offerId` render distributor catalog/detail instead of redirecting to retail.
+  - Catalog loads active distributor memberships and only shows wholesale offers where the buyer node is a direct child of the seller offer node.
+  - Detail page resolves tiered wholesale pricing before checkout through `POST /distribution/wholesale-pricing/resolve`.
+  - Detail page creates the order through `POST /orders`, showing base value, discount, platform fee, and buyer payable before confirmation.
+- Role-neutral purchase flow is now enabled:
+  - Normal authenticated buyers can add wholesale-only offers to cart and checkout when quantity/stock/min-wholesale rules pass.
+  - `POST /orders` accepts orders without `buyerShopId`/`buyerDistributionNodeId`; these use list price, 0% distributor discount, and the standard 20% platform fee.
+  - Distributor membership remains optional purchase context: when a valid buyer shop/node is supplied, backend still resolves in-network tier pricing.
+  - Frontend `/wholesale` and `/wholesale/:offerId` no longer block users without distributor membership; missing membership shows list-price wholesale checkout.
+- Distributor order receiving into inventory is now enabled:
+  - Buyer-side order detail shows `Nhận vào tồn kho` for delivered wholesale orders with a buyer distribution node.
+  - `POST /orders/:id/receive-inventory` validates buyer-shop ownership, wholesale mode, buyer distribution node, and `DELIVERED` fulfillment.
+  - The receive path creates downstream `SupplyBatch` rows for the buyer shop/node using deterministic `WHOLESALE-<order>-<item>` batch numbers, so repeated calls return the existing batch instead of duplicating stock.
+  - The order audit timeline records `WHOLESALE_INVENTORY_RECEIVED` with batch IDs and buyer node metadata.
+- Resale offer drafting from received distributor batches is now enabled:
+  - Seller shop product console surfaces received `WHOLESALE_ORDER` batches with a stable `resale-draft-batches` smoke hook.
+  - `Tạo draft bán lại` pre-fills the create-offer form from the selected batch, marks the offer as `draft`, carries the batch quantity, and selects wholesale resale mode for distributor shops.
+  - Create-offer now accepts `offerStatus: draft`; public offer listing still defaults to `offerStatus = active`, while seller listing includes drafts through `includeInactive`.
+  - Draft resale creation forwards the batch distribution node and then attaches the batch through the existing offer batch allocation endpoint, preserving same-node inventory rules.
+- Downstream resale checkout validation is now enabled:
+  - `POST /orders` rejects direct orders for `draft` or `inactive` offers.
+  - Distribution-node wholesale offers now require a buyer distribution node and must resolve to in-network pricing before order creation.
+  - Distributor-created resale offers must have enough attached `OfferBatchLink.allocatedQuantity` before checkout succeeds.
+  - Fulfillment allocation regression coverage verifies resale orders consume the attached received batch and decrement both offer-batch allocation and supply-batch stock.
+- Seller-facing publish controls for resale drafts are now enabled:
+  - Draft offer cards open the edit panel instead of publishing immediately.
+  - The edit panel shows a stable `resale-publish-preview` eligibility preview with batch allocation, distribution node, wholesale mode, and min quantity checks.
+  - `Bật bán draft` sends a final PATCH only when frontend preview checks pass.
+  - Backend `UpdateOfferUseCase` remains source of truth for `draft -> active`, rejecting distributor resale drafts without active distribution node or enough attached `WHOLESALE_ORDER` batch stock.
+- Buyer-facing downstream resale catalog filters are now enabled:
+  - `/wholesale` accepts `BOTH` and `WHOLESALE` active offers for wholesale browsing.
+  - Catalog keeps direct-parent eligibility filtering through active distributor memberships.
+  - A stable `downstream-wholesale-filters` panel filters by eligible parent node and preserves `parentNodeId` in query params.
+  - Wholesale cards show parent-node and buyer-level context so L2/L3 can distinguish direct upstream resale offers.
+- Multi-hop downstream resale regression coverage is now enabled:
+  - `distributor-onboarding.e2e-spec.ts` covers manufacturer -> L1 purchase/receive, L1 resale to L2, L2 receive/re-list, and L2 resale checkout by L3.
+  - The coverage verifies tier pricing at each downstream hop and proves resale fulfillment decrements the upstream received batch before the next relist.
+- Buyer-facing provenance chain display is now enabled:
+  - Wholesale offer detail shows a stable `resale-provenance-chain` panel before checkout, based on public offer batch links.
+  - Buyer order detail shows a stable `order-provenance-chain` panel after checkout when fulfilled batch allocations are available.
+  - The display labels source type, source shop/name, batch number, received date, origin country, and allocated quantity without changing backend contracts.
+- Backend wholesale receipt lineage metadata is now enabled:
+  - `SupplyBatch` has nullable `sourceOrderId` and `sourceOrderItemId` fields with indexes and FK `SET NULL` behavior for existing cleanup/delete flows.
+  - `receiveWholesaleOrderIntoInventory()` writes the source wholesale order and order item onto each downstream batch receipt.
+  - Distribution batch responses, offer batch links, wholesale receipt responses, and order item batch allocations expose the lineage IDs.
+  - Receipt audit metadata includes `batchLineage` for operational traceability.
+
+## Changed Areas
+- `LocalWholesalePricingAdapter`
+- `ResolveWholesalePricingUseCase`
+- `ResolveWholesalePricingMessage`
+- `OrdersRepository.findOfferForOrdering()`
+- `OrdersRepository.findDistributionNodeById()`
+- `DistributionPricingRepository.findInvitedNodesByOwner()`
+- `DistributionPage`
+- `ProductsPage`
+- `OfferDetailPage`
+- `DistributionController`
+- `OrdersController`
+- `OrdersRepository.receiveWholesaleOrderIntoInventory()`
+- `OrdersRepository.getOfferAllocatedBatchQuantity()`
+- `ReceiveWholesaleOrderInventoryUseCase`
+- `ProductRepository` / offer response mapper
+- `CreateOfferUseCase` / `UpdateOfferUseCase`
+- `CreateOfferDto` / product service contracts
+- `CreateWholesaleOrderUseCase`
+- `ProductRepository.findOwnedOffer()`
+- `prisma/seed.ts`
+- `test/distributor-onboarding.e2e-spec.ts`
+- `test/jest-e2e.json`
+- `scripts/distribution-invitation-ui-smoke.mjs`
+- `scripts/wholesale-purchase-ui-smoke.mjs`
+- `scripts/wholesale-inventory-receive-ui-smoke.mjs`
+- `scripts/resale-draft-ui-smoke.mjs`
+- Wholesale order and pricing regression specs.
+
+## Verification
+- Backend focused tests passed:
+  - `create-wholesale-order.use-case.spec.ts`
+  - `local-wholesale-pricing.adapter.spec.ts`
+  - `resolve-wholesale-pricing.use-case.spec.ts`
+- Backend build passed.
+- Frontend build passed.
+- Backend E2E passed:
+  - `distributor-onboarding.e2e-spec.ts`
+- Frontend smoke passed:
+  - `npm run smoke:distribution-invitation-ui`
+- Wholesale purchase smoke passed:
+  - `npm run smoke:wholesale-purchase-ui`
+- Wholesale inventory receive smoke passed:
+  - `npm run smoke:wholesale-inventory-receive-ui`
+- Resale draft smoke passed:
+  - `npm run smoke:resale-draft-ui`
+- Resale publish focused tests passed:
+  - `update-offer.use-case.spec.ts`
+  - `create-offer.use-case.spec.ts`
+- Downstream resale checkout focused tests passed:
+  - `create-wholesale-order.use-case.spec.ts`
+  - `orders.repository.spec.ts`
+- Multi-hop downstream resale E2E passed:
+  - `npm run test:e2e -- distributor-onboarding.e2e-spec.ts`
+- Buyer-facing resale provenance UI verification passed:
+  - `npm run smoke:wholesale-purchase-ui`
+  - `npm run build`
+- Backend wholesale receipt lineage verification passed:
+  - `npx prisma generate`
+  - `npx prisma migrate deploy`
+  - `npm test -- receive-wholesale-order-inventory.use-case.spec.ts --runInBand`
+  - `npm run test:e2e -- distributor-onboarding.e2e-spec.ts`
+  - `npm run build`
+
+## Important Constraints
+- Keep affiliate disabled by default for distribution orders unless a later payout design explicitly enables it.
+- Do not allow in-network pricing unless both buyer and seller distribution nodes are active.
+- Do not allow cross-network or non-parent-child wholesale purchases to receive distributor pricing.
+- The wholesale catalog should stay membership-filtered; hidden/ineligible upstream offers must not appear as purchasable to the distributor.
+- Buyer-facing downstream resale filters are frontend-only; backend checkout validation remains the final guard.
+- Price preview should continue to call backend pricing resolver rather than duplicating pricing-policy selection in the frontend.
+- Receiving a wholesale order into inventory must remain buyer-owned and idempotent; do not let sellers or unrelated users create downstream buyer stock.
+- Draft resale offers should stay non-public until the seller explicitly changes status to `active`.
+- Resale drafts from distributed batches must keep the offer distribution node aligned with the source batch distribution node.
+- Distribution wholesale checkout must stay in-network; do not allow direct POST checkout without a buyer distribution node.
+- Distributor resale checkout must not rely only on `Offer.availableQuantity`; attached batch allocation must cover the order quantity.
+- Publishing distributor resale drafts must remain backend-gated; frontend preview is advisory only.
+- Preserve retail buyer-order platform fee behavior at 20%.
+- Invitation acceptance UI must make clear that level is derived from parent node + 1, not chosen by the dealer.
+- Do not use role/shop/distributor membership as a purchase gate. Enforce offer status, sales mode, minimum wholesale quantity, stock, and attached resale batch availability instead.
+- Keep distributor tier discount optional: apply it only when the buyer provides a valid owned shop and buyer distribution node.
+
+## Recommended Next Steps
+- Add a backend lineage resolver endpoint/use case that follows `sourceOrderItemId -> batchAllocations -> upstream SupplyBatch` recursively and returns a normalized manufacturer -> L1 -> L2 -> L3 chain for offer and order detail pages.

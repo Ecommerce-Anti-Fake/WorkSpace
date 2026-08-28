@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+.auth/
+playwright-report/
+test-results/
+*.har
+*.trace.zip
+*.pem
+*.key
+*.p12
+*.sqlite
+*.db
+.DS_Store

@@ -1,0 +1,97 @@
+{
+  "measuredAt": "2026-08-04T09:15:05.917Z",
+  "baseUrl": "https://api.antifake.io.vn",
+  "results": [
+    {
+      "path": "/api/health",
+      "iterations": 3,
+      "concurrency": 1,
+      "p50Ms": 24.84189999999998,
+      "p95Ms": 124.9108,
+      "p99Ms": 124.9108,
+      "minMs": 14.834599999999995,
+      "maxMs": 124.9108,
+      "averageBytes": 139,
+      "statuses": {
+        "200": 3
+      },
+      "errorRate": 0
+    },
+    {
+      "path": "/api/offers?page=1&pageSize=10",
+      "iterations": 3,
+      "concurrency": 1,
+      "p50Ms": 333.0118,
+      "p95Ms": 713.5278,
+      "p99Ms": 713.5278,
+      "minMs": 329.16869999999994,
+      "maxMs": 713.5278,
+      "averageBytes": 6239,
+      "statuses": {
+        "200": 3
+      },
+      "errorRate": 0
+    },
+    {
+      "path": "/api/categories",
+      "iterations": 3,
+      "concurrency": 1,
+      "p50Ms": 43.21469999999999,
+      "p95Ms": 44.29060000000004,
+      "p99Ms": 44.29060000000004,
+      "minMs": 41.92730000000006,
+      "maxMs": 44.29060000000004,
+      "averageBytes": 993,
+      "statuses": {
+        "200": 3
+      },
+      "errorRate": 0
+    },
+    {
+      "path": "/api/brands",
+      "iterations": 3,
+      "concurrency": 1,
+      "p50Ms": 47.12969999999996,
+      "p95Ms": 48.16129999999998,
+      "p99Ms": 48.16129999999998,
+      "minMs": 44.25879999999984,
+      "maxMs": 48.16129999999998,
+      "averageBytes": 786,
+      "statuses": {
+        "200": 3
+      },
+      "errorRate": 0
+    },
+    {
+      "path": "/api/shops?page=1&pageSize=10",
+      "iterations": 3,
+      "concurrency": 1,
+      "p50Ms": 382.3420000000001,
+      "p95Ms": 846.7507999999998,
+      "p99Ms": 846.7507999999998,
+      "minMs": 358.17959999999994,
+      "maxMs": 846.7507999999998,
+      "averageBytes": 2070,
+      "statuses": {
+        "200": 3
+      },
+      "errorRate": 0
+    },
+    {
+      "path": "/api/live/sessions?filter=all",
+      "iterations": 3,
+      "concurrency": 1,
+      "p50Ms": 207.95889999999963,
+      "p95Ms": 241.5972999999999,
+      "p99Ms": 241.5972999999999,
+      "minMs": 197.2189000000003,
+      "maxMs": 241.5972999999999,
+      "averageBytes": 4106,
+      "statuses": {
+        "200": 3
+      },
+      "errorRate": 0
+    }
+  ],
+  "note": "Response bodies, authorization values and cookies are intentionally not logged."
+}
