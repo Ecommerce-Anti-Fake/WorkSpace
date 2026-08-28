@@ -348,6 +348,11 @@ visuals do not verify moderation decisions, voucher mutations or other writes.
 - A05 product review: [Desktop annotated](../images/admin/admin-product-registrations-desktop-production-9637e9f-annotated.png), [Mobile annotated](../images/admin/admin-product-registrations-mobile-production-9637e9f-annotated.png)
 - A09 platform promotions: [Desktop annotated](../images/admin/admin-vouchers-desktop-production-9637e9f-annotated.png), [Mobile annotated](../images/admin/admin-vouchers-mobile-production-9637e9f-annotated.png)
 
+| Journey | Desktop | Mobile |
+|---|---|---|
+| A05 Product review | ![Admin product review on Desktop](../images/admin/admin-product-registrations-desktop-production-9637e9f-annotated.png) | ![Admin product review on Mobile](../images/admin/admin-product-registrations-mobile-production-9637e9f-annotated.png) |
+| A09 Platform promotions | ![Admin promotions on Desktop](../images/admin/admin-vouchers-desktop-production-9637e9f-annotated.png) | ![Admin promotions on Mobile](../images/admin/admin-vouchers-mobile-production-9637e9f-annotated.png) |
+
 Markers identify the Admin navigation, page/filter context and visible list or
 form state. Raw and annotated files are registered separately in the
 [Visual Manifest](VISUAL_MANIFEST.md).

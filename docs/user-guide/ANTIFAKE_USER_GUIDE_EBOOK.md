@@ -154,6 +154,17 @@ B04 cart step now has accepted production raw/annotated Desktop/Mobile assets an
 a local Journey Center binding, but deployment and production retest are still
 pending. These assets remain traceability evidence, not full-purchase sign-off.
 
+#### A05 and A09 read-only Admin visuals
+
+These annotated pairs show the inspected Admin product-review and
+platform-promotion workspaces only. They do not document moderation decisions,
+voucher mutations or other Admin writes.
+
+| Journey | Desktop | Mobile |
+|---|---|---|
+| A05 Product review | ![Admin product review on Desktop](../images/admin/admin-product-registrations-desktop-production-9637e9f-annotated.png) | ![Admin product review on Mobile](../images/admin/admin-product-registrations-mobile-production-9637e9f-annotated.png) |
+| A09 Platform promotions | ![Admin promotions on Desktop](../images/admin/admin-vouchers-desktop-production-9637e9f-annotated.png) | ![Admin promotions on Mobile](../images/admin/admin-vouchers-mobile-production-9637e9f-annotated.png) |
+
 The Help Center shell assets listed above were refreshed from the current
 deployed revision `8157ffa` after the shared Help/mobile contrast fix. The
 earlier `3b504ba` pair remains historical evidence; neither pair is a
