@@ -20,6 +20,7 @@ asset. The current served copies are kept in
 | A05 pending | `/journey-visuals/admin-product-review-desktop.png` | `/journey-visuals/admin-product-review-mobile.png` | Admin read-only product-registration queue only; A05 remains `PARTIAL` |
 | A09 list | `/journey-visuals/admin-promotions-desktop.png` | `/journey-visuals/admin-promotions-mobile.png` | Admin read-only voucher workspace only; A09 remains `PARTIAL` |
 | S07 program | `/journey-visuals/affiliate-program-desktop.png` | `/journey-visuals/affiliate-program-mobile.png` | Authenticated Affiliate program read-only view only; binding verified after deployment `622b1e9`; S07 remains `PARTIAL` |
+| B04 cart | `/journey-visuals/b04-cart-desktop.png` | `/journey-visuals/b04-cart-mobile.png` | Local binding for the accepted seeded-cart Desktop/Mobile evidence at `8157ffa`; deployment and production retest pending; B04 remains `PARTIAL` |
 
 Steps without a registered visual continue to show the evidence-pending
 placeholder. These bindings do not upgrade a journey's UAT status.

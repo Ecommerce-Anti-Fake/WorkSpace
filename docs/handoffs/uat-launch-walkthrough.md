@@ -1075,3 +1075,10 @@ shared `main` branch was not completed: external publication review rejected
 the push as a sensitive egress to an unverified shared repository. No bypass or
 retry was attempted. Owner action is to review and push the current local
 WorkSpace `main`, then verify `origin/main`.
+
+The local Journey Center now binds the accepted B04 cart Desktop/Mobile annotated
+assets to the `/help/buyer/first-purchase/cart` step. Focused help-content tests
+pass `19/19`, the Front-End production build passes, and localhost runtime checks
+confirmed viewport auto-selection plus the manual platform switch with no console
+errors. This is source/local evidence only; production revision `8157ffa` and B04
+journey status remain unchanged until deployment and production retest.

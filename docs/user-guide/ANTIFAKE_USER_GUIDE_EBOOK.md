@@ -137,10 +137,11 @@ annotated copies are the documentation assets:
 They document route-load/read-only states only; moderation decisions and voucher
 mutations remain unverified.
 
-The Buyer first-purchase Journey Center shell captures remain non-final because
-the selected step explicitly reports that its feature visual is awaiting
-matching runtime evidence. They are registered in the Visual Manifest for
-traceability, not as ebook feature screenshots.
+The existing Buyer first-purchase Journey Center shell captures remain non-final
+for steps whose feature visual is still awaiting matching runtime evidence. The
+B04 cart step now has accepted production raw/annotated Desktop/Mobile assets and
+a local Journey Center binding, but deployment and production retest are still
+pending. These assets remain traceability evidence, not full-purchase sign-off.
 
 The Help Center shell assets listed above were refreshed from the current
 deployed revision `8157ffa` after the shared Help/mobile contrast fix. The
