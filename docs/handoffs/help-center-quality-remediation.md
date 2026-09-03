@@ -20,7 +20,8 @@ URL-helper boundaries.
 - Canonical Admin links in the user guide, registry, journey map, feature
   matrix and visual manifest use `/admin/help/...`.
 - `npm run test:help` validates article text, route registry, asset existence,
-  audience filtering and marker consistency.
+  audience filtering, marker consistency and served-to-annotated visual
+  integrity.
 
 ## Evidence state
 
@@ -47,9 +48,23 @@ found. Guest, Buyer and Seller were denied `/admin/help`; the approved Admin
 session was allowed, including a direct A01 deep link. No general `237/237`
 UAT was rerun and no production mutation was performed.
 
+## Current local integrity follow-up
+
+The current Front-End branch adds five local visual-reuse bindings and now
+records every served image's raw and annotated evidence paths in
+`docs/user-guide/VISUAL_MANIFEST.md`. A focused SHA-256 test proves each of
+the 18 served files is byte-identical to its annotated evidence copy; it does
+not change the accepted-visual count or UAT status.
+
+Current local verification is `test:help` 27/27, lint pass, build pass and
+Help/Journey E2E 38 passed with 2 mobile-only skips. The five reuse bindings
+remain pending deployment and production retest. The current environment
+points at hosted Neon data, so no fixture/reset was run; the DevTools
+production session was unavailable because its Chrome profile was locked.
+
 ## Next step
 
-Continue the broader documentation backlog only with approved fixtures and
-provider sandboxes. The targeted Help Center production goal is complete; the
-remaining 70 unaccepted visual steps and unavailable Admin routes retain their
-terminal classifications in the evidence matrix.
+Provide an isolated UAT target for fixture-backed captures, or deploy the
+current Front-End branch and run the required production visual retest. Until
+then, the remaining 70 unaccepted visual steps and unavailable Admin routes
+retain their terminal classifications in the evidence matrix.

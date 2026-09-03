@@ -27,6 +27,33 @@ asset. The current served copies are kept in
 | ADMIN-REVIEW product-review (local reuse) | `/journey-visuals/admin-product-review-desktop.png` | `/journey-visuals/admin-product-review-mobile.png` | Local branch binding reuses the accepted Admin product-review queue; Admin-only production retest pending |
 | ADMIN-OPERATIONS dashboard (local reuse) | `/journey-visuals/admin-dashboard-desktop.png` | `/journey-visuals/admin-dashboard-mobile.png` | Local branch binding reuses the accepted Admin dashboard shell; Admin-only production retest pending |
 
+## Served asset integrity
+
+Each served Journey Center image is an immutable copy of the separately
+annotated evidence asset below. The raw capture remains available for visual
+review and is never used as the runtime binding.
+
+| Served visual | Raw evidence | Annotated evidence | Integrity rule |
+|---|---|---|---|
+| `/journey-visuals/admin-dashboard-desktop.png` | `docs/images/admin/admin-dashboard-desktop-production-bb0eee1.png` | `docs/images/admin/admin-dashboard-desktop-production-bb0eee1-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/admin-dashboard-mobile.png` | `docs/images/admin/admin-dashboard-mobile-production-bb0eee1.png` | `docs/images/admin/admin-dashboard-mobile-production-bb0eee1-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/admin-product-review-desktop.png` | `docs/images/admin/admin-product-registrations-desktop-production-9637e9f.png` | `docs/images/admin/admin-product-registrations-desktop-production-9637e9f-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/admin-product-review-mobile.png` | `docs/images/admin/admin-product-registrations-mobile-production-9637e9f.png` | `docs/images/admin/admin-product-registrations-mobile-production-9637e9f-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/admin-promotions-desktop.png` | `docs/images/admin/admin-vouchers-desktop-production-9637e9f.png` | `docs/images/admin/admin-vouchers-desktop-production-9637e9f-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/admin-promotions-mobile.png` | `docs/images/admin/admin-vouchers-mobile-production-9637e9f.png` | `docs/images/admin/admin-vouchers-mobile-production-9637e9f-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/affiliate-program-desktop.png` | `docs/images/affiliate/affiliate-program-desktop-production-7e7a12a.png` | `docs/images/affiliate/affiliate-program-desktop-production-7e7a12a-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/affiliate-program-mobile.png` | `docs/images/affiliate/affiliate-program-mobile-production-7e7a12a.png` | `docs/images/affiliate/affiliate-program-mobile-production-7e7a12a-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/b01-registration-desktop.png` | `docs/images/auth/registration-desktop-production-6b24be3.png` | `docs/images/auth/registration-desktop-production-6b24be3-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/b01-registration-mobile.png` | `docs/images/auth/registration-mobile-production-6b24be3.png` | `docs/images/auth/registration-mobile-production-6b24be3-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/b02-discovery-desktop.png` | `docs/images/buyer/catalog-home-desktop-production-6b24be3.png` | `docs/images/buyer/catalog-home-desktop-production-6b24be3-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/b02-discovery-mobile.png` | `docs/images/buyer/catalog-home-mobile-production-6b24be3.png` | `docs/images/buyer/catalog-home-mobile-production-6b24be3-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/b02-product-detail-desktop.png` | `docs/images/buyer/product-detail-desktop-production-6b24be3.png` | `docs/images/buyer/product-detail-desktop-production-6b24be3-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/b02-product-detail-mobile.png` | `docs/images/buyer/product-detail-mobile-production-6b24be3.png` | `docs/images/buyer/product-detail-mobile-production-6b24be3-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/b04-cart-desktop.png` | `docs/images/buyer/cart-desktop-production-8157ffa.png` | `docs/images/buyer/cart-desktop-production-8157ffa-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/b04-cart-mobile.png` | `docs/images/buyer/cart-mobile-production-8157ffa.png` | `docs/images/buyer/cart-mobile-production-8157ffa-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/b09-live-discovery-desktop.png` | `docs/images/buyer/live-discovery-desktop-production-6b24be3.png` | `docs/images/buyer/live-discovery-desktop-production-6b24be3-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/b09-live-discovery-mobile.png` | `docs/images/buyer/live-discovery-mobile-production-6b24be3.png` | `docs/images/buyer/live-discovery-mobile-production-6b24be3-annotated.png` | Served bytes equal annotated bytes |
+
 Steps without a registered visual continue to show the evidence-pending
 placeholder. These bindings do not upgrade a journey's UAT status.
 
