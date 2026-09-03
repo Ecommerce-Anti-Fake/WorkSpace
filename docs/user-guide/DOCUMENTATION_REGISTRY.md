@@ -94,8 +94,8 @@ not a production sign-off.
 | Seller | `voucher` | `/help/seller/voucher` | PARTIAL | Authenticated read-only route smoke passed Desktop/Laptop/Mobile; mutation and final visual pending |
 | Seller | `affiliate` | `/help/seller/affiliate` | PARTIAL | Authenticated program/member read-only evidence and visuals are accepted; join, attribution, conversion/payout and full journey sign-off remain pending |
 | Seller | `livestream` | `/help/seller/livestream` | PARTIAL | Seller live-entry read-only pass exists; eligible offer, Agora host/viewer lifecycle and final Desktop/Mobile visual remain pending |
-| Admin | `admin-review` | `/help/admin/admin-review` | PARTIAL | Production Admin dashboard, Shop-registration and product-registration route smoke passed Desktop/Laptop/Mobile; review decisions and final visual pending |
-| Admin | `operations` | `/help/admin/operations` | PARTIAL | Production Admin read-only route inventory passed Desktop/Laptop/Mobile for the covered screens; targeted KYC/moderation/order/audit evidence and final visual pending |
+| Admin | `admin-review` | `/admin/help/admin/admin-review` | PARTIAL | Production Admin dashboard, Shop-registration and product-registration route smoke passed Desktop/Laptop/Mobile; review decisions and final visual pending |
+| Admin | `operations` | `/admin/help/admin/operations` | PARTIAL | Production Admin read-only route inventory passed Desktop/Laptop/Mobile for the covered screens; targeted KYC/moderation/order/audit evidence and final visual pending |
 
 ### Canonical journey additions
 
@@ -122,16 +122,16 @@ coverage required by the documentation specification:
 | Seller | `S07` | `/help/seller/affiliate` | PARTIAL | Authenticated Affiliate program read-only pass with Desktop/Mobile raw and annotated visuals; join, conversion/payout and full journey sign-off pending |
 | Seller | `S08` | `/help/seller/wallet` | PARTIAL | Read-only wallet evidence exists; final raw/annotated visual is BLOCKED_EXTERNAL without an approved seller capture target |
 | Seller | `S09` | `/help/seller/livestream` | PARTIAL | Seller live-entry read-only pass exists; eligible offer, Agora host/viewer lifecycle and final Desktop/Mobile visual remain pending |
-| Admin | `A01` | `/help/admin/admin-dashboard` | PARTIAL | Production `/admin` route smoke passed Desktop/Laptop/Mobile; annotated Desktop/Mobile dashboard visuals served in Journey Center |
-| Admin | `A02` | `/help/admin/admin-users` | PARTIAL | Production `/admin/users` route smoke passed Desktop/Laptop/Mobile; list/detail assertions and final visual pending |
-| Admin | `A03` | `/help/admin/admin-kyc` | NOT_IMPLEMENTED | No current `/admin/kyc` frontend route; implementation or link replacement is required |
-| Admin | `A04` | `/help/admin/admin-shop-review` | PARTIAL | Production `/admin/shop-registrations` route smoke passed Desktop/Laptop/Mobile; review decision and final visual pending |
-| Admin | `A05` | `/help/admin/admin-product-review` | PARTIAL | Production `/admin/product-registrations` route smoke passed Desktop/Laptop/Mobile; annotated Desktop/Mobile visual accepted; moderation decision pending |
-| Admin | `A06` | `/help/admin/admin-moderation` | NOT_IMPLEMENTED | No current `/admin/moderation` frontend route; implementation or link replacement is required |
-| Admin | `A07` | `/help/admin/admin-orders` | NOT_IMPLEMENTED | No current `/admin/orders` frontend route; implementation or link replacement is required |
-| Admin | `A08` | `/help/admin/admin-wallet` | PARTIAL | Production `/admin/wallet` and `/admin/withdraw-requests` route smoke passed Desktop/Laptop/Mobile; financial actions and final visual pending |
-| Admin | `A09` | `/help/admin/admin-promotions` | PARTIAL | Production `/admin/vouchers` route smoke passed Desktop/Laptop/Mobile; annotated Desktop/Mobile visual accepted; voucher mutation pending |
-| Admin | `A10` | `/help/admin/admin-audit` | NOT_IMPLEMENTED | No current `/admin/audit` frontend route; implementation or link replacement is required |
+| Admin | `A01` | `/admin/help/admin/admin-dashboard` | PARTIAL | Production `/admin` route smoke passed Desktop/Laptop/Mobile; annotated Desktop/Mobile dashboard visuals served in Journey Center |
+| Admin | `A02` | `/admin/help/admin/admin-users` | PARTIAL | Production `/admin/users` route smoke passed Desktop/Laptop/Mobile; list/detail assertions and final visual pending |
+| Admin | `A03` | `/admin/help/admin/admin-kyc` | NOT_IMPLEMENTED | No current `/admin/kyc` frontend route; implementation or link replacement is required |
+| Admin | `A04` | `/admin/help/admin/admin-shop-review` | PARTIAL | Production `/admin/shop-registrations` route smoke passed Desktop/Laptop/Mobile; review decision and final visual pending |
+| Admin | `A05` | `/admin/help/admin/admin-product-review` | PARTIAL | Production `/admin/product-registrations` route smoke passed Desktop/Laptop/Mobile; annotated Desktop/Mobile visual accepted; moderation decision pending |
+| Admin | `A06` | `/admin/help/admin/admin-moderation` | NOT_IMPLEMENTED | No current `/admin/moderation` frontend route; implementation or link replacement is required |
+| Admin | `A07` | `/admin/help/admin/admin-orders` | NOT_IMPLEMENTED | No current `/admin/orders` frontend route; implementation or link replacement is required |
+| Admin | `A08` | `/admin/help/admin/admin-wallet` | PARTIAL | Production `/admin/wallet` and `/admin/withdraw-requests` route smoke passed Desktop/Laptop/Mobile; financial actions and final visual pending |
+| Admin | `A09` | `/admin/help/admin/admin-promotions` | PARTIAL | Production `/admin/vouchers` route smoke passed Desktop/Laptop/Mobile; annotated Desktop/Mobile visual accepted; voucher mutation pending |
+| Admin | `A10` | `/admin/help/admin/admin-audit` | NOT_IMPLEMENTED | No current `/admin/audit` frontend route; implementation or link replacement is required |
 
 Statuses must be downgraded when runtime evidence becomes stale. A source-only
 article may explain prerequisites and safe next actions, but must not promise a

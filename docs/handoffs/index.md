@@ -57,6 +57,7 @@ Use the focused handoff for the feature being changed:
 - `account-security-flows.md`
 - `user-profile-api.md`
 - `admin-users.md`
+- `help-center-quality-remediation.md`
 - `user-kyc.md`
 - `community-live-commerce.md`
 - `livestream-video-transport.md`

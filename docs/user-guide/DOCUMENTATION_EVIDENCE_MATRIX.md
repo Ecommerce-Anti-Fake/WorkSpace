@@ -56,6 +56,27 @@ the terminal disposition column names the exact remaining dependency.
 - `NOT_IMPLEMENTED` and `NOT_APPLICABLE` are product/current-UAT boundaries,
   not credential blockers.
 
+## Help Center quality remediation - 2026-09-03
+
+The canonical step-level report is
+`docs/user-guide/HELP_CENTER_QUALITY_AUDIT.md`. The local implementation was
+validated against the current Front-End source and local rendered routes;
+historical production evidence is not treated as verification for this
+un-deployed branch.
+
+| Evidence axis | Local result | Remaining boundary |
+|---|---|---|
+| Runtime/text completeness | 30 articles and 88 steps are registered; every article and step has user-facing title/description text | Full feature-flow UAT remains `PARTIAL` where the product fixture or provider is unavailable |
+| Visual completeness | 10 step bindings with 20 served assets, each paired for Desktop `1440x900` and Mobile `390x844` | 70 runnable steps still need a safe screenshot; 8 Admin steps are `NOT_IMPLEMENTED` because their frontend route is absent |
+| Marker correctness | All 10 published visual bindings declare marker metadata and written guidance; automated sequence checks pass | Automated checks do not replace a future production visual review after deployment |
+| Role visibility | Public registry/search excludes `admin`; Admin registry is rendered only in Admin Help | Production public bundle and deployed route require post-deploy verification |
+| Authorization | `/admin/help/*` is under the existing Admin parent `ProtectedRoute roles=["admin"]`; local browser checks pass for guest, buyer, seller and admin | Live authorization regression is pending deployment |
+| Desktop | Local Help and Admin shell/visual route checks pass at `1440x900` | Full article-by-article production audit pending |
+| Mobile | Local Help and Admin shell/visual route checks pass at `390x844`; Admin navigation remains visible in the responsive shell | Full article-by-article production audit pending |
+
+No production payment, order, payout, role, moderation or provider mutation was
+performed for this remediation.
+
 ## Minimum fixture requests
 
 Passwords, tokens, API keys and personal identity data are deliberately absent.

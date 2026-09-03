@@ -106,16 +106,16 @@ fixture. No seller mutation is represented as production-verified here.
 
 | ID | Journey | Step sequence | Status | Help article |
 |---|---|---|---|---|
-| A01 | Dashboard | Sign in → metrics → filters → detail | `PARTIAL` | [`admin-dashboard`](/help/admin/admin-dashboard) |
-| A02 | User management | Search → inspect → permitted status action | `PARTIAL` | [`admin-users`](/help/admin/admin-users) |
-| A03 | KYC | Queue → inspect documents → approve/reject | `NOT_IMPLEMENTED` | [`admin-kyc`](/help/admin/admin-kyc) |
-| A04 | Shop review | Review application → decision → audit | `PARTIAL` | [`admin-shop-review`](/help/admin/admin-shop-review) |
-| A05 | Product review | Inspect offer → approve/reject → publication state | `PARTIAL` | [`admin-product-review`](/help/admin/admin-product-review) |
-| A06 | Moderation | Report queue → inspect → action → audit | `NOT_IMPLEMENTED` | [`admin-moderation`](/help/admin/admin-moderation) |
-| A07 | Order/payment oversight | Search order → inspect payment/state → permitted action | `NOT_IMPLEMENTED` | [`admin-orders`](/help/admin/admin-orders) |
-| A08 | Wallet operations | Inspect balance/ledger → permitted adjustment/withdrawal review | `PARTIAL` | [`admin-wallet`](/help/admin/admin-wallet) |
-| A09 | Platform promotions | Voucher/category → rules → publish state | `PARTIAL` | [`admin-promotions`](/help/admin/admin-promotions) |
-| A10 | Audit and monitoring | Filter audit trail → inspect event → export/review | `NOT_IMPLEMENTED` | [`admin-audit`](/help/admin/admin-audit) |
+| A01 | Dashboard | Sign in → metrics → filters → detail | `PARTIAL` | [`admin-dashboard`](/admin/help/admin/admin-dashboard) |
+| A02 | User management | Search → inspect → permitted status action | `PARTIAL` | [`admin-users`](/admin/help/admin/admin-users) |
+| A03 | KYC | Queue → inspect documents → approve/reject | `NOT_IMPLEMENTED` | [`admin-kyc`](/admin/help/admin/admin-kyc) |
+| A04 | Shop review | Review application → decision → audit | `PARTIAL` | [`admin-shop-review`](/admin/help/admin/admin-shop-review) |
+| A05 | Product review | Inspect offer → approve/reject → publication state | `PARTIAL` | [`admin-product-review`](/admin/help/admin/admin-product-review) |
+| A06 | Moderation | Report queue → inspect → action → audit | `NOT_IMPLEMENTED` | [`admin-moderation`](/admin/help/admin/admin-moderation) |
+| A07 | Order/payment oversight | Search order → inspect payment/state → permitted action | `NOT_IMPLEMENTED` | [`admin-orders`](/admin/help/admin/admin-orders) |
+| A08 | Wallet operations | Inspect balance/ledger → permitted adjustment/withdrawal review | `PARTIAL` | [`admin-wallet`](/admin/help/admin/admin-wallet) |
+| A09 | Platform promotions | Voucher/category → rules → publish state | `PARTIAL` | [`admin-promotions`](/admin/help/admin/admin-promotions) |
+| A10 | Audit and monitoring | Filter audit trail → inspect event → export/review | `NOT_IMPLEMENTED` | [`admin-audit`](/admin/help/admin/admin-audit) |
 
 Admin production evidence is `PARTIAL`: the dashboard, users, Shop-registration,
 product-registration, wallet and voucher read-only route inventory passed across

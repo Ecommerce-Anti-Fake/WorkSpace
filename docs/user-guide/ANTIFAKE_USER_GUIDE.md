@@ -304,7 +304,7 @@ joining, attribution, conversion and payout remain unverified.
 ## Admin journeys
 
 The Admin guide is intentionally separate from general user guidance. Open
-[Duyệt Shop và sản phẩm](/help/admin/admin-review) only with an approved,
+[Duyệt Shop và sản phẩm](/admin/help/admin/admin-review) only with an approved,
 active Admin test identity. The source seed snapshot marks its Admin record as
 suspended, but the approved production Admin identity used for this evidence
 was active. The read-only route inventory is production-verified only for the
@@ -312,7 +312,7 @@ covered screens; it is not a full Admin walkthrough.
 
 Admin capabilities in source include dashboard, user management, KYC,
 Shop/product review, moderation, orders/payment oversight, voucher, wallet and
-audit surfaces. The [Admin journey index](/help/admin/admin-dashboard) maps
+audit surfaces. The [Admin journey index](/admin/help/admin/admin-dashboard) maps
 A01-A10; A01, A02, A04, A05, A08 and A09 are `PARTIAL` after the production
 read-only route inventory, while A03, A06, A07 and A10 are
 `NOT_IMPLEMENTED` in the current frontend route map.

@@ -29,16 +29,16 @@ visible instead of hiding them from the Help Center.
 | S07 | Seller | Affiliate | `/help/seller/affiliate` | PARTIAL |
 | S08 | Seller | Wallet and revenue | `/help/seller/wallet` | PARTIAL |
 | S09 | Seller | Livestream selling | `/help/seller/livestream` | PARTIAL |
-| A01 | Admin | Dashboard | `/help/admin/admin-dashboard` | PARTIAL |
-| A02 | Admin | User management | `/help/admin/admin-users` | PARTIAL |
-| A03 | Admin | KYC | `/help/admin/admin-kyc` | NOT_IMPLEMENTED |
-| A04 | Admin | Shop review | `/help/admin/admin-shop-review` | PARTIAL |
-| A05 | Admin | Product review | `/help/admin/admin-product-review` | PARTIAL |
-| A06 | Admin | Moderation | `/help/admin/admin-moderation` | NOT_IMPLEMENTED |
-| A07 | Admin | Order and payment oversight | `/help/admin/admin-orders` | NOT_IMPLEMENTED |
-| A08 | Admin | Wallet and financial operations | `/help/admin/admin-wallet` | PARTIAL |
-| A09 | Admin | Platform vouchers | `/help/admin/admin-promotions` | PARTIAL |
-| A10 | Admin | Audit and monitoring | `/help/admin/admin-audit` | NOT_IMPLEMENTED |
+| A01 | Admin | Dashboard | `/admin/help/admin/admin-dashboard` | PARTIAL |
+| A02 | Admin | User management | `/admin/help/admin/admin-users` | PARTIAL |
+| A03 | Admin | KYC | `/admin/help/admin/admin-kyc` | NOT_IMPLEMENTED |
+| A04 | Admin | Shop review | `/admin/help/admin/admin-shop-review` | PARTIAL |
+| A05 | Admin | Product review | `/admin/help/admin/admin-product-review` | PARTIAL |
+| A06 | Admin | Moderation | `/admin/help/admin/admin-moderation` | NOT_IMPLEMENTED |
+| A07 | Admin | Order and payment oversight | `/admin/help/admin/admin-orders` | NOT_IMPLEMENTED |
+| A08 | Admin | Wallet and financial operations | `/admin/help/admin/admin-wallet` | PARTIAL |
+| A09 | Admin | Platform vouchers | `/admin/help/admin/admin-promotions` | PARTIAL |
+| A10 | Admin | Audit and monitoring | `/admin/help/admin/admin-audit` | NOT_IMPLEMENTED |
 
 The status column is documentation status, not a production sign-off. A
 production read-only route inventory passed across Desktop/Laptop/Mobile for

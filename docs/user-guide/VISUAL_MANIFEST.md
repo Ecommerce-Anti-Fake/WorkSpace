@@ -25,6 +25,30 @@ asset. The current served copies are kept in
 Steps without a registered visual continue to show the evidence-pending
 placeholder. These bindings do not upgrade a journey's UAT status.
 
+## Marker guidance contract - 2026-09-03 local remediation
+
+Each published `HelpStep.visual` now declares the marker numbers and the
+Vietnamese guidance shown beside the image in Journey Center. The accepted
+visual set has no unexplained markers or written marker references pointing to
+an absent number.
+
+| Published step | Marker mapping |
+|---|---|
+| B01 register | `1` account form, `2` identity fields, `3` consent and submit |
+| B02 search | `1` category context, `2` discovery surface, `3` Flash Sale |
+| B02 detail / choose | `1` product media, `2` variant and quantity, `3` AntiFake verification |
+| B04 cart | `1` cart quantity/badge, `2` quantity controls |
+| B09 discover | `1` live-shopping section, `2` search/state controls, `3` live card |
+| S07 program | `1` discovery tab, `2` program summary, `3` referral/join area |
+| A01 open | `1` active Dashboard nav, `2` coordination area, `3` header identity/controls |
+| A05 pending | `1` product-registration nav, `2` queue/filter context, `3` list or empty state |
+| A09 list | `1` voucher nav, `2` voucher status, `3` create/preview form |
+
+B02 `detail` and `choose` intentionally reuse the same product-detail state;
+their written marker guidance differs only where the user action differs.
+The route migration for Admin Help is `/admin/help/admin/...`; historical
+production evidence below remains historical until this branch is deployed.
+
 ## Post-deployment Journey Center regression — 2026-08-28
 
 The B04 article overview and its explicit start-step link were retested on
@@ -138,16 +162,16 @@ visual or a production verification claim.
 | S07 | `/help/seller/affiliate` | Desktop 1440×900 + Mobile 390×844 | `docs/images/affiliate/affiliate-program-desktop-production-7e7a12a.png`, `affiliate-program-mobile-production-7e7a12a.png` | `docs/images/affiliate/affiliate-program-desktop-production-7e7a12a-annotated.png`, `affiliate-program-mobile-production-7e7a12a-annotated.png` | Authenticated program read-only evidence; binding post-deploy verified on `622b1e9`; join, conversion/payout and final journey sign-off remain `Pending` |
 | S08 | `/help/seller/wallet` | Desktop 1440×900 + Mobile 390×844 | Read-only wallet/ledger and masked payout-account runtime exists; no approved PII-safe final capture target | Pending / `BLOCKED_EXTERNAL` for final asset | Capture after an approved PII-safe seller capture target is available; no wallet mutation |
 | S09 | `/help/seller/livestream` | Desktop 1440×900 + Mobile 390×844 | Pending eligible Seller live fixture with approved offer/voucher and Agora sandbox | Pending raw + annotated Desktop/Mobile pair | Create/start/pin/Agora host, viewer interaction/end evidence and final capture remain pending |
-| A01 | `/help/admin/admin-dashboard` | Desktop 1440×900 + Mobile 390×844 | `docs/images/admin/admin-dashboard-desktop-production-bb0eee1.png`, `admin-dashboard-mobile-production-bb0eee1.png` | `docs/images/admin/admin-dashboard-desktop-production-bb0eee1-annotated.png`, `admin-dashboard-mobile-production-bb0eee1-annotated.png` | Raw and annotated captures inspected and PII-safe; read-only A01 step only |
-| A02 | `/help/admin/admin-users` | Desktop 1440×900 + Mobile 390×844 | Pending PII-reviewed Admin user list/detail fixture | Pending raw + annotated Desktop/Mobile pair | List/detail/filter assertions and final PII-safe capture remain pending; do not expose personal data |
-| A03 | `/help/admin/admin-kyc` | Desktop 1440×900 + Mobile 390×844 | NOT_IMPLEMENTED: frontend route absent | No final annotated visual yet | Implement route or replace Help link before capture |
-| A04 | `/help/admin/admin-shop-review` | Desktop 1440×900 + Mobile 390×844 | Pending sanitized Shop application in review queue | Pending raw + annotated Desktop/Mobile pair | Approve/reject/activation audit evidence and final PII-safe capture remain pending |
-| A05 | `/help/admin/admin-product-review` | Desktop 1440×900 + Mobile 390×844 | `docs/images/admin/admin-product-registrations-desktop-production-9637e9f.png`, `admin-product-registrations-mobile-production-9637e9f.png` | `docs/images/admin/admin-product-registrations-desktop-production-9637e9f-annotated.png`, `admin-product-registrations-mobile-production-9637e9f-annotated.png` | Raw and annotated captures inspected and PII-safe; read-only moderation queue only |
-| A06 | `/help/admin/admin-moderation` | Desktop 1440×900 + Mobile 390×844 | NOT_IMPLEMENTED: frontend route absent | No final annotated visual yet | Implement route or replace Help link before capture |
-| A07 | `/help/admin/admin-orders` | Desktop 1440×900 + Mobile 390×844 | NOT_IMPLEMENTED: frontend route absent | No final annotated visual yet | Implement route or replace Help link before capture |
-| A08 | `/help/admin/admin-wallet` | Desktop 1440×900 + Mobile 390×844 | Pending approved withdrawal fixture with payout-provider sandbox | Pending raw + annotated Desktop/Mobile pair | Payout/withdrawal audit evidence and final PII-safe capture remain pending; production financial mutation is prohibited |
-| A09 | `/help/admin/admin-promotions` | Desktop 1440×900 + Mobile 390×844 | `docs/images/admin/admin-vouchers-desktop-production-9637e9f.png`, `admin-vouchers-mobile-production-9637e9f.png` | `docs/images/admin/admin-vouchers-desktop-production-9637e9f-annotated.png`, `admin-vouchers-mobile-production-9637e9f-annotated.png` | Raw and annotated captures inspected and PII-safe; read-only voucher workspace only |
-| A10 | `/help/admin/admin-audit` | Desktop 1440×900 + Mobile 390×844 | NOT_IMPLEMENTED: frontend route absent | No final annotated visual yet | Implement route or replace Help link before capture |
+| A01 | `/admin/help/admin/admin-dashboard` | Desktop 1440×900 + Mobile 390×844 | `docs/images/admin/admin-dashboard-desktop-production-bb0eee1.png`, `admin-dashboard-mobile-production-bb0eee1.png` | `docs/images/admin/admin-dashboard-desktop-production-bb0eee1-annotated.png`, `admin-dashboard-mobile-production-bb0eee1-annotated.png` | Raw and annotated captures inspected and PII-safe; read-only A01 step only |
+| A02 | `/admin/help/admin/admin-users` | Desktop 1440×900 + Mobile 390×844 | Pending PII-reviewed Admin user list/detail fixture | Pending raw + annotated Desktop/Mobile pair | List/detail/filter assertions and final PII-safe capture remain pending; do not expose personal data |
+| A03 | `/admin/help/admin/admin-kyc` | Desktop 1440×900 + Mobile 390×844 | NOT_IMPLEMENTED: frontend route absent | No final annotated visual yet | Implement route or replace Help link before capture |
+| A04 | `/admin/help/admin/admin-shop-review` | Desktop 1440×900 + Mobile 390×844 | Pending sanitized Shop application in review queue | Pending raw + annotated Desktop/Mobile pair | Approve/reject/activation audit evidence and final PII-safe capture remain pending |
+| A05 | `/admin/help/admin/admin-product-review` | Desktop 1440×900 + Mobile 390×844 | `docs/images/admin/admin-product-registrations-desktop-production-9637e9f.png`, `admin-product-registrations-mobile-production-9637e9f.png` | `docs/images/admin/admin-product-registrations-desktop-production-9637e9f-annotated.png`, `admin-product-registrations-mobile-production-9637e9f-annotated.png` | Raw and annotated captures inspected and PII-safe; read-only moderation queue only |
+| A06 | `/admin/help/admin/admin-moderation` | Desktop 1440×900 + Mobile 390×844 | NOT_IMPLEMENTED: frontend route absent | No final annotated visual yet | Implement route or replace Help link before capture |
+| A07 | `/admin/help/admin/admin-orders` | Desktop 1440×900 + Mobile 390×844 | NOT_IMPLEMENTED: frontend route absent | No final annotated visual yet | Implement route or replace Help link before capture |
+| A08 | `/admin/help/admin/admin-wallet` | Desktop 1440×900 + Mobile 390×844 | Pending approved withdrawal fixture with payout-provider sandbox | Pending raw + annotated Desktop/Mobile pair | Payout/withdrawal audit evidence and final PII-safe capture remain pending; production financial mutation is prohibited |
+| A09 | `/admin/help/admin/admin-promotions` | Desktop 1440×900 + Mobile 390×844 | `docs/images/admin/admin-vouchers-desktop-production-9637e9f.png`, `admin-vouchers-mobile-production-9637e9f.png` | `docs/images/admin/admin-vouchers-desktop-production-9637e9f-annotated.png`, `admin-vouchers-mobile-production-9637e9f-annotated.png` | Raw and annotated captures inspected and PII-safe; read-only voucher workspace only |
+| A10 | `/admin/help/admin/admin-audit` | Desktop 1440×900 + Mobile 390×844 | NOT_IMPLEMENTED: frontend route absent | No final annotated visual yet | Implement route or replace Help link before capture |
 
 ## 2026-08-28 capture disposition
 
