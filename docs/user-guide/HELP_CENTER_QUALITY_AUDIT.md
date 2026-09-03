@@ -257,6 +257,24 @@ These statuses apply to the approved Help Center/Admin Help production goal
 and its affected published bindings. The 70 unaccepted visual steps and
 unimplemented Admin feature routes retain their terminal classifications below.
 
+## Local visual-reuse checkpoint — 2026-09-03
+
+The current Front-End branch adds five local metadata bindings that reuse
+accepted, immutable Desktop/Mobile pairs already listed above:
+
+| Local step | Reused accepted step | Production status |
+|---|---|---|
+| B04/discover | B02/search | Pending deployment and production visual retest |
+| B04/product-detail | B02/detail | Pending deployment and production visual retest |
+| ADMIN-REVIEW/dashboard | A01/open | Pending deployment and Admin-only visual retest |
+| ADMIN-REVIEW/product-review | A05/pending | Pending deployment and Admin-only visual retest |
+| ADMIN-OPERATIONS/dashboard | A01/open | Pending deployment and Admin-only visual retest |
+
+The local content test confirms platform paths, marker metadata, asset
+existence and exact state-matched reuse. No raw or annotated image was copied,
+regenerated or promoted, so the production metrics and the 70-step remaining
+work count above are unchanged until deployment evidence exists.
+
 ## Remaining work
 
 The following are explicit evidence blockers, not accepted quality defects:

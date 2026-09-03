@@ -46,6 +46,24 @@ evidence-axis table below continues to describe the broader journey scope and
 retains `PARTIAL`, `BLOCKED_*` and `NOT_IMPLEMENTED` classifications where
 those remain accurate.
 
+## Local branch visual-reuse checkpoint — 2026-09-03
+
+The current Front-End branch binds five additional Help steps to existing
+accepted visual pairs without creating new screenshots:
+
+| Local binding | Accepted source binding | Safe basis | Production boundary |
+|---|---|---|---|
+| B04/discover | B02/search | Same public catalog/discovery state and marker meaning | Deploy and retest target Help route |
+| B04/product-detail | B02/detail | Same public product-detail state and marker meaning | Deploy and retest target Help route |
+| ADMIN-REVIEW/dashboard | A01/open | Same Admin role and Dashboard shell | Deploy and retest with Admin session |
+| ADMIN-REVIEW/product-review | A05/pending | Same Admin product-review queue state | Deploy and retest with Admin session |
+| ADMIN-OPERATIONS/dashboard | A01/open | Same Admin role and Dashboard shell | Deploy and retest with Admin session |
+
+`npm run test:help` verifies the five path/marker bindings and existing served
+asset pairs locally. This checkpoint is not production visual sign-off and
+does not change the accepted production baseline or the 70 missing runnable
+steps.
+
 ## Evidence-axis status
 
 | Journey | Role | SOURCE | RUNTIME | DESKTOP_VISUAL | MOBILE_VISUAL | ANNOTATED_VISUAL | GUIDE_CONTENT | JOURNEY_CENTER | Missing / terminal disposition |
@@ -104,8 +122,8 @@ un-deployed branch.
 | Evidence axis | Local result | Remaining boundary |
 |---|---|---|
 | Runtime/text completeness | 30 articles and 88 steps are registered; every article and step has user-facing title/description text | Full feature-flow UAT remains `PARTIAL` where the product fixture or provider is unavailable |
-| Visual completeness | 10 step bindings with 20 served assets, each paired for Desktop `1440x900` and Mobile `390x844` | 70 runnable steps still need a safe screenshot; 8 Admin steps are `NOT_IMPLEMENTED` because their frontend route is absent |
-| Marker correctness | All 10 published visual bindings declare marker metadata and written guidance; automated sequence checks pass | Automated checks do not replace a future production visual review after deployment |
+| Visual completeness | 10 production-accepted step bindings with 20 served assets, plus 5 local branch reuse bindings pointing to those same pairs | 70 runnable steps still need a safe screenshot; 8 Admin steps are `NOT_IMPLEMENTED` because their frontend route is absent; the 5 local aliases need deployment verification |
+| Marker correctness | All 15 local visual bindings declare marker metadata and written guidance; automated sequence checks pass | Automated checks do not replace a future production visual review of the 5 aliases after deployment |
 | Role visibility | Public registry/search excludes `admin`; Admin registry is rendered only in Admin Help | Production public bundle and deployed route require post-deploy verification |
 | Authorization | `/admin/help/*` is under the existing Admin parent `ProtectedRoute roles=["admin"]`; local browser checks pass for guest, buyer, seller and admin | Live authorization regression is pending deployment |
 | Desktop | Local Help and Admin shell/visual route checks pass at `1440x900` | Full article-by-article production audit pending |

@@ -70,6 +70,20 @@ This table connects the canonical journey IDs to the existing UAT cases. A
 | Livestream | Guest/Buyer/Seller | `/live`, `/live/:id`, `/seller/live` | Live and Agora controllers | Guest discovery passed; public `/live` shell captured at Desktop/Mobile; provider/authenticated media smoke blocked | `/help/buyer/livestream`, `/help/seller/livestream` | `docs/images/buyer/live-discovery-*-production-6b24be3-annotated.png` | PARTIAL |
 | Admin journeys A01-A10 | Admin | `/admin/*` | Admin, auth, KYC, moderation, orders, voucher and wallet controllers | Production read-only route inventory passed 3/3 viewport projects for `/admin`, users, shop registrations, product registrations, vouchers, categories, wallet, chat and withdrawals; A01, A02, A04, A05, A08 and A09 are PARTIAL, while A03, A06, A07 and A10 are NOT_IMPLEMENTED in the current frontend route map; no mutation was performed | `/admin/help/admin/admin-dashboard` through `/admin/help/admin/admin-audit` | A01, A05 and A09 annotated Desktop/Mobile visuals served; absent-route Admin visuals are NOT_IMPLEMENTED | PARTIAL |
 
+## Local visual-reuse checkpoint — 2026-09-03
+
+The branch adds five metadata bindings to existing accepted annotated pairs.
+They improve local Journey Center coverage without changing the journey-level
+`PARTIAL` statuses or claiming production deployment:
+
+| Binding | Reused pair | Local result | Next evidence |
+|---|---|---|---|
+| B04 `discover` | B02 discovery | Desktop/Mobile paths and markers pass | Deploy, then retest public Help route |
+| B04 `product-detail` | B02 product detail | Desktop/Mobile paths and markers pass | Deploy, then retest public Help route |
+| ADMIN-REVIEW `dashboard` | A01 dashboard | Admin-only path and markers pass | Deploy, then retest with Admin session |
+| ADMIN-REVIEW `product-review` | A05 product queue | Admin-only path and markers pass | Deploy, then retest with Admin session |
+| ADMIN-OPERATIONS `dashboard` | A01 dashboard | Admin-only path and markers pass | Deploy, then retest with Admin session |
+
 ## Status rules
 
 - `VERIFIED` requires matching source and runtime evidence for the stated scope.

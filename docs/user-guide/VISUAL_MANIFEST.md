@@ -21,6 +21,11 @@ asset. The current served copies are kept in
 | A09 list | `/journey-visuals/admin-promotions-desktop.png` | `/journey-visuals/admin-promotions-mobile.png` | Admin read-only voucher workspace only; A09 remains `PARTIAL` |
 | S07 program | `/journey-visuals/affiliate-program-desktop.png` | `/journey-visuals/affiliate-program-mobile.png` | Authenticated Affiliate program read-only view only; binding verified after deployment `622b1e9`; S07 remains `PARTIAL` |
 | B04 cart | `/journey-visuals/b04-cart-desktop.png` | `/journey-visuals/b04-cart-mobile.png` | Production binding retested after deployed revision `13c18f4`; accepted seeded-cart Desktop/Mobile evidence remains at `8157ffa`; B04 remains `PARTIAL` |
+| B04 discover (local reuse) | `/journey-visuals/b02-discovery-desktop.png` | `/journey-visuals/b02-discovery-mobile.png` | Local branch binding reuses the accepted public B02 discovery state; production retest pending; B04 remains `PARTIAL` |
+| B04 product-detail (local reuse) | `/journey-visuals/b02-product-detail-desktop.png` | `/journey-visuals/b02-product-detail-mobile.png` | Local branch binding reuses the accepted public B02 product-detail state; production retest pending; B04 remains `PARTIAL` |
+| ADMIN-REVIEW dashboard (local reuse) | `/journey-visuals/admin-dashboard-desktop.png` | `/journey-visuals/admin-dashboard-mobile.png` | Local branch binding reuses the accepted Admin dashboard shell; Admin-only production retest pending |
+| ADMIN-REVIEW product-review (local reuse) | `/journey-visuals/admin-product-review-desktop.png` | `/journey-visuals/admin-product-review-mobile.png` | Local branch binding reuses the accepted Admin product-review queue; Admin-only production retest pending |
+| ADMIN-OPERATIONS dashboard (local reuse) | `/journey-visuals/admin-dashboard-desktop.png` | `/journey-visuals/admin-dashboard-mobile.png` | Local branch binding reuses the accepted Admin dashboard shell; Admin-only production retest pending |
 
 Steps without a registered visual continue to show the evidence-pending
 placeholder. These bindings do not upgrade a journey's UAT status.
@@ -43,9 +48,18 @@ an absent number.
 | A01 open | `1` active Dashboard nav, `2` coordination area, `3` header identity/controls |
 | A05 pending | `1` product-registration nav, `2` queue/filter context, `3` list or empty state |
 | A09 list | `1` voucher nav, `2` voucher status, `3` create/preview form |
+| B04 discover (local reuse) | `1` category context, `2` discovery surface, `3` Flash Sale |
+| B04 product-detail (local reuse) | `1` product media, `2` variant and quantity, `3` AntiFake verification |
+| ADMIN-REVIEW dashboard (local reuse) | `1` active Dashboard nav, `2` coordination area, `3` header identity/controls |
+| ADMIN-REVIEW product-review (local reuse) | `1` product-registration nav, `2` queue/filter context, `3` list or empty state |
+| ADMIN-OPERATIONS dashboard (local reuse) | `1` active Dashboard nav, `2` coordination area, `3` header identity/controls |
 
 B02 `detail` and `choose` intentionally reuse the same product-detail state;
 their written marker guidance differs only where the user action differs.
+The 2026-09-03 local branch also binds B04 `discover` and
+`product-detail`, plus the exact role-matched Admin overview states, to these
+accepted assets without copying or regenerating images. These five aliases are
+not production-accepted until the branch is deployed and retested.
 The route migration for Admin Help is `/admin/help/admin/...`; historical
 production evidence below remains historical until this branch is deployed.
 

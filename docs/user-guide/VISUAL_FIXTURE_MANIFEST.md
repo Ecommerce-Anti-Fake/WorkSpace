@@ -1,0 +1,29 @@
+# Visual Fixture Manifest
+
+Reconciled: 2026-09-03
+
+This manifest records reusable fixture definitions and their safety boundary.
+It does not claim that a fixture has been provisioned. Credentials, tokens,
+plaintext QR codes and personal identity data intentionally do not appear.
+
+| FIXTURE_ID | ROLE | JOURNEYS_UNLOCKED | OBJECTS | SAFE_SCOPE | CREATION_METHOD | READ_ONLY_OR_MUTATION | PROVIDER_DEPENDENCY | CLEANUP | STATUS |
+|---|---|---|---|---|---|---|---|---|---|
+| `B02_EXISTING_PUBLIC_VISUALS` | buyer/public | B04 discover, B04 product-detail | Accepted public catalog and product-detail Desktop/Mobile visual pairs | Reuse only when page, state, role, controls and instructional meaning are equivalent | Existing accepted `Front-End/public/journey-visuals` assets | Read-only / none | None | None; immutable accepted assets | READY_FOR_REUSE |
+| `ACTIVE_BUYER_UAT` | buyer | B01, B04, B05, B06, B07 | Existing seeded buyer identity and default address | Authentication must come from approved secure UAT mechanism; no credentials in docs | Existing backend seed identity | Read-only unless separately approved | Firebase Auth bridge may be required | Restore/remove disposable address/cart/message state | SOURCE_AVAILABLE_NOT_CAPTURE_APPROVED |
+| `ACTIVE_SELLER_UAT` | seller | S01-S09, B07 | Existing seeded seller identity and owned Shop | Use only in isolated UAT; sanitize Shop/business/order data before visual capture | Existing backend seed identity | Read-only unless separately approved | Firebase Auth bridge may be required | Restore/remove disposable business objects | SOURCE_AVAILABLE_NOT_CAPTURE_APPROVED |
+| `QR_POSITIVE_LABEL_UAT` | public/qr | B03 | Active QR label, batch, approved offer link and VERIFIED provenance event | Disposable namespace; no production label or plaintext code | Approved isolated UAT fixture script or sanctioned database | Create/read; verification is read-only | None for verification; source database required | Remove label, batch link and provenance, or discard isolated DB | DEFINED_NOT_PROVISIONED |
+| `ORDER_DETAIL_PII_SAFE_UAT` | buyer/seller | B04 order, B05, read-only S05/A01 | Completed synthetic order, group, item, payment/escrow projection and tracking fields | Synthetic recipient name/phone/address only; mask identifiers | Approved isolated UAT fixture path | Read-only for list/detail; no receive/review/dispute mutation by default | None for read-only detail | Delete disposable order and dependent records if created | DEFINED_NOT_PROVISIONED |
+| `ORDER_FULFILLMENT_CONTROLLED_UAT` | buyer/seller | S05, read-only Admin status | Synthetic order starting at an allowed seller-processing state | Follow only backend-defined transitions; no real customer order | Approved isolated UAT fixture plus deterministic transition runner | Controlled mutation | GHN only if shipment provider state is required | Advance to terminal state or delete all dependent records; verify cleanup | DEFINED_NOT_PROVISIONED |
+| `SELLER_DISPOSABLE_BUSINESS_UAT` | seller | S01-S06, S09, B04/B06 | One Shop, approved offer, active variant/stock, sanitized media, active voucher, optional controlled order | Coherent disposable namespace shared across journeys | Idempotent fixture script in approved UAT environment | Read-only plus controlled business-object mutation | Cloudinary for media; GHN/Agora only for provider steps | Delete/revert Shop, offer, media, voucher and dependent order; verify public listings | DEFINED_NOT_PROVISIONED |
+| `KYC_SYNTHETIC_DOCUMENT_UAT` | seller | S01 | Synthetic non-identity media and pending/approved onboarding state | Never use real government IDs or real KYC provider in production | Approved UAT/sandbox upload fixture | Provider mutation only in approved sandbox | Firebase Auth and Cloudinary/provider | Delete uploaded media and onboarding records; verify no public exposure | DEFINED_NOT_PROVISIONED |
+| `CHAT_SYNTHETIC_TWO_SESSION_UAT` | buyer/seller | B07 | Buyer, seller-owned Shop, synthetic thread and text-only messages | Unique client IDs; no real participants/messages | Approved isolated API/fixture path | Controlled message mutation; two-session runtime for delivery | Socket.IO/Redis | Delete thread/messages; verify neither account has residual public data | DEFINED_NOT_PROVISIONED |
+| `COMMUNITY_PUBLIC_SAFE_UAT` | public/buyer | B08 | Synthetic public post, alias, text and optional safe image | No real author names, customer content or moderation target | Approved isolated Community fixture | Read-only; reaction/comment optional controlled mutation; report form without submit | None; storage only if image is used | Delete post/comments/media; verify feed is clean | DEFINED_NOT_PROVISIONED |
+| `AFFILIATE_CONVERSION_UAT` | seller/affiliate | S07 conversion/payout | Eligible buyer, program, code/link, synthetic conversion and ledger rows | No payment or financial liability; read-only ledger preferred | Approved isolated attribution fixture | Controlled attribution/ledger mutation | Payout provider only for boundary/status, never production payout | Remove conversion, ledger and payout fixture; verify program totals restored | DEFINED_NOT_PROVISIONED |
+| `ADMIN_PIISAFE_READ_SET` | admin | A01, A02, A04, A05, A08, A09 and Admin overview rows | Alias-only users, synthetic pending Shop/product records, masked withdrawal and safe voucher state | Read-only, masked, no real KYC or financial identity | Approved isolated UAT seed subset | Read-only by default | Payout provider only for sandbox status if required | Delete/reset isolated records; verify no public/admin leakage | DEFINED_NOT_PROVISIONED |
+
+## Provisioning gate
+
+No fixture in this file should be provisioned until the target database is
+positively identified as isolated UAT/staging and the cleanup verification is
+known. The repository-wide `back-end/prisma/seed.ts` clears existing data and
+is therefore not a screenshot-only fixture command.
