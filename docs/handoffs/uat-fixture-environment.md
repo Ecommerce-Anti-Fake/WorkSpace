@@ -15,7 +15,7 @@ was not rerun for this change.
 | Front-End | Vite SPA. Existing Playwright config supports an injected `UAT_BASE_URL`, fresh browser contexts, and `1440x900` / `390x844` projects. |
 | Back-End | Nest API gateway with embedded deployment entrypoint. Prisma is PostgreSQL-only. Existing schema covers users, KYC, shops, offers/variants, inventory, orders, QR provenance, chat, community, affiliate, wallet, vouchers and moderation. |
 | WorkSpace | Latest pushed `main` read through `FETCH_HEAD` at `1d9a004b78b36082ddd9208d0f92fbdcdf3c2b12`. Local documentation follow-ups are preserved and are not treated as the pushed baseline. |
-| CI/CD | Existing workflows are production quality/deploy workflows only. No staging/UAT frontend, backend, database, Docker/Compose, or UAT workflow was found. |
+| CI/CD | Discovery found production quality/deploy workflows only and no existing staging/UAT target. This implementation adds manual UAT fixture, browser-smoke and VPS deploy workflows; no production trigger was changed. |
 | Infrastructure | No local PostgreSQL, Redis, Docker or existing UAT DNS target is available in this workspace. Runtime/browser proof therefore remains an external provisioning gate. |
 | Providers | PayOS, GHN, Agora, Cloudinary, Firebase, Redis/Socket.IO and VietQR/payout are environment-driven. No provider secret is stored in this repository. |
 
@@ -115,6 +115,40 @@ Logical account aliases are `BUYER_UAT`, `SELLER_UAT`, `AFFILIATE_UAT` when
 the affiliate state is required, and `ADMIN_UAT`. Their email values and the
 password are injected, not documented. All seeded names, addresses, shops,
 products, posts and messages use the synthetic UAT namespace.
+
+## UAT deployment contract
+
+The repositories now provide manual-only deployment workflows matching the
+existing VPS/PM2/Nginx model:
+
+```text
+back-end/.github/workflows/uat-deploy.yml
+Front-End/.github/workflows/uat-deploy.yml
+```
+
+Both workflows require the GitHub `uat` environment and the same dedicated UAT
+VPS credentials. They do not run on a production push. Before deployment they
+require the remote marker file (default `/etc/antifake/uat-target`) to contain
+exactly `antifake-uat`, and reject production-looking application paths,
+process names, environment-file paths and health URLs.
+
+Configure only non-secret labels/paths as UAT environment variables:
+
+| Variable | Purpose |
+|---|---|
+| `UAT_BACKEND_APP_DIR` / `UAT_FRONTEND_APP_DIR` | Separate checked-out application paths containing `uat`, `staging` or `test` |
+| `UAT_BACKEND_APP_NAME` | Dedicated PM2 process name containing `uat`, `staging` or `test` |
+| `UAT_BACKEND_ENV_FILE` / `UAT_FRONTEND_ENV_FILE` | Host-side UAT environment files; production paths are rejected |
+| `UAT_BACKEND_HEALTH_URL` / `UAT_FRONTEND_HEALTH_URL` | Non-production health URLs only |
+| `UAT_HOST_MARKER_PATH` | Optional path to the exact UAT host marker |
+
+Configure these as GitHub `uat` environment secrets, without recording values:
+`UAT_VPS_HOST`, `UAT_VPS_USER`, `UAT_VPS_SSH_KEY` and `UAT_VPS_PORT`. The
+backend environment file must contain the guarded database/provider settings;
+the frontend environment file contains only the public Vite UAT settings.
+The backend workflow builds, migrates, resets/seeds/verifies and starts the
+UAT API. The frontend workflow builds with Vite `uat` mode, atomically swaps
+the static bundle, reloads Nginx and checks the UAT URL.
 
 ## Fixture packs
 
@@ -216,7 +250,10 @@ does not itself approve Help screenshots or close the visual coverage goal.
 ## External provisioning gate
 
 The remaining non-repository decision is an isolated PostgreSQL target plus its
-securely injected UAT secrets. DNS/reverse-proxy and CI environment secrets
-are optional when using a local UAT API, but a real browser/runtime verification
-still needs a reachable UAT frontend/backend pair. No production deployment or
-production data change is part of this gate.
+securely injected UAT secrets. For the VPS path, provision the separate host,
+the `/etc/antifake/uat-target` marker (or an explicitly configured equivalent),
+the UAT environment variables, and the GitHub `uat` environment secrets/vars
+listed above. DNS/reverse-proxy and CI environment secrets are optional when
+using a local UAT API, but a real browser/runtime verification still needs a
+reachable UAT frontend/backend pair. No production deployment or production
+data change is part of this gate.
