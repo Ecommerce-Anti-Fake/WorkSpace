@@ -881,8 +881,8 @@ findings; `AF-TECH-001` is resolved locally.
 - Environment: Front-End `8157ffa`; production `https://antifake.io.vn`
 - Discovery: The original 39 auth-fixture skips had not yet been checked
   against the project's existing seed/demo accounts.
-- Source result: eight accounts exist in the seed (`admin@antifake.io.vn` and
-  `seed.user01@antifake.local` through `seed.user07@antifake.local`). user01
+- Source result: eight synthetic account aliases exist in the seed
+  (`ADMIN_UAT`, `BUYER_UAT`, `SELLER_UAT` and five demo identities). The buyer
   and user02 are active, identifier-verified, KYC-verified level 2 shop owners;
   the Admin is source-suspended but has an active AffiliateAccount.
 - Production result: Admin, user01 and user02 authenticated successfully with

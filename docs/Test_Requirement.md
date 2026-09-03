@@ -145,9 +145,9 @@ Tìm tài khoản chính xác trong backend seed và xác minh đăng nhập th�
 
 Các tài khoản dự kiến:
 
-- Admin: `admin@antifake.io.vn`
-- User/Seller 1: `seed.user01@antifake.local`
-- User/Seller 2: `seed.user02@antifake.local`
+- Admin: `ADMIN_UAT`
+- User/Seller 1: `BUYER_UAT`
+- User/Seller 2: `SELLER_UAT`
 - Mật khẩu: cung cấp qua môi trường UAT bảo mật; không ghi trong tài liệu.
 
 Không được chỉ tin vào danh sách trên. Phải đối chiếu với code seed và dữ liệu production.

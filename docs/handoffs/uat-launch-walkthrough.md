@@ -118,13 +118,13 @@ Capture this evidence for launch signoff:
 Environment:
 - Frontend: `https://antifake.io.vn`, canonical redirect target `https://www.antifake.io.vn`.
 - API: `https://api.antifake.io.vn/api`.
-- Seeded accounts validated: `buyer@example.com`, `manufacturer@example.com`, `distributor@example.com`, `admin@example.com`; password `12345678`.
+- Seeded accounts validated: `BUYER_UAT`, `SELLER_UAT`, `DISTRIBUTOR_UAT`, `ADMIN_UAT`; credentials were injected through the secure UAT environment.
 
 Preflight passed:
 - `cd back-end && npm run ci:quality`: passed; 7 Jest suites / 27 tests passed, then `npm run build:deploy` passed.
 - `cd front-end-web && npm run ci:quality`: passed; Vite build completed with the existing chunk-size warning.
 - `cd back-end && DEPLOY_SMOKE_BASE_URL=https://api.antifake.io.vn npm run smoke:deploy`: passed; `GET /api/health` returned status `ok` and service `api-gateway`.
-- `cd front-end-web && RT_API_BASE_URL=https://api.antifake.io.vn/api RT_SOCKET_BASE_URL=https://api.antifake.io.vn RT_SMOKE_USERNAME=buyer@example.com RT_SMOKE_PASSWORD=12345678 npm run smoke:realtime-load`: passed; login OK, notification SSE HTTP 200 with one chunk, live WebSocket skipped because no live session was active.
+- `cd front-end-web && RT_API_BASE_URL=<production-api> RT_SOCKET_BASE_URL=<production-api> RT_SMOKE_USERNAME=<BUYER_UAT_SECRET> RT_SMOKE_PASSWORD=<UAT_TEST_PASSWORD> npm run smoke:realtime-load`: passed; login OK, notification SSE HTTP 200 with one chunk, live WebSocket skipped because no live session was active. Secret values are intentionally omitted.
 
 Frontend route reachability passed:
 - `/`, `/products`, `/wholesale`, `/live`, `/community/feed`, `/auth`, `/verify-qr`, `/cart`, `/orders`, `/user`, `/shops`, `/admin`, `/distribution`, `/affiliate`, and `/notifications` all resolved to HTTP 200 after canonical redirect to `www.antifake.io.vn`.
@@ -1009,11 +1009,11 @@ The existing seed/demo accounts were audited in `prisma/seed.ts`,
 `prisma/seeds/**`, the Prisma schema, and login guards before any credential
 request. Production UI validation confirmed:
 
-- `ACTIVE_BUYER_UAT`: `seed.user01@antifake.local`, active/verified, source KYC
+- `ACTIVE_BUYER_UAT`: `BUYER_UAT`, active/verified, source KYC
   verified level 2, owns two verified Shops and one pending Shop.
-- `ACTIVE_SELLER_UAT`: `seed.user02@antifake.local`, active/verified, source KYC
+- `ACTIVE_SELLER_UAT`: `SELLER_UAT`, active/verified, source KYC
   verified level 2, owns three verified Shops.
-- `ACTIVE_AFFILIATE_UAT` and `ACTIVE_ADMIN_UAT`: `admin@antifake.io.vn`.
+- `ACTIVE_AFFILIATE_UAT` and `ACTIVE_ADMIN_UAT`: `ADMIN_UAT`.
   Production email/phone login reached `/admin`; source has an active
   AffiliateAccount even though the source seed marks the Admin suspended.
 - `seed.user03`–`seed.user07` exist but have unverified identifiers and

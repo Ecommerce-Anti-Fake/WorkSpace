@@ -1357,19 +1357,19 @@ already-valid public evidence.
 
 The prior 39 auth-fixture skips were re-audited against `prisma/seed.ts`, all
 `prisma/seeds/**`, the Prisma schema, and the login/account-state guards before
-requesting any new credentials. Eight seed/demo accounts were discovered:
-`admin@antifake.io.vn` and `seed.user01@antifake.local` through
-`seed.user07@antifake.local`.
+requesting any new credentials. Eight seed/demo account aliases were
+discovered: `ADMIN_UAT`, `BUYER_UAT`, `SELLER_UAT` and five additional
+synthetic demo identities.
 
 Existing production accounts are usable as follows:
 
-- Buyer: `seed.user01@antifake.local` (`ACTIVE_BUYER_UAT`); active and verified,
+- Buyer: `BUYER_UAT` (`ACTIVE_BUYER_UAT`); active and verified,
   seeded KYC verified level 2, seeded cart/order/notification/chat data.
-- Seller: `seed.user02@antifake.local` (`ACTIVE_SELLER_UAT`); active and
+- Seller: `SELLER_UAT` (`ACTIVE_SELLER_UAT`); active and
   verified, seeded KYC verified level 2, owns three verified Shops.
-- Affiliate: `admin@antifake.io.vn` (`ACTIVE_AFFILIATE_UAT`); production login
+- Affiliate: `ADMIN_UAT` (`ACTIVE_AFFILIATE_UAT`); production login
   succeeded and source has an active AffiliateAccount and active program.
-- Admin: `admin@antifake.io.vn` (`ACTIVE_ADMIN_UAT`); email and phone login
+- Admin: `ADMIN_UAT` (`ACTIVE_ADMIN_UAT`); email and phone login
   reached `/admin`. The source seed marks this account suspended, but the
   current production effective state authenticated successfully; no account
   state or role was changed.

@@ -16,14 +16,14 @@ phone login only; no password or token is recorded here.
 
 | Logical fixture | Login identifier | Source account/KYC state | Shop relationship/state | AffiliateAccount | Production result | Safe UAT unlocks |
 |---|---|---|---|---|---|---|
-| `ACTIVE_ADMIN_UAT` | `admin@antifake.io.vn` | `role=admin`; source seed `suspended`; email/phone verified; no KYC | none | `ACTIVE` under the seeded active program | Email and phone login succeeded; `/admin` and affiliate member read-only views loaded | Admin read-only routes and Affiliate dashboard |
-| `ACTIVE_BUYER_UAT` | `seed.user01@antifake.local` | active user; email/phone verified; KYC `verified`, level 2 | owns 1 pending-verification shop and 2 verified shops | none | Email and phone login succeeded; buyer routes and cart badge `7` observed | Buyer route/cart/checkout-read/order/chat/permission views; seller read-only where needed |
-| `ACTIVE_SELLER_UAT` | `seed.user02@antifake.local` | active user; email/phone verified; KYC `verified`, level 2 | owns 3 verified shops | none | Email and phone login succeeded; Seller Center selected a verified shop | Seller route/live-entry/product/order/wallet-read views |
-| Seed user 03 | `seed.user03@antifake.local` | active user; email/phone unverified; KYC `verified`, level 2 | none | none | Email login returned HTTP 403; source guard is `EMAIL_NOT_VERIFIED` | none in current production |
-| Seed user 04 | `seed.user04@antifake.local` | active user; email/phone unverified; KYC `verified`, level 2 | none | none | Email login returned HTTP 403; source verification guard blocks login | none in current production |
-| Seed user 05 | `seed.user05@antifake.local` | active user; email/phone unverified; no KYC | none | `PENDING` | Email login returned HTTP 403; source verification guard blocks login | none in current production |
-| Seed user 06 | `seed.user06@antifake.local` | active user; email/phone unverified; no KYC | none | `ACTIVE` | Email login returned HTTP 403; source verification guard blocks login | none in current production |
-| Seed user 07 | `seed.user07@antifake.local` | active user; email/phone unverified; no KYC | none | `ACTIVE` | Email login returned HTTP 403; source verification guard blocks login | none in current production |
+| `ACTIVE_ADMIN_UAT` | `ADMIN_UAT` | `role=admin`; source seed `suspended`; email/phone verified; no KYC | none | `ACTIVE` under the seeded active program | Email and phone login succeeded; `/admin` and affiliate member read-only views loaded | Admin read-only routes and Affiliate dashboard |
+| `ACTIVE_BUYER_UAT` | `BUYER_UAT` | active user; email/phone verified; KYC `verified`, level 2 | owns 1 pending-verification shop and 2 verified shops | none | Email and phone login succeeded; buyer routes and cart badge `7` observed | Buyer route/cart/checkout-read/order/chat/permission views; seller read-only where needed |
+| `ACTIVE_SELLER_UAT` | `SELLER_UAT` | active user; email/phone verified; KYC `verified`, level 2 | owns 3 verified shops | none | Email and phone login succeeded; Seller Center selected a verified shop | Seller route/live-entry/product/order/wallet-read views |
+| Demo user 03 | `DEMO_USER_03_UAT` | active user; email/phone unverified; KYC `verified`, level 2 | none | none | Email login returned HTTP 403; source guard is `EMAIL_NOT_VERIFIED` | none in current production |
+| Demo user 04 | `DEMO_USER_04_UAT` | active user; email/phone unverified; KYC `verified`, level 2 | none | none | Email login returned HTTP 403; source verification guard blocks login | none in current production |
+| Demo user 05 | `DEMO_USER_05_UAT` | active user; email/phone unverified; no KYC | none | `PENDING` | Email login returned HTTP 403; source verification guard blocks login | none in current production |
+| Demo user 06 | `DEMO_USER_06_UAT` | active user; email/phone unverified; no KYC | none | `ACTIVE` | Email login returned HTTP 403; source verification guard blocks login | none in current production |
+| Demo user 07 | `DEMO_USER_07_UAT` | active user; email/phone unverified; no KYC | none | `ACTIVE` | Email login returned HTTP 403; source verification guard blocks login | none in current production |
 
 The source Admin `suspended` value does not match the current production
 effective state: the existing production account authenticated successfully
@@ -41,14 +41,14 @@ below apply to records that remain unresolved.
 
 | Test/Journey | Role | Current reason | Required fixture/config | Safe mutation? | Final classification |
 |---|---|---|---|---|---|
-| Admin seed route, route inventory, and admin login (9 total) | Admin | Existing production Admin authenticated; read-only route checks completed | `ACTIVE_ADMIN_UAT=admin@antifake.io.vn`; no new account | Yes — read-only | `RUNNABLE_NOW` — 9/9 passed |
-| Affiliate dashboard (x3) | Affiliate | Existing production Admin has source `AffiliateAccount=ACTIVE`; dashboard loaded | `ACTIVE_AFFILIATE_UAT=admin@antifake.io.vn`; active program data already present | Yes — read-only | `RUNNABLE_NOW` — 3/3 passed |
-| Buyer authenticated route bundle (x3) | Buyer | user01 is active and verified; routes completed | `ACTIVE_BUYER_UAT=seed.user01@antifake.local` | Yes — read-only | `RUNNABLE_NOW` — 3/3 passed |
+| Admin seed route, route inventory, and admin login (9 total) | Admin | Existing production Admin authenticated; read-only route checks completed | `ACTIVE_ADMIN_UAT=ADMIN_UAT`; no new account | Yes — read-only | `RUNNABLE_NOW` — 9/9 passed |
+| Affiliate dashboard (x3) | Affiliate | Existing production Admin has source `AffiliateAccount=ACTIVE`; dashboard loaded | `ACTIVE_AFFILIATE_UAT=ADMIN_UAT`; active program data already present | Yes — read-only | `RUNNABLE_NOW` — 3/3 passed |
+| Buyer authenticated route bundle (x3) | Buyer | BUYER_UAT is active and verified; routes completed | `ACTIVE_BUYER_UAT=BUYER_UAT` | Yes — read-only | `RUNNABLE_NOW` — 3/3 passed |
 | Buyer cart load (x3) | Buyer | user01 cart exists; route completed without changing data | Same buyer fixture; existing cart data sufficient | Yes — read-only | `RUNNABLE_NOW` — 3/3 passed |
 | Cart badge quantity update (x3) | Buyer | Existing seeded demo cart and valid item are available; quantity was incremented and restored | `ACTIVE_BUYER_UAT`; existing seeded cart; pre-state captured and restored | Yes — reversible `SAFE_UAT_MUTATION` on the seeded demo cart; no order/payment | `RUNNABLE_NOW` — 3/3 passed |
 | Empty checkout route (x3) | Buyer | Authenticated route loaded without order/payment mutation | Same buyer fixture; no payment provider needed | Yes — read-only | `RUNNABLE_NOW` — 3/3 passed |
 | Buyer chat entry points (x3) | Buyer | Authenticated entry-point routes completed; full realtime behavior is separate | Same buyer fixture; existing thread optional for entry smoke | Yes — read-only | `RUNNABLE_NOW` — 3/3 passed |
-| Seller live entry point (x3) | Seller | user02 owns verified Shops; entry route completed without starting a session | `ACTIVE_SELLER_UAT=seed.user02@antifake.local`; no Agora action for entry smoke | Yes — read-only | `RUNNABLE_NOW` — 3/3 passed |
+| Seller live entry point (x3) | Seller | SELLER_UAT owns verified Shops; entry route completed without starting a session | `ACTIVE_SELLER_UAT=SELLER_UAT`; no Agora action for entry smoke | Yes — read-only | `RUNNABLE_NOW` — 3/3 passed |
 | Buyer order list/detail (x3) | Buyer | user01 authenticated; owned order read-only route completed | Same buyer fixture; seeded order data available | Yes — read-only | `RUNNABLE_NOW` — 3/3 passed |
 | Non-admin permission boundary (x3) | Buyer/non-admin | user01 is active non-admin; `/admin` boundary completed | Same buyer fixture; must remain non-admin | Yes — read-only | `RUNNABLE_NOW` — 3/3 passed |
 | Seller authenticated route bundle (x3) | Seller | user02 authenticated; Seller Center read-only bundle completed | Same seller fixture; verified Shop data already present | Yes — read-only | `RUNNABLE_NOW` — 3/3 passed |
@@ -83,7 +83,7 @@ No retained record remains in `BLOCKED_AUTH_FIXTURE`,
 
 ### Cart badge UAT evidence — 2026-08-28
 
-Fixture: `ACTIVE_BUYER_UAT` (`seed.user01@antifake.local`) on production
+Fixture: `ACTIVE_BUYER_UAT` (`BUYER_UAT`) on production
 Front-End revision `8157ffa`. The initial cart had four seeded lines, total
 quantity `7`, and the second line quantity `2`. The authorized reversible check
 incremented that line to `3`, asserted the header badge changed `7 -> 8`, then
@@ -178,7 +178,7 @@ mechanism; passwords and tokens remain outside documentation.
 
 `ACTIVE_BUYER_UAT`
 
-- account: `seed.user01@antifake.local`, active user, email/phone verified;
+- account: `BUYER_UAT`, active user, email/phone verified;
 - KYC: source seed `verified`, level 2;
 - Shop: owns two verified shops and one pending-verification shop;
 - AffiliateAccount: none;
@@ -187,7 +187,7 @@ mechanism; passwords and tokens remain outside documentation.
 
 `ACTIVE_SELLER_UAT`
 
-- account: `seed.user02@antifake.local`, active user, email/phone verified;
+- account: `SELLER_UAT`, active user, email/phone verified;
 - KYC: source seed `verified`, level 2;
 - Shop: owns three verified shops;
 - AffiliateAccount: none;
@@ -197,7 +197,7 @@ mechanism; passwords and tokens remain outside documentation.
 
 `ACTIVE_AFFILIATE_UAT`
 
-- account: `admin@antifake.io.vn`, production login succeeds;
+- account: `ADMIN_UAT`, production login succeeds;
 - KYC: source seed has none;
 - Shop: none;
 - AffiliateAccount: source seed `ACTIVE` under the active Vinamilk program;
@@ -207,7 +207,7 @@ mechanism; passwords and tokens remain outside documentation.
 
 `ACTIVE_ADMIN_UAT`
 
-- account: `admin@antifake.io.vn`, production effective state active, role admin;
+- account: `ADMIN_UAT`, production effective state active, role admin;
 - KYC: source seed has none;
 - Shop: none;
 - AffiliateAccount: `ACTIVE` as listed above;

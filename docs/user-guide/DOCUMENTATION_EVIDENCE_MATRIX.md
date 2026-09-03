@@ -196,8 +196,8 @@ Supply any secret only through the approved secure environment mechanism.
 
 - Purpose: B05 Buyer order list/detail, tracking and historical-result guide
   evidence without exposing a real recipient.
-- Required role: Buyer `ACTIVE_BUYER_UAT` (`seed.user01@antifake.local`) and
-  Seller `ACTIVE_SELLER_UAT` (`seed.user02@antifake.local`).
+- Required role: Buyer `ACTIVE_BUYER_UAT` (`BUYER_UAT`) and Seller
+  `ACTIVE_SELLER_UAT` (`SELLER_UAT`).
 - Required object/data: Seller-owned verified Shop, active approved Offer,
   active Variant with stock, one `Order`, `OrderShopGroup`, `OrderItem`,
   `PaymentIntent` and `Escrow`.
@@ -241,8 +241,8 @@ Supply any secret only through the approved secure environment mechanism.
 ### `CHAT_SYNTHETIC_TWO_SESSION_UAT`
 
 - Purpose: B07 PII-safe history, send/receive and reconnect evidence.
-- Required role: Buyer `seed.user01@antifake.local` paired with Seller
-  `seed.user02@antifake.local`; Seller owns the selected verified Shop.
+- Required role: Buyer `BUYER_UAT` paired with Seller `SELLER_UAT`; Seller owns
+  the selected verified Shop.
 - Required object/data: one `ChatThread` with `buyerUserId`, `sellerUserId` and
   `shopId`; two or more `ChatMessage` records with unique `clientMessageId`
   values and synthetic text such as “UAT message one”. No attachment is
@@ -362,7 +362,7 @@ Supply any secret only through the approved secure environment mechanism.
 ### `ADMIN_PIISAFE_READ_SET`
 
 - Purpose: A02/A04/A08 read-only list/detail/status evidence.
-- Required role: existing `ACTIVE_ADMIN_UAT` (`admin@antifake.io.vn`); no new
+- Required role: existing `ACTIVE_ADMIN_UAT` (`ADMIN_UAT`); no new
   Admin account.
 - Required object/data: one alias-only active user and one alias-only Seller
   user for A02; one `Shop` with `shopStatus=pending_verification` and sanitized

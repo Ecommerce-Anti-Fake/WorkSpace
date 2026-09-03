@@ -37,7 +37,7 @@ This keeps CI deterministic without requiring production secrets, Redis, Firebas
 Backend CI uses safe placeholders:
 - `CI=true`
 - `REDIS_ENABLED=false`
-- `DATABASE_URL=postgresql://ci:ci@127.0.0.1:5432/ci`
+- `DATABASE_URL=<runner-provided local CI PostgreSQL URL>`
 - `DEPLOY_SMOKE_BASE_URL=http://127.0.0.1:3001`
 
 Frontend CI uses safe placeholders:

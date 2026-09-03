@@ -34,8 +34,8 @@
 ### Seed/demo production re-audit — 2026-08-28
 
 The existing seed/demo identities were validated through normal production UI
-login without recording credentials. `seed.user01` and `seed.user02` are the
-two source-verified users and own the seeded Shops; `admin@antifake.io.vn`
+login without recording credentials. `BUYER_UAT` and `SELLER_UAT` are the
+two source-verified users and own the seeded Shops; `ADMIN_UAT`
 authenticated successfully in production despite the source seed's suspended
 state. Source also creates an `ACTIVE` AffiliateAccount for that Admin, so the
 correct logical fixtures are `ACTIVE_BUYER_UAT=user01`,
