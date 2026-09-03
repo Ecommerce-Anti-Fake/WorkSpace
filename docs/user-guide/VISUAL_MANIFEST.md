@@ -21,11 +21,11 @@ asset. The current served copies are kept in
 | A09 list | `/journey-visuals/admin-promotions-desktop.png` | `/journey-visuals/admin-promotions-mobile.png` | Admin read-only voucher workspace only; A09 remains `PARTIAL` |
 | S07 program | `/journey-visuals/affiliate-program-desktop.png` | `/journey-visuals/affiliate-program-mobile.png` | Authenticated Affiliate program read-only view only; binding verified after deployment `622b1e9`; S07 remains `PARTIAL` |
 | B04 cart | `/journey-visuals/b04-cart-desktop.png` | `/journey-visuals/b04-cart-mobile.png` | Production binding retested after deployed revision `13c18f4`; accepted seeded-cart Desktop/Mobile evidence remains at `8157ffa`; B04 remains `PARTIAL` |
-| B04 discover (local reuse) | `/journey-visuals/b02-discovery-desktop.png` | `/journey-visuals/b02-discovery-mobile.png` | Local branch binding reuses the accepted public B02 discovery state; production retest pending; B04 remains `PARTIAL` |
-| B04 product-detail (local reuse) | `/journey-visuals/b02-product-detail-desktop.png` | `/journey-visuals/b02-product-detail-mobile.png` | Local branch binding reuses the accepted public B02 product-detail state; production retest pending; B04 remains `PARTIAL` |
-| ADMIN-REVIEW dashboard (local reuse) | `/journey-visuals/admin-dashboard-desktop.png` | `/journey-visuals/admin-dashboard-mobile.png` | Local branch binding reuses the accepted Admin dashboard shell; Admin-only production retest pending |
-| ADMIN-REVIEW product-review (local reuse) | `/journey-visuals/admin-product-review-desktop.png` | `/journey-visuals/admin-product-review-mobile.png` | Local branch binding reuses the accepted Admin product-review queue; Admin-only production retest pending |
-| ADMIN-OPERATIONS dashboard (local reuse) | `/journey-visuals/admin-dashboard-desktop.png` | `/journey-visuals/admin-dashboard-mobile.png` | Local branch binding reuses the accepted Admin dashboard shell; Admin-only production retest pending |
+| B04 discover (production-verified reuse) | `/journey-visuals/b02-discovery-desktop.png` | `/journey-visuals/b02-discovery-mobile.png` | Reuses the accepted public B02 discovery state; route, asset load and marker order verified at `78646d7` on Desktop/Mobile; B04 remains `PARTIAL` for later steps |
+| B04 product-detail (production-verified reuse) | `/journey-visuals/b02-product-detail-desktop.png` | `/journey-visuals/b02-product-detail-mobile.png` | Reuses the accepted public B02 product-detail state; route, asset load and marker order verified at `78646d7` on Desktop/Mobile; B04 remains `PARTIAL` for later steps |
+| ADMIN-REVIEW dashboard (local reuse) | `/journey-visuals/admin-dashboard-desktop.png` | `/journey-visuals/admin-dashboard-mobile.png` | Local branch binding reuses the accepted Admin dashboard shell; route/image smoke passed with a test role, approved Admin-session production retest pending |
+| ADMIN-REVIEW product-review (local reuse) | `/journey-visuals/admin-product-review-desktop.png` | `/journey-visuals/admin-product-review-mobile.png` | Local branch binding reuses the accepted Admin product-review queue; route/image smoke passed with a test role, approved Admin-session production retest pending |
+| ADMIN-OPERATIONS dashboard (local reuse) | `/journey-visuals/admin-dashboard-desktop.png` | `/journey-visuals/admin-dashboard-mobile.png` | Local branch binding reuses the accepted Admin dashboard shell; route/image smoke passed with a test role, approved Admin-session production retest pending |
 
 ## Served asset integrity
 
@@ -85,10 +85,11 @@ B02 `detail` and `choose` intentionally reuse the same product-detail state;
 their written marker guidance differs only where the user action differs.
 The 2026-09-03 local branch also binds B04 `discover` and
 `product-detail`, plus the exact role-matched Admin overview states, to these
-accepted assets without copying or regenerating images. These five aliases are
-not production-accepted until the branch is deployed and retested.
-The route migration for Admin Help is `/admin/help/admin/...`; historical
-production evidence below remains historical until this branch is deployed.
+accepted assets without copying or regenerating images. The public B04 aliases
+are production-verified at both target viewports on `78646d7`; the three Admin
+aliases remain pending approved-session verification. The route migration for
+Admin Help is `/admin/help/admin/...`; historical production evidence below
+remains historical unless explicitly updated.
 
 ## Post-deployment Journey Center regression — 2026-08-28
 
@@ -263,23 +264,28 @@ upgrade B04 beyond `PARTIAL`.
 
 ## 2026-09-03 targeted production verification
 
-The accepted Help Center visual bindings were rechecked after Front-End
-revision `723e550e95a570b5cf4ea2e14fb23eef16a3413d` was deployed by GitHub
-Actions run `90`:
-`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33711930697`.
+The public Help/Journey Center bindings and the two public B04 reuse aliases
+were checked after Front-End revision
+`78646d724e93e18a15a5b729aa29c15530f1c494` was deployed by GitHub Actions run
+`91`:
+`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33723971778`.
 
 | Binding set | Rendered production evidence |
 |---|---|
 | B01, B02, B04, B09, S07 | Public Help/Journey Center routes inspected at Desktop `1440x900` and Mobile `390x844`; all selected Desktop/Mobile assets were complete, readable and HTTP `200`. |
-| A01, A05, A09 | Protected Admin Help routes inspected inside the Admin shell at Desktop `1440x900` and Mobile `390x844`; all selected Desktop/Mobile assets were complete, readable and HTTP `200`. |
+| A01, A05, A09 | Approved run `90` baseline: protected Admin Help routes were inspected inside the Admin shell at Desktop `1440x900` and Mobile `390x844`; all selected Desktop/Mobile assets were complete, readable and HTTP `200`. |
+| B04 public reuse | `/help/buyer/first-purchase/discover` and `/product-detail` returned `200` at both target viewports; the expected reused assets loaded at `1440x900` and `390x844` and marker numbers `1,2,3` rendered in order. |
+| Admin reuse probe | The three Admin reuse routes selected the expected assets and marker numbers in both viewports with the test-role harness; approved Admin-session visual verification remains pending. |
 | B02 detail/choose remediation | Mobile marker guidance now matches the visible image: product image, name/price, then variant selector. Desktop retains product media, variant/quantity, then AntiFake verification. |
 
 No evidence-pending placeholder, broken image, stale image, PII exposure,
-unexplained marker or marker-order mismatch was observed. This verification
-does not claim the remaining unaccepted journey steps are visually complete.
+unexplained marker or marker-order mismatch was observed in the checked public
+scope or accepted baseline. This verification does not claim the remaining
+unaccepted journey steps are visually complete.
 
 An additional read-only Playwright smoke against deployed revision
-`723e550e95a570b5cf4ea2e14fb23eef16a3413d` passed 12/12 public Help/Journey
-checks at Desktop `1440x900`. The smoke did not exercise Admin-session,
-fixture-backed or provider-dependent flows and does not promote the five local
-reuse bindings to production evidence.
+`78646d724e93e18a15a5b729aa29c15530f1c494` passed 12/12 public Help/Journey
+checks at Desktop `1440x900`. The targeted B04 reuse probe passed at both
+Desktop and Mobile; the smoke did not exercise fixture-backed or
+provider-dependent flows, and the Admin aliases still lack approved-session
+evidence.

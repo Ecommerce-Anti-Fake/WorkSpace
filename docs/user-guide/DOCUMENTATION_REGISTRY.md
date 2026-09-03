@@ -140,9 +140,9 @@ working production mutation.
 ## 2026-09-03 targeted production verification
 
 The Help Center/Admin Help slice is serving Front-End revision
-`723e550e95a570b5cf4ea2e14fb23eef16a3413d`. GitHub Actions run `90` completed
+`78646d724e93e18a15a5b729aa29c15530f1c494`. GitHub Actions run `91` completed
 successfully after pulling, building and reloading the VPS deployment:
-`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33711930697`.
+`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33723971778`.
 The WorkSpace audit baseline was pushed as `834aefb`; this follow-up records the
 post-deployment reconciliation.
 
@@ -150,11 +150,15 @@ post-deployment reconciliation.
 |---|---|
 | Public `/help` | Buyer, Seller/Affiliate and QR content remained reachable; Admin role, Admin links and Admin article text were absent from the catalog and `Admin` search. |
 | Public deep links | Existing Buyer, Seller/Affiliate and QR Help links loaded. The legacy public Admin dashboard deep link did not expose an Admin article. |
-| Admin `/admin/help` | Admin-only catalog rendered inside the protected Admin shell with 12 cards, working Admin search and active `Hướng dẫn` navigation. |
-| Authorization | Guest denied to `/auth`; Buyer and Seller denied to `/`; Admin allowed to `/admin/help`, including direct A01 deep-link navigation. |
+| Admin `/admin/help` | Approved run `90` baseline: Admin-only catalog rendered inside the protected Admin shell with 12 cards, working Admin search and active `Hướng dẫn` navigation. |
+| Authorization | Approved run `90` baseline: Guest denied to `/auth`; Buyer and Seller denied to `/`; Admin allowed to `/admin/help`, including direct A01 deep-link navigation. |
 | Published visual bindings | B01, B02, B04, B09, S07, A01, A05 and A09 rendered at Desktop `1440x900` and Mobile `390x844`; all 20 selected assets loaded and were visually inspected. |
+| B04 public reuse | `discover` and `product-detail` reused the accepted B02 pairs; both target routes loaded the expected assets with markers `1,2,3` at Desktop and Mobile. |
 
-The affected article rows remain `PARTIAL` where their wider journey still has
+The current run `91` public smoke and targeted B04 probe do not include an
+approved Admin session; the three Admin reuse aliases therefore remain
+pending real-session visual verification. The affected article rows remain
+`PARTIAL` where their wider journey still has
 unverified mutation, provider or fixture steps. The targeted published
-bindings are production-verified and do not upgrade those wider journey
-statuses.
+bindings and the two public B04 reuse aliases are production-verified and do
+not upgrade those wider journey statuses.

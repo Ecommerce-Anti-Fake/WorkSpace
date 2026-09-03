@@ -7,9 +7,13 @@ final visual in `HELP_CENTER_QUALITY_AUDIT.md`. The eight A03/A06/A07/A10
 steps are not repeated here because their current frontend routes are absent
 and the audit already classifies them as `NOT_IMPLEMENTED` / `TEXT_ONLY`.
 
+Current reconciliation: two rows (B04-discover and B04-product-detail) are
+complete through production-verified reuse of accepted B02 pairs. The
+inventory retains all 70 original rows for traceability; 68 remain pending.
+
 Source baselines checked:
 
-- Front-End: `723e550e95a570b5cf4ea2e14fb23eef16a3413d`
+- Front-End: `78646d724e93e18a15a5b729aa29c15530f1c494`
 - Back-End: `3b59ab9`
 - Canonical evidence: `DOCUMENTATION_EVIDENCE_MATRIX.md`, `VISUAL_MANIFEST.md`
 - Seed source: `back-end/prisma/seed.ts` and `back-end/prisma/seeds/*`
@@ -26,8 +30,8 @@ screenshot, not merely present in seed code.
 
 | VISUAL_ID | ROLE | JOURNEY / STEP | HELP_ROUTE | FEATURE_ROUTE | CURRENT | ROUTE | SEED | SAFE STATE | RO | FIXTURE / MUTATION | PROVIDER | UNSAFE BOUNDARY | VIEW | DEPS |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| B04-discover | buyer | B04 / discover | `/help/buyer/first-purchase/discover` | `/` or `/search` | LOCAL_REUSE_PENDING_DEPLOY | Y | Y | Y via B02 visual | Y | Reuse accepted B02 discovery; none | — | — | D+M | B02 accepted asset and production verification |
-| B04-product-detail | buyer | B04 / product-detail | `/help/buyer/first-purchase/product-detail` | `/product/:id` | LOCAL_REUSE_PENDING_DEPLOY | Y | Y | Y via B02 visual | Y | Reuse accepted B02 detail; none | — | — | D+M | B02 accepted asset and equivalent meaning |
+| B04-discover | buyer | B04 / discover | `/help/buyer/first-purchase/discover` | `/` or `/search` | COMPLETE_REUSED_PRODUCTION | Y | Y | Y via B02 visual | Y | Reuse accepted B02 discovery; none | — | — | D+M | Production route/image/marker verification at Front-End `78646d7` |
+| B04-product-detail | buyer | B04 / product-detail | `/help/buyer/first-purchase/product-detail` | `/product/:id` | COMPLETE_REUSED_PRODUCTION | Y | Y | Y via B02 visual | Y | Reuse accepted B02 detail; none | — | — | D+M | Production route/image/marker verification at Front-End `78646d7` |
 | B04-add-to-cart | buyer | B04 / add-to-cart | `/help/buyer/first-purchase/add-to-cart` | `/product/:id` | BLOCKED_FIXTURE | Y | Y | N | N | Disposable cart state; controlled cart mutation + restore | — | No real customer cart/order | D+M | approved product/variant and cleanup |
 | B04-checkout | buyer | B04 / checkout | `/help/buyer/first-purchase/checkout` | `/checkout` | BLOCKED_PROVIDER | Y | P | N | Y for quote shell only | Seller business fixture; no payment mutation | PayOS, GHN | No real charge or shipment booking | D+M | address, cart, authoritative quote |
 | B04-order | buyer | B04 / order | `/help/buyer/first-purchase/order` | `/profile/orders/:id` | BLOCKED_FIXTURE | Y | Y | N | Y after sanitization | `ORDER_DETAIL_PII_SAFE_UAT`; read-only | — | No real order transition | D+M | sanitized completed order |
@@ -136,7 +140,8 @@ accepted.
 
 | Classification | Rows | Current disposition |
 |---|---:|---|
-| Implemented local reuse bindings | 5 | B04 discover, B04 product-detail, ADMIN-REVIEW dashboard, ADMIN-REVIEW product-review, ADMIN-OPERATIONS dashboard; each still needs deployment verification |
+| Production-verified reuse complete | 2 | B04 discover and B04 product-detail reuse accepted B02 pairs; no new screenshots required |
+| Implemented local reuse bindings pending Admin session | 3 | ADMIN-REVIEW dashboard, ADMIN-REVIEW product-review, ADMIN-OPERATIONS dashboard; route/image smoke passed with test role, approved Admin-session verification remains |
 | Read-only capture after safe fixture | 39 | Buyer account/order/voucher/chat/community, seller read surfaces, Admin read sets |
 | Controlled fixture mutation required | 18 | Cart/voucher apply, chat send/reconnect, seller writes, Admin decisions/status |
 | Provider-dependent | 8 | B04 checkout, B09/S09 lifecycle portions represented in the 70 rows |

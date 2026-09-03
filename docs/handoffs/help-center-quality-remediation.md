@@ -57,18 +57,26 @@ the 18 served files is byte-identical to its annotated evidence copy; it does
 not change the accepted-visual count or UAT status.
 
 Current local verification is `test:help` 27/27, lint pass, build pass and
-Help/Journey E2E 38 passed with 2 mobile-only skips. The five reuse bindings
-remain pending deployment and production retest. The current environment
-points at hosted Neon data, so no fixture/reset was run; the DevTools
-production session was unavailable because its Chrome profile was locked. A
-separate read-only Playwright smoke against deployed revision
-`723e550e95a570b5cf4ea2e14fb23eef16a3413d`
-passed 12/12 public Desktop checks; it did not verify the local aliases,
-Admin-session visuals, fixture-backed journeys or provider flows.
+Help/Journey E2E 38 passed with 2 mobile-only skips. The current Front-End
+deployment is revision `78646d724e93e18a15a5b729aa29c15530f1c494` from GitHub
+Actions run `91`:
+`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33723971778`.
+A separate read-only Playwright smoke passed 12/12 public Desktop checks. A
+targeted browser probe verified the two public B04 reuse aliases at Desktop
+`1440x900` and Mobile `390x844`: expected assets returned `200`, rendered at
+the required dimensions and exposed marker numbers `1,2,3`. These two aliases
+are complete through accepted B02 reuse. The three Admin aliases only passed a
+route/image smoke with a test-role harness; approved real Admin-session visual
+verification remains pending.
+
+The current environment points at hosted Neon data, so no fixture/reset was
+run; the DevTools production session was unavailable because its Chrome
+profile was locked. Fixture-backed journeys and provider flows remain
+unverified, and no production mutation was performed.
 
 ## Next step
 
-Provide an isolated UAT target for fixture-backed captures, or deploy the
-current Front-End branch and run the required production visual retest. Until
-then, the remaining 70 unaccepted visual steps and unavailable Admin routes
-retain their terminal classifications in the evidence matrix.
+Provide an isolated UAT target for fixture-backed captures. Until then, the
+remaining 68 unaccepted visual steps retain their terminal classifications in
+the evidence matrix, and the three Admin reuse aliases remain pending an
+approved real Admin session.

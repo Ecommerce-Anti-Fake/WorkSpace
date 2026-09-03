@@ -36,15 +36,24 @@ requirement.
 ### Current update - Help Center production verification
 
 The targeted Help Center/Admin Help slice is now production-verified on
-Front-End revision `723e550e95a570b5cf4ea2e14fb23eef16a3413d` after GitHub
-Actions run `90`. Public role filtering, Admin exclusion, search, deep links,
+Front-End revision `78646d724e93e18a15a5b729aa29c15530f1c494` after GitHub
+Actions run `91`. Public role filtering, Admin exclusion, search, deep links,
 Admin shell navigation, direct route protection and the accepted Desktop/Mobile
-visual bindings passed the targeted browser audit. The B02 product-detail
-Mobile marker mismatch found during verification was corrected and retested.
+visual bindings passed the targeted browser audit. The public B04
+`discover` and `product-detail` aliases also passed read-only route, asset and
+marker checks at both target viewports by reusing the equivalent B02 pairs. The
+B02 product-detail Mobile marker mismatch found during verification was
+corrected and retested.
 
-This closes the Help Center deployment gap for the affected published
-bindings. It does not close the broader fixture/provider, mutation or missing
-feature-route gaps recorded in DOC-002 through DOC-012.
+The Admin Help and authorization statements continue to rely on the approved
+run `90` session evidence; current run `91` had no approved Admin session for
+a new visual sign-off.
+
+This closes the Help Center deployment gap for the affected published bindings
+and those two public B04 reuse aliases. It does not close the broader
+fixture/provider, mutation or missing feature-route gaps recorded in DOC-002
+through DOC-012; the three Admin reuse aliases still need an approved real
+Admin-session visual verification.
 
 ## Scope note
 

@@ -39,9 +39,9 @@ GOAL_STATUS=COMPLETE_TARGETED_HELP_CENTER
 | Articles with title, purpose and role metadata | 30/30 | Automated content test |
 | Steps with user-facing title and description | 88/88 | Automated content test |
 | Steps classified as requiring a screenshot | 80 | Conservative classification: runnable action/status steps without an accepted visual are `TEXT_PLUS_SCREENSHOT`; unavailable Admin routes are `TEXT_ONLY` |
-| Published visual step bindings | 10 | B01/register, B02/search/detail/choose, B04/cart, B09/discover, S07/program, A01/open, A05/pending, A09/list |
+| Published visual step bindings | 12 | Previous ten bindings plus B04/discover and B04/product-detail through verified B02 visual reuse |
 | Served visual assets | 20 | Ten Desktop/Mobile pairs |
-| Required steps missing a final visual | 70 | Pending safe fixture/provider evidence; see the matrix below |
+| Required steps missing a final visual | 68 | Pending safe fixture/provider evidence; two B04 steps are complete through accepted visual reuse |
 | Annotated visual assets | 20/20 | Every published pair has marker metadata and a written legend |
 | Marker mismatches | 0 found | Automated number/guidance validation plus visual inspection of the accepted pairs |
 | Missing marker explanations | 0 | Published visuals only |
@@ -50,10 +50,13 @@ GOAL_STATUS=COMPLETE_TARGETED_HELP_CENTER
 | Stale bound assets | 0 found | Historical assets remain explicitly labelled in the manifest |
 | Responsive defects | 0 observed | Tested the accepted Help/Admin bindings at `1440x900` and `390x844` in production; unaccepted journey evidence remains blocked below |
 
-The `70` missing visuals are intentionally not treated as complete. They are
+The `68` remaining visuals are intentionally not treated as complete. They are
 classified as `BLOCKED_FIXTURE`, `BLOCKED_PROVIDER` or `NOT_IMPLEMENTED` below.
-No screenshot was fabricated from a non-equivalent state, and no production
-mutation was performed to manufacture evidence.
+The two public B04 reuse steps are complete because their page, state, role,
+controls, instructional meaning, raw/annotated evidence and production
+rendering were verified against the accepted B02 pairs. No screenshot was
+fabricated from a non-equivalent state, and no production mutation was
+performed to manufacture evidence.
 
 ## Audience and authorization
 
@@ -82,8 +85,8 @@ missing feature route are `TEXT_ONLY`.
 
 | ARTICLE_ID | ROLE | JOURNEY_ID | STEP_ID | TEXT_PRESENT | TEXT_COMPLETE | SCREENSHOT_REQUIRED | SCREENSHOT_PRESENT | ANNOTATION_REQUIRED | ANNOTATION_PRESENT | MARKERS | TEXT_MARKER_REFERENCES | DESKTOP_STATUS | MOBILE_STATUS | ROLE_LOCATION_CORRECT | AUTHORIZATION_CORRECT | BROKEN_ASSET | STALE_ASSET | PII_SAFE | FINAL_STATUS |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| B04 | buyer | B04 | discover | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
-| B04 | buyer | B04 | product-detail | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
+| B04 | buyer | B04 | discover | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
+| B04 | buyer | B04 | product-detail | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
 | B04 | buyer | B04 | add-to-cart | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
 | B04 | buyer | B04 | cart | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2` | `1,2` | PASS | PASS | Y | Y | N | N | Y | PASS |
 | B04 | buyer | B04 | checkout | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_PROVIDER |
@@ -179,6 +182,8 @@ missing feature route are `TEXT_ONLY`.
 | B02/search | `b02-discovery-desktop.png` | `b02-discovery-mobile.png` | `1` category context; `2` discovery surface; `3` Flash Sale |
 | B02/detail | `b02-product-detail-desktop.png` | `b02-product-detail-mobile.png` | Desktop: `1` product media; `2` variant/quantity; `3` AntiFake verification. Mobile: `1` product image; `2` name/price; `3` variant selector |
 | B02/choose | `b02-product-detail-desktop.png` | `b02-product-detail-mobile.png` | Desktop: product media, variant controls, AntiFake verification. Mobile: product image, name/price before choosing, variant selector |
+| B04/discover (reuse) | `b02-discovery-desktop.png` | `b02-discovery-mobile.png` | Reuses B02/search; production route, asset load and marker order verified at both target viewports |
+| B04/product-detail (reuse) | `b02-product-detail-desktop.png` | `b02-product-detail-mobile.png` | Reuses B02/detail; production route, asset load and marker order verified at both target viewports |
 | B04/cart | `b04-cart-desktop.png` | `b04-cart-mobile.png` | `1` cart quantity/badge; `2` quantity controls |
 | B09/discover | `b09-live-discovery-desktop.png` | `b09-live-discovery-mobile.png` | `1` live section; `2` search/state controls; `3` live card |
 | S07/program | `affiliate-program-desktop.png` | `affiliate-program-mobile.png` | `1` discovery tab; `2` program summary; `3` referral/join area |
@@ -195,10 +200,15 @@ checked by the content test. The Admin pairs are rendered only under
 The approved deployment and targeted production verification are complete. The
 general `237/237` UAT was not rerun.
 
+The Admin Help/authorization bullets and the ten baseline binding audit below
+carry forward approved run `90` session evidence. Current run `91` evidence
+covers the public smoke and the two public B04 reuse aliases; no approved Admin
+session was available for a new current-revision visual sign-off.
+
 | Evidence | Result |
 |---|---|
-| Front-End deployment | `723e550e95a570b5cf4ea2e14fb23eef16a3413d` via GitHub Actions run `90` (`Deploy frontend to VPS`), conclusion `success` |
-| Deployment URL | `https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33711930697` |
+| Front-End deployment | `78646d724e93e18a15a5b729aa29c15530f1c494` via GitHub Actions run `91` (`Deploy frontend to VPS`), conclusion `success` |
+| Deployment URL | `https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33723971778` |
 | WorkSpace audit commit | `834aefb` pushed before production verification; this report is reconciled in the follow-up documentation commit |
 | Production revision evidence | Workflow pulled and reported the exact Front-End SHA; the live B02 Mobile guide served the platform-specific marker text from that revision |
 | Viewports | Desktop `1440x900`; Mobile `390x844` with mobile emulation and touch |
@@ -226,7 +236,7 @@ general `237/237` UAT was not rerun.
 
 ### Rendered visual audit
 
-The ten published bindings were inspected as rendered production pages at both
+The ten baseline published bindings were inspected as rendered production pages at both
 viewports: B01/register, B02/search/detail/choose, B04/cart, B09/discover,
 S07/program, A01/open, A05/pending and A09/list. All 20 selected images were
 complete, readable, PII-safe and returned HTTP `200`; no evidence-pending
@@ -238,6 +248,11 @@ B02 product detail and choose now use platform-specific marker guidance:
 - Desktop detail: product media, variant/quantity, AntiFake verification.
 - Mobile detail: product image, name/price, variant selector.
 - Mobile choose: product image, name/price before choosing, variant selector.
+
+The public B04/discover and B04/product-detail reuse bindings were verified on
+the deployed revision at Desktop `1440x900` and Mobile `390x844`. Each route
+returned HTTP `200`, selected the expected reused Desktop/Mobile asset, loaded
+at the target dimensions and rendered marker numbers `1,2,3` in order.
 
 ### Targeted final status
 
@@ -254,7 +269,7 @@ GOAL_STATUS=COMPLETE
 ```
 
 These statuses apply to the approved Help Center/Admin Help production goal
-and its affected published bindings. The 70 unaccepted visual steps and
+and its affected published bindings. The 68 unaccepted visual steps and
 unimplemented Admin feature routes retain their terminal classifications below.
 
 ## Local visual-reuse checkpoint — 2026-09-03
@@ -264,16 +279,17 @@ accepted, immutable Desktop/Mobile pairs already listed above:
 
 | Local step | Reused accepted step | Production status |
 |---|---|---|
-| B04/discover | B02/search | Pending deployment and production visual retest |
-| B04/product-detail | B02/detail | Pending deployment and production visual retest |
-| ADMIN-REVIEW/dashboard | A01/open | Pending deployment and Admin-only visual retest |
-| ADMIN-REVIEW/product-review | A05/pending | Pending deployment and Admin-only visual retest |
-| ADMIN-OPERATIONS/dashboard | A01/open | Pending deployment and Admin-only visual retest |
+| B04/discover | B02/search | Production-verified reuse at Desktop/Mobile; counts as complete |
+| B04/product-detail | B02/detail | Production-verified reuse at Desktop/Mobile; counts as complete |
+| ADMIN-REVIEW/dashboard | A01/open | Route/image smoke only with test role; approved Admin-session visual retest pending |
+| ADMIN-REVIEW/product-review | A05/pending | Route/image smoke only with test role; approved Admin-session visual retest pending |
+| ADMIN-OPERATIONS/dashboard | A01/open | Route/image smoke only with test role; approved Admin-session visual retest pending |
 
 The local content test confirms platform paths, marker metadata, asset
-existence and exact state-matched reuse. No raw or annotated image was copied,
-regenerated or promoted, so the production metrics and the 70-step remaining
-work count above are unchanged until deployment evidence exists.
+existence and exact state-matched reuse. The public B04 aliases now have
+production route/image/marker evidence and reduce the remaining work count to
+68. No raw or annotated image was copied or regenerated. The Admin aliases do
+not count until an approved Admin session verifies their production render.
 
 ## Remaining work
 
@@ -314,11 +330,11 @@ and Mobile viewports. The isolated Help-only DevTools pass reported no console
 warnings or errors. A frontend-only Vite run can still log `Failed to fetch`
 from existing API-backed shell widgets when the backend is not running; those
 environment errors were not used as a Help feature verdict. Production run
-`90` and its browser evidence are recorded above; no general `237/237` rerun
-was performed.
+`90` and `91` and their browser evidence are recorded above; no general
+`237/237` rerun was performed.
 
 A separate read-only Playwright smoke against deployed revision
-`723e550e95a570b5cf4ea2e14fb23eef16a3413d` passed 12/12 public Help/Journey
-checks at Desktop `1440x900`. It did not exercise the five unreleased local
-reuse bindings, an Admin session, fixture-backed journeys or provider flows;
-no visual completion count changed.
+`78646d724e93e18a15a5b729aa29c15530f1c494` passed 12/12 public Help/Journey
+checks at Desktop `1440x900`. The targeted B04 reuse probe then passed at both
+Desktop and Mobile; it did not exercise fixture-backed journeys or provider
+flows, and the Admin aliases still lack approved-session evidence.
