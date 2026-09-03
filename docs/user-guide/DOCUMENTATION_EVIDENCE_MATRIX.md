@@ -27,6 +27,12 @@ rerun.
 | Responsive evidence | Public Help, Admin Help and accepted article renders fit the target viewports; no horizontal overflow or visual overlap was observed. |
 | Browser diagnostics | No console messages were found on the inspected public and Admin Help pages. No production mutation, payment, payout or general UAT rerun was performed. |
 
+A separate read-only Playwright smoke against deployed revision
+`723e550e95a570b5cf4ea2e14fb23eef16a3413d` passed 12/12 public Help/Journey
+checks at Desktop `1440x900`. This confirms the deployed public baseline only;
+it does not verify the five unreleased local reuse bindings, Admin-session
+visuals, fixture-backed journeys or provider-dependent flows.
+
 ### Final targeted status
 
 ```text

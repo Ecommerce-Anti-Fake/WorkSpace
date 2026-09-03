@@ -60,7 +60,11 @@ Current local verification is `test:help` 27/27, lint pass, build pass and
 Help/Journey E2E 38 passed with 2 mobile-only skips. The five reuse bindings
 remain pending deployment and production retest. The current environment
 points at hosted Neon data, so no fixture/reset was run; the DevTools
-production session was unavailable because its Chrome profile was locked.
+production session was unavailable because its Chrome profile was locked. A
+separate read-only Playwright smoke against deployed revision
+`723e550e95a570b5cf4ea2e14fb23eef16a3413d`
+passed 12/12 public Desktop checks; it did not verify the local aliases,
+Admin-session visuals, fixture-backed journeys or provider flows.
 
 ## Next step
 

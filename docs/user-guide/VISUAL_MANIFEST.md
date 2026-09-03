@@ -277,3 +277,9 @@ Actions run `90`:
 No evidence-pending placeholder, broken image, stale image, PII exposure,
 unexplained marker or marker-order mismatch was observed. This verification
 does not claim the remaining unaccepted journey steps are visually complete.
+
+An additional read-only Playwright smoke against deployed revision
+`723e550e95a570b5cf4ea2e14fb23eef16a3413d` passed 12/12 public Help/Journey
+checks at Desktop `1440x900`. The smoke did not exercise Admin-session,
+fixture-backed or provider-dependent flows and does not promote the five local
+reuse bindings to production evidence.

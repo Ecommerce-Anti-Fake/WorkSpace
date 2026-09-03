@@ -316,3 +316,9 @@ from existing API-backed shell widgets when the backend is not running; those
 environment errors were not used as a Help feature verdict. Production run
 `90` and its browser evidence are recorded above; no general `237/237` rerun
 was performed.
+
+A separate read-only Playwright smoke against deployed revision
+`723e550e95a570b5cf4ea2e14fb23eef16a3413d` passed 12/12 public Help/Journey
+checks at Desktop `1440x900`. It did not exercise the five unreleased local
+reuse bindings, an Admin session, fixture-backed journeys or provider flows;
+no visual completion count changed.
