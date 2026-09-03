@@ -45,7 +45,8 @@ was retested on production revision `13c18f4` at Desktop `1440×900` and Mobile
 `390×844`; the remaining step-level evidence is still tracked separately.
 
 The canonical master guide and evidence-scoped ebook reuse the corresponding
-annotated pairs from `docs/images/` beside accepted B01, B02, B03/open, B04,
+annotated pairs from `docs/images/` beside accepted B01, B02, B03/open,
+B03/enter-code, B04,
 B09, S07, A01, A05 and A09 evidence. Pending or UAT-only assets remain
 excluded from final feature claims.
 
@@ -86,7 +87,7 @@ not a production sign-off.
 | Buyer | `voucher` | `/help/buyer/voucher` | SOURCE_VERIFIED | Source and permission review complete; authenticated eligibility/application runtime and final Desktop/Mobile visual remain pending |
 | Buyer | `chat-shop` | `/help/buyer/chat-shop` | PARTIAL | Authenticated entry/history read-only pass; existing history exposes participant names, while two-session send/receive, reconnect, supported metadata and a PII-safe final Desktop/Mobile visual remain pending |
 | Buyer | `livestream` | `/help/buyer/livestream` | PARTIAL | Public discovery evidence is accepted; authenticated viewer join/media/comment/reaction/reminder/leave, provider evidence and final visual remain pending |
-| QR | `verify-product` | `/help/qr/verify-product` | PARTIAL | Public article and code/link/image negative paths pass production; known positive fixture and final capture pending |
+| QR | `verify-product` | `/help/qr/verify-product` | PARTIAL | Public article, B03/open entry and B03/enter-code input visuals pass production; known positive fixture and final result capture pending |
 | Seller | `register-shop` | `/help/seller/register-shop` | SOURCE_VERIFIED | Source and permission review complete; authenticated shop submit, KYC/media walkthrough and final Desktop/Mobile visual remain pending |
 | Seller | `create-product` | `/help/seller/create-product` | PARTIAL | Authenticated read-only route smoke passed Desktop/Laptop/Mobile; mutation and final visual pending |
 | Seller | `process-order` | `/help/seller/process-order` | PARTIAL | Authenticated read-only route smoke passed Desktop/Laptop/Mobile; transition and final visual pending |
@@ -106,7 +107,7 @@ coverage required by the documentation specification:
 |---|---|---|---|---|
 | Buyer | `B01` | `/help/buyer/account-start` | PARTIAL | Public login and registration entry captures at Desktop/Mobile; authenticated profile/address read-only pass; registration and mutations remain pending |
 | Buyer | `B02` | `/help/buyer/discover` | PARTIAL | Public home, category, filtered-results, search, Shop-detail and product-detail steps captured and annotated at Desktop/Mobile; sort/review/provenance/authenticated actions remain partial |
-| Buyer | `B03` | `/help/qr/verify-product` | PARTIAL | Public B03/open entry visual is captured and production-verified at Desktop/Mobile; known positive fixture/result capture remains pending |
+| Buyer | `B03` | `/help/qr/verify-product` | PARTIAL | Public B03/open entry and B03/enter-code input visuals are captured and production-verified at Desktop/Mobile; known positive fixture/result capture remains pending |
 | Buyer | `B04` | `/help/buyer/first-purchase` | PARTIAL | Production Desktop/Laptop/Mobile Buy Now/quote read-only pass (`GHN_1`, `158,001 VND`); seeded-demo cart badge `7 -> 8 -> 7` passed with restoration; article overview/start-step and Desktop/Mobile selector retested on production `13c18f4`; Desktop/Mobile cart badge raw/annotated visuals remain registered at `8157ffa`; cart quote/order/payment remain pending |
 | Buyer | `B05` | `/help/buyer/orders` | PARTIAL | Authenticated order-list/detail read-only pass; existing detail exposes recipient fields, so receive/review/dispute state-transition evidence and a PII-safe final Desktop/Mobile visual remain pending |
 | Buyer | `B06` | `/help/buyer/voucher` | SOURCE_VERIFIED | Source and permission review complete; authenticated voucher eligibility/application runtime and final visual pending |
@@ -140,9 +141,9 @@ working production mutation.
 ## 2026-09-03 targeted production verification
 
 The Help Center/Admin Help slice is serving Front-End revision
-`303d8168abfbce84919bd7ccf71a69b91aa1639e`. GitHub Actions run `92` completed
+`91f545e25dc6812ed1c6cd4fb5fb41e234b3af34`. GitHub Actions run `93` completed
 successfully after pulling, building and reloading the VPS deployment:
-`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33728839680`.
+`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33732087732`.
 The WorkSpace audit baseline was pushed as `834aefb`; this follow-up records the
 post-deployment reconciliation.
 
@@ -152,11 +153,12 @@ post-deployment reconciliation.
 | Public deep links | Existing Buyer, Seller/Affiliate and QR Help links loaded. The legacy public Admin dashboard deep link did not expose an Admin article. |
 | Admin `/admin/help` | Approved run `90` baseline: Admin-only catalog rendered inside the protected Admin shell with 12 cards, working Admin search and active `Hướng dẫn` navigation. |
 | Authorization | Approved run `90` baseline: Guest denied to `/auth`; Buyer and Seller denied to `/`; Admin allowed to `/admin/help`, including direct A01 deep-link navigation. |
-| Published visual bindings | B01, B02, B03/open, B04, B09, S07, A01, A05 and A09 are registered at Desktop `1440x900` and Mobile `390x844`; all 22 selected assets are complete and the new B03/open binding loaded at both target viewports. |
+| Published visual bindings | B01, B02, B03/open, B03/enter-code, B04, B09, S07, A01, A05 and A09 are registered at Desktop `1440x900` and Mobile `390x844`; all 24 selected assets are complete and both B03 public bindings loaded at both target viewports. |
 | B04 public reuse | `discover` and `product-detail` reused the accepted B02 pairs; both target routes loaded the expected assets with markers `1,2,3` at Desktop and Mobile. |
 | B03/open public binding | The QR entry Help step selected the expected Desktop/Mobile asset, returned HTTP `200`, matched the target natural dimensions and rendered marker numbers `1,2,3`; no code was submitted. |
+| B03/enter-code public binding | The QR code-entry Help step selected the expected Desktop/Mobile asset, returned HTTP `200`, matched the target natural dimensions and rendered marker numbers `1,2,3`; no code was entered or submitted. |
 
-The current run `92` B03/open verification and prior run `91` public smoke and
+The current run `93` B03/open recheck and B03/enter-code verification, plus prior run `91` public smoke and
 targeted B04 probe do not include an
 approved Admin session; the three Admin reuse aliases therefore remain
 pending real-session visual verification. The affected article rows remain

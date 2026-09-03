@@ -7,13 +7,14 @@ final visual in `HELP_CENTER_QUALITY_AUDIT.md`. The eight A03/A06/A07/A10
 steps are not repeated here because their current frontend routes are absent
 and the audit already classifies them as `NOT_IMPLEMENTED` / `TEXT_ONLY`.
 
-Current reconciliation: three rows (B04-discover, B04-product-detail and
-B03-open) are complete through production-verified public evidence. The
-inventory retains all 70 original rows for traceability; 67 remain pending.
+Current reconciliation: four rows (B04-discover, B04-product-detail, B03-open
+and B03-enter-code) are complete through production-verified public evidence.
+The inventory retains all 70 original rows for traceability; 66 remain
+pending.
 
 Source baselines checked:
 
-- Front-End: `303d8168abfbce84919bd7ccf71a69b91aa1639e`
+- Front-End: `91f545e25dc6812ed1c6cd4fb5fb41e234b3af34`
 - Back-End: `3b59ab9`
 - Canonical evidence: `DOCUMENTATION_EVIDENCE_MATRIX.md`, `VISUAL_MANIFEST.md`
 - Seed source: `back-end/prisma/seed.ts` and `back-end/prisma/seeds/*`
@@ -48,8 +49,8 @@ screenshot, not merely present in seed code.
 
 | VISUAL_ID | ROLE | JOURNEY / STEP | HELP_ROUTE | FEATURE_ROUTE | CURRENT | ROUTE | SEED | SAFE STATE | RO | FIXTURE / MUTATION | PROVIDER | UNSAFE BOUNDARY | VIEW | DEPS |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| B03-open | qr | B03 / open | `/help/qr/verify-product/open` | `/qr` | COMPLETE_PRODUCTION_READ_ONLY | Y | — | Y | Y | None; public entry state is read-only | — | No code submission or production label creation | D+M | raw/annotated capture at `78646d7`; Help binding verified on deployed `303d816` / run `92` |
-| B03-enter-code | qr | B03 / enter-code | `/help/qr/verify-product/enter-code` | `/qr` | BLOCKED_FIXTURE | Y | P | N | N | `QR_POSITIVE_LABEL_UAT`; enter disposable code | — | No plaintext/secret committed | D+M | private fixture code and cleanup |
+| B03-open | qr | B03 / open | `/help/qr/verify-product/open` | `/qr` | COMPLETE_PRODUCTION_READ_ONLY | Y | — | Y | Y | None; public entry state is read-only | — | No code submission or production label creation | D+M | raw/annotated capture at `78646d7`; Help binding verified on deployed `303d816` / run `92` and rechecked on `91f545e` / run `93` |
+| B03-enter-code | qr | B03 / enter-code | `/help/qr/verify-product/enter-code` | `/qr` | COMPLETE_PRODUCTION_READ_ONLY | Y | — | Y | Y | None; public input state is read-only | — | No code entry/submission or production label creation | D+M | raw/annotated capture at `303d816`; Help binding verified on deployed `91f545e` / run `93` |
 | B03-result | qr | B03 / result | `/help/qr/verify-product/result` | `/qr` | BLOCKED_FIXTURE | Y | P | N | Y after fixture | `QR_POSITIVE_LABEL_UAT`; read-only result | — | No real product claim | D+M | active batch/link/provenance |
 | B07-open | buyer | B07 / open | `/help/buyer/chat-shop/open` | `/chat` or `/messages` | BLOCKED_FIXTURE | Y | Y | N | Y after sanitization | `CHAT_SYNTHETIC_TWO_SESSION_UAT`; history read-only | Socket.IO / Redis | No real messages or participants | D+M | buyer/seller session and thread |
 | B07-send | buyer | B07 / send | `/help/buyer/chat-shop/send` | `/chat/:roomId` | BLOCKED_FIXTURE | Y | Y | N | N | Synthetic text; controlled message mutation | Socket.IO / Redis | No real customer communication | D+M | two-session thread and cleanup |
@@ -62,7 +63,7 @@ screenshot, not merely present in seed code.
 
 | VISUAL_ID | ROLE | JOURNEY / STEP | HELP_ROUTE | FEATURE_ROUTE | CURRENT | ROUTE | SEED | SAFE STATE | RO | FIXTURE / MUTATION | PROVIDER | UNSAFE BOUNDARY | VIEW | DEPS |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| S01-prepare | seller | S01 / prepare | `/help/seller/register-shop/prepare` | `/register` | BLOCKED_FIXTURE | Y | P | N | Y for form | `KYC_SYNTHETIC_DOCUMENT_UAT`; form/navigation only | Firebase Auth, Cloudinary | No real identity/KYC media | D+M | seller onboarding entry |
+| S01-prepare | seller | S01 / prepare | `/help/seller/register-shop/prepare` | `/register` | BLOCKED_FIXTURE | Y | P | N | Y for form | `KYC_SYNTHETIC_DOCUMENT_UAT`; form/navigation only | Firebase Auth, Cloudinary | No real identity/KYC media | D+M | Guest `/register` redirects to `/auth` at Desktop/Mobile; seller session and synthetic KYC fixture still required |
 | S01-submit | seller | S01 / submit | `/help/seller/register-shop/submit` | `/register` | BLOCKED_FIXTURE | Y | P | N | N | Synthetic seller registration; controlled submit only | Firebase Auth, Cloudinary | No real business/KYC submission | D+M | approved sandbox and cleanup |
 | S01-approval | seller | S01 / approval | `/help/seller/register-shop/approval` | `/register` or `/seller/shop-info` | BLOCKED_FIXTURE | Y | P | N | Y after fixture | Synthetic pending/approved status read-only | Firebase Auth | No real KYC decision | D+M | synthetic review state |
 | S01-setup | seller | S01 / setup | `/help/seller/register-shop/setup` | `/seller/shop-info` | BLOCKED_FIXTURE | Y | Y | N | Y after sanitization | `SELLER_DISPOSABLE_BUSINESS_UAT`; read-only setup | — | No real business identity | D+M | owned disposable Shop |
@@ -141,9 +142,9 @@ accepted.
 | Classification | Rows | Current disposition |
 |---|---:|---|
 | Production-verified reuse complete | 2 | B04 discover and B04 product-detail reuse accepted B02 pairs; no new screenshots required |
-| Production-verified public capture complete | 1 | B03/open QR entry state captured raw plus annotated at both target viewports; positive verification remains blocked |
+| Production-verified public capture complete | 2 | B03/open and B03/enter-code QR entry/input states captured raw plus annotated at both target viewports; positive verification remains blocked |
 | Implemented local reuse bindings pending Admin session | 3 | ADMIN-REVIEW dashboard, ADMIN-REVIEW product-review, ADMIN-OPERATIONS dashboard; route/image smoke passed with test role, approved Admin-session verification remains |
-| Read-only capture after safe fixture | 38 | Buyer account/order/voucher/chat/community, seller read surfaces, Admin read sets |
+| Read-only capture after safe fixture | 37 | Buyer account/order/voucher/chat/community, seller read surfaces, Admin read sets |
 | Controlled fixture mutation required | 18 | Cart/voucher apply, chat send/reconnect, seller writes, Admin decisions/status |
 | Provider-dependent | 8 | B04 checkout, B09/S09 lifecycle portions represented in the 70 rows |
 | Unsafe production mutation | Applies to 17 rows | Payment, payout, shipment booking, real KYC/moderation/order actions remain excluded |

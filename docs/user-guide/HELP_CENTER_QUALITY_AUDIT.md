@@ -39,10 +39,10 @@ GOAL_STATUS=COMPLETE_TARGETED_HELP_CENTER
 | Articles with title, purpose and role metadata | 30/30 | Automated content test |
 | Steps with user-facing title and description | 88/88 | Automated content test |
 | Steps classified as requiring a screenshot | 80 | Conservative classification: runnable action/status steps without an accepted visual are `TEXT_PLUS_SCREENSHOT`; unavailable Admin routes are `TEXT_ONLY` |
-| Published visual step bindings | 13 | Previous ten bindings, two B04 aliases through verified B02 visual reuse, and the B03/open public entry state |
-| Served visual assets | 22 | Eleven Desktop/Mobile pairs |
-| Required steps missing a final visual | 67 | Pending safe fixture/provider evidence; two B04 aliases and B03/open are complete |
-| Annotated visual assets | 22/22 | Every published pair has marker metadata and a written legend |
+| Published visual step bindings | 14 | Previous ten bindings, two B04 aliases through verified B02 visual reuse, and the B03/open plus B03/enter-code public entry states |
+| Served visual assets | 24 | Twelve Desktop/Mobile pairs |
+| Required steps missing a final visual | 66 | Pending safe fixture/provider evidence; two B04 aliases and both public B03 entry/input states are complete |
+| Annotated visual assets | 24/24 | Every published pair has marker metadata and a written legend |
 | Marker mismatches | 0 found | Automated number/guidance validation plus visual inspection of the accepted pairs |
 | Missing marker explanations | 0 | Published visuals only |
 | Wrong-role articles | 0 | Public and Admin registries are filtered by audience |
@@ -50,15 +50,16 @@ GOAL_STATUS=COMPLETE_TARGETED_HELP_CENTER
 | Stale bound assets | 0 found | Historical assets remain explicitly labelled in the manifest |
 | Responsive defects | 0 observed | Tested the accepted Help/Admin bindings at `1440x900` and `390x844` in production; unaccepted journey evidence remains blocked below |
 
-The `67` remaining visuals are intentionally not treated as complete. They are
+The `66` remaining visuals are intentionally not treated as complete. They are
 classified as `BLOCKED_FIXTURE`, `BLOCKED_PROVIDER` or `NOT_IMPLEMENTED` below.
-The two public B04 reuse steps and the public B03/open entry step are complete
+The two public B04 reuse steps and the public B03/open and B03/enter-code entry
+steps are complete
 because their page, state, role,
 controls, instructional meaning, raw/annotated evidence and production
 rendering were verified against the accepted evidence. No screenshot was
 fabricated from a non-equivalent state, and no production mutation was
-performed to manufacture evidence. B03 enter-code and result remain blocked
-behind a known-positive QR fixture.
+performed to manufacture evidence. B03 result remains blocked behind a
+known-positive QR fixture.
 
 ## Audience and authorization
 
@@ -115,7 +116,7 @@ missing feature route are `TEXT_ONLY`.
 | B09 | buyer | B09 | watch | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_PROVIDER |
 | B09 | buyer | B09 | shop | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_PROVIDER |
 | B03 | qr | B03 | open | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
-| B03 | qr | B03 | enter-code | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
+| B03 | qr | B03 | enter-code | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
 | B03 | qr | B03 | result | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
 | S01 | seller | S01 | prepare | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
 | S01 | seller | S01 | submit | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
@@ -187,6 +188,7 @@ missing feature route are `TEXT_ONLY`.
 | B04/discover (reuse) | `b02-discovery-desktop.png` | `b02-discovery-mobile.png` | Reuses B02/search; production route, asset load and marker order verified at both target viewports |
 | B04/product-detail (reuse) | `b02-product-detail-desktop.png` | `b02-product-detail-mobile.png` | Reuses B02/detail; production route, asset load and marker order verified at both target viewports |
 | B03/open | `b03-open-desktop.png` | `b03-open-mobile.png` | Public QR entry state; `1` method, `2` image upload, `3` verification action; production render verified at both target viewports |
+| B03/enter-code | `b03-enter-code-desktop.png` | `b03-enter-code-mobile.png` | Public QR code-entry state; `1` selected Mã xác thực method, `2` verification-code field, `3` verification action; production render verified at both target viewports; no code entered |
 | B04/cart | `b04-cart-desktop.png` | `b04-cart-mobile.png` | `1` cart quantity/badge; `2` quantity controls |
 | B09/discover | `b09-live-discovery-desktop.png` | `b09-live-discovery-mobile.png` | `1` live section; `2` search/state controls; `3` live card |
 | S07/program | `affiliate-program-desktop.png` | `affiliate-program-mobile.png` | `1` discovery tab; `2` program summary; `3` referral/join area |
@@ -205,14 +207,15 @@ general `237/237` UAT was not rerun.
 
 The Admin Help/authorization bullets and the ten baseline binding audit below
 carry forward approved run `90` session evidence. Run `91` remains the public
-smoke and B04 reuse evidence; current run `92` covers the newly deployed B03/open
+smoke and B04 reuse evidence; run `92` covers the deployed B03/open binding;
+current run `93` covers the B03/open recheck and newly deployed B03/enter-code
 binding. No approved Admin session was available for a new current-revision
 visual sign-off.
 
 | Evidence | Result |
 |---|---|
-| Front-End deployment | `303d8168abfbce84919bd7ccf71a69b91aa1639e` via GitHub Actions run `92` (`Deploy frontend to VPS`), conclusion `success` |
-| Deployment URL | `https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33728839680` |
+| Front-End deployment | `91f545e25dc6812ed1c6cd4fb5fb41e234b3af34` via GitHub Actions run `93` (`Deploy frontend to VPS`), conclusion `success` |
+| Deployment URL | `https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33732087732` |
 | WorkSpace audit commit | `834aefb` pushed before production verification; this report is reconciled in the follow-up documentation commit |
 | Production revision evidence | Workflow pulled and reported the exact Front-End SHA; the live B02 Mobile guide served the platform-specific marker text from that revision |
 | Viewports | Desktop `1440x900`; Mobile `390x844` with mobile emulation and touch |
@@ -229,6 +232,10 @@ visual sign-off.
 - `/help/qr/verify-product/open` served the B03/open binding at Desktop and
   Mobile; the expected asset returned HTTP `200`, matched `1440x900` or
   `390x844`, and exposed marker numbers `1,2,3` with no console messages.
+- `/help/qr/verify-product/enter-code` served the B03/enter-code binding at
+  Desktop and Mobile; the expected asset returned HTTP `200`, matched
+  `1440x900` or `390x844`, and exposed marker numbers `1,2,3` with no code
+  entered or submitted.
 
 ### Admin Help and authorization
 
@@ -247,8 +254,9 @@ The ten baseline published bindings were inspected as rendered production pages 
 viewports: B01/register, B02/search/detail/choose, B04/cart, B09/discover,
 S07/program, A01/open, A05/pending and A09/list. All 20 selected images were
 complete, readable, PII-safe and returned HTTP `200`; no evidence-pending
-placeholder was present. The separately captured B03/open raw and annotated
-pair is also complete, PII-safe and registered for the new production binding.
+placeholder was present. The separately captured B03/open and B03/enter-code
+raw and annotated pairs are also complete, PII-safe and registered for their
+production bindings.
 Written marker guidance matched the visible markers in order, with no missing or
 unexplained marker.
 
@@ -284,29 +292,32 @@ GOAL_STATUS=COMPLETE
 ```
 
 These statuses apply to the approved Help Center/Admin Help production goal
-and its affected published bindings. The 67 unaccepted visual steps and
+and its affected published bindings. The 66 unaccepted visual steps and
 unimplemented Admin feature routes retain their terminal classifications below.
 
 ## Local visual-reuse checkpoint — 2026-09-03
 
 The current Front-End branch adds five local metadata bindings that reuse
 accepted, immutable Desktop/Mobile pairs already listed above, plus the new
-public B03/open binding backed by a captured raw/annotated pair:
+public B03/open and B03/enter-code bindings backed by captured raw/annotated
+pairs:
 
 | Local step | Reused accepted step | Production status |
 |---|---|---|
 | B04/discover | B02/search | Production-verified reuse at Desktop/Mobile; counts as complete |
 | B04/product-detail | B02/detail | Production-verified reuse at Desktop/Mobile; counts as complete |
 | B03/open | Public QR entry capture | Production-verified read-only binding at Desktop/Mobile; counts as complete |
+| B03/enter-code | Public QR code-entry capture | Production-verified read-only binding at Desktop/Mobile; counts as complete; no code entered |
 | ADMIN-REVIEW/dashboard | A01/open | Route/image smoke only with test role; approved Admin-session visual retest pending |
 | ADMIN-REVIEW/product-review | A05/pending | Route/image smoke only with test role; approved Admin-session visual retest pending |
 | ADMIN-OPERATIONS/dashboard | A01/open | Route/image smoke only with test role; approved Admin-session visual retest pending |
 
 The local content test confirms platform paths, marker metadata, asset
-existence and exact state-matched reuse. The public B04 aliases and B03/open
-now have production route/image/marker evidence and reduce the remaining work
-count to 67. The B03 pair is a fresh read-only capture; the Admin aliases do
-not count until an approved Admin session verifies their production render.
+existence and exact state-matched reuse. The public B04 aliases and both B03
+entry/input bindings now have production route/image/marker evidence and reduce
+the remaining work count to 66. The B03 pairs are fresh read-only captures;
+the Admin aliases do not count until an approved Admin session verifies their
+production render.
 
 ## Remaining work
 

@@ -26,7 +26,7 @@ URL-helper boundaries.
 ## Evidence state
 
 `docs/user-guide/HELP_CENTER_QUALITY_AUDIT.md` is the step-level report. It
-records 30 articles and 88 steps, 11 accepted Desktop/Mobile visual pairs,
+records 30 articles and 88 steps, 12 accepted Desktop/Mobile visual pairs,
 and the remaining fixture/provider or unavailable-route blockers. The
 WorkSpace audit baseline was pushed as `834aefb`; the production reconciliation
 is recorded in the follow-up documentation commit.
@@ -50,36 +50,37 @@ UAT was rerun and no production mutation was performed.
 
 ## Current local integrity follow-up
 
-The current Front-End branch adds five local visual-reuse bindings, one public
-B03/open binding and now records every served image's raw and annotated evidence paths in
+The current Front-End branch adds five local visual-reuse bindings, two public
+B03 bindings and now records every served image's raw and annotated evidence paths in
 `docs/user-guide/VISUAL_MANIFEST.md`. A focused SHA-256 test proves each of
-the 20 served files is byte-identical to its annotated evidence copy; it does
+the 22 served files is byte-identical to its annotated evidence copy; it does
 not upgrade the broader B03 positive-result or journey UAT status.
 
 Current local verification is `test:help` 27/27, lint pass, build pass and
-Help/Journey E2E 38 passed with 2 mobile-only skips. The current Front-End
-deployment is revision `303d8168abfbce84919bd7ccf71a69b91aa1639e` from GitHub
-Actions run `92`:
-`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33728839680`.
+the focused B03/open plus B03/enter-code Help/Journey E2E 2 passed. The
+current Front-End deployment is revision
+`91f545e25dc6812ed1c6cd4fb5fb41e234b3af34` from GitHub Actions run `93`:
+`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33732087732`.
 A separate read-only Playwright smoke passed 12/12 public Desktop checks. A
 targeted browser probe verified the two public B04 reuse aliases at Desktop
 `1440x900` and Mobile `390x844`: expected assets returned `200`, rendered at
 the required dimensions and exposed marker numbers `1,2,3`. These two aliases
-are complete through accepted B02 reuse. The deployed B03/open Help binding
-also returned its expected Desktop/Mobile asset at `200`, exact target
-dimensions and marker numbers `1,2,3`; no QR code was submitted. The three
+are complete through accepted B02 reuse. The deployed B03/open and B03/enter-code
+Help bindings also returned their expected Desktop/Mobile assets at `200`, exact
+target dimensions and marker numbers `1,2,3`; no QR code or verification code
+was entered or submitted. The three
 Admin aliases only passed a route/image smoke with a test-role harness;
 approved real Admin-session visual verification remains pending.
 
 The current environment points at hosted Neon data, so no fixture/reset was
 run. Chrome DevTools provided a guest/public production session for the
-B03/open read-only check; no credentials, cookies or storage entries were
+B03/open and B03/enter-code read-only checks; no credentials, cookies or storage entries were
 present. Fixture-backed journeys and provider flows remain unverified, and no
 production mutation was performed.
 
 ## Next step
 
 Provide an isolated UAT target for fixture-backed captures. Until then, the
-remaining 67 unaccepted visual steps retain their terminal classifications in
+remaining 66 unaccepted visual steps retain their terminal classifications in
 the evidence matrix, and the three Admin reuse aliases remain pending an
 approved real Admin session.

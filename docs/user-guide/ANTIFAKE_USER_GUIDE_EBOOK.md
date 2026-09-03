@@ -5,12 +5,12 @@
 > is publishable only at the status recorded below.
 
 **Documentation status:** `IN_PROGRESS`
-**Current deployed Help/Journey revision:** Front-End `8157ffa`
+**Current deployed Help/Journey revision:** Front-End `91f545e`
 **Backend evidence revision:** `3b59ab9`
-**Last public verification:** 2026-08-27
+**Last public verification:** 2026-09-03
 
 The annotated feature captures remain pinned to their own capture revisions
-in the Visual Manifest. The deployed `8157ffa` revision retains the accepted
+in the Visual Manifest. The deployed `91f545e` revision retains the accepted
 Journey Center bindings, the public footer verification deep link and the
 regression guard for absent Admin journeys and their unavailable deep-link
 state; it does not retroactively change
@@ -228,7 +228,7 @@ not claim provider, join, interaction or leave behavior.
 
 The following annotated images are consumed from the same Visual Manifest by
 the guide and ebook. They are placed next to the relevant journey evidence;
-pending Seller, remaining Admin, checkout, QR-positive and provider steps
+pending Seller, remaining Admin, checkout, QR-positive-result and provider steps
 intentionally have no final feature screenshot.
 
 #### A01 Admin dashboard
@@ -258,6 +258,17 @@ the coordination area and header controls; they do not prove Admin mutations.
 |---|---|---|
 | Desktop | ![Catalog discovery on Desktop](../images/buyer/catalog-home-desktop-production-6b24be3-annotated.png) | ![Product detail on Desktop](../images/buyer/product-detail-desktop-production-6b24be3-annotated.png) |
 | Mobile | ![Catalog discovery on Mobile](../images/buyer/catalog-home-mobile-production-6b24be3-annotated.png) | ![Product detail on Mobile](../images/buyer/product-detail-mobile-production-6b24be3-annotated.png) |
+
+#### B03 QR entry and code input
+
+These public read-only captures show the QR entry and empty code-input states.
+No code was entered or submitted; the known positive result remains pending an
+approved fixture.
+
+| Platform | Entry | Code input |
+|---|---|---|
+| Desktop 1440x900 | ![QR entry on Desktop](../images/qr/b03-open-desktop-production-78646d7-annotated.png) | ![QR code input on Desktop](../images/qr/b03-enter-code-desktop-production-303d816-annotated.png) |
+| Mobile 390x844 | ![QR entry on Mobile](../images/qr/b03-open-mobile-production-78646d7-annotated.png) | ![QR code input on Mobile](../images/qr/b03-enter-code-mobile-production-303d816-annotated.png) |
 
 #### B09 livestream discovery
 

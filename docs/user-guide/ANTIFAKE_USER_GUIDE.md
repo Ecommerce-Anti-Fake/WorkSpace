@@ -368,8 +368,21 @@ GET on Desktop, Laptop and Mobile. The image picker now accepts PNG, JPEG and
 WebP files up to 5 MB, decodes them in the browser and sends only the decoded
 value to the same verification endpoint. A deterministic unknown image fixture
 also returned `NOT_FOUND` in production on all three viewports with no browser
-errors. A known positive fixture and final visual evidence remain pending, so
-this journey remains `PARTIAL`.
+errors. The public B03 entry and empty code-input states have production-verified
+Desktop/Mobile visuals below; no code was entered or submitted. A known positive
+fixture and final result visual remain pending, so this journey remains `PARTIAL`.
+
+### B03 entry and code-input visuals
+
+These annotated captures document the safe public `/qr` entry and code-input
+states only. The corresponding raw captures and marker mapping are registered
+in the [Visual Manifest](VISUAL_MANIFEST.md); the positive verification result
+is not claimed.
+
+| Platform | B03/open entry | B03/enter-code input |
+|---|---|---|
+| Desktop 1440x900 | ![QR entry on Desktop](../images/qr/b03-open-desktop-production-78646d7-annotated.png) | ![QR code input on Desktop](../images/qr/b03-enter-code-desktop-production-303d816-annotated.png) |
+| Mobile 390x844 | ![QR entry on Mobile](../images/qr/b03-open-mobile-production-78646d7-annotated.png) | ![QR code input on Mobile](../images/qr/b03-enter-code-mobile-production-303d816-annotated.png) |
 
 ## Help Center and Journey Center
 

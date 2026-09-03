@@ -86,11 +86,14 @@ QR page → Enter/scan code → Submit verification → Result → Risk/provenan
 
 The local and deployed paths send code/link input, or a decoded PNG/JPEG/WebP
 image value, to the server-owned verification endpoint and render verified,
-suspicious, inactive or not-found results. The isolated production code/link
+suspicious, inactive or not-found results. The public B03/open and
+B03/enter-code entry/input states have raw and separately annotated Desktop
+`1440×900` and Mobile `390×844` captures registered in the Visual Manifest.
+The isolated production code/link
 and unknown-image checks returned `200 GET` with `NOT_FOUND` across Desktop,
 Laptop and Mobile. Raw and deterministic annotated unknown-result evidence is
 captured for Desktop `1440×900` and Mobile `390×844` in the Visual Manifest.
-A known positive fixture plus final feature visual evidence are still pending,
+A known positive fixture plus final result visual evidence are still pending,
 so B03 stays `PARTIAL`.
 
 ## Seller
