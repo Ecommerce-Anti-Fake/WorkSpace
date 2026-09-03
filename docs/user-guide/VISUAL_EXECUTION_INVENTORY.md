@@ -7,13 +7,13 @@ final visual in `HELP_CENTER_QUALITY_AUDIT.md`. The eight A03/A06/A07/A10
 steps are not repeated here because their current frontend routes are absent
 and the audit already classifies them as `NOT_IMPLEMENTED` / `TEXT_ONLY`.
 
-Current reconciliation: two rows (B04-discover and B04-product-detail) are
-complete through production-verified reuse of accepted B02 pairs. The
-inventory retains all 70 original rows for traceability; 68 remain pending.
+Current reconciliation: three rows (B04-discover, B04-product-detail and
+B03-open) are complete through production-verified public evidence. The
+inventory retains all 70 original rows for traceability; 67 remain pending.
 
 Source baselines checked:
 
-- Front-End: `78646d724e93e18a15a5b729aa29c15530f1c494`
+- Front-End: `303d8168abfbce84919bd7ccf71a69b91aa1639e`
 - Back-End: `3b59ab9`
 - Canonical evidence: `DOCUMENTATION_EVIDENCE_MATRIX.md`, `VISUAL_MANIFEST.md`
 - Seed source: `back-end/prisma/seed.ts` and `back-end/prisma/seeds/*`
@@ -48,7 +48,7 @@ screenshot, not merely present in seed code.
 
 | VISUAL_ID | ROLE | JOURNEY / STEP | HELP_ROUTE | FEATURE_ROUTE | CURRENT | ROUTE | SEED | SAFE STATE | RO | FIXTURE / MUTATION | PROVIDER | UNSAFE BOUNDARY | VIEW | DEPS |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| B03-open | qr | B03 / open | `/help/qr/verify-product/open` | `/qr` | BLOCKED_FIXTURE | Y | P | N | Y after fixture | `QR_POSITIVE_LABEL_UAT`; read-only | — | No production label creation | D+M | active label and public route |
+| B03-open | qr | B03 / open | `/help/qr/verify-product/open` | `/qr` | COMPLETE_PRODUCTION_READ_ONLY | Y | — | Y | Y | None; public entry state is read-only | — | No code submission or production label creation | D+M | raw/annotated capture at `78646d7`; Help binding verified on deployed `303d816` / run `92` |
 | B03-enter-code | qr | B03 / enter-code | `/help/qr/verify-product/enter-code` | `/qr` | BLOCKED_FIXTURE | Y | P | N | N | `QR_POSITIVE_LABEL_UAT`; enter disposable code | — | No plaintext/secret committed | D+M | private fixture code and cleanup |
 | B03-result | qr | B03 / result | `/help/qr/verify-product/result` | `/qr` | BLOCKED_FIXTURE | Y | P | N | Y after fixture | `QR_POSITIVE_LABEL_UAT`; read-only result | — | No real product claim | D+M | active batch/link/provenance |
 | B07-open | buyer | B07 / open | `/help/buyer/chat-shop/open` | `/chat` or `/messages` | BLOCKED_FIXTURE | Y | Y | N | Y after sanitization | `CHAT_SYNTHETIC_TWO_SESSION_UAT`; history read-only | Socket.IO / Redis | No real messages or participants | D+M | buyer/seller session and thread |
@@ -141,8 +141,9 @@ accepted.
 | Classification | Rows | Current disposition |
 |---|---:|---|
 | Production-verified reuse complete | 2 | B04 discover and B04 product-detail reuse accepted B02 pairs; no new screenshots required |
+| Production-verified public capture complete | 1 | B03/open QR entry state captured raw plus annotated at both target viewports; positive verification remains blocked |
 | Implemented local reuse bindings pending Admin session | 3 | ADMIN-REVIEW dashboard, ADMIN-REVIEW product-review, ADMIN-OPERATIONS dashboard; route/image smoke passed with test role, approved Admin-session verification remains |
-| Read-only capture after safe fixture | 39 | Buyer account/order/voucher/chat/community, seller read surfaces, Admin read sets |
+| Read-only capture after safe fixture | 38 | Buyer account/order/voucher/chat/community, seller read surfaces, Admin read sets |
 | Controlled fixture mutation required | 18 | Cart/voucher apply, chat send/reconnect, seller writes, Admin decisions/status |
 | Provider-dependent | 8 | B04 checkout, B09/S09 lifecycle portions represented in the 70 rows |
 | Unsafe production mutation | Applies to 17 rows | Payment, payout, shipment booking, real KYC/moderation/order actions remain excluded |

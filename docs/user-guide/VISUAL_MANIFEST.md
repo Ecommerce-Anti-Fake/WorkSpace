@@ -15,6 +15,7 @@ asset. The current served copies are kept in
 | B01 register | `/journey-visuals/b01-registration-desktop.png` | `/journey-visuals/b01-registration-mobile.png` | Public Buyer registration entry only; B01 remains `PARTIAL` |
 | B02 search | `/journey-visuals/b02-discovery-desktop.png` | `/journey-visuals/b02-discovery-mobile.png` | Public catalog discovery only; B02 remains `PARTIAL` |
 | B02 detail / choose | `/journey-visuals/b02-product-detail-desktop.png` | `/journey-visuals/b02-product-detail-mobile.png` | Public product-detail step only; B02 remains `PARTIAL` |
+| B03 open | `/journey-visuals/b03-open-desktop.png` | `/journey-visuals/b03-open-mobile.png` | Public QR verifier entry state; production raw/annotated pair captured at `78646d7`; binding deployed and verified on `303d816` / run `92`; B03 remains `PARTIAL` pending positive verification |
 | B09 discover | `/journey-visuals/b09-live-discovery-desktop.png` | `/journey-visuals/b09-live-discovery-mobile.png` | Public livestream discovery only; B09 remains `PARTIAL` |
 | A01 open | `/journey-visuals/admin-dashboard-desktop.png` | `/journey-visuals/admin-dashboard-mobile.png` | Admin read-only dashboard shell only; A01 remains `PARTIAL` |
 | A05 pending | `/journey-visuals/admin-product-review-desktop.png` | `/journey-visuals/admin-product-review-mobile.png` | Admin read-only product-registration queue only; A05 remains `PARTIAL` |
@@ -49,6 +50,8 @@ review and is never used as the runtime binding.
 | `/journey-visuals/b02-discovery-mobile.png` | `docs/images/buyer/catalog-home-mobile-production-6b24be3.png` | `docs/images/buyer/catalog-home-mobile-production-6b24be3-annotated.png` | Served bytes equal annotated bytes |
 | `/journey-visuals/b02-product-detail-desktop.png` | `docs/images/buyer/product-detail-desktop-production-6b24be3.png` | `docs/images/buyer/product-detail-desktop-production-6b24be3-annotated.png` | Served bytes equal annotated bytes |
 | `/journey-visuals/b02-product-detail-mobile.png` | `docs/images/buyer/product-detail-mobile-production-6b24be3.png` | `docs/images/buyer/product-detail-mobile-production-6b24be3-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/b03-open-desktop.png` | `docs/images/qr/b03-open-desktop-production-78646d7.png` | `docs/images/qr/b03-open-desktop-production-78646d7-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/b03-open-mobile.png` | `docs/images/qr/b03-open-mobile-production-78646d7.png` | `docs/images/qr/b03-open-mobile-production-78646d7-annotated.png` | Served bytes equal annotated bytes |
 | `/journey-visuals/b04-cart-desktop.png` | `docs/images/buyer/cart-desktop-production-8157ffa.png` | `docs/images/buyer/cart-desktop-production-8157ffa-annotated.png` | Served bytes equal annotated bytes |
 | `/journey-visuals/b04-cart-mobile.png` | `docs/images/buyer/cart-mobile-production-8157ffa.png` | `docs/images/buyer/cart-mobile-production-8157ffa-annotated.png` | Served bytes equal annotated bytes |
 | `/journey-visuals/b09-live-discovery-desktop.png` | `docs/images/buyer/live-discovery-desktop-production-6b24be3.png` | `docs/images/buyer/live-discovery-desktop-production-6b24be3-annotated.png` | Served bytes equal annotated bytes |
@@ -69,6 +72,7 @@ an absent number.
 | B01 register | `1` account form, `2` identity fields, `3` consent and submit |
 | B02 search | `1` category context, `2` discovery surface, `3` Flash Sale |
 | B02 detail / choose | `1` product media, `2` variant and quantity, `3` AntiFake verification |
+| B03 open | `1` QR verification method, `2` QR image upload, `3` verification action |
 | B04 cart | `1` cart quantity/badge, `2` quantity controls |
 | B09 discover | `1` live-shopping section, `2` search/state controls, `3` live card |
 | S07 program | `1` discovery tab, `2` program summary, `3` referral/join area |
@@ -86,7 +90,8 @@ their written marker guidance differs only where the user action differs.
 The 2026-09-03 local branch also binds B04 `discover` and
 `product-detail`, plus the exact role-matched Admin overview states, to these
 accepted assets without copying or regenerating images. The public B04 aliases
-are production-verified at both target viewports on `78646d7`; the three Admin
+are production-verified at both target viewports on `78646d7`; the B03/open
+binding is deployed and verified on `303d816` / run `92`; the three Admin
 aliases remain pending approved-session verification. The route migration for
 Admin Help is `/admin/help/admin/...`; historical production evidence below
 remains historical unless explicitly updated.
@@ -130,6 +135,8 @@ root error, so the temp-to-WorkSpace copy is the persistence record.
 | Help Center overview | Mobile | `docs/images/guide/help/help-center-mobile-production-8157ffa.png` | `docs/images/guide/help/help-center-mobile-production-8157ffa-annotated.png` | 390×844 | Current production capture and deterministic annotation after deployed revision `8157ffa`; public Help Center only |
 | Journey Center buyer first-purchase step shell | Desktop | `docs/images/guide/help/journey-buyer-first-purchase-desktop-production-717357c.png` | Do not publish as final | 1440×900 | Raw production capture; the step intentionally shows that its feature visual is still awaiting matching runtime evidence |
 | Journey Center buyer first-purchase step shell | Mobile | `docs/images/guide/help/journey-buyer-first-purchase-mobile-production-717357c.png` | Do not publish as final | 390×844 | Raw production capture; the step intentionally shows that its feature visual is still awaiting matching runtime evidence |
+| B03 QR verifier open | Desktop | `docs/images/qr/b03-open-desktop-production-78646d7.png` | `docs/images/qr/b03-open-desktop-production-78646d7-annotated.png` | 1440×900 | Public read-only QR entry state captured on current production; no code submitted, no fixture or mutation |
+| B03 QR verifier open | Mobile | `docs/images/qr/b03-open-mobile-production-78646d7.png` | `docs/images/qr/b03-open-mobile-production-78646d7-annotated.png` | 390×844 | Public read-only QR entry state captured on current production; no code submitted, no fixture or mutation |
 | QR page unknown-result evidence | Desktop | `docs/images/qr/verification-desktop-production-a0b74c4.png` | `docs/images/qr/verification-desktop-production-a0b74c4-annotated.png` | 1440×900 | Production raw + deterministic annotation after `a0b74c4`; unknown fixture returns server-owned `NOT_FOUND`; UAT evidence only |
 | QR page unknown-result evidence | Mobile | `docs/images/qr/verification-mobile-production-a0b74c4.png` | `docs/images/qr/verification-mobile-production-a0b74c4-annotated.png` | 390×844 | Production raw + deterministic annotation after `a0b74c4`; unknown fixture returns server-owned `NOT_FOUND`; UAT evidence only |
 | Seller getting started checklist | Desktop/Mobile | Pending `/seller/dashboard` capture with approved Seller fixture and backend-derived checklist state | Pending raw + annotated Desktop/Mobile pair | 1440×900 / 390×844 | Capture only after authenticated read-only checklist load; retain the actual completed count and do not mutate Shop, product, voucher or order data |
@@ -188,7 +195,7 @@ visual or a production verification claim.
 |---|---|---|---|---|---|
 | B01 | `/help/buyer/account-start` | Desktop 1440×900 + Mobile 390×844 | `docs/images/auth/login-desktop-production-6b24be3.png`, `login-mobile-production-6b24be3.png`, `registration-desktop-production-6b24be3.png`, `registration-mobile-production-6b24be3.png` | Matching Desktop/Mobile annotated auth pairs under `docs/images/auth/` | Public login and registration entry plus authenticated profile/address read-only surfaces are evidenced; registration and mutations remain `Pending`, so B01 is `PARTIAL` |
 | B02 | `/help/buyer/discover` | Desktop 1440×900 + Mobile 390×844 | `catalog-home`, `catalog-categories`, `catalog-category-results`, `catalog-search-results`, `shop-detail` and `product-detail` raw pairs under `docs/images/buyer/` | Matching Desktop/Mobile annotated pairs under `docs/images/buyer/` | Public home, category, filtered-results, search, Shop-detail and product-detail surfaces captured with clean browser diagnostics; Pending sort/review/provenance/authenticated actions remain open, so B02 is `PARTIAL` |
-| B03 | `/help/qr/verify-product` | Desktop 1440×900 + Mobile 390×844 | `docs/images/qr/verification-desktop-production-a0b74c4.png`, `docs/images/qr/verification-mobile-production-a0b74c4.png` (UAT evidence only) | `docs/images/qr/verification-desktop-production-a0b74c4-annotated.png`, `docs/images/qr/verification-mobile-production-a0b74c4-annotated.png` (UAT evidence only) | Do not publish as final; production code/link/image negative paths are verified; raw and annotated unknown-result evidence is captured at both viewports; known positive fixture and final feature capture remain pending |
+| B03 | `/help/qr/verify-product` | Desktop 1440×900 + Mobile 390×844 | `docs/images/qr/b03-open-desktop-production-78646d7.png`, `docs/images/qr/b03-open-mobile-production-78646d7.png`; negative-result raw pair remains UAT evidence only | `docs/images/qr/b03-open-desktop-production-78646d7-annotated.png`, `docs/images/qr/b03-open-mobile-production-78646d7-annotated.png`; negative-result annotations remain UAT evidence only | B03/open is a public read-only entry visual captured on `78646d7`; `Do not publish as final` the negative-result evidence; positive code/result fixture and final result capture remain pending |
 | B04 | `/help/buyer/first-purchase` | Desktop 1440×900 + Mobile 390×844 | `docs/images/buyer/cart-desktop-production-8157ffa.png`, `docs/images/buyer/cart-mobile-production-8157ffa.png` | `docs/images/buyer/cart-desktop-production-8157ffa-annotated.png`, `docs/images/buyer/cart-mobile-production-8157ffa-annotated.png` | Article overview/start-step and Desktop/Mobile selector retested on production `13c18f4`; accepted cart badge visuals remain registered at `8157ffa`; `Pending`: cart quote/order/payment and full first-purchase evidence remain open, so B04 stays `PARTIAL` |
 | B05 | `/help/buyer/orders` | Desktop 1440×900 + Mobile 390×844 | Pending PII-safe owned order-detail capture | Pending | The existing seeded detail is readable but exposes recipient fields; receive/review/dispute state-transition evidence and a PII-safe final capture remain pending |
 | B06 | `/help/buyer/voucher` | Desktop 1440×900 + Mobile 390×844 | Pending authenticated voucher capture | Pending | Eligibility/application runtime and a final Desktop/Mobile capture remain pending |
@@ -236,8 +243,11 @@ upgrade B04 beyond `PARTIAL`.
   PII out of every image.
 - Add annotations only to a copy, using numbered markers or bounding boxes that
   do not cover controls, prices, validation or state.
-- QR B03 annotation legend: `1` QR method, `2` image upload control, `3`
-  server-owned unknown-result state. These images use deterministic
+- QR B03/open annotation legend: `1` QR method, `2` image upload control, `3`
+  verification action. These public captures show the entry state only; no
+  code was submitted and no fixture or mutation was used.
+- QR B03 negative-result annotation legend: `1` QR method, `2` image upload
+  control, `3` server-owned unknown-result state. These images use deterministic
   `UAT-QR-IMAGE-20260825` fixture and are not positive-verification evidence.
 - B02 product-detail annotation legend: Desktop uses `1` product media, `2`
   product metadata and variant controls, `3` AntiFake information panel.
@@ -267,14 +277,16 @@ upgrade B04 beyond `PARTIAL`.
 The public Help/Journey Center bindings and the two public B04 reuse aliases
 were checked after Front-End revision
 `78646d724e93e18a15a5b729aa29c15530f1c494` was deployed by GitHub Actions run
-`91`:
-`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33723971778`.
+`91`; the B03/open binding was then deployed on revision
+`303d8168abfbce84919bd7ccf71a69b91aa1639e` by run `92`:
+`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33728839680`.
 
 | Binding set | Rendered production evidence |
 |---|---|
 | B01, B02, B04, B09, S07 | Public Help/Journey Center routes inspected at Desktop `1440x900` and Mobile `390x844`; all selected Desktop/Mobile assets were complete, readable and HTTP `200`. |
 | A01, A05, A09 | Approved run `90` baseline: protected Admin Help routes were inspected inside the Admin shell at Desktop `1440x900` and Mobile `390x844`; all selected Desktop/Mobile assets were complete, readable and HTTP `200`. |
 | B04 public reuse | `/help/buyer/first-purchase/discover` and `/product-detail` returned `200` at both target viewports; the expected reused assets loaded at `1440x900` and `390x844` and marker numbers `1,2,3` rendered in order. |
+| B03/open public binding | `/help/qr/verify-product/open` returned `200` at both target viewports; the expected Desktop/Mobile asset loaded at exact natural dimensions and marker numbers `1,2,3` rendered in order. The guest session had no cookies or storage entries and no code was submitted. |
 | Admin reuse probe | The three Admin reuse routes selected the expected assets and marker numbers in both viewports with the test-role harness; approved Admin-session visual verification remains pending. |
 | B02 detail/choose remediation | Mobile marker guidance now matches the visible image: product image, name/price, then variant selector. Desktop retains product media, variant/quantity, then AntiFake verification. |
 
