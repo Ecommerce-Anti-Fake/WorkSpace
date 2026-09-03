@@ -13,11 +13,11 @@ the whole journey has reached `VERIFIED` UAT.
 ```text
 HELP_CENTER_QUALITY_STATUS=PARTIAL
 VISUAL_GUIDANCE_STATUS=PASS_FOR_PUBLISHED_BINDINGS
-ADMIN_HELP_ACCESS_STATUS=PASS_LOCAL_PENDING_DEPLOYMENT
-DOCUMENTATION_STATUS=PARTIAL
-JOURNEY_CENTER_STATUS=PASS_LOCAL_PENDING_DEPLOYMENT
-VISUAL_EVIDENCE_STATUS=PARTIAL
-GOAL_STATUS=LOCAL_IMPLEMENTATION_COMPLETE_PRODUCTION_VERIFICATION_PENDING
+ADMIN_HELP_ACCESS_STATUS=PASS_PRODUCTION
+DOCUMENTATION_STATUS=COMPLETE_WITH_PRODUCTION_VERIFICATION
+JOURNEY_CENTER_STATUS=PASS_PRODUCTION_TARGETED
+VISUAL_EVIDENCE_STATUS=PASS_FOR_PUBLISHED_BINDINGS
+GOAL_STATUS=COMPLETE_TARGETED_HELP_CENTER
 ```
 
 ## Inventory
@@ -48,7 +48,7 @@ GOAL_STATUS=LOCAL_IMPLEMENTATION_COMPLETE_PRODUCTION_VERIFICATION_PENDING
 | Wrong-role articles | 0 | Public and Admin registries are filtered by audience |
 | Broken bound assets | 0 | Local asset existence test passes |
 | Stale bound assets | 0 found | Historical assets remain explicitly labelled in the manifest |
-| Responsive defects | 0 observed locally | Tested Help/Admin routes at `1440x900` and `390x844`; full production article audit remains pending |
+| Responsive defects | 0 observed | Tested the accepted Help/Admin bindings at `1440x900` and `390x844` in production; unaccepted journey evidence remains blocked below |
 
 The `70` missing visuals are intentionally not treated as complete. They are
 classified as `BLOCKED_FIXTURE`, `BLOCKED_PROVIDER` or `NOT_IMPLEMENTED` below.
@@ -177,8 +177,8 @@ missing feature route are `TEXT_ONLY`.
 |---|---|---|---|
 | B01/register | `b01-registration-desktop.png` | `b01-registration-mobile.png` | `1` form heading; `2` identity fields; `3` consent/submit |
 | B02/search | `b02-discovery-desktop.png` | `b02-discovery-mobile.png` | `1` category context; `2` discovery surface; `3` Flash Sale |
-| B02/detail | `b02-product-detail-desktop.png` | `b02-product-detail-mobile.png` | `1` product media; `2` variant/quantity; `3` AntiFake verification |
-| B02/choose | `b02-product-detail-desktop.png` | `b02-product-detail-mobile.png` | Same product-detail state; `2` guidance is variant selection |
+| B02/detail | `b02-product-detail-desktop.png` | `b02-product-detail-mobile.png` | Desktop: `1` product media; `2` variant/quantity; `3` AntiFake verification. Mobile: `1` product image; `2` name/price; `3` variant selector |
+| B02/choose | `b02-product-detail-desktop.png` | `b02-product-detail-mobile.png` | Desktop: product media, variant controls, AntiFake verification. Mobile: product image, name/price before choosing, variant selector |
 | B04/cart | `b04-cart-desktop.png` | `b04-cart-mobile.png` | `1` cart quantity/badge; `2` quantity controls |
 | B09/discover | `b09-live-discovery-desktop.png` | `b09-live-discovery-mobile.png` | `1` live section; `2` search/state controls; `3` live card |
 | S07/program | `affiliate-program-desktop.png` | `affiliate-program-mobile.png` | `1` discovery tab; `2` program summary; `3` referral/join area |
@@ -189,6 +189,73 @@ missing feature route are `TEXT_ONLY`.
 All assets above are served from `Front-End/public/journey-visuals/` and are
 checked by the content test. The Admin pairs are rendered only under
 `/admin/help/...`; they are not part of the public article catalog.
+
+## Production verification - 2026-09-03
+
+The approved deployment and targeted production verification are complete. The
+general `237/237` UAT was not rerun.
+
+| Evidence | Result |
+|---|---|
+| Front-End deployment | `723e550e95a570b5cf4ea2e14fb23eef16a3413d` via GitHub Actions run `90` (`Deploy frontend to VPS`), conclusion `success` |
+| Deployment URL | `https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33711930697` |
+| WorkSpace audit commit | `834aefb` pushed before production verification; this report is reconciled in the follow-up documentation commit |
+| Production revision evidence | Workflow pulled and reported the exact Front-End SHA; the live B02 Mobile guide served the platform-specific marker text from that revision |
+| Viewports | Desktop `1440x900`; Mobile `390x844` with mobile emulation and touch |
+
+### Public Help
+
+- `/help` rendered successfully at both viewports with Buyer, Shop and QR
+  categories. The Admin role, Admin links and Admin article text were absent.
+- Public search for `Admin` returned `Chưa có bài phù hợp`; the legacy
+  `/help/admin/admin-dashboard` URL remained on the public Help surface without
+  exposing an Admin article.
+- Buyer, Seller/Affiliate, QR and Journey Center deep links loaded; related
+  and journey links contained no `/admin/help` target.
+
+### Admin Help and authorization
+
+- `/admin/help` rendered in the Admin shell with the `Hướng dẫn` sidebar item,
+  active state and 12 Admin article cards. Admin search returned `Admin
+  Dashboard` only for the matching query.
+- Guest was redirected to `/auth`; Buyer and Seller were redirected to `/`;
+  the approved Admin session was allowed through `/admin/help`.
+- Direct `/admin/help/admin/admin-dashboard/open` navigation rendered A01.
+  Desktop and Mobile Admin shell layouts stayed within the target viewport;
+  Mobile `scrollWidth` was `390`.
+
+### Rendered visual audit
+
+The ten published bindings were inspected as rendered production pages at both
+viewports: B01/register, B02/search/detail/choose, B04/cart, B09/discover,
+S07/program, A01/open, A05/pending and A09/list. All 20 selected images were
+complete, readable, PII-safe and returned HTTP `200`; no evidence-pending
+placeholder was present. Written marker guidance matched the visible markers in
+order, with no missing or unexplained marker.
+
+B02 product detail and choose now use platform-specific marker guidance:
+
+- Desktop detail: product media, variant/quantity, AntiFake verification.
+- Mobile detail: product image, name/price, variant selector.
+- Mobile choose: product image, name/price before choosing, variant selector.
+
+### Targeted final status
+
+```text
+UAT_STATUS=COMPLETE
+HELP_CONTENT_STATUS=PASS
+HELP_VISUAL_STATUS=PASS
+HELP_MARKER_STATUS=PASS
+ADMIN_HELP_STATUS=PASS
+HELP_RESPONSIVE_STATUS=PASS
+DOCUMENTATION_STATUS=PASS
+JOURNEY_CENTER_STATUS=PASS
+GOAL_STATUS=COMPLETE
+```
+
+These statuses apply to the approved Help Center/Admin Help production goal
+and its affected published bindings. The 70 unaccepted visual steps and
+unimplemented Admin feature routes retain their terminal classifications below.
 
 ## Remaining work
 
@@ -228,7 +295,6 @@ Guest/Buyer/Seller/Admin `/admin/help` access matrix at the configured Desktop
 and Mobile viewports. The isolated Help-only DevTools pass reported no console
 warnings or errors. A frontend-only Vite run can still log `Failed to fetch`
 from existing API-backed shell widgets when the backend is not running; those
-environment errors were not used as a Help feature verdict. Production push,
-deployment, deployed-SHA verification and post-deployment article-by-article
-regression are outside this local evidence set and must be completed before
-changing the status to `COMPLETE`.
+environment errors were not used as a Help feature verdict. Production run
+`90` and its browser evidence are recorded above; no general `237/237` rerun
+was performed.

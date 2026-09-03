@@ -26,19 +26,30 @@ URL-helper boundaries.
 
 `docs/user-guide/HELP_CENTER_QUALITY_AUDIT.md` is the step-level report. It
 records 30 articles and 88 steps, 10 accepted Desktop/Mobile visual pairs,
-and the remaining fixture/provider or unavailable-route blockers. Historical
-production evidence is not reused as verification for this un-deployed
-change.
+and the remaining fixture/provider or unavailable-route blockers. The
+WorkSpace audit baseline was pushed as `834aefb`; the production reconciliation
+is recorded in the follow-up documentation commit.
 
 ## Verification
 
-Local `test:help`, lint, build and Help E2E pass. Browser checks cover
-`1440x900` and `390x844`, public Admin-content exclusion, and Guest/Buyer/
-Seller/Affiliate/Admin access. Production push, deployment, deployed-SHA
-verification and post-deploy regression remain outstanding.
+Local `test:help` (24/24), lint, build and Help E2E (36 passed, 2 skipped)
+pass. The remediation commit `723e550e95a570b5cf4ea2e14fb23eef16a3413d` was
+pushed and deployed by GitHub Actions run `90`, which completed successfully
+after pulling the exact SHA, building, reloading Nginx and passing the health
+check:
+`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33711930697`.
+
+Production DevTools verification passed at Desktop `1440x900` and Mobile
+`390x844`: public categories/search/deep links exclude Admin content; all ten
+published Help/Admin bindings were rendered and visually inspected; all 20
+selected assets loaded with HTTP `200`; and no Help/Admin console errors were
+found. Guest, Buyer and Seller were denied `/admin/help`; the approved Admin
+session was allowed, including a direct A01 deep link. No general `237/237`
+UAT was rerun and no production mutation was performed.
 
 ## Next step
 
-Deploy the Front-End change through the approved pipeline, verify the deployed
-SHA, then rerun public and Admin Help at both target viewports with an approved
-Admin session and no production mutations.
+Continue the broader documentation backlog only with approved fixtures and
+provider sandboxes. The targeted Help Center production goal is complete; the
+remaining 70 unaccepted visual steps and unavailable Admin routes retain their
+terminal classifications in the evidence matrix.

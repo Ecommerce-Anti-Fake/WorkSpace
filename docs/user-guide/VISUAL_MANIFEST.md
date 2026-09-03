@@ -197,10 +197,12 @@ upgrade B04 beyond `PARTIAL`.
 - QR B03 annotation legend: `1` QR method, `2` image upload control, `3`
   server-owned unknown-result state. These images use deterministic
   `UAT-QR-IMAGE-20260825` fixture and are not positive-verification evidence.
-- B02 product-detail annotation legend: `1` product media, `2` product metadata
-  and variant controls, `3` AntiFake information panel. These captures cover
-  the public product-detail step only; they do not sign off the full discovery
-  journey or authenticated actions.
+- B02 product-detail annotation legend: Desktop uses `1` product media, `2`
+  product metadata and variant controls, `3` AntiFake information panel.
+  Mobile uses `1` product image, `2` product name/price, `3` variant selector.
+  B02 choose uses the same platform-specific targets with step-specific prose.
+  These captures cover the public product-detail step only; they do not sign
+  off the full discovery journey or authenticated actions.
 - B02 public-discovery annotation legend: `1` entry/context surface, `2`
   primary catalog or Shop content, `3` result/filter/empty-state context. The
   ten captures are public read-only evidence after `6b24be3`; they do not sign
@@ -217,3 +219,20 @@ upgrade B04 beyond `PARTIAL`.
   summary, `3` referral-code/join area. These captures document read-only
   program discovery only; joining, attribution, conversion and payout remain
   unverified.
+
+## 2026-09-03 targeted production verification
+
+The accepted Help Center visual bindings were rechecked after Front-End
+revision `723e550e95a570b5cf4ea2e14fb23eef16a3413d` was deployed by GitHub
+Actions run `90`:
+`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33711930697`.
+
+| Binding set | Rendered production evidence |
+|---|---|
+| B01, B02, B04, B09, S07 | Public Help/Journey Center routes inspected at Desktop `1440x900` and Mobile `390x844`; all selected Desktop/Mobile assets were complete, readable and HTTP `200`. |
+| A01, A05, A09 | Protected Admin Help routes inspected inside the Admin shell at Desktop `1440x900` and Mobile `390x844`; all selected Desktop/Mobile assets were complete, readable and HTTP `200`. |
+| B02 detail/choose remediation | Mobile marker guidance now matches the visible image: product image, name/price, then variant selector. Desktop retains product media, variant/quantity, then AntiFake verification. |
+
+No evidence-pending placeholder, broken image, stale image, PII exposure,
+unexplained marker or marker-order mismatch was observed. This verification
+does not claim the remaining unaccepted journey steps are visually complete.

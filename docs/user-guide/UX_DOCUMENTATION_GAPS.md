@@ -33,6 +33,19 @@ is also confirmed with the existing seller fixture; only the final PII-safe
 visual capture remains externally constrained by the approved capture-target
 requirement.
 
+### Current update - Help Center production verification
+
+The targeted Help Center/Admin Help slice is now production-verified on
+Front-End revision `723e550e95a570b5cf4ea2e14fb23eef16a3413d` after GitHub
+Actions run `90`. Public role filtering, Admin exclusion, search, deep links,
+Admin shell navigation, direct route protection and the accepted Desktop/Mobile
+visual bindings passed the targeted browser audit. The B02 product-detail
+Mobile marker mismatch found during verification was corrected and retested.
+
+This closes the Help Center deployment gap for the affected published
+bindings. It does not close the broader fixture/provider, mutation or missing
+feature-route gaps recorded in DOC-002 through DOC-012.
+
 ## Scope note
 
 This file records product/documentation gaps, not a replacement bug tracker. UAT

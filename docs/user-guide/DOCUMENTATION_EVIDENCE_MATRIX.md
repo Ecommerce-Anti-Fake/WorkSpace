@@ -1,13 +1,50 @@
 # AntiFake Documentation Evidence Matrix
 
-Snapshot: 2026-08-28
-Production Front-End: `13c18f4`
+Snapshot: 2026-09-03
+Production Front-End: `723e550e95a570b5cf4ea2e14fb23eef16a3413d`
 Accepted UAT evidence baseline: `8157ffa`
 
 This document is the final documentation/evidence boundary. It does not rerun
 or downgrade the accepted UAT result (`237/237` applicable passed). `PARTIAL`
 means that a documented subset is evidenced while another step remains open;
 the terminal disposition column names the exact remaining dependency.
+
+## Targeted Help Center production verification
+
+GitHub Actions run `90` (`Deploy frontend to VPS`) completed successfully and
+reported the exact deployed Front-End SHA:
+`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33711930697`.
+The deployment pulled, built and health-checked revision
+`723e550e95a570b5cf4ea2e14fb23eef16a3413d`. The general `237/237` UAT was not
+rerun.
+
+| Axis | Targeted result |
+|---|---|
+| Public Help content | `/help` loaded at Desktop `1440x900` and Mobile `390x844`; Buyer, Shop, Affiliate and QR entries were accessible; Admin entries were absent from categories, search, related/journey links and the legacy public Admin URL. |
+| Admin Help content | `/admin/help` loaded inside the Admin shell with the `Hướng dẫn` sidebar item, active state, 12 Admin article cards and working `Admin Dashboard` search. |
+| Authorization | Guest -> `/auth`; Buyer -> `/`; Seller -> `/`; Admin -> `/admin/help`. Direct A01 article navigation was allowed only for Admin. |
+| Visual/marker evidence | Ten published bindings were inspected as rendered pages across both target viewports. All 20 selected assets were HTTP `200`, complete, readable and PII-safe; marker order and explanations matched, including the corrected B02 platform-specific mapping. |
+| Responsive evidence | Public Help, Admin Help and accepted article renders fit the target viewports; no horizontal overflow or visual overlap was observed. |
+| Browser diagnostics | No console messages were found on the inspected public and Admin Help pages. No production mutation, payment, payout or general UAT rerun was performed. |
+
+### Final targeted status
+
+```text
+UAT_STATUS=COMPLETE
+HELP_CONTENT_STATUS=PASS
+HELP_VISUAL_STATUS=PASS
+HELP_MARKER_STATUS=PASS
+ADMIN_HELP_STATUS=PASS
+HELP_RESPONSIVE_STATUS=PASS
+DOCUMENTATION_STATUS=PASS
+JOURNEY_CENTER_STATUS=PASS
+GOAL_STATUS=COMPLETE
+```
+
+These statuses close the approved Help Center production goal only. The
+evidence-axis table below continues to describe the broader journey scope and
+retains `PARTIAL`, `BLOCKED_*` and `NOT_IMPLEMENTED` classifications where
+those remain accurate.
 
 ## Evidence-axis status
 
