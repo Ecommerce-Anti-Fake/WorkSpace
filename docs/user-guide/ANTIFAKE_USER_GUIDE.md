@@ -213,9 +213,10 @@ interaction, reporting and moderation behavior remain `PARTIAL`.
 Use [Livestream](/help/buyer/livestream) for B09. The public `/live`
 discovery surface has matching Desktop and Mobile raw/annotated evidence in the
 [Visual Manifest](VISUAL_MANIFEST.md), captured after Front-End `6b24be3`.
-Provider setup, joining, interaction and leaving a live remain `PARTIAL` until
-an eligible live-session fixture plus Agora App ID/certificate/token sandbox
-configuration are verified.
+Provider setup, media joining, interaction and leaving a live remain `PARTIAL`
+until an eligible live-session fixture plus Agora App ID/certificate/token
+sandbox configuration are verified. The public pinned-product to product-detail
+transition is documented separately below through accepted B02 visual reuse.
 
 #### B09 discovery visuals
 
@@ -229,6 +230,20 @@ do not document provider setup, joining, interaction or leaving.
 **Mobile**
 
 ![Livestream discovery on Mobile](../images/buyer/live-discovery-mobile-production-6b24be3-annotated.png)
+
+#### B09 product-detail reuse
+
+Opening the pinned product from the inspected public live session resolved to
+the same public product-detail state and relevant controls accepted for B02.
+The B09 `shop` step therefore reuses the accepted B02 Desktop/Mobile annotated
+pairs; no duplicate image files are needed. The Help binding was verified on
+Front-End `6584292` / run `94` at `1440x900` and `390x844`. This read-only
+evidence does not claim Agora media, chat, checkout or purchase behavior.
+
+| Platform | Annotated visual |
+|---|---|
+| Desktop 1440x900 | ![Product detail opened from livestream on Desktop](../images/buyer/product-detail-desktop-production-6b24be3-annotated.png) |
+| Mobile 390x844 | ![Product detail opened from livestream on Mobile](../images/buyer/product-detail-mobile-production-6b24be3-annotated.png) |
 
 ## Seller journeys
 

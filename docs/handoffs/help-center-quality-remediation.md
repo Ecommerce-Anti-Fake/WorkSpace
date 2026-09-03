@@ -26,10 +26,10 @@ URL-helper boundaries.
 ## Evidence state
 
 `docs/user-guide/HELP_CENTER_QUALITY_AUDIT.md` is the step-level report. It
-records 30 articles and 88 steps, 12 accepted Desktop/Mobile visual pairs,
-and the remaining fixture/provider or unavailable-route blockers. The
-WorkSpace audit baseline was pushed as `834aefb`; the production reconciliation
-is recorded in the follow-up documentation commit.
+records 30 articles and 88 steps, 15 published visual bindings backed by 11
+accepted Desktop/Mobile visual pairs, and the remaining fixture/provider or
+unavailable-route blockers. The WorkSpace documentation follow-up remains
+local; no remote publication was requested.
 
 ## Verification
 
@@ -50,25 +50,27 @@ UAT was rerun and no production mutation was performed.
 
 ## Current local integrity follow-up
 
-The current Front-End branch adds five local visual-reuse bindings, two public
+The current Front-End branch adds six local visual-reuse bindings, two public
 B03 bindings and now records every served image's raw and annotated evidence paths in
 `docs/user-guide/VISUAL_MANIFEST.md`. A focused SHA-256 test proves each of
 the 22 served files is byte-identical to its annotated evidence copy; it does
 not upgrade the broader B03 positive-result or journey UAT status.
 
-Current local verification is `test:help` 27/27, lint pass, build pass and
-the focused B03/open plus B03/enter-code Help/Journey E2E 2 passed. The
-current Front-End deployment is revision
-`91f545e25dc6812ed1c6cd4fb5fb41e234b3af34` from GitHub Actions run `93`:
-`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33732087732`.
+Current local verification is `test:help` 28/28, lint pass, build pass and the
+full Help/Journey E2E matrix 40 passed with 2 expected skips. The current
+Front-End deployment is revision
+`65842923f7c3b33a3176653d651ff4c6a53b89e2` from GitHub Actions run `94`:
+`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33734823773`.
 A separate read-only Playwright smoke passed 12/12 public Desktop checks. A
-targeted browser probe verified the two public B04 reuse aliases at Desktop
-`1440x900` and Mobile `390x844`: expected assets returned `200`, rendered at
-the required dimensions and exposed marker numbers `1,2,3`. These two aliases
-are complete through accepted B02 reuse. The deployed B03/open and B03/enter-code
-Help bindings also returned their expected Desktop/Mobile assets at `200`, exact
-target dimensions and marker numbers `1,2,3`; no QR code or verification code
-was entered or submitted. The three
+targeted browser probe verified the two public B04 reuse aliases and the
+B09/shop reuse binding at Desktop `1440x900` and Mobile `390x844`: expected
+assets rendered at the required dimensions and exposed marker numbers `1,2,3`.
+These aliases are complete through accepted B02 reuse. The deployed B03/open,
+B03/enter-code and B09/shop Help bindings also returned their expected
+Desktop/Mobile assets at successful image responses, exact target dimensions
+and marker numbers `1,2,3`; no QR code or verification code was entered or
+submitted, and B09/shop did not perform a purchase, chat or live-session
+mutation. The three
 Admin aliases only passed a route/image smoke with a test-role harness;
 approved real Admin-session visual verification remains pending.
 
@@ -78,9 +80,28 @@ B03/open and B03/enter-code read-only checks; no credentials, cookies or storage
 present. Fixture-backed journeys and provider flows remain unverified, and no
 production mutation was performed.
 
+## Goal reconciliation — 2026-09-03
+
+```text
+ORIGINAL_MISSING_REQUIRED_VISUALS=70
+FINAL_REQUIRED_VISUAL_STEPS=80
+FINAL_COMPLETE_VISUAL_STEPS=15
+FINAL_REMAINING_VISUAL_STEPS=65
+FINAL_BLOCKED_FIXTURE=60
+FINAL_BLOCKED_PROVIDER=5
+FINAL_NOT_APPLICABLE=8
+OVERALL_VISUAL_COVERAGE_STATUS=COMPLETE_WITH_EXTERNAL_VISUAL_DEPENDENCIES
+```
+
+The 15 accepted bindings are B01/register, B02/search/detail/choose,
+B03/open and enter-code, B04/discover/product-detail/cart, B09/discover/shop,
+S07/program and A01/A05/A09 read-only states. B09/shop reuses the accepted B02
+product-detail pair; B09/watch remains blocked because the public Desktop room
+exposes participant data and approved provider/UAT evidence is unavailable.
+
 ## Next step
 
 Provide an isolated UAT target for fixture-backed captures. Until then, the
-remaining 66 unaccepted visual steps retain their terminal classifications in
+remaining 65 unaccepted visual steps retain their terminal classifications in
 the evidence matrix, and the three Admin reuse aliases remain pending an
 approved real Admin session.

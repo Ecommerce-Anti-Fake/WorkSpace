@@ -39,10 +39,10 @@ GOAL_STATUS=COMPLETE_TARGETED_HELP_CENTER
 | Articles with title, purpose and role metadata | 30/30 | Automated content test |
 | Steps with user-facing title and description | 88/88 | Automated content test |
 | Steps classified as requiring a screenshot | 80 | Conservative classification: runnable action/status steps without an accepted visual are `TEXT_PLUS_SCREENSHOT`; unavailable Admin routes are `TEXT_ONLY` |
-| Published visual step bindings | 14 | Previous ten bindings, two B04 aliases through verified B02 visual reuse, and the B03/open plus B03/enter-code public entry states |
-| Served visual assets | 24 | Twelve Desktop/Mobile pairs |
-| Required steps missing a final visual | 66 | Pending safe fixture/provider evidence; two B04 aliases and both public B03 entry/input states are complete |
-| Annotated visual assets | 24/24 | Every published pair has marker metadata and a written legend |
+| Published visual step bindings | 15 | Previous ten bindings, two B04 aliases and B09/shop through verified B02 visual reuse, plus the B03/open and B03/enter-code public entry states |
+| Served visual assets | 22 | Eleven unique Desktop/Mobile pairs; published steps may reuse an accepted pair |
+| Required steps missing a final visual | 65 | Pending safe fixture/provider evidence; two B04 aliases, B09/shop and both public B03 entry/input states are complete |
+| Annotated visual assets | 22/22 | Every served pair has marker metadata and a written legend |
 | Marker mismatches | 0 found | Automated number/guidance validation plus visual inspection of the accepted pairs |
 | Missing marker explanations | 0 | Published visuals only |
 | Wrong-role articles | 0 | Public and Admin registries are filtered by audience |
@@ -50,10 +50,33 @@ GOAL_STATUS=COMPLETE_TARGETED_HELP_CENTER
 | Stale bound assets | 0 found | Historical assets remain explicitly labelled in the manifest |
 | Responsive defects | 0 observed | Tested the accepted Help/Admin bindings at `1440x900` and `390x844` in production; unaccepted journey evidence remains blocked below |
 
-The `66` remaining visuals are intentionally not treated as complete. They are
+## Goal reconciliation — 2026-09-03
+
+The original request classified 70 missing visuals. After the B09/shop
+equivalent-state reuse, the current required set is 80 screenshot steps: 15
+are complete and 65 remain. All independent public/reuse work in the current
+environment is exhausted; the remaining work needs approved fixtures, provider
+sandboxes or absent product routes.
+
+| Field | Result |
+|---|---:|
+| Original missing required visuals | 70 |
+| Final required visual steps | 80 |
+| Final complete visual steps | 15 |
+| Final remaining visual steps | 65 |
+| Final blocked by fixture | 60 |
+| Final blocked by provider | 5 |
+| Final not applicable / not implemented | 8 |
+| Overall accepted coverage | 18.75% (`15/80`) |
+
+```text
+OVERALL_VISUAL_COVERAGE_STATUS=COMPLETE_WITH_EXTERNAL_VISUAL_DEPENDENCIES
+```
+
+The `65` remaining visuals are intentionally not treated as complete. They are
 classified as `BLOCKED_FIXTURE`, `BLOCKED_PROVIDER` or `NOT_IMPLEMENTED` below.
-The two public B04 reuse steps and the public B03/open and B03/enter-code entry
-steps are complete
+The two public B04 reuse steps, B09/shop and the public B03/open and
+B03/enter-code entry steps are complete
 because their page, state, role,
 controls, instructional meaning, raw/annotated evidence and production
 rendering were verified against the accepted evidence. No screenshot was
@@ -75,7 +98,8 @@ known-positive QR fixture.
 | Admin | Allowed through the existing parent `ProtectedRoute roles=["admin"]` |
 
 The route boundary is enforced by the existing protected Admin parent, not by
-sidebar visibility. The production check is still required after deployment.
+sidebar visibility. The public target route passed after deployment; a new
+approved Admin-session retest was not available.
 
 ## Step-level coverage matrix
 
@@ -114,7 +138,7 @@ missing feature route are `TEXT_ONLY`.
 | B07 | buyer | B07 | reconnect | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
 | B09 | buyer | B09 | discover | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
 | B09 | buyer | B09 | watch | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_PROVIDER |
-| B09 | buyer | B09 | shop | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_PROVIDER |
+| B09 | buyer | B09 | shop | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
 | B03 | qr | B03 | open | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
 | B03 | qr | B03 | enter-code | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
 | B03 | qr | B03 | result | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
@@ -191,6 +215,7 @@ missing feature route are `TEXT_ONLY`.
 | B03/enter-code | `b03-enter-code-desktop.png` | `b03-enter-code-mobile.png` | Public QR code-entry state; `1` selected Mã xác thực method, `2` verification-code field, `3` verification action; production render verified at both target viewports; no code entered |
 | B04/cart | `b04-cart-desktop.png` | `b04-cart-mobile.png` | `1` cart quantity/badge; `2` quantity controls |
 | B09/discover | `b09-live-discovery-desktop.png` | `b09-live-discovery-mobile.png` | `1` live section; `2` search/state controls; `3` live card |
+| B09/shop (reuse) | `b02-product-detail-desktop.png` | `b02-product-detail-mobile.png` | Reuses B02/detail for the equivalent public product-detail state opened from live; `1,2,3` marker order verified at both target viewports |
 | S07/program | `affiliate-program-desktop.png` | `affiliate-program-mobile.png` | `1` discovery tab; `2` program summary; `3` referral/join area |
 | A01/open | `admin-dashboard-desktop.png` | `admin-dashboard-mobile.png` | `1` active Dashboard nav; `2` coordination area; `3` header identity/controls |
 | A05/pending | `admin-product-review-desktop.png` | `admin-product-review-mobile.png` | `1` product-registration nav; `2` queue/filter; `3` list or empty state |
@@ -208,16 +233,16 @@ general `237/237` UAT was not rerun.
 The Admin Help/authorization bullets and the ten baseline binding audit below
 carry forward approved run `90` session evidence. Run `91` remains the public
 smoke and B04 reuse evidence; run `92` covers the deployed B03/open binding;
-current run `93` covers the B03/open recheck and newly deployed B03/enter-code
-binding. No approved Admin session was available for a new current-revision
-visual sign-off.
+run `93` covers the B03/open recheck and B03/enter-code binding; current run
+`94` covers the B09/shop binding. No approved Admin session was available for a
+new current-revision visual sign-off.
 
 | Evidence | Result |
 |---|---|
-| Front-End deployment | `91f545e25dc6812ed1c6cd4fb5fb41e234b3af34` via GitHub Actions run `93` (`Deploy frontend to VPS`), conclusion `success` |
-| Deployment URL | `https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33732087732` |
-| WorkSpace audit commit | `834aefb` pushed before production verification; this report is reconciled in the follow-up documentation commit |
-| Production revision evidence | Workflow pulled and reported the exact Front-End SHA; the live B02 Mobile guide served the platform-specific marker text from that revision |
+| Front-End deployment | `65842923f7c3b33a3176653d651ff4c6a53b89e2` via GitHub Actions run `94` (`Deploy frontend to VPS`), conclusion `success` |
+| Deployment URL | `https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33734823773` |
+| WorkSpace audit commit | Documentation follow-up remains local; no remote WorkSpace publication was requested |
+| Production revision evidence | Workflow pulled and reported the exact Front-End SHA; the live B09/shop Help route served the reused B02 product-detail visual from that revision |
 | Viewports | Desktop `1440x900`; Mobile `390x844` with mobile emulation and touch |
 
 ### Public Help
@@ -236,6 +261,12 @@ visual sign-off.
   Desktop and Mobile; the expected asset returned HTTP `200`, matched
   `1440x900` or `390x844`, and exposed marker numbers `1,2,3` with no code
   entered or submitted.
+- `/help/buyer/livestream/shop` served the B09/shop binding at Desktop and
+  Mobile; the reused B02 product-detail asset rendered at `1440x900` and
+  `390x844`, exposed marker numbers `1,2,3`, and the browser session had no
+  console messages. The corresponding public live-origin product-detail state
+  was inspected read-only; no purchase, chat or live-session mutation was
+  performed.
 
 ### Admin Help and authorization
 
@@ -271,6 +302,13 @@ the deployed revision at Desktop `1440x900` and Mobile `390x844`. Each route
 returned HTTP `200`, selected the expected reused Desktop/Mobile asset, loaded
 at the target dimensions and rendered marker numbers `1,2,3` in order.
 
+The deployed B09/shop Help route was verified on revision `6584292` / run `94`
+at Desktop `1440x900` and Mobile `390x844`. It selected the same B02
+product-detail Desktop/Mobile pair, rendered marker numbers `1,2,3`, and had
+no console messages. The public live-origin product-detail route matched the
+same state and controls; this does not certify Agora media, chat, checkout or
+purchase behavior.
+
 The deployed B03/open Help route was verified at Desktop `1440x900` and Mobile
 `390x844`. The route selected `b03-open-desktop.png` or
 `b03-open-mobile.png`, each image returned HTTP `200` at its exact target
@@ -292,12 +330,12 @@ GOAL_STATUS=COMPLETE
 ```
 
 These statuses apply to the approved Help Center/Admin Help production goal
-and its affected published bindings. The 66 unaccepted visual steps and
+and its affected published bindings. The 65 unaccepted visual steps and
 unimplemented Admin feature routes retain their terminal classifications below.
 
 ## Local visual-reuse checkpoint — 2026-09-03
 
-The current Front-End branch adds five local metadata bindings that reuse
+The current Front-End branch adds six local metadata bindings that reuse
 accepted, immutable Desktop/Mobile pairs already listed above, plus the new
 public B03/open and B03/enter-code bindings backed by captured raw/annotated
 pairs:
@@ -306,6 +344,7 @@ pairs:
 |---|---|---|
 | B04/discover | B02/search | Production-verified reuse at Desktop/Mobile; counts as complete |
 | B04/product-detail | B02/detail | Production-verified reuse at Desktop/Mobile; counts as complete |
+| B09/shop | B02/detail | Production-verified live-origin product-detail reuse at Desktop/Mobile; counts as complete |
 | B03/open | Public QR entry capture | Production-verified read-only binding at Desktop/Mobile; counts as complete |
 | B03/enter-code | Public QR code-entry capture | Production-verified read-only binding at Desktop/Mobile; counts as complete; no code entered |
 | ADMIN-REVIEW/dashboard | A01/open | Route/image smoke only with test role; approved Admin-session visual retest pending |
@@ -315,7 +354,7 @@ pairs:
 The local content test confirms platform paths, marker metadata, asset
 existence and exact state-matched reuse. The public B04 aliases and both B03
 entry/input bindings now have production route/image/marker evidence and reduce
-the remaining work count to 66. The B03 pairs are fresh read-only captures;
+the remaining work count to 65. The B03 pairs are fresh read-only captures;
 the Admin aliases do not count until an approved Admin session verifies their
 production render.
 
@@ -352,17 +391,18 @@ npx playwright test e2e/help-journey.spec.ts --project=desktop --project=mobile
 ```
 
 Browser coverage includes public catalog/search/deep links, platform switching,
-the ten accepted visual bindings, public Admin-content exclusion, and the
+the fifteen published visual bindings, public Admin-content exclusion, and the
 Guest/Buyer/Seller/Admin `/admin/help` access matrix at the configured Desktop
 and Mobile viewports. The isolated Help-only DevTools pass reported no console
 warnings or errors. A frontend-only Vite run can still log `Failed to fetch`
 from existing API-backed shell widgets when the backend is not running; those
 environment errors were not used as a Help feature verdict. Production run
-`90` and `91` and their browser evidence are recorded above; no general
+`90`, `91`, `93` and `94` and their browser evidence are recorded above; no general
 `237/237` rerun was performed.
 
 A separate read-only Playwright smoke against deployed revision
 `78646d724e93e18a15a5b729aa29c15530f1c494` passed 12/12 public Help/Journey
-checks at Desktop `1440x900`. The targeted B04 reuse probe then passed at both
-Desktop and Mobile; it did not exercise fixture-backed journeys or provider
-flows, and the Admin aliases still lack approved-session evidence.
+checks at Desktop `1440x900`. The targeted B04 reuse probe and the B09/shop
+live-origin product-detail reuse probe then passed at both Desktop and Mobile;
+they did not exercise fixture-backed journeys or provider flows, and the Admin
+aliases still lack approved-session evidence.

@@ -1,7 +1,7 @@
 # AntiFake Documentation Evidence Matrix
 
 Snapshot: 2026-09-03
-Production Front-End: `91f545e25dc6812ed1c6cd4fb5fb41e234b3af34`
+Production Front-End: `65842923f7c3b33a3176653d651ff4c6a53b89e2`
 Accepted UAT evidence baseline: `8157ffa`
 
 This document is the final documentation/evidence boundary. It does not rerun
@@ -11,35 +11,35 @@ the terminal disposition column names the exact remaining dependency.
 
 ## Targeted Help Center production verification
 
-GitHub Actions run `93` (`Deploy frontend to VPS`) completed successfully and
+GitHub Actions run `94` (`Deploy frontend to VPS`) completed successfully and
 reported the exact deployed Front-End SHA:
-`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33732087732`.
+`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33734823773`.
 The deployment pulled, built and health-checked revision
-`91f545e25dc6812ed1c6cd4fb5fb41e234b3af34`. The general `237/237` UAT was not
+`65842923f7c3b33a3176653d651ff4c6a53b89e2`. The general `237/237` UAT was not
 rerun.
 
 The accepted Admin Help/content rows below carry forward the approved run `90`
 baseline. Run `91` evidence covers the public smoke and the two public B04
-reuse aliases; run `92` evidence covers the B03/open public entry binding and
-current run `93` covers its recheck plus the B03/enter-code public input
-binding. No approved Admin session was available for a new current-revision
-Admin visual sign-off.
+reuse aliases; run `92` evidence covers the B03/open public entry binding;
+run `93` covers its recheck plus the B03/enter-code public input binding; and
+current run `94` covers the B09/shop reuse binding. No approved Admin session
+was available for a new current-revision Admin visual sign-off.
 
 | Axis | Targeted result |
 |---|---|
 | Public Help content | `/help` loaded at Desktop `1440x900` and Mobile `390x844`; Buyer, Shop, Affiliate and QR entries were accessible; Admin entries were absent from categories, search, related/journey links and the legacy public Admin URL. |
 | Admin Help content | Approved run `90` baseline: `/admin/help` loaded inside the Admin shell with the `Hướng dẫn` sidebar item, active state, 12 Admin article cards and working `Admin Dashboard` search. |
 | Authorization | Approved run `90` baseline: Guest -> `/auth`; Buyer -> `/`; Seller -> `/`; Admin -> `/admin/help`. Direct A01 article navigation was allowed only for Admin. |
-| Visual/marker evidence | Twelve raw/annotated Desktop/Mobile pairs were inspected or captured for the published bindings across both target viewports. All 24 selected assets are HTTP `200`, complete, readable and PII-safe; marker order and explanations match, including the B03/open and B03/enter-code entry/input mappings. |
+| Visual/marker evidence | Fifteen published step bindings use eleven unique raw/annotated Desktop/Mobile pairs; all 22 served assets are complete, readable and PII-safe. Marker order and explanations match, including B03/open, B03/enter-code and the B09/shop B02 reuse mapping. |
 | Responsive evidence | Public Help, Admin Help and accepted article renders fit the target viewports; no horizontal overflow or visual overlap was observed. |
 | Browser diagnostics | No console messages were found on the inspected public and Admin Help pages. No production mutation, payment, payout or general UAT rerun was performed. |
 
 A separate read-only Playwright smoke against deployed revision
 `78646d724e93e18a15a5b729aa29c15530f1c494` passed 12/12 public Help/Journey
 checks at Desktop `1440x900`. A targeted browser probe also verified the two
-public B04 reuse aliases at Desktop `1440x900` and Mobile `390x844`: expected
-assets returned `200`, rendered at the required dimensions, and exposed marker
-numbers `1,2,3`. This confirms those two aliases as complete reuse evidence;
+public B04 reuse aliases and the B09/shop reuse binding at Desktop `1440x900`
+and Mobile `390x844`: expected assets rendered at the required dimensions and
+exposed marker numbers `1,2,3`. This confirms those aliases as complete reuse evidence;
 the B03/open public QR entry state was captured separately at both target
 viewports without submitting a code or mutating a fixture. The three Admin
 aliases still need an approved real Admin-session visual verification, and
@@ -66,23 +66,25 @@ those remain accurate.
 
 ## Local branch visual-reuse checkpoint — 2026-09-03
 
-The current Front-End branch binds five additional Help steps to existing
+The current Front-End branch binds six additional Help steps to existing
 accepted visual pairs and adds the B03/open and B03/enter-code public entry/input
 visuals. The two public
 B04 aliases are now production-verified; the three Admin aliases remain
-pending an approved Admin session:
+pending an approved Admin session. B09/shop reuses the accepted B02/detail
+pair after a read-only live-origin product-detail check:
 
 | Local binding | Accepted source binding | Safe basis | Production boundary |
 |---|---|---|---|
 | B04/discover | B02/search | Same public catalog/discovery state and marker meaning | Production verified at both target viewports |
 | B04/product-detail | B02/detail | Same public product-detail state and marker meaning | Production verified at both target viewports |
+| B09/shop | B02/detail | Same public product-detail state opened from a live session | Production verified at both target viewports; live media/chat/purchase remain outside scope |
 | ADMIN-REVIEW/dashboard | A01/open | Same Admin role and Dashboard shell | Route/image smoke only with test role; approved Admin session pending |
 | ADMIN-REVIEW/product-review | A05/pending | Same Admin product-review queue state | Route/image smoke only with test role; approved Admin session pending |
 | ADMIN-OPERATIONS/dashboard | A01/open | Same Admin role and Dashboard shell | Route/image smoke only with test role; approved Admin session pending |
 
-`npm run test:help` verifies the seven added path/marker bindings and existing
+`npm run test:help` verifies the eight added path/marker bindings and existing
 served asset pairs locally. The two B04 aliases and both B03 entry/input states
-reduce the broader missing runnable visual count from 70 to 66; the Admin
+plus B09/shop reduce the broader missing runnable visual count from 70 to 65; the Admin
 aliases do not count until approved session evidence exists. The B03 positive
 result state remains fixture-gated.
 
@@ -98,7 +100,7 @@ result state remains fixture-gated.
 | B06 Voucher | Buyer | SOURCE_VERIFIED | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Active eligible voucher and matching offer/order: `BLOCKED_FIXTURE` |
 | B07 Chat with Shop | Buyer/Seller | SOURCE_VERIFIED | PARTIAL | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Synthetic two-session thread: `BLOCKED_FIXTURE`; realtime delivery/reconnect: `BLOCKED_PROVIDER_SANDBOX` |
 | B08 Community | Buyer/Guest | SOURCE_VERIFIED | PARTIAL | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | PII-safe public author/post fixture: `BLOCKED_FIXTURE` |
-| B09 Livestream | Buyer | SOURCE_VERIFIED | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | Authenticated join/media/interactions: `BLOCKED_PROVIDER_SANDBOX` (Agora) plus live fixture |
+| B09 Livestream | Buyer | SOURCE_VERIFIED | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | Public discovery and live-origin product-detail visual complete via accepted B02 reuse; authenticated join/media/interactions and safe room capture: `BLOCKED_PROVIDER_SANDBOX` (Agora) plus live fixture |
 | S01 Shop registration | Seller | SOURCE_VERIFIED | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Disposable seller onboarding with synthetic KYC/media: `BLOCKED_FIXTURE` plus upload/auth provider |
 | S02 Shop setup | Seller | SOURCE_VERIFIED | PARTIAL | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Isolated owned Shop for edit/reload evidence: `BLOCKED_FIXTURE` |
 | S03 Create product | Seller | SOURCE_VERIFIED | PARTIAL | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Disposable product, media, variant, stock and moderation state: `BLOCKED_FIXTURE` |
@@ -138,16 +140,16 @@ result state remains fixture-gated.
 The canonical step-level report is
 `docs/user-guide/HELP_CENTER_QUALITY_AUDIT.md`. The implementation was
 validated against the current Front-End source, local rendered routes and the
-deployed B03/open binding recheck plus B03/enter-code binding in run `93`;
+deployed B03/open/B03/enter-code evidence plus B09/shop binding in run `94`;
 historical production evidence remains labelled separately.
 
 | Evidence axis | Local result | Remaining boundary |
 |---|---|---|
 | Runtime/text completeness | 30 articles and 88 steps are registered; every article and step has user-facing title/description text | Full feature-flow UAT remains `PARTIAL` where the product fixture or provider is unavailable |
-| Visual completeness | 14 production-accepted step bindings with 24 served assets, including 2 B04 steps verified through accepted B02 reuse and the B03/open plus B03/enter-code public entry/input states; 3 additional Admin aliases remain local | 66 runnable steps still need a safe screenshot; 8 Admin steps are `NOT_IMPLEMENTED` because their frontend route is absent; the 3 Admin aliases need approved-session verification |
-| Marker correctness | All 17 local visual bindings declare marker metadata and written guidance; automated sequence checks pass | Automated checks do not replace the pending approved-session visual review of the 3 Admin aliases |
-| Role visibility | Public registry/search excludes `admin`; Admin registry is rendered only in Admin Help | Production public bundle and deployed route require post-deploy verification |
-| Authorization | `/admin/help/*` is under the existing Admin parent `ProtectedRoute roles=["admin"]`; local browser checks pass for guest, buyer, seller and admin | Live authorization regression is pending deployment |
+| Visual completeness | 15 production-accepted step bindings with 22 unique served assets, including 3 B02-reuse steps (B04 discover, B04 product-detail and B09 shop) plus the B03/open and B03/enter-code public entry/input states; 3 additional Admin aliases remain local | 65 runnable steps still need a safe screenshot; 8 Admin steps are `NOT_IMPLEMENTED` because their frontend route is absent; the 3 Admin aliases need approved-session verification |
+| Marker correctness | All 18 local visual bindings declare marker metadata and written guidance; automated sequence checks pass | Automated checks do not replace the pending approved-session visual review of the 3 Admin aliases |
+| Role visibility | Public registry/search excludes `admin`; Admin registry is rendered only in Admin Help; B09/shop is visible on the public route after run `94` | New approved Admin-session visual verification remains unavailable |
+| Authorization | `/admin/help/*` is under the existing Admin parent `ProtectedRoute roles=["admin"]`; approved guest/buyer/seller/admin checks remain the run `90` baseline | No new approved Admin-session regression was available on run `94` |
 | Desktop | Local Help and Admin shell/visual route checks pass at `1440x900` | Full article-by-article production audit pending |
 | Mobile | Local Help and Admin shell/visual route checks pass at `390x844`; Admin navigation remains visible in the responsive shell | Full article-by-article production audit pending |
 

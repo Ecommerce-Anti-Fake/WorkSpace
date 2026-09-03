@@ -5,12 +5,12 @@
 > is publishable only at the status recorded below.
 
 **Documentation status:** `IN_PROGRESS`
-**Current deployed Help/Journey revision:** Front-End `91f545e`
+**Current deployed Help/Journey revision:** Front-End `6584292`
 **Backend evidence revision:** `3b59ab9`
 **Last public verification:** 2026-09-03
 
 The annotated feature captures remain pinned to their own capture revisions
-in the Visual Manifest. The deployed `91f545e` revision retains the accepted
+in the Visual Manifest. The deployed `6584292` revision retains the accepted
 Journey Center bindings, the public footer verification deep link and the
 regression guard for absent Admin journeys and their unavailable deep-link
 state; it does not retroactively change
@@ -224,6 +224,12 @@ B09 public livestream discovery shell captured after Front-End revision
 Both read-only browser captures were clean. They document discovery only and do
 not claim provider, join, interaction or leave behavior.
 
+B09 `shop` reuses the accepted B02 product-detail state. The public live-origin
+product-detail route matched the relevant controls, and the Help binding was
+verified at Desktop `1440x900` and Mobile `390x844` on Front-End `6584292` /
+run `94`. No purchase, chat or live-session mutation was performed; no new
+image files were created.
+
 ### Accepted public journey visuals
 
 The following annotated images are consumed from the same Visual Manifest by
@@ -276,6 +282,13 @@ approved fixture.
 |---|---|
 | Desktop | ![Livestream discovery on Desktop](../images/buyer/live-discovery-desktop-production-6b24be3-annotated.png) |
 | Mobile | ![Livestream discovery on Mobile](../images/buyer/live-discovery-mobile-production-6b24be3-annotated.png) |
+
+#### B09 product opened from live
+
+| Platform | Annotated visual |
+|---|---|
+| Desktop | ![Product detail opened from livestream on Desktop](../images/buyer/product-detail-desktop-production-6b24be3-annotated.png) |
+| Mobile | ![Product detail opened from livestream on Mobile](../images/buyer/product-detail-mobile-production-6b24be3-annotated.png) |
 
 #### S07 Affiliate program
 

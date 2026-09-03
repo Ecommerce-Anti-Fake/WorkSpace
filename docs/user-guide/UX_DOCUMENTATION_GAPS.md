@@ -8,7 +8,7 @@ These gaps are recorded instead of being hidden by guide copy.
 | DOC-002 | Buyer checkout | Historical cart quote returned `400`; the fail-closed fix is deployed, the Buy Now quote returns `201` across Desktop/Laptop/Mobile, and the seeded-demo cart badge passed `7 -> 8 -> 7` with restoration; sanitized Desktop/Mobile cart badge visuals are now registered; no order was created | Retest cart quote and an approved order fixture | Critical | `docs/UAT_ISSUES.md` AF-B-003 and AF-UAT-010; `docs/UAT_REPORT.md` cart closeout; `docs/user-guide/VISUAL_MANIFEST.md` B04 cart badge | Keep cart checkout/order sign-off blocked; do not treat the badge or Buy Now read-only pass as full purchase sign-off |
 | DOC-003 | Guest/Buyer QR | Code/link input and supported PNG/JPEG/WebP image uploads return server-owned states; the public `/qr` entry and empty code-input states now have PII-safe Desktop/Mobile raw/annotated pairs; the known positive fixture remains incomplete | Verify a known positive deployed state and capture the positive result at both viewports | Major | `docs/UAT_ISSUES.md` AF-Q-001; `Front-End/e2e/qr-verification.spec.ts`; `docs/user-guide/VISUAL_MANIFEST.md` B03/open and B03/enter-code; deploy run `33732087732` | Keep B03 `PARTIAL`; publish the B03/open and B03/enter-code entry/input pairs, while keeping negative and positive result evidence out of final claims |
 | DOC-004 | Admin | Read-only Admin route inventory is production-verified across Desktop/Laptop/Mobile; sanitized A01, A05 and A09 Desktop/Mobile visuals are accepted, while A03, A06, A07 and A10 are NOT_IMPLEMENTED and remaining decisions/mutations are unverified | Implement or replace the missing Admin routes, then complete remaining journeys with approved fixtures and capture sanitized visuals | Major | `docs/UAT_REPORT.md`, `docs/UAT_TEST_MATRIX.md`, `docs/user-guide/VISUAL_MANIFEST.md`, `docs/UAT_ISSUES.md` AF-AD-003 | Keep implemented read-only journeys `PARTIAL`; keep absent routes `NOT_IMPLEMENTED`; run only approved read-only or sandboxed mutation checks |
-| DOC-005 | All core journeys | Public Help Center raw/annotated Desktop/Mobile assets now exist; B03/open and B03/enter-code entry/input assets are captured, bound and production-verified, while positive/fixture-backed feature steps remain incomplete | Capture original and annotated images at the correct viewport after each journey is verified | Major | `docs/user-guide/VISUAL_MANIFEST.md` | Keep B03 negative-result assets separate from the accepted entry/input pairs and final positive-flow visuals; reuse the deterministic annotation pattern during verified UAT |
+| DOC-005 | All core journeys | Public Help Center raw/annotated Desktop/Mobile assets now exist; B03/open and B03/enter-code entry/input assets plus the B09/shop B02-reuse binding are production-verified, while positive/fixture-backed feature steps remain incomplete | Capture original and annotated images at the correct viewport after each journey is verified | Major | `docs/user-guide/VISUAL_MANIFEST.md` | Keep B03 negative-result assets separate from the accepted entry/input pairs and final positive-flow visuals; reuse accepted equivalent-state visuals only when route, state, role and controls match |
 | DOC-006 | Seller onboarding/product/order | Source routes and controllers exist, but authenticated mutation walkthroughs are not signed off | Verify each state transition with an approved seller fixture | Major | `docs/UAT_TEST_MATRIX.md` AF-S rows | Continue the existing UAT lifecycle; do not mark guide content complete from source alone |
 | DOC-007 | Seller onboarding | Seller Dashboard exposes a checklist derived from Shop, offer, voucher and order state; authenticated read-only Seller evidence now exists, but mutation/state-transition and final visual evidence remain pending | Verify state transitions with an approved seller fixture and capture both viewport assets | Major | `Front-End/src/components/dashboard/sellerGettingStarted.tsx`, `test/seller-getting-started.test.mjs`, `docs/UAT_REPORT.md` 2026-08-27 Seller follow-up | Keep mutation/provider gates and checklist evidence separate; keep checklist incomplete on data errors |
 | DOC-008 | Buyer/Seller/Admin journey coverage | Help registry now exposes canonical B01-B09, S01-S09 and A01-A10 entries, but most authenticated and Admin journeys remain source-only or blocked | Complete role-specific UAT, then attach verified visuals and upgrade statuses selectively | Major | `docs/user-guide/JOURNEY_MAPS.md`, `docs/user-guide/SOURCE_AUDIT.md`, focused Help/Journey E2E | Keep source/runtime/documentation statuses separate; do not upgrade from route presence |
@@ -36,8 +36,8 @@ requirement.
 ### Current update - Help Center production verification
 
 The targeted Help Center/Admin Help slice is now production-verified on
-Front-End revision `91f545e25dc6812ed1c6cd4fb5fb41e234b3af34` after GitHub
-Actions run `93`. Public role filtering, Admin exclusion, search, deep links,
+Front-End revision `65842923f7c3b33a3176653d651ff4c6a53b89e2` after GitHub
+Actions run `94`. Public role filtering, Admin exclusion, search, deep links,
 Admin shell navigation, direct route protection and the accepted Desktop/Mobile
 visual bindings passed the targeted browser audit. The public B04
 `discover` and `product-detail` aliases also passed read-only route, asset and
@@ -45,15 +45,18 @@ marker checks at both target viewports by reusing the equivalent B02 pairs. The
 B02 product-detail Mobile marker mismatch found during verification was
 corrected and retested. The new public B03/open and B03/enter-code QR
 entry/input bindings also passed Desktop/Mobile asset, dimension and marker
-checks without entering or submitting a code.
+checks without entering or submitting a code. The B09/shop binding passed the
+same route, asset, dimension, marker and clean-console checks by reusing the
+accepted B02 product-detail pair after a read-only live-origin product-detail
+inspection.
 
 The Admin Help and authorization statements continue to rely on the approved
 run `90` session evidence; current run `93` had no approved Admin session for
 a new visual sign-off.
 
 This closes the Help Center deployment gap for the affected published bindings,
-the two public B04 reuse aliases and the two public B03 entry/input states. It
-does not close the broader
+the two public B04 reuse aliases, B09/shop and the two public B03 entry/input
+states. It does not close the broader
 fixture/provider, mutation or missing feature-route gaps recorded in DOC-002
 through DOC-012; the three Admin reuse aliases still need an approved real
 Admin-session visual verification.

@@ -7,14 +7,15 @@ final visual in `HELP_CENTER_QUALITY_AUDIT.md`. The eight A03/A06/A07/A10
 steps are not repeated here because their current frontend routes are absent
 and the audit already classifies them as `NOT_IMPLEMENTED` / `TEXT_ONLY`.
 
-Current reconciliation: four rows (B04-discover, B04-product-detail, B03-open
-and B03-enter-code) are complete through production-verified public evidence.
-The inventory retains all 70 original rows for traceability; 66 remain
-pending.
+Current reconciliation: five rows (B04-discover, B04-product-detail, B03-open,
+B03-enter-code and B09-shop) are complete through production-verified public
+evidence. B09-watch and B09-shop are now explicit in the inventory so the live
+journey boundary is traceable. The inventory retains all 70 original rows for
+traceability; 65 required visuals remain pending.
 
 Source baselines checked:
 
-- Front-End: `91f545e25dc6812ed1c6cd4fb5fb41e234b3af34`
+- Front-End: `65842923f7c3b33a3176653d651ff4c6a53b89e2`
 - Back-End: `3b59ab9`
 - Canonical evidence: `DOCUMENTATION_EVIDENCE_MATRIX.md`, `VISUAL_MANIFEST.md`
 - Seed source: `back-end/prisma/seed.ts` and `back-end/prisma/seeds/*`
@@ -58,6 +59,8 @@ screenshot, not merely present in seed code.
 | B08-feed | buyer | B08 / feed | `/help/buyer/community/feed` | `/community` | BLOCKED_FIXTURE | Y | Y | N | Y after sanitization | `COMMUNITY_PUBLIC_SAFE_UAT`; read-only | — | No seeded author/customer data | D+M | synthetic public alias/post |
 | B08-interact | buyer | B08 / interact | `/help/buyer/community/interact` | `/community` | BLOCKED_FIXTURE | Y | Y | N | N | Synthetic post; controlled reaction/comment if needed | — | No real content interaction | D+M | safe public post and cleanup |
 | B08-report | buyer | B08 / report | `/help/buyer/community/report` | `/community` | BLOCKED_FIXTURE | Y | P | N | Y if form-only | `COMMUNITY_PUBLIC_SAFE_UAT`; show report form without submit | — | No harmful moderation report | D+M | report surface and safe cancellation |
+| B09-watch | buyer | B09 / watch | `/help/buyer/livestream/watch` | `/live/:id` | BLOCKED_PROVIDER | Y | Y | N | N | Public room shell observed; no chat/media mutation | Agora | Desktop chat exposes participant data; no production media or chat action | D+M | Mobile shell was read-only; approved provider/UAT state and PII-safe Desktop capture remain pending |
+| B09-shop | buyer | B09 / shop | `/help/buyer/livestream/shop` | `/live/:id` -> `/product/:id?live=...` | COMPLETE_REUSED_PRODUCTION | Y | Y | Y via B02 visual | Y | Reuse accepted B02 detail; none | — | No purchase, order or live-session mutation | D+M | Public live-origin product detail matched B02; Help binding verified on Front-End `6584292` / run `94` |
 
 ## P1 — Seller core journeys
 
@@ -113,10 +116,10 @@ screenshot, not merely present in seed code.
 | A08-reconciliation | admin | A08 / reconciliation | `/admin/help/admin/admin-wallet/reconciliation` | `/admin/wallet` | BLOCKED_FIXTURE | Y | Y | N | Y after sanitized read set | `ADMIN_PIISAFE_READ_SET`; masked balances | — | No financial mutation | D+M | safe financial read set |
 | A08-payout | admin | A08 / payout | `/admin/help/admin/admin-wallet/payout` | `/admin/withdraw-requests` | BLOCKED_FIXTURE | Y | Y | N | Y for status/read-only | Masked withdrawal records; no approve/settle | VietQR / payout | Production financial mutation prohibited | D+M | masked withdrawal fixture |
 | A09-change | admin | A09 / change | `/admin/help/admin/admin-promotions/change` | `/admin/vouchers` | BLOCKED_FIXTURE | Y | Y | N | Y for controls; N for save | Synthetic platform voucher; controlled status change | — | No real platform promotion | D+M | disposable voucher |
-| ADMIN-REVIEW-dashboard | admin | ADMIN-REVIEW / dashboard | `/admin/help/admin/admin-review/dashboard` | `/admin` | LOCAL_REUSE_PENDING_DEPLOY | Y | Y | Y via A01 visual | Y | Reuse accepted A01 dashboard; none | — | — | D+M | same dashboard state/role |
+| ADMIN-REVIEW-dashboard | admin | ADMIN-REVIEW / dashboard | `/admin/help/admin/admin-review/dashboard` | `/admin` | LOCAL_REUSE_PENDING_ADMIN_SESSION | Y | Y | Y via A01 visual | Y | Reuse accepted A01 dashboard; none | — | — | D+M | deployed route/image smoke; approved Admin-session visual verification pending |
 | ADMIN-REVIEW-shop-review | admin | ADMIN-REVIEW / shop-review | `/admin/help/admin/admin-review/shop-review` | `/admin/shop-registrations` | BLOCKED_FIXTURE | Y | Y | N | Y after sanitized read set | `ADMIN_PIISAFE_READ_SET`; read-only queue/detail | — | No real Shop decision | D+M | A04 safe application |
-| ADMIN-REVIEW-product-review | admin | ADMIN-REVIEW / product-review | `/admin/help/admin/admin-review/product-review` | `/admin/product-registrations` | LOCAL_REUSE_PENDING_DEPLOY | Y | Y | Y via A05 visual | Y | Reuse accepted A05 queue; none | — | — | D+M | same product-review queue/role |
-| ADMIN-OPERATIONS-dashboard | admin | ADMIN-OPERATIONS / dashboard | `/admin/help/admin/operations/dashboard` | `/admin` | LOCAL_REUSE_PENDING_DEPLOY | Y | Y | Y via A01 visual | Y | Reuse accepted A01 dashboard; none | — | — | D+M | same dashboard state/role |
+| ADMIN-REVIEW-product-review | admin | ADMIN-REVIEW / product-review | `/admin/help/admin/admin-review/product-review` | `/admin/product-registrations` | LOCAL_REUSE_PENDING_ADMIN_SESSION | Y | Y | Y via A05 visual | Y | Reuse accepted A05 queue; none | — | — | D+M | deployed route/image smoke; approved Admin-session visual verification pending |
+| ADMIN-OPERATIONS-dashboard | admin | ADMIN-OPERATIONS / dashboard | `/admin/help/admin/operations/dashboard` | `/admin` | LOCAL_REUSE_PENDING_ADMIN_SESSION | Y | Y | Y via A01 visual | Y | Reuse accepted A01 dashboard; none | — | — | D+M | deployed route/image smoke; approved Admin-session visual verification pending |
 | ADMIN-OPERATIONS-review | admin | ADMIN-OPERATIONS / review | `/admin/help/admin/operations/review` | `/admin/users`, `/admin/shop-registrations`, `/admin/product-registrations`, `/admin/vouchers`, `/admin/wallet` | BLOCKED_FIXTURE | Y | Y | N | Y after sanitized read set | Admin safe read set across implemented pages | — | No real Admin mutation | D+M | route-specific visual required |
 | ADMIN-OPERATIONS-audit | admin | ADMIN-OPERATIONS / audit | `/admin/help/admin/operations/audit` | Implemented Admin route(s) only | BLOCKED_FIXTURE | Y | Y | N | Y after sanitized read set | Read-only audit/status surface where implemented | — | No financial/moderation mutation | D+M | source confirms route and fields |
 
@@ -141,9 +144,9 @@ accepted.
 
 | Classification | Rows | Current disposition |
 |---|---:|---|
-| Production-verified reuse complete | 2 | B04 discover and B04 product-detail reuse accepted B02 pairs; no new screenshots required |
+| Production-verified reuse complete | 3 | B04 discover, B04 product-detail and B09 shop reuse accepted B02 pairs; no new screenshots required |
 | Production-verified public capture complete | 2 | B03/open and B03/enter-code QR entry/input states captured raw plus annotated at both target viewports; positive verification remains blocked |
-| Implemented local reuse bindings pending Admin session | 3 | ADMIN-REVIEW dashboard, ADMIN-REVIEW product-review, ADMIN-OPERATIONS dashboard; route/image smoke passed with test role, approved Admin-session verification remains |
+| Implemented local reuse bindings pending Admin session | 3 | ADMIN-REVIEW dashboard, ADMIN-REVIEW product-review, ADMIN-OPERATIONS dashboard; deployed route/image smoke passed with test role, approved Admin-session verification remains |
 | Read-only capture after safe fixture | 37 | Buyer account/order/voucher/chat/community, seller read surfaces, Admin read sets |
 | Controlled fixture mutation required | 18 | Cart/voucher apply, chat send/reconnect, seller writes, Admin decisions/status |
 | Provider-dependent | 8 | B04 checkout, B09/S09 lifecycle portions represented in the 70 rows |

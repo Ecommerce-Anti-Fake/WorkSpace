@@ -18,6 +18,7 @@ asset. The current served copies are kept in
 | B03 open | `/journey-visuals/b03-open-desktop.png` | `/journey-visuals/b03-open-mobile.png` | Public QR verifier entry state; production raw/annotated pair captured at `78646d7`; binding deployed and verified on `303d816` / run `92`; B03 remains `PARTIAL` pending positive verification |
 | B03 enter-code | `/journey-visuals/b03-enter-code-desktop.png` | `/journey-visuals/b03-enter-code-mobile.png` | Public QR code-entry state; empty input only, raw/annotated pair captured at `303d816`; binding deployed and verified on `91f545e` / run `93`; positive result remains `PARTIAL` |
 | B09 discover | `/journey-visuals/b09-live-discovery-desktop.png` | `/journey-visuals/b09-live-discovery-mobile.png` | Public livestream discovery only; B09 remains `PARTIAL` |
+| B09 shop (production-verified reuse) | `/journey-visuals/b02-product-detail-desktop.png` | `/journey-visuals/b02-product-detail-mobile.png` | Reuses the accepted public B02 product-detail state opened from live; route, asset load, dimensions and marker order verified on run `94`; live media/chat/purchase remain `PARTIAL` |
 | A01 open | `/journey-visuals/admin-dashboard-desktop.png` | `/journey-visuals/admin-dashboard-mobile.png` | Admin read-only dashboard shell only; A01 remains `PARTIAL` |
 | A05 pending | `/journey-visuals/admin-product-review-desktop.png` | `/journey-visuals/admin-product-review-mobile.png` | Admin read-only product-registration queue only; A05 remains `PARTIAL` |
 | A09 list | `/journey-visuals/admin-promotions-desktop.png` | `/journey-visuals/admin-promotions-mobile.png` | Admin read-only voucher workspace only; A09 remains `PARTIAL` |
@@ -79,6 +80,7 @@ an absent number.
 | B03 enter-code | `1` selected Mã xác thực method, `2` verification-code field, `3` verification action |
 | B04 cart | `1` cart quantity/badge, `2` quantity controls |
 | B09 discover | `1` live-shopping section, `2` search/state controls, `3` live card |
+| B09 shop (reuse) | `1` product media, `2` variant/quantity, `3` AntiFake verification; Mobile: product image, name/price, variant selector |
 | S07 program | `1` discovery tab, `2` program summary, `3` referral/join area |
 | A01 open | `1` active Dashboard nav, `2` coordination area, `3` header identity/controls |
 | A05 pending | `1` product-registration nav, `2` queue/filter context, `3` list or empty state |
@@ -92,12 +94,13 @@ an absent number.
 B02 `detail` and `choose` intentionally reuse the same product-detail state;
 their written marker guidance differs only where the user action differs.
 The 2026-09-03 local branch also binds B04 `discover` and
-`product-detail`, plus the exact role-matched Admin overview states, to these
-accepted assets without copying or regenerating images. The public B04 aliases
-are production-verified at both target viewports on `78646d7`; the B03/open
-binding was deployed on `303d816` / run `92` and rechecked on `91f545e` / run
-`93`; the B03/enter-code binding is deployed and verified on `91f545e` / run
-`93`; the three Admin aliases remain pending approved-session verification.
+`product-detail`, B09 `shop`, plus the exact role-matched Admin overview states,
+to these accepted assets without copying or regenerating images. The public
+B04 aliases are production-verified at both target viewports on `78646d7`; the
+B03/open binding was deployed on `303d816` / run `92` and rechecked on
+`91f545e` / run `93`; the B03/enter-code binding is deployed and verified on
+`91f545e` / run `93`; B09/shop is deployed and verified on `6584292` / run
+`94`; the three Admin aliases remain pending approved-session verification.
 The route migration for
 Admin Help is `/admin/help/admin/...`; historical production evidence below
 remains historical unless explicitly updated.
@@ -209,7 +212,7 @@ visual or a production verification claim.
 | B06 | `/help/buyer/voucher` | Desktop 1440×900 + Mobile 390×844 | Pending authenticated voucher capture | Pending | Eligibility/application runtime and a final Desktop/Mobile capture remain pending |
 | B07 | `/help/buyer/chat-shop` | Desktop 1440×900 + Mobile 390×844 | Pending PII-safe two-session chat capture | Pending | The existing history is readable but exposes participant names; send/receive/reconnect, supported metadata and a PII-safe final capture remain pending |
 | B08 | `/help/buyer/community` | Desktop 1440×900 + Mobile 390×844 | Pending PII-safe public fixture | Pending | Public route passes, but current seeded feed renders author data; do not publish a screenshot until a PII-safe fixture exists |
-| B09 | `/help/buyer/livestream` | Desktop 1440×900 + Mobile 390×844 | `docs/images/buyer/live-discovery-desktop-production-6b24be3.png`, `docs/images/buyer/live-discovery-mobile-production-6b24be3.png` | `docs/images/buyer/live-discovery-desktop-production-6b24be3-annotated.png`, `docs/images/buyer/live-discovery-mobile-production-6b24be3-annotated.png` | Public discovery shell captured cleanly; Pending provider, join, interaction and leave steps remain `PARTIAL` |
+| B09 | `/help/buyer/livestream` | Desktop 1440×900 + Mobile 390×844 | `docs/images/buyer/live-discovery-desktop-production-6b24be3.png`, `docs/images/buyer/live-discovery-mobile-production-6b24be3.png`; B09/shop reuses B02 product-detail raw pair | `docs/images/buyer/live-discovery-desktop-production-6b24be3-annotated.png`, `docs/images/buyer/live-discovery-mobile-production-6b24be3-annotated.png`; B09/shop reuses B02 product-detail annotated pair | Public discovery and live-origin product-detail shell are accepted; Pending provider, safe room, interaction and purchase steps remain `PARTIAL` |
 | S01 | `/help/seller/register-shop` | Desktop 1440×900 + Mobile 390×844 | Pending authenticated Seller submit capture with synthetic KYC/media fixture | Pending raw + annotated Desktop/Mobile pair | Submit/state transition, KYC/media fixture and final capture remain pending; no real identity documents |
 | S02 | `/help/seller/shop-setup` | Desktop 1440×900 + Mobile 390×844 | Pending owned approved-Shop Seller capture | Pending raw + annotated Desktop/Mobile pair | Business/profile edit persistence after reload and final capture remain pending; use isolated non-business-critical data |
 | S03 | `/help/seller/create-product` | Desktop 1440×900 + Mobile 390×844 | Pending disposable product fixture with sanitized media | Pending raw + annotated Desktop/Mobile pair | Product/media/variant/stock/moderation submission and final capture remain pending |
@@ -293,6 +296,9 @@ were checked after Front-End revision
 binding was deployed on revision
 `91f545e25dc6812ed1c6cd4fb5fb41e234b3af34` by run `93`:
 `https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33732087732`.
+B09/shop was deployed on revision `65842923f7c3b33a3176653d651ff4c6a53b89e2`
+by run `94`:
+`https://github.com/Ecommerce-Anti-Fake/Front-End/actions/runs/33734823773`.
 
 | Binding set | Rendered production evidence |
 |---|---|
@@ -301,6 +307,7 @@ binding was deployed on revision
 | B04 public reuse | `/help/buyer/first-purchase/discover` and `/product-detail` returned `200` at both target viewports; the expected reused assets loaded at `1440x900` and `390x844` and marker numbers `1,2,3` rendered in order. |
 | B03/open public binding | `/help/qr/verify-product/open` returned `200` at both target viewports; the expected Desktop/Mobile asset loaded at exact natural dimensions and marker numbers `1,2,3` rendered in order. The guest session had no cookies or storage entries and no code was submitted. |
 | B03/enter-code public binding | `/help/qr/verify-product/enter-code` returned `200` at both target viewports; the expected Desktop/Mobile asset loaded at exact natural dimensions and marker numbers `1,2,3` rendered in order. The guest session had no cookies or storage entries and no code was entered or submitted. |
+| B09/shop public reuse | `/help/buyer/livestream/shop` loaded successfully at both target viewports; the accepted B02 product-detail Desktop/Mobile asset completed at exact natural dimensions and marker numbers `1,2,3` rendered in order. The live-origin product-detail state was inspected read-only; no purchase, chat or live-session mutation was performed. |
 | Admin reuse probe | The three Admin reuse routes selected the expected assets and marker numbers in both viewports with the test-role harness; approved Admin-session visual verification remains pending. |
 | B02 detail/choose remediation | Mobile marker guidance now matches the visible image: product image, name/price, then variant selector. Desktop retains product media, variant/quantity, then AntiFake verification. |
 

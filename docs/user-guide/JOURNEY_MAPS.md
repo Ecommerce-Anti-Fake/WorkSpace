@@ -96,6 +96,18 @@ captured for Desktop `1440×900` and Mobile `390×844` in the Visual Manifest.
 A known positive fixture plus final result visual evidence are still pending,
 so B03 stays `PARTIAL`.
 
+### BUYER-LIVESTREAM — PARTIAL
+
+Live discovery → Room entry/watch → Pinned product → Product detail →
+Chat/reaction/reminder → Leave
+
+The public `/live` discovery state is captured at Desktop and Mobile. Opening
+the pinned product reached the same public product-detail state accepted for
+B02, so B09/shop reuses that annotated Desktop/Mobile pair and was verified on
+Front-End `6584292` / run `94`. Agora media lifecycle, safe room capture,
+realtime interaction, checkout and purchase evidence remain outside this
+read-only scope.
+
 ## Seller
 
 ### SELLER-ONBOARDING — SOURCE_VERIFIED

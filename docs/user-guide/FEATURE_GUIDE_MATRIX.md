@@ -25,7 +25,7 @@ This table connects the canonical journey IDs to the existing UAT cases. A
 | Voucher | Buyer | B06 | AF-B-003 | SOURCE_VERIFIED | `/help/buyer/voucher` | Source and permission review complete; authenticated voucher eligibility/application runtime and final visual pending | Source and permission review complete; authenticated voucher eligibility/application runtime and final visual pending |
 | Chat with Shop | Buyer | B07 | AF-C-002 | PARTIAL | `/help/buyer/chat-shop` | Authenticated entry/history read-only pass; existing history exposes participant names, while two-session send/receive, reconnect and supported metadata remain pending | Existing history is not a safe final capture target; provide a PII-safe two-session thread before visual sign-off |
 | Community | Buyer | B08 | AF-C-001, AF-G-004 | PARTIAL | `/help/buyer/community` | Pending PII-safe public fixture | Pending PII-safe public fixture |
-| Livestream | Buyer | B09 | AF-G-005, AF-L-001 | PARTIAL | `/help/buyer/livestream` | `docs/images/buyer/live-discovery-desktop-production-6b24be3-annotated.png` | `docs/images/buyer/live-discovery-mobile-production-6b24be3-annotated.png` |
+| Livestream | Buyer | B09 | AF-G-005, AF-L-001 | PARTIAL | `/help/buyer/livestream` | `docs/images/buyer/live-discovery-desktop-production-6b24be3-annotated.png`; B09/shop reuses accepted B02 product-detail pair | `docs/images/buyer/live-discovery-mobile-production-6b24be3-annotated.png`; B09/shop reuses accepted B02 product-detail pair |
 | Shop registration | Seller | S01 | AF-S-001 | SOURCE_VERIFIED | `/help/seller/register-shop` | Source and permission review complete; authenticated registration walkthrough and final visual pending | Source and permission review complete; authenticated registration walkthrough and final visual pending |
 | Shop setup | Seller | S02 | AF-S-001 | PARTIAL | `/help/seller/shop-setup` | Authenticated `/seller/shop-info` and `/seller/business-info` smoke passed Desktop/Laptop/Mobile; mutation and final visual pending | Matching mutation/state-transition evidence and final Mobile visual remain pending |
 | Create product | Seller | S03 | AF-S-002 | PARTIAL | `/help/seller/create-product` | Authenticated `/seller/products` smoke passed Desktop/Laptop/Mobile; create/mutation and final visual pending | Matching create/mutation evidence and final Mobile visual remain pending |
@@ -67,22 +67,24 @@ This table connects the canonical journey IDs to the existing UAT cases. A
 | Voucher | Buyer/Seller/Admin | `/seller/vouchers`, `/admin/vouchers` | Voucher controller | Authenticated Seller read-only smoke passed across Desktop/Laptop/Mobile; mutation evidence pending | `/help/buyer/voucher`, `/help/seller/voucher` | Pending final Desktop/Mobile visual; Seller voucher mutation remains pending | PARTIAL |
 | Affiliate | Affiliate/Seller | `/affiliate`, `/seller/affiliate` | Attribution, programs, conversion and payout controllers | Guest attribution and authenticated program/member read-only coverage passed; join, conversion/payout remain pending | `/help/seller/affiliate` | Accepted Desktop/Mobile program visuals registered; conversion/payout evidence remains pending | PARTIAL |
 | Chat | Buyer/Seller/Admin | `/chat`, `/seller/chat`, `/admin/chat` | Chat and realtime controllers | Authenticated entry/history read-only pass; existing history exposes participant names; two-session realtime, reconnect and supported metadata remain pending | `/help/buyer/chat-shop` | PII-safe two-session evidence and final Desktop/Mobile visual require a disposable thread | PARTIAL |
-| Livestream | Guest/Buyer/Seller | `/live`, `/live/:id`, `/seller/live` | Live and Agora controllers | Guest discovery passed; public `/live` shell captured at Desktop/Mobile; provider/authenticated media smoke blocked | `/help/buyer/livestream`, `/help/seller/livestream` | `docs/images/buyer/live-discovery-*-production-6b24be3-annotated.png` | PARTIAL |
+| Livestream | Guest/Buyer/Seller | `/live`, `/live/:id`, `/seller/live` | Live and Agora controllers | Guest discovery passed; public `/live` shell and live-origin product-detail state were inspected read-only; B09/shop reuses the accepted B02 product-detail pair; provider/authenticated media, chat and purchase flows remain blocked | `/help/buyer/livestream`, `/help/seller/livestream` | `docs/images/buyer/live-discovery-*-production-6b24be3-annotated.png`; B09/shop -> accepted B02 product-detail pair | PARTIAL |
 | Admin journeys A01-A10 | Admin | `/admin/*` | Admin, auth, KYC, moderation, orders, voucher and wallet controllers | Production read-only route inventory passed 3/3 viewport projects for `/admin`, users, shop registrations, product registrations, vouchers, categories, wallet, chat and withdrawals; A01, A02, A04, A05, A08 and A09 are PARTIAL, while A03, A06, A07 and A10 are NOT_IMPLEMENTED in the current frontend route map; no mutation was performed | `/admin/help/admin/admin-dashboard` through `/admin/help/admin/admin-audit` | A01, A05 and A09 annotated Desktop/Mobile visuals served; absent-route Admin visuals are NOT_IMPLEMENTED | PARTIAL |
 
 ## Local visual-reuse checkpoint — 2026-09-03
 
-The branch adds five metadata bindings to existing accepted annotated pairs.
+The branch adds six metadata bindings to existing accepted annotated pairs.
 They improve local Journey Center coverage without changing the journey-level
-`PARTIAL` statuses or claiming production deployment:
+`PARTIAL` statuses; five are now production-verified and the three Admin aliases
+remain pending an approved Admin session:
 
 | Binding | Reused pair | Local result | Next evidence |
 |---|---|---|---|
-| B04 `discover` | B02 discovery | Desktop/Mobile paths and markers pass | Deploy, then retest public Help route |
-| B04 `product-detail` | B02 product detail | Desktop/Mobile paths and markers pass | Deploy, then retest public Help route |
-| ADMIN-REVIEW `dashboard` | A01 dashboard | Admin-only path and markers pass | Deploy, then retest with Admin session |
-| ADMIN-REVIEW `product-review` | A05 product queue | Admin-only path and markers pass | Deploy, then retest with Admin session |
-| ADMIN-OPERATIONS `dashboard` | A01 dashboard | Admin-only path and markers pass | Deploy, then retest with Admin session |
+| B04 `discover` | B02 discovery | Desktop/Mobile paths and markers pass | Production route/image/marker check already passed at both target viewports |
+| B04 `product-detail` | B02 product detail | Desktop/Mobile paths and markers pass | Production route/image/marker check already passed at both target viewports |
+| B09 `shop` | B02 product detail | Desktop/Mobile paths and markers pass | Production route/image/marker check passed at both target viewports; live media/chat/purchase remain pending |
+| ADMIN-REVIEW `dashboard` | A01 dashboard | Admin-only path and markers pass | Deployed route/image smoke passed with test role; retest with approved Admin session |
+| ADMIN-REVIEW `product-review` | A05 product queue | Admin-only path and markers pass | Deployed route/image smoke passed with test role; retest with approved Admin session |
+| ADMIN-OPERATIONS `dashboard` | A01 dashboard | Admin-only path and markers pass | Deployed route/image smoke passed with test role; retest with approved Admin session |
 
 ## Status rules
 
