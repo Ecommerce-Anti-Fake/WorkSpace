@@ -251,6 +251,14 @@ to `.uat-runtime/test-results`; review privacy and marker placement before
 promoting any pair into WorkSpace. Skipped tests mean the target/credentials
 were not supplied; they are not a pass.
 
+The same workflow is available through manual `workflow_dispatch` or the
+dedicated `uat-capture` branch. A push to that branch runs the full capture
+job without invoking the `main`-only deployment workflow. Its required-secret
+preflight checks only secret presence and approved namespaces, never values,
+and fails before Playwright when authentication or QR inputs are absent.
+The first branch run (Front-End `d47ab80`, run `1`) failed closed because all
+five required secret names were unset; it produced no capture artifacts.
+
 Current browser evidence: the positive QR and public `DOCS_UAT` Community feed
 capture tests passed 4/4 (both fixtures at Desktop and Mobile) in fresh
 contexts after Front-End revision `c7dfc58` deployed in GitHub Actions run
