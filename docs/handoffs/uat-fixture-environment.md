@@ -256,8 +256,11 @@ were not supplied; they are not a pass.
 The same workflow is available through manual `workflow_dispatch` or the
 dedicated `uat-capture` branch. A push to that branch runs the full capture
 job without invoking the `main`-only deployment workflow. Its required-secret
-preflight checks only secret presence and approved namespaces, never values,
-and fails before Playwright when authentication or QR inputs are absent.
+preflight checks only secret presence and approved namespaces, never values.
+Missing inputs do not prevent public or independently configured Buyer, Seller
+or Admin captures from running; the job preserves those artifacts and fails
+closed after the capture step until the complete authenticated input set is
+configured.
 The first branch run (Front-End `d47ab80`, run `1`) failed closed because all
 five required secret names were unset; it produced no capture artifacts.
 
