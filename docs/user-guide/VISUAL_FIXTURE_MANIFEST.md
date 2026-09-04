@@ -44,7 +44,9 @@ reviewed disposable database target is supplied.
 
 The read-only fixture verifier found the approved aliases but no namespaced
 fixture graph and zero fixture lifecycle orders. The manifest statuses therefore
-remain implementation inventory, not capturable runtime evidence.
+remain implementation inventory, not capturable runtime evidence. The database
+schema audit also found only the shared `public` application schema, so no
+separate schema boundary is available to bypass the current safety hold.
 
 The dedicated capture command is
 `npm run test:e2e:uat:visual`. It emits raw and temporary annotated Desktop /

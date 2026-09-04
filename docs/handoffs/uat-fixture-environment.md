@@ -79,6 +79,13 @@ verified. The aggregate safety signals were:
 - existing catalog/order/QR/chat/community/affiliate/wallet/moderation rows
   are present.
 
+A read-only PostgreSQL schema audit found only the shared `public` application
+schema (98 public tables); no isolated application schema or second database
+target was available through the configured connection. The owner-approved
+`UAT_DEMO` classification identifies the current runtime, but it is not being
+treated as structural database isolation while these data signals remain
+unresolved.
+
 These signals do not prove each row is a real customer or business, but they
 are sufficient to trigger the owner's safety boundary. Treat this database as
 potentially mixed demo/non-synthetic data until the owner confirms the rows are
@@ -113,7 +120,7 @@ demo target; only labels and methods belong in this document:
 |---|---|
 | `UAT_DATABASE_TARGET` | `UAT_DEMO_DATABASE_TARGET` injected label |
 | `PRODUCTION_DATABASE_TARGET` | Injected comparison label only; never its URL or credentials |
-| `ISOLATION_METHOD` | Owner-approved `UAT_DEMO` classification plus exact target/name/host guards |
+| `ISOLATION_METHOD` | Owner-approved `UAT_DEMO` classification plus exact target/name/host guards; structural isolation not proven for the current shared `public` schema |
 | `MIGRATION_METHOD` | Existing approved deployment pipeline; additive fixture run does not migrate/reset |
 | `SEED_METHOD` | Guarded `npm run uat:ensure`, followed by read-only `npm run uat:verify-demo` |
 
