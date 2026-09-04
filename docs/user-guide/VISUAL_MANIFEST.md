@@ -315,7 +315,9 @@ the read-only verifier reported a genuine positive `VERIFIED` QR result, and
 the isolated Playwright capture test passed at Desktop `1440×900` and Mobile
 `390×844`. GitHub Actions run `100` deployed Front-End revision `c7dfc58` to
 the approved UAT/demo runtime, and the deployed Help binding probe passed at
-both viewports. The four raw/annotated files are privacy-reviewed and use only
+both viewports. The subsequent workflow-only Front-End revision `e139e5a`
+deployed successfully in run `102`; accepted visual evidence remains anchored
+to `c7dfc58`. The four raw/annotated files are privacy-reviewed and use only
 synthetic fixture content; no general functional UAT was rerun.
 
 | Binding set | Current UAT evidence |
