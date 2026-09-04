@@ -265,6 +265,13 @@ closed after the capture step until the complete authenticated input set is
 configured.
 The first branch run (Front-End `d47ab80`, run `1`) failed closed because all
 five required secret names were unset; it produced no capture artifacts.
+The follow-up branch run (Front-End `e139e5a`, run `2`) exercised the revised
+partial path: its preflight reported those five names as missing, the public
+Community capture passed at both target viewports (`2 passed`, `8 skipped`),
+the post-capture completeness gate failed closed, and the seven-day capture
+artifact uploaded successfully. This proves the workflow preserves available
+public evidence while refusing to call an authenticated capture complete; no
+new asset was promoted from that artifact without a separate privacy review.
 
 Current browser evidence: the positive QR and public `DOCS_UAT` Community feed
 capture tests passed 4/4 (both fixtures at Desktop and Mobile) in fresh

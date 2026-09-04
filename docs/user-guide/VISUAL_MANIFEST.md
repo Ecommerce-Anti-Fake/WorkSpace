@@ -319,6 +319,10 @@ both viewports. The subsequent workflow-only Front-End revision `e139e5a`
 deployed successfully in run `102`; accepted visual evidence remains anchored
 to `c7dfc58`. The four raw/annotated files are privacy-reviewed and use only
 synthetic fixture content; no general functional UAT was rerun.
+The dedicated capture follow-up on `e139e5a` (run `2`) independently passed
+the public Community pair at both target viewports and uploaded a temporary
+artifact, but authenticated inputs were missing; that temporary output was not
+promoted or counted as additional visual completion.
 
 | Binding set | Current UAT evidence |
 |---|---|
