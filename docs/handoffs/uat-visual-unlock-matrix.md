@@ -7,9 +7,10 @@ coverage goal. The owner-approved target is the current `UAT_DEMO` deployment;
 separate UAT provisioning is not required. It does not publish screenshots,
 change the visual baseline or close `ANTIFAKE VISUAL COVERAGE COMPLETION.md`.
 
-The rows are logical Help steps. Desktop `1440x900` and Mobile `390x844`
-bindings are both required where the step is applicable; the baseline counts
-those bindings separately. `PENDING_RUNTIME_PROOF` is not a capture pass.
+The exact fixture table is one row per original blocker; provider rows are
+listed separately. Desktop `1440x900` and Mobile `390x844` bindings are both
+required where the step is applicable; the baseline counts those bindings
+separately. `PENDING_RUNTIME_PROOF` is not a capture pass.
 The older `isolated target` wording in some row notes means the approved
 `UAT_DEMO` runtime plus a fresh isolated browser context; it does not mean a
 second VPS, DNS name or external-UAT provisioning blocker.
@@ -21,61 +22,100 @@ signals, but they do not block additive `DOCS_UAT_MANAGED` fixtures. Only
 managed rows are changed or cleaned up; destructive reset and provider side
 effects remain denied.
 
-| VISUAL_STEP | PREVIOUS_BLOCKER | UAT_FIXTURE | UAT_ROUTE | NOW_CAPTURABLE | PROVIDER_STILL_REQUIRED |
-|---|---|---|---|---|---|
-| B01/profile | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` | `/profile` | No — isolated target/browser proof pending | None for read-only profile |
-| B01/address | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` | `/profile/address` | No — isolated target/browser proof pending | None for read-only address |
-| B03/positive-result | `BLOCKED_FIXTURE` | `QR_POSITIVE_LABEL_UAT` | `/qr` | Yes — genuine `VERIFIED` result captured at Desktop/Mobile; raw and annotated evidence accepted | None |
-| B04/add-to-cart | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` + `SELLER_DISPOSABLE_BUSINESS_UAT` | `/product/:id`, `/cart` | No — isolated target/browser proof pending | None for cart state |
-| B04/checkout-pre-provider | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` + `ORDER_DETAIL_PII_SAFE_UAT` | `/checkout` | No — isolated target/browser proof pending | PayOS/GHN only for provider completion |
-| B04/order-read-only | `BLOCKED_FIXTURE` | `ORDER_DETAIL_PII_SAFE_UAT` | `/profile/orders` | No — isolated target/browser proof pending | None |
-| B05/list | `BLOCKED_FIXTURE` | `ORDER_DETAIL_PII_SAFE_UAT` | `/profile/orders` | No — isolated target/browser proof pending | None |
-| B05/detail | `BLOCKED_FIXTURE` | `ORDER_DETAIL_PII_SAFE_UAT` | `/profile/orders/:id` | No — isolated target/browser proof pending | None |
-| B05/next-action | `BLOCKED_FIXTURE` | `ORDER_FULFILLMENT_CONTROLLED_UAT` | `/profile/orders/:id` | No — valid UAT transition/browser proof pending | None unless action calls shipping/payment |
-| B06/find | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` + `SELLER_DISPOSABLE_BUSINESS_UAT` | `/cart`, `/checkout` | No — eligible cart/browser proof pending | None |
-| B06/check-conditions | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` + `SELLER_DISPOSABLE_BUSINESS_UAT` | `/checkout` | No — eligible cart/browser proof pending | None |
-| B06/apply | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` + `SELLER_DISPOSABLE_BUSINESS_UAT` | `/checkout` | No — disposable UAT mutation/browser proof pending | None; no real promotion |
-| B07/open-history | `BLOCKED_FIXTURE` | `CHAT_SYNTHETIC_TWO_SESSION_UAT` | `/chat` | No — isolated target/browser proof pending | None for REST history |
-| B07/send | `BLOCKED_FIXTURE` | `CHAT_SYNTHETIC_TWO_SESSION_UAT` | `/chat` | No — controlled UAT send/browser proof pending | Socket.IO/Redis for realtime delivery |
-| B07/reconnect | `BLOCKED_FIXTURE` | `CHAT_SYNTHETIC_TWO_SESSION_UAT` | `/chat/:roomId` | No — two isolated sessions/browser proof pending | Socket.IO/Redis runtime |
-| B08/feed | `BLOCKED_FIXTURE` | `COMMUNITY_PUBLIC_SAFE_UAT` | `/community` | Yes — synthetic DOCS_UAT feed captured at Desktop/Mobile; raw and annotated evidence accepted | None for seeded public content |
-| B08/interact | `BLOCKED_FIXTURE` | `COMMUNITY_PUBLIC_SAFE_UAT` | `/community` | No — controlled UAT interaction/browser proof pending | None |
-| B08/report | `BLOCKED_FIXTURE` | `COMMUNITY_PUBLIC_SAFE_UAT` | `/community` | No — current source and Desktop/Mobile probes expose no report control or report surface; `NOT_IMPLEMENTED` | None |
-| B09/watch-shell | `BLOCKED_FIXTURE` | `LIVE_SCHEDULED_SHELL_UAT` | `/live` -> `/live/d0000000-0000-4000-8000-000000000055` | Yes — public scheduled room shell captured at Desktop/Mobile with synthetic pinned product, voucher and comment; mobile markers are kept in-frame | Agora for authenticated media lifecycle, live start/join and realtime interaction |
-| S01/registration-form | `BLOCKED_FIXTURE` | `SELLER_UAT` + `KYC_SYNTHETIC_DOCUMENT_UAT` | `/register` | No — UAT form/browser proof pending | Firebase/Cloudinary/KYC provider for submission |
-| S01/post-approved-state | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/shop-info` | No — isolated target/browser proof pending | None for seeded approved state |
-| S02/setup | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/shop-info`, `/seller/business-info` | No — isolated target/browser proof pending | None for read-only/controlled UAT edit |
-| S03/basic-information | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/products` | No — isolated target/browser proof pending | None |
-| S03/media | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/products` | No — isolated target/browser proof pending | Cloudinary only for upload evidence |
-| S03/variant-stock | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/products` | No — isolated target/browser proof pending | None for seeded/editable UAT state |
-| S03/review-submit | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/products` | No — isolated target/browser proof pending | None for seeded moderation state |
-| S04/list | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/products` | No — isolated target/browser proof pending | None |
-| S04/edit | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/products/:offerId` | No — controlled UAT edit/browser proof pending | Cloudinary only for upload |
-| S04/status | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/products/:offerId` | No — isolated target/browser proof pending | None |
-| S05/list | `BLOCKED_FIXTURE` | `ORDER_FULFILLMENT_CONTROLLED_UAT` | `/seller/orders` | No — isolated target/browser proof pending | None |
-| S05/confirm-process | `BLOCKED_FIXTURE` | `ORDER_FULFILLMENT_CONTROLLED_UAT` | `/seller/orders/:orderId` | No — valid UAT transition/browser proof pending | None unless shipping is invoked |
-| S05/prepare | `BLOCKED_FIXTURE` | `ORDER_FULFILLMENT_CONTROLLED_UAT` | `/seller/orders/:orderId` | No — valid UAT transition/browser proof pending | None |
-| S05/shipping | `BLOCKED_FIXTURE` | `ORDER_FULFILLMENT_CONTROLLED_UAT` | `/seller/orders/:orderId` | No — isolated target/browser proof pending | GHN for booking/tracking |
-| S05/complete | `BLOCKED_FIXTURE` | `ORDER_FULFILLMENT_CONTROLLED_UAT` | `/seller/orders/:orderId` | No — valid UAT transition/browser proof pending | None for local state |
-| S05/revenue | `BLOCKED_FIXTURE` | `ORDER_FULFILLMENT_CONTROLLED_UAT` + `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/orders`, `/seller/wallet` | No — isolated target/browser proof pending | None for seeded ledger view |
-| S06/list | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/vouchers` | No — isolated target/browser proof pending | None |
-| S06/create-edit | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/vouchers` | No — controlled UAT mutation/browser proof pending | None; no production promotion |
-| S06/conditions-active | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/vouchers` | No — isolated target/browser proof pending | None |
-| S07/affiliate-link | `BLOCKED_FIXTURE` | `AFFILIATE_CONVERSION_UAT` | `/affiliate`, `/seller/affiliate` | No — isolated target/browser proof pending | None for link display |
-| S07/conversion | `BLOCKED_FIXTURE` | `AFFILIATE_CONVERSION_UAT` | `/affiliate` | No — isolated target/browser proof pending | None for non-payable UAT ledger |
-| S07/commission | `BLOCKED_FIXTURE` | `AFFILIATE_CONVERSION_UAT` | `/affiliate` | No — isolated target/browser proof pending | None for read-only ledger |
-| S07/payout-boundary | `BLOCKED_FIXTURE` | `AFFILIATE_CONVERSION_UAT` | `/affiliate` | No — isolated target/browser proof pending | VietQR/payout sandbox for execution |
-| S08/balance | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/wallet` | No — isolated target/browser proof pending | None |
-| S08/transactions | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/wallet` | No — isolated target/browser proof pending | None |
-| S08/revenue | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/wallet` | No — isolated target/browser proof pending | None |
-| S08/payout-boundary | `BLOCKED_PROVIDER_SANDBOX` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/wallet` | No — provider sandbox not configured | VietQR/payout sandbox |
-| S09/seller-live-shell | `BLOCKED_PROVIDER_SANDBOX` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/live` | No — isolated live fixture/browser proof pending | Agora |
-| A01/targeted-dashboard | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin` | No — isolated Admin session/browser proof pending | None |
-| A02/list-detail | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/users` | No — isolated Admin session/browser proof pending | None |
-| A04/pending-shop | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/shop-registrations` | No — isolated Admin session/browser proof pending | None |
-| A05/detail | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/product-registrations` | No — isolated Admin session/browser proof pending | None |
-| A08/withdrawal-read | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/withdraw-requests` | No — isolated Admin session/browser proof pending | None for read-only state |
-| A09/targeted-promotion | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/vouchers` | No — isolated Admin session/browser proof pending | None |
+## Exact 60-row fixture-blocker reconciliation
+
+The original fixture classification contained 60 rows. The detailed inventory
+below preserves that one-row-per-step accounting, including the two rows now
+captured, the one row reclassified as `NOT_IMPLEMENTED`, and the three Admin
+reuse rows that still need an approved isolated Admin session. `RUNTIME_STATE`
+means the database/route state was checked; it is not a screenshot pass unless
+the value says `DESKTOP_MOBILE_CAPTURED`.
+
+| VISUAL_STEP | PREVIOUS_BLOCKER | UAT_FIXTURE | UAT_ROUTE | RUNTIME_STATE_VERIFIED | NOW_CAPTURABLE | PROVIDER_STILL_REQUIRED | REMAINING_BLOCKER |
+|---|---|---|---|---|---|---|---|
+| B04-add-to-cart | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` + `SELLER_DISPOSABLE_BUSINESS_UAT` | `/product/:id` -> `/cart` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Buyer session and isolated browser capture; controlled cart mutation remains optional |
+| B04-order | `BLOCKED_FIXTURE` | `ORDER_DETAIL_PII_SAFE_UAT` | `/profile/orders/:id` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Buyer session and PII review of the order-detail capture |
+| B05-list | `BLOCKED_FIXTURE` | `ORDER_DETAIL_PII_SAFE_UAT` | `/profile/orders` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Buyer session and Desktop/Mobile capture |
+| B05-detail | `BLOCKED_FIXTURE` | `ORDER_DETAIL_PII_SAFE_UAT` | `/profile/orders/:id` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Buyer session and PII-safe detail capture |
+| B05-next-action | `BLOCKED_FIXTURE` | `ORDER_FULFILLMENT_CONTROLLED_UAT` | `/profile/orders/:id` | `DOCS_UAT_GRAPH_PASS` | No | None unless a provider action is exercised | Injected Buyer session and valid action-state browser proof |
+| B01-profile | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` | `/profile` | `DOCS_UAT_GRAPH_PASS` | No | None for read-only view | Injected Buyer session and Desktop/Mobile capture |
+| B01-address | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` | `/profile/address` | `DOCS_UAT_GRAPH_PASS` | No | None for read-only view | Injected Buyer session; address mutation remains controlled |
+| B06-find | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` + `SELLER_DISPOSABLE_BUSINESS_UAT` | `/cart` -> `/checkout` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Buyer session and eligible-cart browser proof |
+| B06-check-conditions | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` + `SELLER_DISPOSABLE_BUSINESS_UAT` | `/checkout` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Buyer session and eligibility evidence |
+| B06-apply | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` + `SELLER_DISPOSABLE_BUSINESS_UAT` | `/checkout` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Buyer session; controlled apply/restore capture |
+| B03-result | `BLOCKED_FIXTURE` | `QR_POSITIVE_LABEL_UAT` | `/qr` | `DESKTOP_MOBILE_CAPTURED` (`VERIFIED`) | Yes | None | None; raw/annotated pair accepted |
+| B07-open | `BLOCKED_FIXTURE` | `CHAT_SYNTHETIC_TWO_SESSION_UAT` | `/chat` | `DOCS_UAT_GRAPH_PASS` | No | None for REST history | Injected Buyer/Seller sessions and PII review |
+| B07-send | `BLOCKED_FIXTURE` | `CHAT_SYNTHETIC_TWO_SESSION_UAT` | `/chat/:roomId` | `DOCS_UAT_GRAPH_PASS` | No | Socket.IO/Redis for realtime delivery | Injected two-session browser proof; send is controlled UAT mutation |
+| B07-reconnect | `BLOCKED_FIXTURE` | `CHAT_SYNTHETIC_TWO_SESSION_UAT` | `/chat/:roomId` | `DOCS_UAT_GRAPH_PASS` | No | Socket.IO/Redis runtime | Two isolated authenticated browser sessions |
+| B08-feed | `BLOCKED_FIXTURE` | `COMMUNITY_PUBLIC_SAFE_UAT` | `/community` | `DESKTOP_MOBILE_CAPTURED` | Yes | None for seeded public content | None; raw/annotated pair accepted |
+| B08-interact | `BLOCKED_FIXTURE` | `COMMUNITY_PUBLIC_SAFE_UAT` | `/community` | `DOCS_UAT_GRAPH_PASS` | No | None | Authenticated DOCS_UAT interaction and controlled cleanup |
+| B08-report | `BLOCKED_FIXTURE` | `COMMUNITY_PUBLIC_SAFE_UAT` | `/community` | `SOURCE_PROBE_NO_REPORT_CONTROL` | No — `NOT_IMPLEMENTED` | None | Implement a current report surface before capture |
+| S01-prepare | `BLOCKED_FIXTURE` | `KYC_SYNTHETIC_DOCUMENT_UAT` | `/register` | `DOCS_UAT_GRAPH_PASS`; guest redirect known | No | Firebase/Cloudinary/KYC only for submission | Injected Seller session and safe form capture |
+| S01-submit | `BLOCKED_FIXTURE` | `KYC_SYNTHETIC_DOCUMENT_UAT` | `/register` | `DOCS_UAT_GRAPH_PASS` | No | Firebase/Cloudinary/KYC | No external KYC call; controlled synthetic submit proof |
+| S01-approval | `BLOCKED_FIXTURE` | `KYC_SYNTHETIC_DOCUMENT_UAT` | `/register` -> `/seller/shop-info` | `DOCS_UAT_GRAPH_PASS` | No | Firebase/KYC if approval is exercised | Injected Seller session and synthetic status proof |
+| S01-setup | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/shop-info` | `DOCS_UAT_GRAPH_PASS` | No | None for seeded approved state | Injected Seller session and Desktop/Mobile capture |
+| S02-profile | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/shop-info` | `DOCS_UAT_GRAPH_PASS` | No | None for read-only view | Injected Seller session and capture |
+| S02-business | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/business-info` | `DOCS_UAT_GRAPH_PASS` | No | None for seeded fields | Injected Seller session and form-state capture |
+| S02-save | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/business-info` | `DOCS_UAT_GRAPH_PASS` | No | None | Controlled UAT update/reload proof and cleanup |
+| S03-basic-info | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/products` | `DOCS_UAT_GRAPH_PASS` | No | None for seeded form | Injected Seller session and capture |
+| S03-media | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/products` | `DOCS_UAT_GRAPH_PASS` | No | Cloudinary for upload evidence | Seeded media is render-only; upload sandbox remains absent |
+| S03-variant | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/products` | `DOCS_UAT_GRAPH_PASS` | No | None for seeded variant/stock | Injected Seller session and capture |
+| S03-submit | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/products` | `DOCS_UAT_GRAPH_PASS` | No | Cloudinary if upload is exercised | Controlled disposable product submit proof |
+| S04-open | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/products` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Seller session and capture |
+| S04-edit | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/products/:offerId` | `DOCS_UAT_GRAPH_PASS` | No | Cloudinary only for media edit | Controlled edit/reload proof |
+| S04-moderation | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/products/:offerId` | `DOCS_UAT_GRAPH_PASS` | No | None for seeded status | Injected Seller session and status capture |
+| S05-orders | `BLOCKED_FIXTURE` | `ORDER_FULFILLMENT_CONTROLLED_UAT` | `/seller/orders` | `DOCS_UAT_GRAPH_PASS` | No | None for read-only list | Injected Seller session and PII-safe capture |
+| S05-confirm-order | `BLOCKED_FIXTURE` | `ORDER_FULFILLMENT_CONTROLLED_UAT` | `/seller/orders/:orderId` | `DOCS_UAT_GRAPH_PASS` | No | None for local transition | Valid Seller transition and browser proof |
+| S05-prepare-order | `BLOCKED_FIXTURE` | `ORDER_FULFILLMENT_CONTROLLED_UAT` | `/seller/orders/:orderId` | `DOCS_UAT_GRAPH_PASS` | No | None for local transition | Valid Seller transition and browser proof |
+| S05-ship-order | `BLOCKED_FIXTURE` | `ORDER_FULFILLMENT_CONTROLLED_UAT` | `/seller/orders/:orderId` | `DOCS_UAT_GRAPH_PASS` | No | GHN for booking/tracking | Transition-only proof or approved GHN sandbox |
+| S05-complete-order | `BLOCKED_FIXTURE` | `ORDER_FULFILLMENT_CONTROLLED_UAT` | `/seller/orders/:orderId` | `DOCS_UAT_GRAPH_PASS` | No | GHN if tracking is exercised | Valid local lifecycle proof without real shipment |
+| S05-revenue | `BLOCKED_FIXTURE` | `ORDER_FULFILLMENT_CONTROLLED_UAT` + `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/dashboard` or `/seller/wallet` | `DOCS_UAT_GRAPH_PASS` | No | None for seeded ledger view | Injected Seller session and PII-safe capture |
+| S06-open | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/vouchers` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Seller session and capture |
+| S06-configure | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/vouchers` | `DOCS_UAT_GRAPH_PASS` | No | None | Controlled synthetic voucher mutation proof |
+| S06-review | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/vouchers` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Seller session and status capture |
+| S08-balance | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/wallet` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Seller session and PII-safe capture |
+| S08-transactions | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/wallet` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Seller session and capture |
+| S08-withdrawal | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/wallet` | `DOCS_UAT_GRAPH_PASS` | No | VietQR/payout for execution | Read-only masked form only until a sandbox exists |
+| S07-conversion | `BLOCKED_FIXTURE` | `AFFILIATE_CONVERSION_UAT` | `/seller/affiliate` or `/affiliate?tab=member` | `DOCS_UAT_GRAPH_PASS` | No | None for non-payable ledger | Injected Seller/Buyer session and capture |
+| S07-payout | `BLOCKED_FIXTURE` | `AFFILIATE_CONVERSION_UAT` | `/seller/affiliate` | `DOCS_UAT_GRAPH_PASS` | No | VietQR/payout for execution | Read-only synthetic payout status; no execution |
+| A01-read | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin` | `DOCS_UAT_GRAPH_PASS` | No | None for read-only view | Injected isolated Admin session |
+| A02-search | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/users` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Admin session and privacy review |
+| A02-detail | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/users/:userId` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Admin session and privacy review |
+| A04-inspect | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/shop-registrations/:shopId` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Admin session and synthetic Shop review |
+| A04-decision | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/shop-registrations/:shopId` | `DOCS_UAT_GRAPH_PASS` | No | None for reversible UAT transition | Controlled Admin decision proof |
+| A05-decision | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/product-registrations/:offerId` | `DOCS_UAT_GRAPH_PASS` | No | None for reversible UAT transition | Controlled Admin decision proof |
+| A08-reconciliation | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/wallet` | `DOCS_UAT_GRAPH_PASS` | No | None for read-only view | Injected Admin session and privacy review |
+| A08-payout | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/withdraw-requests` | `DOCS_UAT_GRAPH_PASS` | No | VietQR/payout for execution | Read-only masked withdrawal evidence |
+| A09-change | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/vouchers` | `DOCS_UAT_GRAPH_PASS` | No | None for reversible UAT state | Controlled Admin promotion proof |
+| ADMIN-REVIEW-dashboard | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin` | `ROUTE_IMAGE_SMOKE_TEST_ROLE_ONLY` | No | None | Approved isolated Admin session |
+| ADMIN-REVIEW-shop-review | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/shop-registrations` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Admin session and queue/detail capture |
+| ADMIN-REVIEW-product-review | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/product-registrations` | `ROUTE_IMAGE_SMOKE_TEST_ROLE_ONLY` | No | None | Approved isolated Admin session |
+| ADMIN-OPERATIONS-dashboard | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin` | `ROUTE_IMAGE_SMOKE_TEST_ROLE_ONLY` | No | None | Approved isolated Admin session |
+| ADMIN-OPERATIONS-review | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/users`, `/admin/shop-registrations`, `/admin/product-registrations`, `/admin/vouchers`, `/admin/wallet` | `DOCS_UAT_GRAPH_PASS` | No | None for read-only views | Injected Admin session and route-specific captures |
+| ADMIN-OPERATIONS-audit | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | Implemented Admin route(s) only | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Admin session; source-confirmed route only |
+
+The current fixture remainder is 54 `DOCS_UAT` graph rows plus the three
+approved-session Admin reuse rows. Therefore the two captured rows reduce the
+60-row fixture classification by two, while `B08/report` leaves the required
+visual denominator as `NOT_IMPLEMENTED` rather than a fixture row:
+
+```text
+FIXTURE_BLOCKED_AFTER=57
+```
+
+### Provider rows tracked separately
+
+These five rows were provider-blocked, not part of the original 60 fixture
+rows. They remain independently classified and do not become safe merely from
+the DOCS_UAT graph:
+
+| VISUAL_STEP | PREVIOUS_BLOCKER | UAT_FIXTURE | UAT_ROUTE | RUNTIME_STATE_VERIFIED | NOW_CAPTURABLE | PROVIDER_STILL_REQUIRED | REMAINING_BLOCKER |
+|---|---|---|---|---|---|---|---|
+| B04-checkout | `BLOCKED_PROVIDER` | `ACTIVE_BUYER_UAT` + `ORDER_DETAIL_PII_SAFE_UAT` | `/checkout` | `DOCS_UAT_GRAPH_PASS` | No — pre-provider shell only | PayOS/GHN | Sandbox configuration and safe provider proof |
+| B09-watch | `BLOCKED_PROVIDER` | `LIVE_SCHEDULED_SHELL_UAT` | `/live/d0000000-0000-4000-8000-000000000055` | `SHELL_DESKTOP_MOBILE_CAPTURED` | No — shell only | Agora | Authenticated media/join/realtime lifecycle |
+| S09-prepare | `BLOCKED_PROVIDER` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/live` | `DOCS_UAT_GRAPH_PASS` | No — form shell only | Agora | Injected Seller session plus isolated provider config |
+| S09-start | `BLOCKED_PROVIDER` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/live` | `DOCS_UAT_GRAPH_PASS` | No | Agora | No safe UAT channel/token configuration |
+| S09-review | `BLOCKED_PROVIDER` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/live` | `DOCS_UAT_GRAPH_PASS` | No | Agora | Provider lifecycle evidence |
 
 ## Exclusions and status calculation
 
