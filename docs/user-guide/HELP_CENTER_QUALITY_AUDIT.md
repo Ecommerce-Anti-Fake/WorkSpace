@@ -16,7 +16,7 @@ VISUAL_GUIDANCE_STATUS=PASS_FOR_PUBLISHED_BINDINGS
 ADMIN_HELP_ACCESS_STATUS=PASS_PRODUCTION
 DOCUMENTATION_STATUS=COMPLETE_WITH_PRODUCTION_VERIFICATION
 JOURNEY_CENTER_STATUS=PASS_PRODUCTION_TARGETED
-VISUAL_EVIDENCE_STATUS=PASS_FOR_PUBLISHED_BINDINGS_PLUS_UAT_B03_RESULT_B08_FEED
+VISUAL_EVIDENCE_STATUS=PASS_FOR_PUBLISHED_BINDINGS_PLUS_UAT_B03_RESULT_B08_FEED_B09_SHELL
 GOAL_STATUS=COMPLETE_TARGETED_HELP_CENTER
 ```
 
@@ -30,7 +30,9 @@ The read-only verifier passed the Buyer/Seller/Admin graph, valid order
 lifecycle states and positive QR provenance. The dedicated Playwright capture
 test passed the B03 positive result and public B08 Community feed at Desktop
 `1440x900` and Mobile `390x844`; both raw/annotated pairs are now registered
-below and in `VISUAL_MANIFEST.md`.
+below and in `VISUAL_MANIFEST.md`. The same focused run passed the public
+scheduled-live room-shell pair at both target viewports. That shell evidence is
+kept as UAT evidence; it does not complete the Agora-dependent B09 watch step.
 Front-End revision `c7dfc58` was deployed to the approved UAT/demo runtime by
 GitHub Actions run `100`; the deployed Help binding probe passed all four
 Desktop/Mobile B03/B08 checks.
@@ -65,7 +67,7 @@ PROVIDER_SIDE_EFFECTS=NONE
 | Articles with title, purpose and role metadata | 30/30 | Automated content test |
 | Steps with user-facing title and description | 88/88 | Automated content test |
 | Steps classified as requiring a screenshot | 79 | Conservative classification: runnable action/status steps without an accepted visual are `TEXT_PLUS_SCREENSHOT`; unavailable routes are `TEXT_ONLY`; B08/report is currently not implemented |
-| Published visual step bindings | 17 | Previous accepted/reuse bindings plus the B03 positive-result and B08 Community UAT fixture bindings |
+| Published visual step bindings | 17 | Previous accepted/reuse bindings plus the B03 positive-result and B08 Community UAT fixture bindings; scheduled-live shell remains temporary UAT evidence |
 | Served visual assets | 26 | Thirteen unique Desktop/Mobile pairs; published steps may reuse an accepted pair |
 | Required steps missing a final visual | 62 | Pending safe fixture/provider evidence; B03 result and B08 feed are complete in the owner-approved UAT/demo runtime; B08/report is not implemented |
 | Annotated visual assets | 26/26 | Every served pair has marker metadata and a written legend |
@@ -82,7 +84,9 @@ The original request classified 70 missing visuals. After the B09/shop
 equivalent-state reuse and the DOCS_UAT B03/B08 captures, the current required
 set is 79 screenshot steps: 17 are complete and 62 remain. The remaining work
 needs additional fixture-backed browser captures, provider sandboxes or absent
-product routes.
+product routes. The public scheduled-live shell is now capturable, but it is a
+partial B09 state and does not change the final complete/missing totals while
+Agora media lifecycle remains unverified.
 
 | Field | Result |
 |---|---:|
@@ -111,7 +115,9 @@ performed to manufacture evidence. The B03 positive-result step is now backed
 by a genuine server `VERIFIED` result from the owner-approved `DOCS_UAT`
 fixture, and B08/feed is backed by a public synthetic `DOCS_UAT` feed capture;
 the broader B03 and B08 features remain `PARTIAL` where additional product
-behavior is not evidenced.
+behavior is not evidenced. The B09 scheduled shell has raw/annotated UAT pairs
+with an in-frame marker contract, but the watch step remains
+`BLOCKED_PROVIDER` for Agora media/join and authenticated realtime behavior.
 
 ## Audience and authorization
 
@@ -230,7 +236,7 @@ missing feature route are `TEXT_ONLY`.
 | ADMIN-OPERATIONS | admin | ADMIN-OPERATIONS | review | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
 | ADMIN-OPERATIONS | admin | ADMIN-OPERATIONS | audit | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
 
-## Published visual bindings
+## Published visual bindings and temporary UAT evidence
 
 | Step | Desktop asset | Mobile asset | Marker guidance |
 |---|---|---|---|
@@ -245,14 +251,16 @@ missing feature route are `TEXT_ONLY`.
 | B04/cart | `b04-cart-desktop.png` | `b04-cart-mobile.png` | `1` cart quantity/badge; `2` quantity controls |
 | B09/discover | `b09-live-discovery-desktop.png` | `b09-live-discovery-mobile.png` | `1` live section; `2` search/state controls; `3` live card |
 | B09/shop (reuse) | `b02-product-detail-desktop.png` | `b02-product-detail-mobile.png` | Reuses B02/detail for the equivalent public product-detail state opened from live; `1,2,3` marker order verified at both target viewports |
+| B09/watch-shell (temporary UAT evidence) | `b09-live-scheduled-shell-desktop-uat-20260904.png` | `b09-live-scheduled-shell-mobile-uat-20260904.png` | Shell-only pair: Desktop `1` player, `2` session summary, `3` right chat; Mobile `1` session summary, `2` title, `3` bottom chat; no Agora join or mutation |
 | S07/program | `affiliate-program-desktop.png` | `affiliate-program-mobile.png` | `1` discovery tab; `2` program summary; `3` referral/join area |
 | A01/open | `admin-dashboard-desktop.png` | `admin-dashboard-mobile.png` | `1` active Dashboard nav; `2` coordination area; `3` header identity/controls |
 | A05/pending | `admin-product-review-desktop.png` | `admin-product-review-mobile.png` | `1` product-registration nav; `2` queue/filter; `3` list or empty state |
 | A09/list | `admin-promotions-desktop.png` | `admin-promotions-mobile.png` | `1` voucher nav; `2` voucher status; `3` create/preview form |
 
-All assets above are served from `Front-End/public/journey-visuals/` and are
-checked by the content test. The Admin pairs are rendered only under
-`/admin/help/...`; they are not part of the public article catalog.
+Published assets above are served from `Front-End/public/journey-visuals/` and
+are checked by the content test. The temporary B09 shell pair is WorkSpace
+evidence only and is not a served Help binding. The Admin pairs are rendered
+only under `/admin/help/...`; they are not part of the public article catalog.
 
 ## Production verification - 2026-09-03
 

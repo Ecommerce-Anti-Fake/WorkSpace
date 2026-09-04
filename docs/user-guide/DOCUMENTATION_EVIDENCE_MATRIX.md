@@ -26,8 +26,11 @@ The owner-approved current runtime is UAT/demo. Existing rows are preserved as
 the fixture scripts. The additive ensure was run twice, the read-only verifier
 and audit passed, and no payment, payout, shipment, external KYC or livestream
 side effect occurred. The B03 positive-result and B08 Community feed captures
-passed at both required viewports and are registered in the visual manifest. The functional
-`237/237` baseline was not rerun.
+passed at both required viewports and are registered in the visual manifest. A
+public scheduled-live room-shell pair also passed at both target viewports;
+that temporary evidence proves only the non-provider shell because Agora media
+and join behavior remain blocked. The functional `237/237` baseline was not
+rerun.
 
 The current Community source and fresh public UAT probes expose reaction,
 comment and share controls but no report control or report form. `B08/report`
@@ -39,9 +42,12 @@ Front-End revision `c7dfc58e89950ce799a6c575988d0a5e78aeb96b` deployed through
 the existing workflow in GitHub Actions run `100`. An isolated Playwright
 probe against the deployed UAT/demo runtime passed the B03 positive-result and
 B08 Community Help bindings at Desktop `1440x900` and Mobile `390x844` (4/4).
-The final raw/annotated captures were then promoted after privacy review. This
-is current UAT/demo evidence; it does not close the broader visual goal or
-rerun the functional baseline.
+The final raw/annotated captures were then promoted after privacy review. The
+focused capture workflow run `33862241536` also passed 4/4 public pairs for the
+Community feed and scheduled-live shell; its overall conclusion is failure
+only because approved authenticated capture secrets are absent. This is
+current UAT/demo evidence; it does not close the broader visual goal or rerun
+the functional baseline.
 
 ## Targeted Help Center production verification
 
@@ -64,7 +70,7 @@ was available for a new current-revision Admin visual sign-off.
 | Public Help content | `/help` loaded at Desktop `1440x900` and Mobile `390x844`; Buyer, Shop, Affiliate and QR entries were accessible; Admin entries were absent from categories, search, related/journey links and the legacy public Admin URL. |
 | Admin Help content | Approved run `90` baseline: `/admin/help` loaded inside the Admin shell with the `Hướng dẫn` sidebar item, active state, 12 Admin article cards and working `Admin Dashboard` search. |
 | Authorization | Approved run `90` baseline: Guest -> `/auth`; Buyer -> `/`; Seller -> `/`; Admin -> `/admin/help`. Direct A01 article navigation was allowed only for Admin. |
-| Visual/marker evidence | Seventeen published step bindings use thirteen unique raw/annotated Desktop/Mobile pairs; all 26 served assets are complete, readable and PII-safe. Marker order and explanations match, including the UAT B03 result and B08 feed pairs. |
+| Visual/marker evidence | Seventeen published step bindings use thirteen unique raw/annotated Desktop/Mobile pairs; all 26 served assets are complete, readable and PII-safe. A separate temporary UAT scheduled-live shell pair is marker-reviewed but not served as a final Help binding. |
 | Responsive evidence | Public Help, Admin Help and accepted article renders fit the target viewports; no horizontal overflow or visual overlap was observed. |
 | Browser diagnostics | No console messages were found on the inspected public and Admin Help pages. No production mutation, payment, payout or general UAT rerun was performed. |
 
@@ -119,11 +125,13 @@ pair after a read-only live-origin product-detail check:
 `npm run test:help` verifies the added path/marker bindings and existing
 served asset pairs locally. This historical checkpoint records the two B04
 aliases, both B03 entry/input states and B09/shop as already accepted; the
-current UAT/demo B03 result and B08 feed additions are recorded above and
-reduce the required visual remainder to 62 and the fixture-blocked remainder
-to 57. The B08/report step is `NOT_IMPLEMENTED` after current source/runtime
-inspection. The three Admin aliases do not count until approved session evidence
-exists.
+current UAT/demo B03 result, B08 feed and scheduled-live shell evidence are
+recorded above. B03/B08 reduce the required visual remainder to 62 and the
+fixture-blocked remainder to 57; the scheduled shell is an additional
+capturable non-provider sub-state and does not complete the Agora-dependent
+B09 watch step. The B08/report step is `NOT_IMPLEMENTED` after current
+source/runtime inspection. The three Admin aliases do not count until approved
+session evidence exists.
 
 ## Evidence-axis status
 
@@ -137,7 +145,7 @@ exists.
 | B06 Voucher | Buyer | SOURCE_VERIFIED | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Active eligible voucher and matching offer/order: `BLOCKED_FIXTURE` |
 | B07 Chat with Shop | Buyer/Seller | SOURCE_VERIFIED | PARTIAL | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Synthetic two-session thread: `BLOCKED_FIXTURE`; realtime delivery/reconnect: `BLOCKED_PROVIDER_SANDBOX` |
 | B08 Community | Buyer/Guest | SOURCE_VERIFIED | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | Public DOCS_UAT feed visual is accepted; interaction remains `BLOCKED_FIXTURE`; report surface is `NOT_IMPLEMENTED` |
-| B09 Livestream | Buyer | SOURCE_VERIFIED | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | Public discovery and live-origin product-detail visual complete via accepted B02 reuse; authenticated join/media/interactions and safe room capture: `BLOCKED_PROVIDER_SANDBOX` (Agora) plus live fixture |
+| B09 Livestream | Buyer | SOURCE_VERIFIED | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | Public discovery and live-origin product-detail visual complete via accepted B02 reuse; scheduled non-provider room shell is captured in UAT evidence, while authenticated join/media/interactions remain `BLOCKED_PROVIDER_SANDBOX` (Agora) |
 | S01 Shop registration | Seller | SOURCE_VERIFIED | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Disposable seller onboarding with synthetic KYC/media: `BLOCKED_FIXTURE` plus upload/auth provider |
 | S02 Shop setup | Seller | SOURCE_VERIFIED | PARTIAL | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Isolated owned Shop for edit/reload evidence: `BLOCKED_FIXTURE` |
 | S03 Create product | Seller | SOURCE_VERIFIED | PARTIAL | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Disposable product, media, variant, stock and moderation state: `BLOCKED_FIXTURE` |
@@ -185,7 +193,7 @@ historical production evidence remains labelled separately.
 | Evidence axis | Local result | Remaining boundary |
 |---|---|---|
 | Runtime/text completeness | 30 articles and 88 steps are registered; every article and step has user-facing title/description text | Full feature-flow UAT remains `PARTIAL` where the product fixture or provider is unavailable |
-| Visual completeness | 17 accepted step bindings with 26 unique served assets, including the UAT B03 result and B08 feed pairs; the current required remainder is 62 | 57 fixture-backed steps, 5 provider-dependent steps, 8 `NOT_IMPLEMENTED` Admin routes and the `NOT_IMPLEMENTED` B08/report step remain; Admin aliases still need approved-session verification |
+| Visual completeness | 17 accepted step bindings with 26 unique served assets, including the UAT B03 result and B08 feed pairs; a separate temporary UAT scheduled-live shell pair is captured; the current required remainder is 62 | 57 fixture-backed steps, 5 provider-dependent steps, 8 `NOT_IMPLEMENTED` Admin routes and the `NOT_IMPLEMENTED` B08/report step remain; Admin aliases still need approved-session verification |
 | Marker correctness | All 18 local visual bindings declare marker metadata and written guidance; automated sequence checks pass | Automated checks do not replace the pending approved-session visual review of the 3 Admin aliases |
 | Role visibility | Public registry/search excludes `admin`; Admin registry is rendered only in Admin Help; B09/shop is visible on the public route after run `94` | New approved Admin-session visual verification remains unavailable |
 | Authorization | `/admin/help/*` is under the existing Admin parent `ProtectedRoute roles=["admin"]`; approved guest/buyer/seller/admin checks remain the run `90` baseline | No new approved Admin-session regression was available on run `94` |

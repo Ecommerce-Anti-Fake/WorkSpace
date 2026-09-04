@@ -27,6 +27,7 @@ Destructive reset remains disabled.
 | `KYC_SYNTHETIC_DOCUMENT_UAT` | seller/admin | S01, Admin KYC read view | synthetic review user -> KYC -> submission -> FRONT/BACK placeholder media | `back-end/scripts/uat/ensure-demo-fixtures.ts` | Additive upsert with placeholder documents | Rerun ensure; no real KYC submission | Read-only review; no external KYC submission | Firebase/Cloudinary/provider sandbox only if separately approved | No government ID or real person data | Stable namespaced rows; no public exposure | IMPLEMENTED_WAITING_FOR_RUNTIME_VERIFICATION |
 | `CHAT_SYNTHETIC_TWO_SESSION_UAT` | buyer/seller | B07 | buyer + seller + Shop -> ChatThread -> text-safe history | `back-end/scripts/uat/ensure-demo-fixtures.ts`, chat realtime service | Additive upsert; runtime send is optional controlled UAT mutation | Rerun ensure; delete only namespaced messages if reviewed | History is seeded; send/receive/reconnect require browser/runtime proof | Socket.IO in-process or isolated Redis; no personal cookies | Synthetic participants and messages only | Stable namespaced rows | HISTORY_READY_REALTIME_UNVERIFIED |
 | `COMMUNITY_PUBLIC_SAFE_UAT` | public/buyer | B08 | synthetic DOCS_UAT author -> public SocialPost feed -> safe media/comments/reactions | `back-end/scripts/uat/ensure-demo-fixtures.ts` | Additive upsert | Rerun ensure; remove only namespaced rows after capture | Read-only; reaction/comment controls require auth; no current report surface | Storage only for placeholder media | Synthetic author/content aliases | Stable namespaced rows; provider media cleanup documented separately | VERIFIED_UAT_PUBLIC_FEED_DESKTOP_MOBILE; REPORT_NOT_IMPLEMENTED |
+| `LIVE_SCHEDULED_SHELL_UAT` | buyer/public | B09 watch shell | `DOCS_UAT` Shop -> scheduled LiveSession -> pinned Offer/Voucher -> synthetic public comment | `back-end/scripts/uat/ensure-demo-fixtures.ts`, current LiveSession schema | Guarded additive upsert with explicit future `SCHEDULED` state | Rerun ensure; reviewed cleanup removes only reserved live rows | Read-only shell capture; reminder, purchase and chat-send actions not run | Agora/media join is not configured or called; no payment/shipment | Synthetic title, description, cover URL and comment only | Stable namespaced rows; retain as demo shell or remove through reviewed cleanup | VERIFIED_UAT_DESKTOP_MOBILE_SHELL; AGORA_MEDIA_PENDING |
 | `AFFILIATE_CONVERSION_UAT` | affiliate/seller | S07 program/link/conversion/commission history | affiliate account on approved Buyer alias -> program -> code/link -> conversion -> commission ledger | `back-end/scripts/uat/ensure-demo-fixtures.ts` | Additive upsert; manual non-payable ledger | Rerun ensure; no payout reset/execution | Non-payable read-only ledger; no payout execution | Payout provider only for boundary/status | Synthetic attribution and ledger values | Stable namespaced rows; no financial liability | IMPLEMENTED_WAITING_FOR_RUNTIME_VERIFICATION |
 | `ADMIN_PIISAFE_READ_SET` | admin | A01, A02, A04, A05, A08, A09 implemented queues/overview | `ADMIN_UAT` -> synthetic users/KYC/Shop/product/voucher/wallet/moderation queues | `back-end/scripts/uat/ensure-demo-fixtures.ts`, implemented Admin services | Guarded additive ensure | Rerun ensure; no current-demo reset | Read-only review by default | Payout/provider status only; no financial action | Alias-only synthetic data and placeholder KYC docs | Stable namespaced rows | IMPLEMENTED_WAITING_FOR_RUNTIME_VERIFICATION |
 
@@ -58,6 +59,7 @@ injected privately; only the managed label ID is recorded here.
 | `ORDER_UAT_CONFIRMED` | `d0000000-0000-4000-8000-000000000101` |
 | `ORDER_UAT_SHIPPING` | `d0000000-0000-4000-8000-000000000102` |
 | `ORDER_UAT_COMPLETED` | `d0000000-0000-4000-8000-000000000103` |
+| `LIVE_SCHEDULED_SHELL_UAT` | `d0000000-0000-4000-8000-000000000055` |
 
 ## Runtime verification gate
 
@@ -69,7 +71,10 @@ logical graph, and `uat:audit-demo` reported `LEGACY_DEMO_DATA_PRESENT`,
 `DOCS_UAT_FIXTURES_VALID`, `UNCLASSIFIED_NEW_DATA=NO` and provider actions
 denied by policy. The isolated QR browser smoke passed at both required
 viewports, so `QR_POSITIVE_LABEL_UAT` is now capturable and its B03 result
-visual is complete. Provider-dependent rows remain independently blocked.
+visual is complete. The public scheduled-live shell also passed at both target
+viewports with raw/annotated capture pairs; it proves the non-provider room
+shell only, while Agora media lifecycle remains blocked. Provider-dependent
+rows remain independently blocked.
 
 The audit still reports the pre-existing unmarked/external-domain rows, but the
 owner decision classifies them as immutable `LEGACY_DEMO_DATA`; they do not

@@ -19,8 +19,8 @@ traceability; 62 screenshot-required visuals remain pending. The original
 
 Source baselines checked:
 
-- Front-End: `e139e5a34311cb3dbad5d29f90a0c7b60a37eb62`
-- Back-End: `7d8d3d5a44abd00d0dbbee603a66f27ef1dab122`
+- Front-End: `4e24bef4a37dd3ca0d3becd9d6351e1d8db04df5`
+- Back-End: `654fe910684d58a4f538d317eb698553856ebac3`
 - Canonical evidence: `DOCUMENTATION_EVIDENCE_MATRIX.md`, `VISUAL_MANIFEST.md`
 - Seed source: `back-end/prisma/seed.ts` and `back-end/prisma/seeds/*`
 
@@ -63,7 +63,7 @@ screenshot, not merely present in seed code.
 | B08-feed | buyer | B08 / feed | `/help/buyer/community/feed` | `/community` | COMPLETE_UAT_DEMO | Y | Y | Y | Y | `COMMUNITY_PUBLIC_SAFE_UAT`; read-only | — | No seeded author/customer data | D+M | Desktop/Mobile synthetic public alias/post capture accepted |
 | B08-interact | buyer | B08 / interact | `/help/buyer/community/interact` | `/community` | BLOCKED_FIXTURE | Y | Y | N | N | Synthetic post; controlled reaction/comment if needed | — | No real content interaction | D+M | safe public post and cleanup |
 | B08-report | buyer | B08 / report | `/help/buyer/community/report` | `/community` | NOT_IMPLEMENTED | Y | P | N | — | No current report control or form | — | No report mutation attempted | D+M | Implement a current report surface before capture |
-| B09-watch | buyer | B09 / watch | `/help/buyer/livestream/watch` | `/live/:id` | BLOCKED_PROVIDER | Y | Y | N | N | Public room shell observed; no chat/media mutation | Agora | Desktop chat exposes participant data; no production media or chat action | D+M | Mobile shell was read-only; approved provider/UAT state and PII-safe Desktop capture remain pending |
+| B09-watch | buyer | B09 / watch | `/help/buyer/livestream/watch` | `/live/:id` | BLOCKED_PROVIDER | Y | Y | N | N | `LIVE_SCHEDULED_SHELL_UAT`; public shell read-only; no chat/media mutation | Agora | No production media or chat action; authenticated provider lifecycle remains excluded | D+M | Focused UAT capture run `33862241536` passed Desktop player/summary/chat and Mobile summary/title/chat pairs; Agora media/join remains pending |
 | B09-shop | buyer | B09 / shop | `/help/buyer/livestream/shop` | `/live/:id` -> `/product/:id?live=...` | COMPLETE_REUSED_PRODUCTION | Y | Y | Y via B02 visual | Y | Reuse accepted B02 detail; none | — | No purchase, order or live-session mutation | D+M | Public live-origin product detail matched B02; Help binding verified on Front-End `6584292` / run `94` |
 
 ## P1 — Seller core journeys
@@ -138,7 +138,7 @@ accepted.
 |---|---|---|---|---|---|---|
 | PayOS | Source integration; current secret config not inspected | Unknown | No | Unknown | Checkout shell only | Real charge/refund prohibited |
 | GHN | Source integration; quote path previously evidenced | Quote read may be testable; booking unknown | No | Unknown | Quote/read-only only | Shipment booking/tracking mutation |
-| Agora | Source integration | Unknown | No | Unknown | Public discovery only | Channel/media lifecycle mutation |
+| Agora | Source integration | Unknown | No | Unknown | Public scheduled shell only; no provider call | Channel/media lifecycle mutation |
 | Socket.IO / Redis | Source integration; REST/history path exists | Synthetic thread requires approved UAT | No | Unknown | Read-only history only | Two-session delivery/reconnect state |
 | Cloudinary / upload storage | Source integration | Unknown | No | Unknown | No final upload claim | Upload and retained media mutation |
 | Firebase Auth / FCM | Source integration | Unknown | No | Unknown | Public auth shell only | Account/token/push mutation |
@@ -168,6 +168,12 @@ The current DOCS_UAT evidence supersedes the pending status of B03/result and
 B08/feed. A source inspection and fresh public UAT probes also found no
 Community report control or form, so B08/report is `NOT_IMPLEMENTED` /
 `TEXT_ONLY`, not fixture-blocked.
+
+The same additive graph now includes `LIVE_SCHEDULED_SHELL_UAT`. The public
+scheduled room rendered at both target viewports and the focused capture run
+`33862241536` passed 4/4 public pairs. This unlocks the non-provider room shell
+only; the final B09 watch visual remains `BLOCKED_PROVIDER` until Agora media,
+join and authenticated realtime behavior are proven.
 
 ```text
 CURRENT_REQUIRED_VISUAL_STEPS=79

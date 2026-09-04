@@ -41,7 +41,7 @@ effects remain denied.
 | B08/feed | `BLOCKED_FIXTURE` | `COMMUNITY_PUBLIC_SAFE_UAT` | `/community` | Yes — synthetic DOCS_UAT feed captured at Desktop/Mobile; raw and annotated evidence accepted | None for seeded public content |
 | B08/interact | `BLOCKED_FIXTURE` | `COMMUNITY_PUBLIC_SAFE_UAT` | `/community` | No — controlled UAT interaction/browser proof pending | None |
 | B08/report | `BLOCKED_FIXTURE` | `COMMUNITY_PUBLIC_SAFE_UAT` | `/community` | No — current source and Desktop/Mobile probes expose no report control or report surface; `NOT_IMPLEMENTED` | None |
-| B09/watch-shell | `BLOCKED_FIXTURE` | `ACTIVE_SELLER_UAT` + `SELLER_DISPOSABLE_BUSINESS_UAT` | `/live`, `/live/:id` | No — live fixture/browser proof pending | Agora for authenticated media lifecycle |
+| B09/watch-shell | `BLOCKED_FIXTURE` | `LIVE_SCHEDULED_SHELL_UAT` | `/live` -> `/live/d0000000-0000-4000-8000-000000000055` | Yes — public scheduled room shell captured at Desktop/Mobile with synthetic pinned product, voucher and comment; mobile markers are kept in-frame | Agora for authenticated media lifecycle, live start/join and realtime interaction |
 | S01/registration-form | `BLOCKED_FIXTURE` | `SELLER_UAT` + `KYC_SYNTHETIC_DOCUMENT_UAT` | `/register` | No — UAT form/browser proof pending | Firebase/Cloudinary/KYC provider for submission |
 | S01/post-approved-state | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/shop-info` | No — isolated target/browser proof pending | None for seeded approved state |
 | S02/setup | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/shop-info`, `/seller/business-info` | No — isolated target/browser proof pending | None for read-only/controlled UAT edit |
@@ -97,19 +97,26 @@ FIXTURE_BLOCKED_BEFORE=60
 FIXTURE_BLOCKED_AFTER=57
 PROVIDER_BLOCKED_BEFORE=5
 PROVIDER_BLOCKED_AFTER=5
-VISUAL_STEPS_NOW_UNLOCKED=2
+VISUAL_STEPS_NOW_UNLOCKED=3
 NEWLY_COMPLETED_VISUALS=B03/positive-result,B08/feed
+NEWLY_CAPTURABLE_NON_PROVIDER_SHELL=B09/watch-shell
 NOT_IMPLEMENTED_OR_NA_AFTER=9
 ```
 
 The current UAT/demo binding commit `c7dfc58e89950ce799a6c575988d0a5e78aeb96b`
 was deployed through GitHub Actions run `100`. The isolated deployed Help probe
 passed all four B03/B08 Desktop/Mobile checks; raw and annotated pairs were
-privacy-reviewed before promotion.
+privacy-reviewed before promotion. The scheduled live shell capture then passed
+the focused UAT capture workflow at both target viewports; it is a shell-only
+visual and does not claim Agora media/provider completion.
 
 The remaining 57 fixture rows still require their own browser/runtime evidence;
-fixture creation alone is not a capture pass. This document intentionally does
-not claim that source code or a seed manifest alone makes a visual capturable.
+fixture creation alone is not a capture pass. The B09 row is an explicit
+exception at the sub-state level: its public scheduled shell is now captured,
+but the required full watch journey remains in the provider bucket until Agora
+media lifecycle and authenticated interaction are proven. This document
+intentionally does not claim that source code or a seed manifest alone makes a
+visual capturable.
 
 The B08/report row was reclassified from fixture-blocked to `NOT_IMPLEMENTED`
 after a current source inspection and fresh public UAT probes at both target

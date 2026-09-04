@@ -1,6 +1,6 @@
 # AntiFake current UAT/demo fixture environment
 
-Status: `DOCS_UAT_FIXTURE_SYSTEM_VERIFIED_B03_B08_VISUAL_CAPTURED`
+Status: `DOCS_UAT_FIXTURE_SYSTEM_VERIFIED_B03_B08_B09_SHELL_CAPTURED`
 Reconciled: 2026-09-04
 
 This handoff is the additive fixture runbook for the owner's current UAT/demo
@@ -189,13 +189,17 @@ is reconciled through the additive command only after the explicit preflight
 passes. No second VPS, DNS target, reverse-proxy route or deployment workflow
 is required.
 
-The current deployed revisions are Back-End `7d8d3d5` (GitHub Actions run `42`)
-and Front-End `e139e5a` (run `102`). The Front-End change is workflow-only:
-it adds the environment-aware capture trigger/preflight and independent
-role-scoped capture behavior. Accepted visual evidence remains anchored to
-`c7dfc58` (run `100`). The deployment health check passed; the backend health
-endpoint and read-only synthetic Community browser checks passed after the
-latest verified deploys.
+The current deployed revisions are Back-End `654fe91` (GitHub Actions run `43`)
+and Front-End `4e24bef` (GitHub Actions deployment run `118`; the current
+capture workflow run is recorded with the capture evidence below). The
+Front-End changes are capture-harness-only:
+they add environment-aware capture preflight, independent role-scoped capture
+behavior and viewport-safe scheduled-live markers. Accepted visual evidence
+remains anchored to the published binding commit `c7dfc58` (run `100`); the
+new scheduled-live shell pair is temporary UAT evidence pending the manifest
+promotion recorded below. The deployment health check passed; the backend
+health endpoint and read-only synthetic live-shell browser checks passed after
+the latest verified deploys.
 
 ## Fixture packs
 
@@ -208,6 +212,7 @@ it. Logical IDs are stable aliases; database UUIDs are implementation details.
 | QR | active label, batch, approved offer link and `VERIFIED` provenance event | Verification is local database lookup; the known code is injected and never logged. |
 | Orders | explicit valid lifecycle examples for buyer list/detail and seller processing | State transitions must use the real order state machine. |
 | Seller | shop, product, variant, inventory, media placeholders, voucher and linked order | Seeded media is a UI placeholder; it is not Cloudinary upload evidence. |
+| Live shell | future scheduled LiveSession, pinned Offer/Voucher and synthetic public comment | Public shell is safe to capture; Agora media/join and live mutations remain denied. |
 | Affiliate | program, account/link, synthetic conversion and ledger state when supported | Non-payable UAT ledger only; no payout execution. |
 | Admin | synthetic user/KYC, shop-review, product-moderation, promotion and implemented wallet/read queues | Read-only review capture; A03/A06/A07/A10 remain `NOT_IMPLEMENTED` unless source changes. |
 
@@ -221,7 +226,7 @@ configuration.
 |---|---|---|---|---|---|---|---|
 | PayOS | Checkout screens; payment completion | No UAT values | Not verified | No | LOCAL_IGNORED_ENV_ONLY; UAT NOT CONFIGURED | Completion is production-only until sandbox is approved | Isolated PayOS sandbox and UAT secrets |
 | GHN | Shipping option/quote UI; booking/tracking boundary | Template only | Not verified | No | LOCAL_IGNORED_ENV_ONLY; UAT NOT CONFIGURED | Booking must stay outside production | Approved UAT/sandbox account and cleanup |
-| Agora | Seeded live metadata and live UI route | Template only | Not verified | No | LOCAL_IGNORED_ENV_ONLY; UAT NOT CONFIGURED | Real room/token is production-only until isolated | UAT room, token config and browser proof |
+| Agora | Seeded live metadata and public scheduled room shell | Template only | Not verified | No | LOCAL_IGNORED_ENV_ONLY; UAT NOT CONFIGURED | Real room/token is production-only until isolated | UAT room, token config and authenticated media browser proof |
 | Socket.IO/Redis | Chat history; realtime when isolated | Yes: in-process without Redis; isolated `REDIS_*` optional | N/A infrastructure | Local in-process only | Not required for local mode | No | Reachable UAT API and two isolated browser sessions |
 | Cloudinary | Seeded media rendering | Template only | Not verified | No | LOCAL_IGNORED_ENV_ONLY; UAT NOT CONFIGURED | Upload is production-only until UAT folder/prefix exists | UAT folder/prefix and cleanup |
 | Firebase | Local-account auth bridge where configured | Template only | Not verified | No | LOCAL_IGNORED_ENV_ONLY; UAT NOT CONFIGURED | Production project must not be reused | UAT Firebase project/bridge and injected credentials |
@@ -318,14 +323,16 @@ PROVIDER_BLOCKED_BEFORE=5
 ```
 
 The approved target now passes additive verification, read-only fixture audit
-and isolated browser capture for the positive QR and public Community feed
-steps at both target viewports. The current evidence calculation is:
+and isolated browser capture for the positive QR, public Community feed and
+public scheduled-live room shell at both target viewports. The current evidence
+calculation is:
 
 ```text
 FIXTURE_BLOCKED_AFTER=57
 PROVIDER_BLOCKED_AFTER=5
-VISUAL_STEPS_NOW_UNLOCKED=2
+VISUAL_STEPS_NOW_UNLOCKED=3
 NEWLY_COMPLETED_VISUAL=B03/result,B08/feed
+NEWLY_CAPTURABLE_NON_PROVIDER_SHELL=B09/watch-shell
 CURRENT_COMPLETE_VISUAL_STEPS=17
 CURRENT_REQUIRED_VISUAL_STEPS=79
 CURRENT_MISSING_VISUALS=62
@@ -339,7 +346,8 @@ screenshot-required denominator is 79 and the remaining required visuals are
 still require their own browser/runtime evidence;
 fixture creation is not counted as a screenshot pass. The canonical
 `docs/user-guide/VISUAL_FIXTURE_MANIFEST.md` and the step-level matrix record
-the QR and Community captures and retain the other rows as pending. Each row uses:
+the QR, Community and scheduled-live shell captures and retain the other rows
+as pending. Each row uses:
 
 ```text
 VISUAL_STEP | PREVIOUS_BLOCKER | UAT_FIXTURE | UAT_ROUTE |
@@ -349,11 +357,18 @@ NOW_CAPTURABLE | PROVIDER_STILL_REQUIRED
 The current step-by-step matrix is maintained at
 [`uat-visual-unlock-matrix.md`](uat-visual-unlock-matrix.md). Its current
 calculation is `FIXTURE_BLOCKED_AFTER=57`, `PROVIDER_BLOCKED_AFTER=5` and
-`VISUAL_STEPS_NOW_UNLOCKED=2`; provider rows remain independent.
+`VISUAL_STEPS_NOW_UNLOCKED=3`; the third unlocked item is the non-provider
+scheduled room shell, while the full B09 watch row remains Agora-blocked.
 
 The current implementation unlocks the reusable graph. The QR result and
 Community feed each have separate raw/annotated Desktop/Mobile evidence. The
-visual coverage goal remains open for the other fixture/provider rows.
+scheduled live shell also has separate raw/annotated Desktop/Mobile evidence
+from capture workflow run `33862241536`; its mobile marker contract uses the
+in-frame summary/title/chat targets because the responsive layout stacks the
+player above chat. The capture test passed 4/4 public pairs and skipped the
+credentialed tests; the final workflow gate remains intentionally failed until
+approved auth secrets are injected. The visual coverage goal remains open for
+the other fixture/provider rows.
 
 ## Current environment classification
 
