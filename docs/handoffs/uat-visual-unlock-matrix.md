@@ -15,9 +15,10 @@ The older `isolated target` wording in some row notes means the approved
 second VPS, DNS name or external-UAT provisioning blocker.
 
 Current mutation safety hold: the read-only audit of the configured database
-found five external-domain user accounts and six shop names without synthetic
-markers. Until that possible mixed-data signal is resolved by owner
-confirmation or a reviewed disposable database, no fixture row is capturable.
+found five external-domain user accounts, all 13 user display names without
+synthetic markers and six shop names without synthetic markers. Until that
+possible mixed-data signal is resolved by owner confirmation or a reviewed
+disposable database, no fixture row is capturable.
 
 | VISUAL_STEP | PREVIOUS_BLOCKER | UAT_FIXTURE | UAT_ROUTE | NOW_CAPTURABLE | PROVIDER_STILL_REQUIRED |
 |---|---|---|---|---|---|

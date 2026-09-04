@@ -72,6 +72,8 @@ string withheld), and found the three approved account aliases active and
 verified. The aggregate safety signals were:
 
 - 13 users, including 5 accounts using an external `gmail.com` domain;
+- all 13 current user display names lacked a synthetic marker, while the
+  repository's compact seed defines marker-bearing UAT display names;
 - 6 shops whose names did not contain a `UAT`, `DOCS`, `DEMO`, `SEED` or `TEST`
   marker;
 - existing catalog/order/QR/chat/community/affiliate/wallet/moderation rows
