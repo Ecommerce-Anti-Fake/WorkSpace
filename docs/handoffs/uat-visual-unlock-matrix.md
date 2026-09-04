@@ -14,6 +14,11 @@ The older `isolated target` wording in some row notes means the approved
 `UAT_DEMO` runtime plus a fresh isolated browser context; it does not mean a
 second VPS, DNS name or external-UAT provisioning blocker.
 
+Current mutation safety hold: the read-only audit of the configured database
+found five external-domain user accounts and six shop names without synthetic
+markers. Until that possible mixed-data signal is resolved by owner
+confirmation or a reviewed disposable database, no fixture row is capturable.
+
 | VISUAL_STEP | PREVIOUS_BLOCKER | UAT_FIXTURE | UAT_ROUTE | NOW_CAPTURABLE | PROVIDER_STILL_REQUIRED |
 |---|---|---|---|---|---|
 | B01/profile | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` | `/profile` | No — isolated target/browser proof pending | None for read-only profile |
@@ -82,7 +87,8 @@ absent; they remain `NOT_IMPLEMENTED`, not fixture failures. PayOS, GHN,
 Agora, realtime, Cloudinary, Firebase and VietQR/payout remain provider rows
 until an isolated configuration and safe runtime call are proven.
 
-Current honest calculation before UAT_DEMO fixture/runtime proof:
+Current honest calculation before UAT_DEMO fixture/runtime proof and while the
+database safety hold is active:
 
 ```text
 FIXTURE_BLOCKED_BEFORE=60

@@ -1,6 +1,6 @@
 # AntiFake current UAT/demo fixture environment
 
-Status: `OWNER_CLARIFICATION_RECONCILED_RUNTIME_VERIFICATION_PENDING`
+Status: `SAFETY_HOLD_POSSIBLE_NON_SYNTHETIC_DATA`
 Reconciled: 2026-09-04
 
 This handoff is the additive fixture runbook for the owner's current UAT/demo
@@ -60,11 +60,29 @@ secret manager, CI environment secrets, or an ignored local `.env.uat.local`.
 Never put credentials, connection strings, QR plaintext, provider keys, JWT
 secrets, tokens or personal data in WorkSpace documentation.
 
-Sanitized local audit on 2026-09-04: the ignored Back-End `.env` contained
-configured database/provider fields, but no `UAT_DEMO` boundary labels. It was
-not used for fixture reads or writes; the guarded commands therefore fail
-closed until the approved UAT environment injects the matching non-secret
-labels and secret names.
+Sanitized local configuration audit on 2026-09-04: the ignored Back-End `.env`
+contained configured database/provider fields, but no `UAT_DEMO` boundary
+labels. It was not used for fixture writes.
+
+Read-only database audit on 2026-09-04, performed only after applying the
+owner-approved `UAT_DEMO` labels in process, verified the configured database
+identity as `neondb` on a remote allowlisted host (hostname and connection
+string withheld), and found the three approved account aliases active and
+verified. The aggregate safety signals were:
+
+- 13 users, including 5 accounts using an external `gmail.com` domain;
+- 6 shops whose names did not contain a `UAT`, `DOCS`, `DEMO`, `SEED` or `TEST`
+  marker;
+- existing catalog/order/QR/chat/community/affiliate/wallet/moderation rows
+  are present.
+
+These signals do not prove each row is a real customer or business, but they
+are sufficient to trigger the owner's safety boundary. Treat this database as
+potentially mixed demo/non-synthetic data until the owner confirms the rows are
+synthetic or supplies a reviewed disposable database target. No `uat:ensure`,
+`uat:cleanup`, reset, migration or provider call was executed after the audit.
+The fixture system remains fail-closed for mutation; the visual unlock count
+therefore remains unchanged.
 
 ## Isolation record
 
@@ -81,12 +99,15 @@ demo target; only labels and methods belong in this document:
 
 The additive fixture command is not accepted without the owner classification,
 explicit mutation approval, matching database name and exact remote host
-allowlist. It never calls the destructive reset path.
+allowlist. It never calls the destructive reset path. The current target also
+has a safety hold because the read-only audit found possible non-synthetic
+records; do not set the mutation flag to bypass that hold.
 
 ## Reset and seed procedure
 
-Run from `back-end` with the approved demo environment injected or loaded from
-an ignored file:
+Once the safety hold is resolved by owner confirmation or a reviewed disposable
+database target, run from `back-end` with the approved demo environment
+injected or loaded from an ignored file:
 
 ```text
 npm run uat:ensure
@@ -121,8 +142,8 @@ synthetic UAT namespace.
 ## Existing approved deployment
 
 Use the existing AntiFake deployment pipeline for code changes. Fixture data
-may be reconciled through the additive command against the approved demo
-database, but no second VPS, DNS target, reverse-proxy route or deployment
+may be reconciled through the additive command only after the current safety
+hold is resolved. No second VPS, DNS target, reverse-proxy route or deployment
 workflow is required.
 
 ## Fixture packs

@@ -32,6 +32,14 @@ until the guarded additive `uat:ensure`, read-only `uat:verify-demo` and
 dedicated isolated-browser smoke pass at both required viewports. Provider-
 dependent rows remain independently blocked.
 
+Current safety hold: a read-only audit of the configured demo database found
+five user accounts under an external `gmail.com` domain and six shop names
+without synthetic/seed/demo markers. This is a possible mixed-data signal under
+the owner's safety boundary. No fixture write, reset, cleanup or provider call
+was run, so the rows below remain implementation inventory rather than runtime
+evidence. Resume only after owner confirmation that the current database is
+synthetic or after a reviewed disposable database target is supplied.
+
 The dedicated capture command is
 `npm run test:e2e:uat:visual`. It emits raw and temporary annotated Desktop /
 Mobile pairs under `.uat-runtime/test-results`; those files require an
