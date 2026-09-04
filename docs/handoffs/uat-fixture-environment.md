@@ -189,6 +189,10 @@ is reconciled through the additive command only after the explicit preflight
 passes. No second VPS, DNS target, reverse-proxy route or deployment workflow
 is required.
 
+The current deployed revisions are Back-End `7d8d3d5` (GitHub Actions run `42`)
+and Front-End `c7dfc58` (run `100`). The backend health endpoint and the
+read-only synthetic Community browser checks passed after the Back-End deploy.
+
 ## Fixture packs
 
 The seed creates one coherent disposable graph where the current schema allows
