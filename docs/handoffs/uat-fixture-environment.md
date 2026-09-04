@@ -189,7 +189,7 @@ is reconciled through the additive command only after the explicit preflight
 passes. No second VPS, DNS target, reverse-proxy route or deployment workflow
 is required.
 
-The current deployed revisions are Back-End `654fe91` (GitHub Actions run `43`)
+The current deployed revisions are Back-End `70f9bb5` (GitHub Actions run `44`)
 and Front-End `4e24bef` (GitHub Actions deployment run `118`; the current
 capture workflow run is recorded with the capture evidence below). The
 Front-End changes are capture-harness-only:
@@ -200,6 +200,18 @@ new scheduled-live shell pair is temporary UAT evidence pending the manifest
 promotion recorded below. The deployment health check passed; the backend
 health endpoint and read-only synthetic live-shell browser checks passed after
 the latest verified deploys.
+
+The post-deploy additive reconciliation corrected the managed product's
+variant mapping: the reserved variant now has one value for its single option
+group, matching the current product-detail selection contract. The guarded
+`uat:ensure` command passed against the owner-approved `UAT_DEMO` target, and
+the read-only `uat:verify-demo` and `uat:audit-demo` checks passed afterward.
+The audit still reported legacy rows, while reporting
+`DOCS_UAT_FIXTURES_VALID`, `UNCLASSIFIED_NEW_DATA=false` and
+`productionProviderRisk=DENIED_BY_FIXTURE_POLICY`. No cart button was clicked
+in the public browser probe; after selecting the managed variant, the product
+route showed 25 available units and enabled the cart/buy controls in an
+unauthenticated isolated context. Authenticated Buyer capture remains pending.
 
 ## Fixture packs
 

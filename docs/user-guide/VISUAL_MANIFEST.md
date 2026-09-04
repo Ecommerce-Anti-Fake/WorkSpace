@@ -9,6 +9,15 @@ current UAT/demo runtime for new fixture evidence. Historical rows retain their
 original production labels; new `DOCS_UAT` evidence is explicitly marked UAT.
 The visual goal remains open after each accepted step-level capture.
 
+## Current fixture capability checkpoint - 2026-09-04
+
+Backend revision `70f9bb5028ae18d8e772c59dc2e06a093b92ce6d` was deployed and
+the guarded `DOCS_UAT` fixture graph was reconciled and verified. A fresh
+isolated public product probe selected the managed variant and showed 25
+available units with enabled cart/buy controls; no cart mutation was submitted
+and no new visual binding is claimed from this prerequisite check. The
+authenticated Buyer capture remains pending injected UAT credentials.
+
 ## Journey Center runtime bindings
 
 The Journey Center renders a platform-specific annotated visual only when the

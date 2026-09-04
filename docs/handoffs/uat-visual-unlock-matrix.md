@@ -33,7 +33,7 @@ the value says `DESKTOP_MOBILE_CAPTURED`.
 
 | VISUAL_STEP | PREVIOUS_BLOCKER | UAT_FIXTURE | UAT_ROUTE | RUNTIME_STATE_VERIFIED | NOW_CAPTURABLE | PROVIDER_STILL_REQUIRED | REMAINING_BLOCKER |
 |---|---|---|---|---|---|---|---|
-| B04-add-to-cart | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` + `SELLER_DISPOSABLE_BUSINESS_UAT` | `/product/:id` -> `/cart` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Buyer session and isolated browser capture; controlled cart mutation remains optional |
+| B04-add-to-cart | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` + `SELLER_DISPOSABLE_BUSINESS_UAT` | `/product/:id` -> `/cart` | `DOCS_UAT_GRAPH_PASS; PUBLIC_VARIANT_SELECTION_READY` | No | None | Injected Buyer session and isolated browser capture; controlled cart mutation remains optional |
 | B04-order | `BLOCKED_FIXTURE` | `ORDER_DETAIL_PII_SAFE_UAT` | `/profile/orders/:id` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Buyer session and PII review of the order-detail capture |
 | B05-list | `BLOCKED_FIXTURE` | `ORDER_DETAIL_PII_SAFE_UAT` | `/profile/orders` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Buyer session and Desktop/Mobile capture |
 | B05-detail | `BLOCKED_FIXTURE` | `ORDER_DETAIL_PII_SAFE_UAT` | `/profile/orders/:id` | `DOCS_UAT_GRAPH_PASS` | No | None | Injected Buyer session and PII-safe detail capture |

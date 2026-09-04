@@ -20,7 +20,7 @@ traceability; 62 screenshot-required visuals remain pending. The original
 Source baselines checked:
 
 - Front-End: `4e24bef4a37dd3ca0d3becd9d6351e1d8db04df5`
-- Back-End: `654fe910684d58a4f538d317eb698553856ebac3`
+- Back-End: `70f9bb5028ae18d8e772c59dc2e06a093b92ce6d`
 - Canonical evidence: `DOCUMENTATION_EVIDENCE_MATRIX.md`, `VISUAL_MANIFEST.md`
 - Seed source: `back-end/prisma/seed.ts` and `back-end/prisma/seeds/*`
 

@@ -26,7 +26,8 @@ The owner confirmed `ANTIFAKE_CURRENT_ENVIRONMENT=UAT_DEMO` for the existing
 AntiFake runtime and classified all pre-existing records as
 `LEGACY_DEMO_DATA`. The guarded additive fixture system created only
 `DOCS_UAT_MANAGED` rows; no legacy row was renamed, updated, deleted or reset.
-The read-only verifier passed the Buyer/Seller/Admin graph, valid order
+The post-deploy guarded ensure repaired the managed product's one-group variant
+mapping; the read-only verifier passed the Buyer/Seller/Admin graph, valid order
 lifecycle states and positive QR provenance. The dedicated Playwright capture
 test passed the B03 positive result and public B08 Community feed at Desktop
 `1440x900` and Mobile `390x844`; both raw/annotated pairs are now registered
@@ -36,6 +37,11 @@ kept as UAT evidence; it does not complete the Agora-dependent B09 watch step.
 Front-End revision `c7dfc58` was deployed to the approved UAT/demo runtime by
 GitHub Actions run `100`; the deployed Help binding probe passed all four
 Desktop/Mobile B03/B08 checks.
+Backend revision `70f9bb5` was deployed and health-checked in Actions run `44`.
+A public isolated product probe at `1440x900` and in a narrow mobile context
+selected the managed variant and showed 25 available units with enabled cart
+and buy controls. No cart mutation was submitted, so the authenticated Buyer
+visual remains pending.
 
 ```text
 ANTIFAKE_CURRENT_ENVIRONMENT=UAT_DEMO

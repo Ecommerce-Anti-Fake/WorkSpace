@@ -23,9 +23,10 @@ DESTRUCTIVE_RESET_ALLOWED=NO
 
 The owner-approved current runtime is UAT/demo. Existing rows are preserved as
 `LEGACY_DEMO_DATA`; only new deterministic `DOCS_UAT_MANAGED` rows are owned by
-the fixture scripts. The additive ensure was run twice, the read-only verifier
-and audit passed, and no payment, payout, shipment, external KYC or livestream
-side effect occurred. The B03 positive-result and B08 Community feed captures
+the fixture scripts. The guarded additive ensure ran and was rerun after the
+backend fixture repair; the read-only verifier and audit passed, and no
+payment, payout, shipment, external KYC or livestream side effect occurred.
+The B03 positive-result and B08 Community feed captures
 passed at both required viewports and are registered in the visual manifest. A
 public scheduled-live room-shell pair also passed at both target viewports;
 that temporary evidence proves only the non-provider shell because Agora media
@@ -48,6 +49,14 @@ Community feed and scheduled-live shell; its overall conclusion is failure
 only because approved authenticated capture secrets are absent. This is
 current UAT/demo evidence; it does not close the broader visual goal or rerun
 the functional baseline.
+
+Backend revision `70f9bb5028ae18d8e772c59dc2e06a093b92ce6d` deployed and
+health-checked in Actions run `44`. The guarded additive fixture run then
+reconciled the managed graph and the read-only verifier/audit passed. A fresh
+isolated public product probe selected the managed `DOCS_UAT` variant and
+observed 25 available units with enabled cart/buy controls; it deliberately did
+not submit the cart mutation. This proves the fixture prerequisite, not an
+authenticated B04 capture.
 
 ## Targeted Help Center production verification
 
