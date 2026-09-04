@@ -190,8 +190,10 @@ passes. No second VPS, DNS target, reverse-proxy route or deployment workflow
 is required.
 
 The current deployed revisions are Back-End `7d8d3d5` (GitHub Actions run `42`)
-and Front-End `c7dfc58` (run `100`). The backend health endpoint and the
-read-only synthetic Community browser checks passed after the Back-End deploy.
+and Front-End `d47ab80` (run `101`). The Front-End change only adds the
+environment-aware capture trigger/preflight; accepted visual evidence remains
+anchored to `c7dfc58` (run `100`). The backend health endpoint and the
+read-only synthetic Community browser checks passed after the latest deploys.
 
 ## Fixture packs
 
