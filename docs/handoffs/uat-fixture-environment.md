@@ -85,6 +85,17 @@ synthetic or supplies a reviewed disposable database target. No `uat:ensure`,
 The fixture system remains fail-closed for mutation; the visual unlock count
 therefore remains unchanged.
 
+The same check is now repeatable without ad-hoc SQL or PII output:
+
+```text
+npm run uat:audit-demo
+```
+
+It requires the read-only UAT_DEMO runtime boundary, reports aggregate table
+and synthetic-marker signals, emits no credentials or personal fields, and
+returns a non-zero safety result when possible mixed data is detected. It never
+writes, resets, cleans up or calls a provider.
+
 ## Isolation record
 
 These are the sanitized values future operators must record for the approved
