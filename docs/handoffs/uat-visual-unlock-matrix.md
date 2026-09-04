@@ -1,14 +1,18 @@
 # UAT visual unlock matrix
 
-Reconciled: 2026-09-03
+Reconciled: 2026-09-04
 
-This is the handoff from the isolated-fixture goal to the existing visual
-coverage goal. It does not publish screenshots, change the visual baseline or
-close `ANTIFAKE VISUAL COVERAGE COMPLETION.md`.
+This is the handoff from the additive fixture goal to the existing visual
+coverage goal. The owner-approved target is the current `UAT_DEMO` deployment;
+separate UAT provisioning is not required. It does not publish screenshots,
+change the visual baseline or close `ANTIFAKE VISUAL COVERAGE COMPLETION.md`.
 
 The rows are logical Help steps. Desktop `1440x900` and Mobile `390x844`
 bindings are both required where the step is applicable; the baseline counts
 those bindings separately. `PENDING_RUNTIME_PROOF` is not a capture pass.
+The older `isolated target` wording in some row notes means the approved
+`UAT_DEMO` runtime plus a fresh isolated browser context; it does not mean a
+second VPS, DNS name or external-UAT provisioning blocker.
 
 | VISUAL_STEP | PREVIOUS_BLOCKER | UAT_FIXTURE | UAT_ROUTE | NOW_CAPTURABLE | PROVIDER_STILL_REQUIRED |
 |---|---|---|---|---|---|
@@ -78,7 +82,7 @@ absent; they remain `NOT_IMPLEMENTED`, not fixture failures. PayOS, GHN,
 Agora, realtime, Cloudinary, Firebase and VietQR/payout remain provider rows
 until an isolated configuration and safe runtime call are proven.
 
-Current honest calculation before external UAT provisioning:
+Current honest calculation before UAT_DEMO fixture/runtime proof:
 
 ```text
 FIXTURE_BLOCKED_BEFORE=60
@@ -88,6 +92,6 @@ PROVIDER_BLOCKED_AFTER=5
 VISUAL_STEPS_NOW_UNLOCKED=0
 ```
 
-The `AFTER` values change only after the dedicated reset, fixture verification
-and browser smoke produce runtime evidence. This document intentionally does
-not claim that source code or a seed manifest alone makes a visual capturable.
+The `AFTER` values change only after additive fixture verification and browser
+smoke produce runtime evidence. This document intentionally does not claim
+that source code or a seed manifest alone makes a visual capturable.

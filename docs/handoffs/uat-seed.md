@@ -1,6 +1,29 @@
 # Compact UAT seed handoff
 
-## Scope
+## Current UAT_DEMO path
+
+The owner has clarified that `https://antifake.io.vn` and
+`https://api.antifake.io.vn` are the current approved UAT/demo deployment.
+Separate UAT provisioning is not required. Use the additive, idempotent path
+for visual fixtures:
+
+```powershell
+npm.cmd run uat:ensure
+npm.cmd run uat:verify-demo
+```
+
+It requires `ANTIFAKE_CURRENT_ENVIRONMENT=UAT_DEMO`, explicit demo database
+identity labels, the exact database host allowlist, and
+`UAT_DEMO_MUTATION_APPROVED=true` for writes. It reuses the approved Buyer,
+Seller and Admin aliases, never stores their credentials, and never calls
+payment, payout, shipping, KYC or livestream providers.
+
+For reviewed removal of only the reserved `DOCS_UAT` graph, set the separate
+non-secret `UAT_DEMO_CLEANUP_APPROVED=true` flag and run
+`npm.cmd run uat:cleanup`. Cleanup is transactional and preserves approved
+accounts, reference data and the existing active cart.
+
+## Separate isolated seed path
 
 `back-end/prisma/seed.ts` runs the current Prisma seed phases against an
 explicitly isolated UAT PostgreSQL database. It is a destructive disposable
@@ -51,5 +74,5 @@ Redis and payout credentials. Only secret names and configuration status may
 be documented.
 
 See [`uat-fixture-environment.md`](uat-fixture-environment.md) for the complete
-architecture, provider matrix, browser procedure, cleanup policy and external
-provisioning gate.
+architecture, provider matrix, browser procedure, cleanup policy and the
+resolved owner environment clarification.
