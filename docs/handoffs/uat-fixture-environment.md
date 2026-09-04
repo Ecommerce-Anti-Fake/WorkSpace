@@ -1,6 +1,6 @@
 # AntiFake current UAT/demo fixture environment
 
-Status: `SAFETY_HOLD_POSSIBLE_NON_SYNTHETIC_DATA`
+Status: `DOCS_UAT_FIXTURE_SYSTEM_VERIFIED_B03_B08_VISUAL_CAPTURED`
 Reconciled: 2026-09-04
 
 This handoff is the additive fixture runbook for the owner's current UAT/demo
@@ -45,7 +45,17 @@ The current demo mutation path is identified by these injected values:
 |---|---|
 | `ANTIFAKE_CURRENT_ENVIRONMENT=UAT_DEMO` | Owner-approved current environment classification. |
 | `UAT_DEMO_MUTATION_APPROVED=true` | Explicit opt-in required by additive fixture tooling. |
-| `UAT_DEMO_SYNTHETIC_DATA_CONFIRMED=true` | Separate owner/data-review confirmation required after a mixed-data audit; setting mutation approval alone is insufficient. |
+| `UAT_DEMO_LEGACY_DATA_ACKNOWLEDGED=true` | Owner confirmation that all pre-existing rows are legacy demo/development data; these rows remain read-only to fixture tooling. |
+| `UAT_DEMO_LEGACY_DATA_CUTOFF` | ISO timestamp separating owner-classified legacy rows from unexpected new unclassified identity/business rows. |
+| `UAT_DEMO_FIXTURE_NAMESPACE=DOCS_UAT` | Exact namespace required for all new documentation fixtures. |
+| `UAT_DEMO_FIXTURE_MODE=ADDITIVE_IDEMPOTENT` | Explicitly prohibits reset/truncate/reseed behavior. |
+| `UAT_DEMO_DESTRUCTIVE_RESET_ALLOWED=false` | Destructive reset is disabled for the shared current demo database. |
+| `UAT_DEMO_LEGACY_MUTATION_ALLOWED=false` | Historical legacy rows cannot be updated or deleted by fixture tooling. |
+| `UAT_DEMO_REAL_PAYMENT_ALLOWED=false` | PayOS payment calls are denied by the fixture preflight. |
+| `UAT_DEMO_REAL_PAYOUT_ALLOWED=false` | Real payout calls are denied by the fixture preflight. |
+| `UAT_DEMO_REAL_SHIPMENT_ALLOWED=false` | GHN shipment booking is denied by the fixture preflight. |
+| `UAT_DEMO_REAL_EXTERNAL_KYC_ALLOWED=false` | External KYC submission/approval is denied by the fixture preflight. |
+| `UAT_DEMO_REAL_LIVESTREAM_ALLOWED=false` | Public/external livestream side effects are denied by the fixture preflight. |
 | `DATABASE_URL` | Current demo database connection string; never document its value. |
 | `UAT_DEMO_DATABASE_TARGET` | Non-secret current-demo target label containing `demo`, `uat`, `staging`, `test` or `local`. |
 | `UAT_DEMO_DATABASE_NAME` | Expected database name; it must match the URL database path. |
@@ -56,14 +66,16 @@ The current demo mutation path is identified by these injected values:
 | `UAT_QR_CODE` | Securely injected known test code; only its hash is stored and verified. |
 | `PAYOUT_ACCOUNT_ENCRYPTION_KEY` | Securely injected only if wallet fixture code needs encrypted synthetic payout data. |
 
-The repository contains only `.env.uat.example` templates. Values belong in a
+The repository contains safe `.env.uat.example` and `.env.uat-demo.example`
+templates. Values belong in a
 secret manager, CI environment secrets, or an ignored local `.env.uat.local`.
 Never put credentials, connection strings, QR plaintext, provider keys, JWT
 secrets, tokens or personal data in WorkSpace documentation.
 
 Sanitized local configuration audit on 2026-09-04: the ignored Back-End `.env`
 contained configured database/provider fields, but no `UAT_DEMO` boundary
-labels. It was not used for fixture writes.
+labels. The owner-approved labels and all deny-by-default fixture flags were
+injected separately; no secret values were recorded.
 
 Read-only database audit on 2026-09-04, performed only after applying the
 owner-approved `UAT_DEMO` labels in process, verified the configured database
@@ -86,13 +98,12 @@ target was available through the configured connection. The owner-approved
 treated as structural database isolation while these data signals remain
 unresolved.
 
-These signals do not prove each row is a real customer or business, but they
-are sufficient to trigger the owner's safety boundary. Treat this database as
-potentially mixed demo/non-synthetic data until the owner confirms the rows are
-synthetic or supplies a reviewed disposable database target. No `uat:ensure`,
-`uat:cleanup`, reset, migration or provider call was executed after the audit.
-The fixture system remains fail-closed for mutation; the visual unlock count
-therefore remains unchanged.
+The owner subsequently confirmed that the current environment and its
+pre-existing rows are UAT/demo/development data. Those rows are now explicitly
+classified as `LEGACY_DEMO_DATA`, preserved without rename/delete/update, and
+remain visible in the audit. This resolves the prior mixed-data classification
+hold without weakening the new-data or provider guards; no second database is
+required for the current documentation-fixture goal.
 
 The same check is now repeatable without ad-hoc SQL or PII output:
 
@@ -100,16 +111,22 @@ The same check is now repeatable without ad-hoc SQL or PII output:
 npm run uat:audit-demo
 ```
 
-It requires the read-only UAT_DEMO runtime boundary, reports aggregate table
-and synthetic-marker signals, emits no credentials or personal fields, and
-returns a non-zero safety result when possible mixed data is detected. It never
-writes, resets, cleans up or calls a provider.
+It requires the read-only UAT_DEMO runtime boundary and owner classification,
+reports `LEGACY_DEMO_DATA_PRESENT`, validates the managed graph as
+`DOCS_UAT_FIXTURES_VALID`, surfaces `UNCLASSIFIED_NEW_DATA`, and reports
+`PRODUCTION_PROVIDER_RISK` from the deny-by-default policy. It emits no
+credentials or personal fields and never writes, resets, cleans up or calls a
+provider.
 
-The read-only `npm run uat:verify-demo` check was also run against this target
-with an injected synthetic QR value. The three approved aliases were found, but
-all namespaced fixture entities were missing and the pending/confirmed/shipping/
-completed fixture order counts were all zero. There is therefore no existing
-synthetic graph to consume while the data-classification hold is active.
+The guarded additive `npm run uat:ensure` was then run twice with the same
+policy. It created and reconciled only the deterministic `DOCS_UAT` graph;
+existing account aliases were read-only and no legacy rows were modified or
+deleted. The read-only `npm run uat:verify-demo` check now passes all approved
+aliases, the active Shop/catalog/cart/voucher graph, genuine positive
+QR/provenance result, four valid order states, chat history, Community post,
+affiliate conversion/commission, non-payable wallet ledger and Admin review
+rows. The subsequent audit reports `DOCS_UAT_FIXTURES_VALID` and zero
+`UNCLASSIFIED_NEW_DATA`.
 
 ## Isolation record
 
@@ -120,22 +137,20 @@ demo target; only labels and methods belong in this document:
 |---|---|
 | `UAT_DATABASE_TARGET` | `UAT_DEMO_DATABASE_TARGET` injected label |
 | `PRODUCTION_DATABASE_TARGET` | Injected comparison label only; never its URL or credentials |
-| `ISOLATION_METHOD` | Owner-approved `UAT_DEMO` classification plus exact target/name/host guards; structural isolation not proven for the current shared `public` schema |
+| `ISOLATION_METHOD` | Owner-approved `UAT_DEMO` classification plus exact target/name/host guards; structural isolation is not claimed for the shared `public` schema |
 | `MIGRATION_METHOD` | Existing approved deployment pipeline; additive fixture run does not migrate/reset |
 | `SEED_METHOD` | Guarded `npm run uat:ensure`, followed by read-only `npm run uat:verify-demo` |
 
 The additive fixture command is not accepted without the owner classification,
-explicit mutation approval, separate synthetic-data confirmation, matching
-database name and exact remote host allowlist. It never calls the destructive
-reset path. The current target has a safety hold because the read-only audit
-found possible non-synthetic records; do not set either approval flag to bypass
-that hold.
+explicit mutation approval, valid legacy cutoff, matching database name, exact
+remote host allowlist and the complete additive/deny-by-default policy. It
+never calls the destructive reset path. Only `DOCS_UAT` rows are owned by the
+fixture tooling; `LEGACY_DEMO_DATA` is audit-visible but immutable to it.
 
 ## Reset and seed procedure
 
-Once the safety hold is resolved by owner confirmation or a reviewed disposable
-database target, run from `back-end` with the approved demo environment
-injected or loaded from an ignored file:
+After the explicit preflight passes, run from `back-end` with the approved demo
+environment injected or loaded from the safe template/secret manager:
 
 ```text
 npm run uat:ensure
@@ -145,8 +160,8 @@ npm run uat:verify-demo
 `uat:ensure` performs the following additive sequence:
 
 ```text
-assert UAT_DEMO target and owner-approved classification
-  -> reconcile existing approved demo accounts
+assert UAT_DEMO target, owner classification and additive deny-by-default policy
+  -> read approved demo account aliases without updating them
   -> upsert only namespaced synthetic shops/catalog/cart/voucher/order/QR/chat/community/affiliate/admin records
   -> verify required fixture relationships and positive QR provenance
 ```
@@ -170,9 +185,9 @@ synthetic UAT namespace.
 ## Existing approved deployment
 
 Use the existing AntiFake deployment pipeline for code changes. Fixture data
-may be reconciled through the additive command only after the current safety
-hold is resolved. No second VPS, DNS target, reverse-proxy route or deployment
-workflow is required.
+is reconciled through the additive command only after the explicit preflight
+passes. No second VPS, DNS target, reverse-proxy route or deployment workflow
+is required.
 
 ## Fixture packs
 
@@ -232,6 +247,14 @@ to `.uat-runtime/test-results`; review privacy and marker placement before
 promoting any pair into WorkSpace. Skipped tests mean the target/credentials
 were not supplied; they are not a pass.
 
+Current browser evidence: the positive QR and public `DOCS_UAT` Community feed
+capture tests passed 4/4 (both fixtures at Desktop and Mobile) in fresh
+contexts after Front-End revision `313c2ee` deployed in GitHub Actions run
+`99`. The narrow Help binding probe also passed 4/4 at both viewports. Both
+pairs were privacy-reviewed and promoted to the visual manifest. Authenticated
+Buyer/Seller/Admin capture tests remain pending until secure UAT credentials
+are injected; no personal browser profile or cookie was used.
+
 The manual `UAT demo visual capture` workflow uploads those temporary files as
 a seven-day artifact. It does not deploy code or modify canonical visual
 assets.
@@ -268,11 +291,23 @@ FIXTURE_BLOCKED_BEFORE=60
 PROVIDER_BLOCKED_BEFORE=5
 ```
 
-Until the approved UAT/demo target passes additive verification and browser
-smoke, `FIXTURE_BLOCKED_AFTER`, `PROVIDER_BLOCKED_AFTER` and
-`VISUAL_STEPS_NOW_UNLOCKED` remain unclaimed. After runtime proof, update the
-canonical `docs/user-guide/VISUAL_FIXTURE_MANIFEST.md` and add a row per visual
-step with:
+The approved target now passes additive verification, read-only fixture audit
+and isolated browser capture for the positive QR and public Community feed
+steps at both target viewports. The current evidence calculation is:
+
+```text
+FIXTURE_BLOCKED_AFTER=58
+PROVIDER_BLOCKED_AFTER=5
+VISUAL_STEPS_NOW_UNLOCKED=2
+NEWLY_COMPLETED_VISUAL=B03/result,B08/feed
+CURRENT_COMPLETE_VISUAL_STEPS=17
+CURRENT_MISSING_VISUALS=63
+```
+
+The remaining 58 fixture rows still require their own browser/runtime evidence;
+fixture creation is not counted as a screenshot pass. The canonical
+`docs/user-guide/VISUAL_FIXTURE_MANIFEST.md` and the step-level matrix record
+the QR and Community captures and retain the other rows as pending. Each row uses:
 
 ```text
 VISUAL_STEP | PREVIOUS_BLOCKER | UAT_FIXTURE | UAT_ROUTE |
@@ -281,11 +316,12 @@ NOW_CAPTURABLE | PROVIDER_STILL_REQUIRED
 
 The current step-by-step matrix is maintained at
 [`uat-visual-unlock-matrix.md`](uat-visual-unlock-matrix.md). Its current
-calculation remains `FIXTURE_BLOCKED_AFTER=60`, `PROVIDER_BLOCKED_AFTER=5` and
-`VISUAL_STEPS_NOW_UNLOCKED=0` until runtime proof exists.
+calculation is `FIXTURE_BLOCKED_AFTER=58`, `PROVIDER_BLOCKED_AFTER=5` and
+`VISUAL_STEPS_NOW_UNLOCKED=2`; provider rows remain independent.
 
-The current implementation unlocks the mechanism and the reusable graph; it
-does not itself approve Help screenshots or close the visual coverage goal.
+The current implementation unlocks the reusable graph. The QR result and
+Community feed each have separate raw/annotated Desktop/Mobile evidence. The
+visual coverage goal remains open for the other fixture/provider rows.
 
 ## Current environment classification
 
@@ -293,12 +329,16 @@ does not itself approve Help screenshots or close the visual coverage goal.
 ANTIFAKE_CURRENT_ENVIRONMENT=UAT_DEMO
 UAT_RUNTIME=https://antifake.io.vn
 UAT_API=https://api.antifake.io.vn
+DATA_CLASSIFICATION=LEGACY_DEMO_PLUS_DOCS_UAT_MANAGED
+OWNER_MIXED_DATA_CLASSIFICATION=CONFIRMED
 SEPARATE_UAT_PROVISIONING_REQUIRED=NO
+SEPARATE_UAT_DATABASE_REQUIRED=NO_FOR_CURRENT_DOCS_FIXTURE_GOAL
+DESTRUCTIVE_RESET_ALLOWED=NO
 RESOLVED_BY_OWNER_ENVIRONMENT_CLARIFICATION=YES
 ```
 
 The classification is an owner-provided environment boundary. The fixture
-write guard additionally requires the injected mutation-approval flag, the
+write guard additionally requires the injected mutation-approval flag, valid
+legacy cutoff, additive namespace/mode, deny-by-default side-effect flags, the
 sanitized database identity and the exact database-host allowlist before any
-additive write. Browser evidence remains pending until the approved target is
-reachable from the automation session.
+additive write. Only `DOCS_UAT_MANAGED` rows may be modified or cleaned up.

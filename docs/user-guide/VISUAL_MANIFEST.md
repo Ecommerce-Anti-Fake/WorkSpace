@@ -3,6 +3,12 @@
 Original screenshots are evidence assets. Annotated screenshots are separate
 documentation assets and must never overwrite originals.
 
+Current owner classification: `ANTIFAKE_CURRENT_ENVIRONMENT=UAT_DEMO`.
+`https://antifake.io.vn` and `https://api.antifake.io.vn` are the approved
+current UAT/demo runtime for new fixture evidence. Historical rows retain their
+original production labels; new `DOCS_UAT` evidence is explicitly marked UAT.
+The visual goal remains open after each accepted step-level capture.
+
 ## Journey Center runtime bindings
 
 The Journey Center renders a platform-specific annotated visual only when the
@@ -15,8 +21,10 @@ asset. The current served copies are kept in
 | B01 register | `/journey-visuals/b01-registration-desktop.png` | `/journey-visuals/b01-registration-mobile.png` | Public Buyer registration entry only; B01 remains `PARTIAL` |
 | B02 search | `/journey-visuals/b02-discovery-desktop.png` | `/journey-visuals/b02-discovery-mobile.png` | Public catalog discovery only; B02 remains `PARTIAL` |
 | B02 detail / choose | `/journey-visuals/b02-product-detail-desktop.png` | `/journey-visuals/b02-product-detail-mobile.png` | Public product-detail step only; B02 remains `PARTIAL` |
-| B03 open | `/journey-visuals/b03-open-desktop.png` | `/journey-visuals/b03-open-mobile.png` | Public QR verifier entry state; production raw/annotated pair captured at `78646d7`; binding deployed and verified on `303d816` / run `92`; B03 remains `PARTIAL` pending positive verification |
-| B03 enter-code | `/journey-visuals/b03-enter-code-desktop.png` | `/journey-visuals/b03-enter-code-mobile.png` | Public QR code-entry state; empty input only, raw/annotated pair captured at `303d816`; binding deployed and verified on `91f545e` / run `93`; positive result remains `PARTIAL` |
+| B03 open | `/journey-visuals/b03-open-desktop.png` | `/journey-visuals/b03-open-mobile.png` | Public QR verifier entry state; historical raw/annotated pair captured at `78646d7`; binding deployed and verified on `303d816` / run `92`; B03 remains `PARTIAL` for broader feature coverage |
+| B03 enter-code | `/journey-visuals/b03-enter-code-desktop.png` | `/journey-visuals/b03-enter-code-mobile.png` | Public QR code-entry state; historical empty-input pair captured at `303d816`; binding deployed and verified on `91f545e` / run `93`; B03 remains `PARTIAL` for broader feature coverage |
+| B03 result | `/journey-visuals/b03-positive-result-desktop.png` | `/journey-visuals/b03-positive-result-mobile.png` | Genuine `VERIFIED` result from `QR_POSITIVE_LABEL_UAT`; raw and marker-annotated UAT captures at `1440x900` and `390x844`; final visual step completed, B03 journey remains `PARTIAL` for broader feature coverage |
+| B08 feed | `/journey-visuals/b08-community-feed-desktop.png` | `/journey-visuals/b08-community-feed-mobile.png` | Public `DOCS_UAT` Community feed capture at both target viewports; feed step complete, interaction/report steps remain `PARTIAL` |
 | B09 discover | `/journey-visuals/b09-live-discovery-desktop.png` | `/journey-visuals/b09-live-discovery-mobile.png` | Public livestream discovery only; B09 remains `PARTIAL` |
 | B09 shop (production-verified reuse) | `/journey-visuals/b02-product-detail-desktop.png` | `/journey-visuals/b02-product-detail-mobile.png` | Reuses the accepted public B02 product-detail state opened from live; route, asset load, dimensions and marker order verified on run `94`; live media/chat/purchase remain `PARTIAL` |
 | A01 open | `/journey-visuals/admin-dashboard-desktop.png` | `/journey-visuals/admin-dashboard-mobile.png` | Admin read-only dashboard shell only; A01 remains `PARTIAL` |
@@ -56,6 +64,10 @@ review and is never used as the runtime binding.
 | `/journey-visuals/b03-open-mobile.png` | `docs/images/qr/b03-open-mobile-production-78646d7.png` | `docs/images/qr/b03-open-mobile-production-78646d7-annotated.png` | Served bytes equal annotated bytes |
 | `/journey-visuals/b03-enter-code-desktop.png` | `docs/images/qr/b03-enter-code-desktop-production-303d816.png` | `docs/images/qr/b03-enter-code-desktop-production-303d816-annotated.png` | Served bytes equal annotated bytes |
 | `/journey-visuals/b03-enter-code-mobile.png` | `docs/images/qr/b03-enter-code-mobile-production-303d816.png` | `docs/images/qr/b03-enter-code-mobile-production-303d816-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/b03-positive-result-desktop.png` | `docs/images/qr/b03-positive-desktop-uat-20260904.png` | `docs/images/qr/b03-positive-desktop-uat-20260904-annotated.png` | Served bytes equal annotated bytes; UAT result verified |
+| `/journey-visuals/b03-positive-result-mobile.png` | `docs/images/qr/b03-positive-mobile-uat-20260904.png` | `docs/images/qr/b03-positive-mobile-uat-20260904-annotated.png` | Served bytes equal annotated bytes; UAT result verified |
+| `/journey-visuals/b08-community-feed-desktop.png` | `docs/images/community/b08-community-feed-desktop-uat-20260904.png` | `docs/images/community/b08-community-feed-desktop-uat-20260904-annotated.png` | Served bytes equal annotated bytes; public UAT feed verified |
+| `/journey-visuals/b08-community-feed-mobile.png` | `docs/images/community/b08-community-feed-mobile-uat-20260904.png` | `docs/images/community/b08-community-feed-mobile-uat-20260904-annotated.png` | Served bytes equal annotated bytes; public UAT feed verified |
 | `/journey-visuals/b04-cart-desktop.png` | `docs/images/buyer/cart-desktop-production-8157ffa.png` | `docs/images/buyer/cart-desktop-production-8157ffa-annotated.png` | Served bytes equal annotated bytes |
 | `/journey-visuals/b04-cart-mobile.png` | `docs/images/buyer/cart-mobile-production-8157ffa.png` | `docs/images/buyer/cart-mobile-production-8157ffa-annotated.png` | Served bytes equal annotated bytes |
 | `/journey-visuals/b09-live-discovery-desktop.png` | `docs/images/buyer/live-discovery-desktop-production-6b24be3.png` | `docs/images/buyer/live-discovery-desktop-production-6b24be3-annotated.png` | Served bytes equal annotated bytes |
@@ -77,6 +89,8 @@ an absent number.
 | B02 search | `1` category context, `2` discovery surface, `3` Flash Sale |
 | B02 detail / choose | `1` product media, `2` variant and quantity, `3` AntiFake verification |
 | B03 open | `1` QR verification method, `2` QR image upload, `3` verification action |
+| B03 result | `1` QR verification header, `2` server-confirmed verification status, `3` provenance result details |
+| B08 feed | `1` Community feed, `2` synthetic DOCS_UAT author, `3` post interaction controls |
 | B03 enter-code | `1` selected Mã xác thực method, `2` verification-code field, `3` verification action |
 | B04 cart | `1` cart quantity/badge, `2` quantity controls |
 | B09 discover | `1` live-shopping section, `2` search/state controls, `3` live card |
@@ -93,14 +107,17 @@ an absent number.
 
 B02 `detail` and `choose` intentionally reuse the same product-detail state;
 their written marker guidance differs only where the user action differs.
-The 2026-09-03 local branch also binds B04 `discover` and
+The historical 2026-09-03 local branch also binds B04 `discover` and
 `product-detail`, B09 `shop`, plus the exact role-matched Admin overview states,
 to these accepted assets without copying or regenerating images. The public
 B04 aliases are production-verified at both target viewports on `78646d7`; the
 B03/open binding was deployed on `303d816` / run `92` and rechecked on
 `91f545e` / run `93`; the B03/enter-code binding is deployed and verified on
 `91f545e` / run `93`; B09/shop is deployed and verified on `6584292` / run
-`94`; the three Admin aliases remain pending approved-session verification.
+`94`. The current UAT/demo capture adds B03 `result` from the genuine
+`DOCS_UAT` positive QR state and B08 `feed` from the synthetic public
+`DOCS_UAT` Community state at both target viewports; the three Admin aliases
+remain pending approved-session verification.
 The route migration for
 Admin Help is `/admin/help/admin/...`; historical production evidence below
 remains historical unless explicitly updated.
@@ -195,6 +212,10 @@ the `8157ffa` pair is the current documentation asset.
 | Journey Center first-purchase shell | B04 step shell | `/help/buyer/first-purchase/add-to-cart` | 2026-08-25 | `717357c` | Guest/public shell; no credentials or PII | 390×844 | `docs/images/guide/help/journey-buyer-first-purchase-mobile-production-717357c.png` | Do not publish as final | Shell evidence only; feature visual pending |
 | QR unknown-result UAT | B03 QR verification | `/qr` | 2026-08-25 | `a0b74c4` | Deterministic `UAT-QR-IMAGE-20260825`; no credentials or PII | 1440×900 | `docs/images/qr/verification-desktop-production-a0b74c4.png` | `docs/images/qr/verification-desktop-production-a0b74c4-annotated.png` | UAT negative-result evidence only; `NOT_FOUND` |
 | QR unknown-result UAT | B03 QR verification | `/qr` | 2026-08-25 | `a0b74c4` | Deterministic `UAT-QR-IMAGE-20260825`; no credentials or PII | 390×844 | `docs/images/qr/verification-mobile-production-a0b74c4.png` | `docs/images/qr/verification-mobile-production-a0b74c4-annotated.png` | UAT negative-result evidence only; `NOT_FOUND` |
+| B03 QR positive result UAT | B03 QR verification | `/qr` | 2026-09-04 | `313c2ee` runtime / GitHub Actions run `99` / `DOCS_UAT` fixture | Deterministic synthetic QR input; no credentials, customer data or private verification secret | 1440×900 | `docs/images/qr/b03-positive-desktop-uat-20260904.png` | `docs/images/qr/b03-positive-desktop-uat-20260904-annotated.png` | Genuine server `VERIFIED` result from `QR_POSITIVE_LABEL_UAT`; raw and annotation privacy-reviewed |
+| B03 QR positive result UAT | B03 QR verification | `/qr` | 2026-09-04 | `313c2ee` runtime / GitHub Actions run `99` / `DOCS_UAT` fixture | Deterministic synthetic QR input; no credentials, customer data or private verification secret | 390×844 | `docs/images/qr/b03-positive-mobile-uat-20260904.png` | `docs/images/qr/b03-positive-mobile-uat-20260904-annotated.png` | Genuine server `VERIFIED` result from `QR_POSITIVE_LABEL_UAT`; raw and annotation privacy-reviewed |
+| B08 Community feed UAT | B08 Community feed | `/community` | 2026-09-04 | `313c2ee` runtime / GitHub Actions run `99` / `DOCS_UAT` fixture | Synthetic author, post and media; only DOCS_UAT rows are visible in the captured viewport; no credentials or external identity data | 1440×900 | `docs/images/community/b08-community-feed-desktop-uat-20260904.png` | `docs/images/community/b08-community-feed-desktop-uat-20260904-annotated.png` | Public managed feed; raw and annotation privacy-reviewed |
+| B08 Community feed UAT | B08 Community feed | `/community` | 2026-09-04 | `313c2ee` runtime / GitHub Actions run `99` / `DOCS_UAT` fixture | Synthetic author, post and media; only DOCS_UAT rows are visible in the captured viewport; no credentials or external identity data | 390×844 | `docs/images/community/b08-community-feed-mobile-uat-20260904.png` | `docs/images/community/b08-community-feed-mobile-uat-20260904-annotated.png` | Public managed feed; raw and annotation privacy-reviewed |
 
 ## Canonical journey visual coverage
 
@@ -206,12 +227,12 @@ visual or a production verification claim.
 |---|---|---|---|---|---|
 | B01 | `/help/buyer/account-start` | Desktop 1440×900 + Mobile 390×844 | `docs/images/auth/login-desktop-production-6b24be3.png`, `login-mobile-production-6b24be3.png`, `registration-desktop-production-6b24be3.png`, `registration-mobile-production-6b24be3.png` | Matching Desktop/Mobile annotated auth pairs under `docs/images/auth/` | Public login and registration entry plus authenticated profile/address read-only surfaces are evidenced; registration and mutations remain `Pending`, so B01 is `PARTIAL` |
 | B02 | `/help/buyer/discover` | Desktop 1440×900 + Mobile 390×844 | `catalog-home`, `catalog-categories`, `catalog-category-results`, `catalog-search-results`, `shop-detail` and `product-detail` raw pairs under `docs/images/buyer/` | Matching Desktop/Mobile annotated pairs under `docs/images/buyer/` | Public home, category, filtered-results, search, Shop-detail and product-detail surfaces captured with clean browser diagnostics; Pending sort/review/provenance/authenticated actions remain open, so B02 is `PARTIAL` |
-| B03 | `/help/qr/verify-product` | Desktop 1440×900 + Mobile 390×844 | `docs/images/qr/b03-open-desktop-production-78646d7.png`, `docs/images/qr/b03-open-mobile-production-78646d7.png`, `docs/images/qr/b03-enter-code-desktop-production-303d816.png`, `docs/images/qr/b03-enter-code-mobile-production-303d816.png`; negative-result raw pair remains UAT evidence only | `docs/images/qr/b03-open-desktop-production-78646d7-annotated.png`, `docs/images/qr/b03-open-mobile-production-78646d7-annotated.png`, `docs/images/qr/b03-enter-code-desktop-production-303d816-annotated.png`, `docs/images/qr/b03-enter-code-mobile-production-303d816-annotated.png`; negative-result annotations remain UAT evidence only | B03/open and B03/enter-code are public read-only visuals; `Do not publish as final` the negative-result evidence; positive result fixture and final result capture remain pending |
+| B03 | `/help/qr/verify-product` | Desktop 1440×900 + Mobile 390×844 | `docs/images/qr/b03-open-desktop-production-78646d7.png`, `docs/images/qr/b03-open-mobile-production-78646d7.png`, `docs/images/qr/b03-enter-code-desktop-production-303d816.png`, `docs/images/qr/b03-enter-code-mobile-production-303d816.png`, `docs/images/qr/b03-positive-desktop-uat-20260904.png`, `docs/images/qr/b03-positive-mobile-uat-20260904.png`; negative-result raw pair remains UAT evidence only | `docs/images/qr/b03-open-desktop-production-78646d7-annotated.png`, `docs/images/qr/b03-open-mobile-production-78646d7-annotated.png`, `docs/images/qr/b03-enter-code-desktop-production-303d816-annotated.png`, `docs/images/qr/b03-enter-code-mobile-production-303d816-annotated.png`, `docs/images/qr/b03-positive-desktop-uat-20260904-annotated.png`, `docs/images/qr/b03-positive-mobile-uat-20260904-annotated.png`; negative-result annotations remain UAT evidence only | B03/open, B03/enter-code and the positive-result UAT fixture visual are captured at both viewports; positive-result raw/annotated evidence is PII-safe and marker-verified; the broader B03 feature remains `PARTIAL` |
 | B04 | `/help/buyer/first-purchase` | Desktop 1440×900 + Mobile 390×844 | `docs/images/buyer/cart-desktop-production-8157ffa.png`, `docs/images/buyer/cart-mobile-production-8157ffa.png` | `docs/images/buyer/cart-desktop-production-8157ffa-annotated.png`, `docs/images/buyer/cart-mobile-production-8157ffa-annotated.png` | Article overview/start-step and Desktop/Mobile selector retested on production `13c18f4`; accepted cart badge visuals remain registered at `8157ffa`; `Pending`: cart quote/order/payment and full first-purchase evidence remain open, so B04 stays `PARTIAL` |
 | B05 | `/help/buyer/orders` | Desktop 1440×900 + Mobile 390×844 | Pending PII-safe owned order-detail capture | Pending | The existing seeded detail is readable but exposes recipient fields; receive/review/dispute state-transition evidence and a PII-safe final capture remain pending |
 | B06 | `/help/buyer/voucher` | Desktop 1440×900 + Mobile 390×844 | Pending authenticated voucher capture | Pending | Eligibility/application runtime and a final Desktop/Mobile capture remain pending |
 | B07 | `/help/buyer/chat-shop` | Desktop 1440×900 + Mobile 390×844 | Pending PII-safe two-session chat capture | Pending | The existing history is readable but exposes participant names; send/receive/reconnect, supported metadata and a PII-safe final capture remain pending |
-| B08 | `/help/buyer/community` | Desktop 1440×900 + Mobile 390×844 | Pending PII-safe public fixture | Pending | Public route passes, but current seeded feed renders author data; do not publish a screenshot until a PII-safe fixture exists |
+| B08 | `/help/buyer/community` | Desktop 1440×900 + Mobile 390×844 | `docs/images/community/b08-community-feed-desktop-uat-20260904.png`, `b08-community-feed-mobile-uat-20260904.png` | `docs/images/community/b08-community-feed-desktop-uat-20260904-annotated.png`, `b08-community-feed-mobile-uat-20260904-annotated.png` | Public DOCS_UAT feed captured and privacy-reviewed at both target viewports; interaction/report steps remain Pending |
 | B09 | `/help/buyer/livestream` | Desktop 1440×900 + Mobile 390×844 | `docs/images/buyer/live-discovery-desktop-production-6b24be3.png`, `docs/images/buyer/live-discovery-mobile-production-6b24be3.png`; B09/shop reuses B02 product-detail raw pair | `docs/images/buyer/live-discovery-desktop-production-6b24be3-annotated.png`, `docs/images/buyer/live-discovery-mobile-production-6b24be3-annotated.png`; B09/shop reuses B02 product-detail annotated pair | Public discovery and live-origin product-detail shell are accepted; Pending provider, safe room, interaction and purchase steps remain `PARTIAL` |
 | S01 | `/help/seller/register-shop` | Desktop 1440×900 + Mobile 390×844 | Pending authenticated Seller submit capture with synthetic KYC/media fixture | Pending raw + annotated Desktop/Mobile pair | Submit/state transition, KYC/media fixture and final capture remain pending; no real identity documents |
 | S02 | `/help/seller/shop-setup` | Desktop 1440×900 + Mobile 390×844 | Pending owned approved-Shop Seller capture | Pending raw + annotated Desktop/Mobile pair | Business/profile edit persistence after reload and final capture remain pending; use isolated non-business-critical data |
@@ -263,6 +284,10 @@ upgrade B04 beyond `PARTIAL`.
 - QR B03 negative-result annotation legend: `1` QR method, `2` image upload
   control, `3` server-owned unknown-result state. These images use deterministic
   `UAT-QR-IMAGE-20260825` fixture and are not positive-verification evidence.
+- QR B03 positive-result annotation legend: `1` QR verification header, `2`
+  server-confirmed verification status, `3` provenance result details. The
+  2026-09-04 pair uses only `DOCS_UAT` data and a synthetic verification value;
+  it is valid UAT evidence, not a payment/provider completion claim.
 - B02 product-detail annotation legend: Desktop uses `1` product media, `2`
   product metadata and variant controls, `3` AntiFake information panel.
   Mobile uses `1` product image, `2` product name/price, `3` variant selector.
@@ -285,6 +310,23 @@ upgrade B04 beyond `PARTIAL`.
   summary, `3` referral-code/join area. These captures document read-only
   program discovery only; joining, attribution, conversion and payout remain
   unverified.
+
+## 2026-09-04 current UAT/demo fixture verification
+
+The owner-confirmed current runtime is `UAT_DEMO`, not customer production.
+The additive `DOCS_UAT` fixture graph passed twice through the guarded ensure,
+the read-only verifier reported a genuine positive `VERIFIED` QR result, and
+the isolated Playwright capture test passed at Desktop `1440×900` and Mobile
+`390×844`. GitHub Actions run `99` deployed Front-End revision `313c2ee` to
+the approved UAT/demo runtime, and the deployed Help binding probe passed at
+both viewports. The four raw/annotated files are privacy-reviewed and use only
+synthetic fixture content; no general functional UAT was rerun.
+
+| Binding set | Current UAT evidence |
+|---|---|
+| B03/result | `/qr` accepted the namespaced positive code and returned `data-status=VERIFIED`; the capture test passed 2/2 viewports with marker selectors `.qr-header`, `[data-testid="verification-result"]` and `.qr-result-details` in order. |
+| B08/feed | `/community` rendered the public synthetic feed; the capture test passed 2/2 viewports with marker selectors `.community-content`, the DOCS_UAT post header and its post-action controls in order. |
+| Database/fixture safety | `DOCS_UAT_FIXTURES_VALID`; `LEGACY_DEMO_DATA_PRESENT` is acknowledged and preserved; `UNCLASSIFIED_NEW_DATA=false`; provider side effects were denied and none occurred. |
 
 ## 2026-09-03 targeted production verification
 

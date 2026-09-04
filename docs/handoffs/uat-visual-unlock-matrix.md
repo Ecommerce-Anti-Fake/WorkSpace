@@ -14,17 +14,18 @@ The older `isolated target` wording in some row notes means the approved
 `UAT_DEMO` runtime plus a fresh isolated browser context; it does not mean a
 second VPS, DNS name or external-UAT provisioning blocker.
 
-Current mutation safety hold: the read-only audit of the configured database
-found five external-domain user accounts, all 13 user display names without
-synthetic markers and six shop names without synthetic markers. Until that
-possible mixed-data signal is resolved by owner confirmation or a reviewed
-disposable database, no fixture row is capturable.
+Current data classification: the owner confirmed the existing runtime/database
+as UAT/demo and classified all pre-existing rows as immutable
+`LEGACY_DEMO_DATA`. The audit continues to report legacy external/unmarked
+signals, but they do not block additive `DOCS_UAT_MANAGED` fixtures. Only
+managed rows are changed or cleaned up; destructive reset and provider side
+effects remain denied.
 
 | VISUAL_STEP | PREVIOUS_BLOCKER | UAT_FIXTURE | UAT_ROUTE | NOW_CAPTURABLE | PROVIDER_STILL_REQUIRED |
 |---|---|---|---|---|---|
 | B01/profile | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` | `/profile` | No — isolated target/browser proof pending | None for read-only profile |
 | B01/address | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` | `/profile/address` | No — isolated target/browser proof pending | None for read-only address |
-| B03/positive-result | `BLOCKED_FIXTURE` | `QR_POSITIVE_LABEL_UAT` | `/qr` | No — reset, API lookup and browser proof pending | None |
+| B03/positive-result | `BLOCKED_FIXTURE` | `QR_POSITIVE_LABEL_UAT` | `/qr` | Yes — genuine `VERIFIED` result captured at Desktop/Mobile; raw and annotated evidence accepted | None |
 | B04/add-to-cart | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` + `SELLER_DISPOSABLE_BUSINESS_UAT` | `/product/:id`, `/cart` | No — isolated target/browser proof pending | None for cart state |
 | B04/checkout-pre-provider | `BLOCKED_FIXTURE` | `ACTIVE_BUYER_UAT` + `ORDER_DETAIL_PII_SAFE_UAT` | `/checkout` | No — isolated target/browser proof pending | PayOS/GHN only for provider completion |
 | B04/order-read-only | `BLOCKED_FIXTURE` | `ORDER_DETAIL_PII_SAFE_UAT` | `/profile/orders` | No — isolated target/browser proof pending | None |
@@ -37,7 +38,7 @@ disposable database, no fixture row is capturable.
 | B07/open-history | `BLOCKED_FIXTURE` | `CHAT_SYNTHETIC_TWO_SESSION_UAT` | `/chat` | No — isolated target/browser proof pending | None for REST history |
 | B07/send | `BLOCKED_FIXTURE` | `CHAT_SYNTHETIC_TWO_SESSION_UAT` | `/chat` | No — controlled UAT send/browser proof pending | Socket.IO/Redis for realtime delivery |
 | B07/reconnect | `BLOCKED_FIXTURE` | `CHAT_SYNTHETIC_TWO_SESSION_UAT` | `/chat/:roomId` | No — two isolated sessions/browser proof pending | Socket.IO/Redis runtime |
-| B08/feed | `BLOCKED_FIXTURE` | `COMMUNITY_PUBLIC_SAFE_UAT` | `/community` | No — isolated target/browser proof pending | None for seeded public content |
+| B08/feed | `BLOCKED_FIXTURE` | `COMMUNITY_PUBLIC_SAFE_UAT` | `/community` | Yes — synthetic DOCS_UAT feed captured at Desktop/Mobile; raw and annotated evidence accepted | None for seeded public content |
 | B08/interact | `BLOCKED_FIXTURE` | `COMMUNITY_PUBLIC_SAFE_UAT` | `/community` | No — controlled UAT interaction/browser proof pending | None |
 | B08/report | `BLOCKED_FIXTURE` | `COMMUNITY_PUBLIC_SAFE_UAT` | `/community` | No — form surface/browser proof pending | None; do not submit harmful reports |
 | B09/watch-shell | `BLOCKED_FIXTURE` | `ACTIVE_SELLER_UAT` + `SELLER_DISPOSABLE_BUSINESS_UAT` | `/live`, `/live/:id` | No — live fixture/browser proof pending | Agora for authenticated media lifecycle |
@@ -88,17 +89,23 @@ absent; they remain `NOT_IMPLEMENTED`, not fixture failures. PayOS, GHN,
 Agora, realtime, Cloudinary, Firebase and VietQR/payout remain provider rows
 until an isolated configuration and safe runtime call are proven.
 
-Current honest calculation before UAT_DEMO fixture/runtime proof and while the
-database safety hold is active:
+Current calculation after UAT_DEMO additive fixture verification and browser
+evidence for the positive QR and public Community feed:
 
 ```text
 FIXTURE_BLOCKED_BEFORE=60
-FIXTURE_BLOCKED_AFTER=60
+FIXTURE_BLOCKED_AFTER=58
 PROVIDER_BLOCKED_BEFORE=5
 PROVIDER_BLOCKED_AFTER=5
-VISUAL_STEPS_NOW_UNLOCKED=0
+VISUAL_STEPS_NOW_UNLOCKED=2
+NEWLY_COMPLETED_VISUALS=B03/positive-result,B08/feed
 ```
 
-The `AFTER` values change only after additive fixture verification and browser
-smoke produce runtime evidence. This document intentionally does not claim
-that source code or a seed manifest alone makes a visual capturable.
+The current UAT/demo binding commit `313c2ee3c980b49be2c49602bb0642facea47ba3`
+was deployed through GitHub Actions run `99`. The isolated deployed Help probe
+passed all four B03/B08 Desktop/Mobile checks; raw and annotated pairs were
+privacy-reviewed before promotion.
+
+The remaining 58 fixture rows still require their own browser/runtime evidence;
+fixture creation alone is not a capture pass. This document intentionally does
+not claim that source code or a seed manifest alone makes a visual capturable.

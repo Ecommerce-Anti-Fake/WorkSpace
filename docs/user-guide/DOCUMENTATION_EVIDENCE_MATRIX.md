@@ -1,13 +1,43 @@
 # AntiFake Documentation Evidence Matrix
 
-Snapshot: 2026-09-03
-Production Front-End: `65842923f7c3b33a3176653d651ff4c6a53b89e2`
+Snapshot: 2026-09-04
+Historical Front-End reference: `65842923f7c3b33a3176653d651ff4c6a53b89e2`
 Accepted UAT evidence baseline: `8157ffa`
 
 This document is the final documentation/evidence boundary. It does not rerun
 or downgrade the accepted UAT result (`237/237` applicable passed). `PARTIAL`
 means that a documented subset is evidenced while another step remains open;
 the terminal disposition column names the exact remaining dependency.
+
+## Current environment and fixture evidence
+
+```text
+ANTIFAKE_CURRENT_ENVIRONMENT=UAT_DEMO
+UAT_RUNTIME=https://antifake.io.vn
+UAT_API=https://api.antifake.io.vn
+DATA_CLASSIFICATION=LEGACY_DEMO_PLUS_DOCS_UAT_MANAGED
+OWNER_MIXED_DATA_CLASSIFICATION=CONFIRMED
+SEPARATE_UAT_PROVISIONING_REQUIRED=NO
+DESTRUCTIVE_RESET_ALLOWED=NO
+```
+
+The owner-approved current runtime is UAT/demo. Existing rows are preserved as
+`LEGACY_DEMO_DATA`; only new deterministic `DOCS_UAT_MANAGED` rows are owned by
+the fixture scripts. The additive ensure was run twice, the read-only verifier
+and audit passed, and no payment, payout, shipment, external KYC or livestream
+side effect occurred. The B03 positive-result and B08 Community feed captures
+passed at both required viewports and are registered in the visual manifest. The functional
+`237/237` baseline was not rerun.
+
+## Current UAT/demo binding verification — 2026-09-04
+
+Front-End revision `313c2ee3c980b49be2c49602bb0642facea47ba3` deployed through
+the existing workflow in GitHub Actions run `99`. An isolated Playwright
+probe against the deployed UAT/demo runtime passed the B03 positive-result and
+B08 Community Help bindings at Desktop `1440x900` and Mobile `390x844` (4/4).
+The final raw/annotated captures were then promoted after privacy review. This
+is current UAT/demo evidence; it does not close the broader visual goal or
+rerun the functional baseline.
 
 ## Targeted Help Center production verification
 
@@ -30,7 +60,7 @@ was available for a new current-revision Admin visual sign-off.
 | Public Help content | `/help` loaded at Desktop `1440x900` and Mobile `390x844`; Buyer, Shop, Affiliate and QR entries were accessible; Admin entries were absent from categories, search, related/journey links and the legacy public Admin URL. |
 | Admin Help content | Approved run `90` baseline: `/admin/help` loaded inside the Admin shell with the `Hướng dẫn` sidebar item, active state, 12 Admin article cards and working `Admin Dashboard` search. |
 | Authorization | Approved run `90` baseline: Guest -> `/auth`; Buyer -> `/`; Seller -> `/`; Admin -> `/admin/help`. Direct A01 article navigation was allowed only for Admin. |
-| Visual/marker evidence | Fifteen published step bindings use eleven unique raw/annotated Desktop/Mobile pairs; all 22 served assets are complete, readable and PII-safe. Marker order and explanations match, including B03/open, B03/enter-code and the B09/shop B02 reuse mapping. |
+| Visual/marker evidence | Seventeen published step bindings use thirteen unique raw/annotated Desktop/Mobile pairs; all 26 served assets are complete, readable and PII-safe. Marker order and explanations match, including the UAT B03 result and B08 feed pairs. |
 | Responsive evidence | Public Help, Admin Help and accepted article renders fit the target viewports; no horizontal overflow or visual overlap was observed. |
 | Browser diagnostics | No console messages were found on the inspected public and Admin Help pages. No production mutation, payment, payout or general UAT rerun was performed. |
 
@@ -66,9 +96,9 @@ those remain accurate.
 
 ## Local branch visual-reuse checkpoint — 2026-09-03
 
-The current Front-End branch binds six additional Help steps to existing
-accepted visual pairs and adds the B03/open and B03/enter-code public entry/input
-visuals. The two public
+The historical 2026-09-03 Front-End branch bound six additional Help steps to
+existing accepted visual pairs and added the B03/open and B03/enter-code public
+entry/input visuals. The two public
 B04 aliases are now production-verified; the three Admin aliases remain
 pending an approved Admin session. B09/shop reuses the accepted B02/detail
 pair after a read-only live-origin product-detail check:
@@ -82,11 +112,13 @@ pair after a read-only live-origin product-detail check:
 | ADMIN-REVIEW/product-review | A05/pending | Same Admin product-review queue state | Route/image smoke only with test role; approved Admin session pending |
 | ADMIN-OPERATIONS/dashboard | A01/open | Same Admin role and Dashboard shell | Route/image smoke only with test role; approved Admin session pending |
 
-`npm run test:help` verifies the eight added path/marker bindings and existing
-served asset pairs locally. The two B04 aliases and both B03 entry/input states
-plus B09/shop reduce the broader missing runnable visual count from 70 to 65; the Admin
-aliases do not count until approved session evidence exists. The B03 positive
-result state remains fixture-gated.
+`npm run test:help` verifies the added path/marker bindings and existing
+served asset pairs locally. This historical checkpoint records the two B04
+aliases, both B03 entry/input states and B09/shop as already accepted; the
+current UAT/demo B03 result and B08 feed additions are recorded above and
+reduce the required visual remainder to 63 and the fixture-blocked remainder
+to 58. The three Admin aliases do not count until approved session evidence
+exists.
 
 ## Evidence-axis status
 
@@ -94,12 +126,12 @@ result state remains fixture-gated.
 |---|---|---|---|---|---|---|---|---|---|
 | B01 Account and first use | Buyer | SOURCE_VERIFIED | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | Positive registration, OTP/Google bridge and profile/address mutation: `BLOCKED_PROVIDER_SANDBOX` plus disposable account fixture |
 | B02 Search and discovery | Buyer | SOURCE_VERIFIED | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | Review/sort/provenance and authenticated action target: `BLOCKED_FIXTURE` |
-| B03 QR verification | Buyer/QR | SOURCE_VERIFIED | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | B03/open and B03/enter-code public entry/input visuals complete; known positive label/result and final feature capture: `BLOCKED_FIXTURE` |
+| B03 QR verification | Buyer/QR | SOURCE_VERIFIED | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | B03/open, B03/enter-code and the positive-result UAT fixture visual are captured at both viewports; broader QR feature behavior remains `PARTIAL` |
 | B04 Complete purchase | Buyer | SOURCE_VERIFIED | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | Discover and product-detail visuals complete via verified B02 reuse; cart/order fixture: `BLOCKED_FIXTURE`; GHN/PayOS checkout completion: `BLOCKED_PROVIDER_SANDBOX` |
 | B05 Order management | Buyer | SOURCE_VERIFIED | PARTIAL | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | PII-safe owned order and receive/review/dispute state: `BLOCKED_FIXTURE` |
 | B06 Voucher | Buyer | SOURCE_VERIFIED | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Active eligible voucher and matching offer/order: `BLOCKED_FIXTURE` |
 | B07 Chat with Shop | Buyer/Seller | SOURCE_VERIFIED | PARTIAL | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Synthetic two-session thread: `BLOCKED_FIXTURE`; realtime delivery/reconnect: `BLOCKED_PROVIDER_SANDBOX` |
-| B08 Community | Buyer/Guest | SOURCE_VERIFIED | PARTIAL | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | PII-safe public author/post fixture: `BLOCKED_FIXTURE` |
+| B08 Community | Buyer/Guest | SOURCE_VERIFIED | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | Public DOCS_UAT feed visual is accepted; interaction/report fixture evidence remains `BLOCKED_FIXTURE` |
 | B09 Livestream | Buyer | SOURCE_VERIFIED | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | Public discovery and live-origin product-detail visual complete via accepted B02 reuse; authenticated join/media/interactions and safe room capture: `BLOCKED_PROVIDER_SANDBOX` (Agora) plus live fixture |
 | S01 Shop registration | Seller | SOURCE_VERIFIED | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Disposable seller onboarding with synthetic KYC/media: `BLOCKED_FIXTURE` plus upload/auth provider |
 | S02 Shop setup | Seller | SOURCE_VERIFIED | PARTIAL | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Isolated owned Shop for edit/reload evidence: `BLOCKED_FIXTURE` |
@@ -131,11 +163,13 @@ result state remains fixture-gated.
   for a final PII-reviewed capture.
 - `BLOCKED_PROVIDER_SANDBOX`: the missing step touches an external provider and
   needs its UAT configuration.
-- `UNSAFE_PRODUCTION`: the action must not be performed on current production.
+- `UNSAFE_PRODUCTION`: the real external/financial action remains prohibited
+  in the current UAT_DEMO runtime unless an independently approved sandbox is
+  configured; historical production evidence keeps its original label.
 - `NOT_IMPLEMENTED` and `NOT_APPLICABLE` are product/current-UAT boundaries,
   not credential blockers.
 
-## Help Center quality remediation - 2026-09-03
+## Help Center quality remediation - 2026-09-04
 
 The canonical step-level report is
 `docs/user-guide/HELP_CENTER_QUALITY_AUDIT.md`. The implementation was
@@ -146,7 +180,7 @@ historical production evidence remains labelled separately.
 | Evidence axis | Local result | Remaining boundary |
 |---|---|---|
 | Runtime/text completeness | 30 articles and 88 steps are registered; every article and step has user-facing title/description text | Full feature-flow UAT remains `PARTIAL` where the product fixture or provider is unavailable |
-| Visual completeness | 15 production-accepted step bindings with 22 unique served assets, including 3 B02-reuse steps (B04 discover, B04 product-detail and B09 shop) plus the B03/open and B03/enter-code public entry/input states; 3 additional Admin aliases remain local | 65 runnable steps still need a safe screenshot; 8 Admin steps are `NOT_IMPLEMENTED` because their frontend route is absent; the 3 Admin aliases need approved-session verification |
+| Visual completeness | 17 accepted step bindings with 26 unique served assets, including the UAT B03 result and B08 feed pairs; the current required remainder is 63 | 58 fixture-backed steps, 5 provider-dependent steps and 8 `NOT_IMPLEMENTED` Admin routes remain; Admin aliases still need approved-session verification |
 | Marker correctness | All 18 local visual bindings declare marker metadata and written guidance; automated sequence checks pass | Automated checks do not replace the pending approved-session visual review of the 3 Admin aliases |
 | Role visibility | Public registry/search excludes `admin`; Admin registry is rendered only in Admin Help; B09/shop is visible on the public route after run `94` | New approved Admin-session visual verification remains unavailable |
 | Authorization | `/admin/help/*` is under the existing Admin parent `ProtectedRoute roles=["admin"]`; approved guest/buyer/seller/admin checks remain the run `90` baseline | No new approved Admin-session regression was available on run `94` |
@@ -183,10 +217,10 @@ Supply any secret only through the approved secure environment mechanism.
   link/provenance is a controlled UAT database mutation.
 - Can existing seed/demo data satisfy it: source creates 24 labels, but the
   random batch IDs and plaintext codes are not exposed by the seed output and a
-  current-production positive label is not validated. Only an explicitly
-  provisioned matching active record can satisfy it.
-- Can Codex create it safely: not on current production; only in an approved
-  isolated UAT database with fixture approval.
+  prior current-runtime positive label was not validated. The new
+  `DOCS_UAT` graph now supplies the matching active record.
+- Can Codex create it safely: yes, in the owner-approved current `UAT_DEMO`
+  runtime through the guarded additive `DOCS_UAT` fixture command.
 - Cleanup required: remove the disposable label, batch link and provenance, or
   discard the isolated UAT database.
 - Journeys unlocked: B03 positive verification.
@@ -209,10 +243,10 @@ Supply any secret only through the approved secure environment mechanism.
 - Read-only or mutation: read-only is sufficient for B05 detail and tracking;
   receive/review/dispute transitions require a separate controlled order.
 - Can existing seed/demo data satisfy it: seed creates completed orders for the
-  buyer/seller relationships, but the current production detail exposes
+  buyer/seller relationships, but the legacy current-runtime detail exposes
   recipient fields, so it is not an approved final visual target.
-- Can Codex create it safely: not in current production; use a sanctioned
-  sanitized UAT database or owner-provided read-only record.
+- Can Codex create it safely: yes, in the current `UAT_DEMO` runtime with the
+  guarded `DOCS_UAT` order graph and synthetic recipient fields.
 - Cleanup required: none for an approved historical read-only record; delete a
   disposable UAT order and its dependent records after a controlled run.
 - Journeys unlocked: B05 Buyer orders and the read-only portion of S05/A01.
@@ -230,11 +264,13 @@ Supply any secret only through the approved secure environment mechanism.
 - PII requirements: synthetic shipping values only.
 - Read-only or mutation: `CONTROLLED_UAT_MUTATION`; do not use a real order.
 - Can existing seed/demo data satisfy it: seeded `paid`, `shipping`, completed
-  and cancelled records prove source shape, but no current-production
-  transition is approved for documentation.
-- Can Codex create it safely: only after explicit isolated-fixture approval.
-- Cleanup required: delete the isolated order and dependent payment/escrow/
-  allocation records or reset the UAT database.
+  and cancelled records prove source shape; the new `DOCS_UAT` graph now
+  provides valid lifecycle states without changing legacy orders.
+- Can Codex create it safely: yes, after the explicit additive UAT preflight;
+  only the reserved `DOCS_UAT` order graph may be changed.
+- Cleanup required: delete only the managed order and dependent
+  payment/escrow/allocation records when separately approved; never reset the
+  shared demo database.
 - Journeys unlocked: S05 transitions and Admin read-only status presentation.
 - Screenshots unlocked: S05 Desktop/Mobile transition states.
 
@@ -258,8 +294,9 @@ Supply any secret only through the approved secure environment mechanism.
   satisfy basic history, but their participant display names and seeded media
   are not an approved final documentation target and do not prove two-session
   delivery.
-- Can Codex create it safely: not in current production without explicit
-  isolated mutation approval; the API supports POST thread and message paths.
+- Can Codex create it safely: yes, in the current `UAT_DEMO` runtime with
+  explicit additive mutation approval; the API supports POST thread and
+  message paths.
 - Cleanup required: delete only the disposable thread/messages and any media.
 - Journeys unlocked: B07 Buyer/Seller chat and realtime recovery.
 - Screenshots unlocked: B07 Desktop/Mobile two-session history/send states.
@@ -281,8 +318,8 @@ Supply any secret only through the approved secure environment mechanism.
 - Can existing seed/demo data satisfy it: eight public seed posts exist, but
   their author/Shop relationships and media are not approved as a PII-safe
   final capture without an explicit alias review.
-- Can Codex create it safely: not on current production; create only in an
-  isolated approved UAT fixture.
+- Can Codex create it safely: yes, in the current `UAT_DEMO` runtime as a
+  namespaced synthetic post owned by `DOCS_UAT`.
 - Cleanup required: delete the synthetic post, comments, reactions and media.
 - Journeys unlocked: B08 public Community.
 - Screenshots unlocked: B08 Desktop/Mobile feed and optional post detail.
@@ -308,8 +345,9 @@ Supply any secret only through the approved secure environment mechanism.
   Shops and seeded active product records, so no new account is needed. Those
   records are not disposable mutation targets; the missing part is isolated
   business data for create/edit/voucher/order evidence.
-- Can Codex create it safely: only with an approved isolated Shop/data target;
-  never mutate the existing business-critical seeded records on production.
+- Can Codex create it safely: yes, in the current `UAT_DEMO` runtime through
+  the reserved `DOCS_UAT` Shop/data graph; legacy business records remain
+  immutable.
 - Cleanup required: delete disposable Offer, media, Variant, Voucher, Shop and
   test Order records as applicable.
 - Journeys unlocked: S02, S03, S04, S05 and S06; seller dashboard read-only
@@ -331,8 +369,10 @@ Supply any secret only through the approved secure environment mechanism.
   evidenced; attribution/conversion/approval is `CONTROLLED_UAT_MUTATION`.
 - Can existing seed/demo data satisfy it: active program/member and seeded
   codes/conversions exist, and the read-only program view is accepted; the
-  full isolated attribution lifecycle is not approved on current production.
-- Can Codex create it safely: only in isolated UAT with explicit approval.
+  full payable attribution lifecycle is not approved in the current UAT/demo
+  runtime; the managed conversion is non-payable.
+- Can Codex create it safely: yes, in the current `UAT_DEMO` runtime with
+  explicit additive approval and a non-payable ledger.
 - Cleanup required: remove the isolated conversion/order/ledger records.
 - Journeys unlocked: S07 conversion and payout-ledger portions.
 - Screenshots unlocked: S07 conversion/ledger Desktop/Mobile states.
@@ -354,7 +394,8 @@ Supply any secret only through the approved secure environment mechanism.
 - Can existing seed/demo data satisfy it: user01/user02 have verified KYC and
   the seed contains document rows, but that does not provide a safe pending
   onboarding target or permission to alter a production identity.
-- Can Codex create it safely: only in approved UAT with synthetic media.
+- Can Codex create it safely: yes, in the current `UAT_DEMO` runtime with
+  synthetic placeholder media and no external KYC submission.
 - Cleanup required: delete submission, document and media records.
 - Journeys unlocked: S01 KYC portion; not A03, whose Admin UI is absent.
 - Screenshots unlocked: S01 Desktop/Mobile upload/status states.
@@ -375,12 +416,12 @@ Supply any secret only through the approved secure environment mechanism.
   account number, email, phone or identity document contents.
 - Read-only or mutation: read-only; queue creation is a controlled UAT fixture
   mutation. Admin status changes, user deletion and wallet adjustment are
-  prohibited on current production.
+  prohibited in the current UAT/demo runtime for legacy or financial records.
 - Can existing seed/demo data satisfy it: seeded moderation/shop/withdrawal
   records exist and Admin read-only routes pass, but current records are not an
   approved final PII-safe list/detail target.
-- Can Codex create it safely: only in an isolated UAT dataset; never alter
-  production roles or financial state.
+- Can Codex create it safely: yes, in the current `UAT_DEMO` runtime for
+  reserved synthetic review rows; never alter legacy roles or financial state.
 - Cleanup required: remove synthetic queue/user/withdrawal records in UAT.
 - Journeys unlocked: A02 and A04 read-only detail; A08 financial status display.
 - Screenshots unlocked: A02, A04 and A08 Desktop/Mobile read-only visuals.
@@ -399,7 +440,7 @@ non-provider column records work that can remain documented independently.
 | Cloudinary/upload storage | S01, S03, S04, B07 media steps | Upload and serve synthetic PNG/JPG/PDF media over HTTPS | UAT cloud name, API key/secret in secret storage, signed/upload policy and disposable media set | `PROVIDER_MUTATION` | Yes. Text/read-only product and chat portions can be documented without upload |
 | Firebase Auth bridge | B01 registration/OTP/Google; S01 onboarding | Disposable account creation and verification/bridge callback | Frontend Firebase settings and backend Admin values in UAT secret storage; approved disposable identity | `PROVIDER_MUTATION` | Yes. Public auth shell, protected routes and negative boundaries are verified |
 | Firebase FCM | Notification utility | Register UAT browser token and deliver one test push | Firebase Admin values, frontend VAPID key, browser permission and UAT device/token | `PROVIDER_MUTATION` | Yes. In-app notification read-only surface does not require FCM |
-| VietQR / payout provider | S08/A08 payout account verification | Resolve a synthetic bank account and complete sandbox payout path | Provider sandbox URL/client values, synthetic account, and `PAYOUT_ACCOUNT_ENCRYPTION_KEY` in UAT secret storage | `PROVIDER_MUTATION`; current-production withdrawal is `PROHIBITED_PRODUCTION_MUTATION` | Yes. Wallet/ledger and masked payout read-only views are already evidenced |
+| VietQR / payout provider | S08/A08 payout account verification | Resolve a synthetic bank account and complete sandbox payout path | Provider sandbox URL/client values, synthetic account, and `PAYOUT_ACCOUNT_ENCRYPTION_KEY` in UAT secret storage | `PROVIDER_MUTATION`; real withdrawal remains `PROHIBITED_PRODUCTION_MUTATION` in UAT_DEMO | Yes. Wallet/ledger and masked payout read-only views are already evidenced |
 
 ## Mutation boundary
 
@@ -408,7 +449,7 @@ non-provider column records work that can remain documented independently.
 | `SAFE_UAT_MUTATION` | No remaining production action; the B04 cart badge mutation is already complete and restored | Disposable isolated UAT data only; record baseline and verify cleanup |
 | `CONTROLLED_UAT_MUTATION` | Synthetic QR/business fixture creation, isolated order transitions, chat messages, community post, vouchers and affiliate ledger | Requires a named fixture, explicit approval and cleanup; never a real user/order |
 | `PROVIDER_MUTATION` | PayOS/GHN sandbox, Agora, upload/storage, Firebase/FCM, payout/VietQR | Provider sandbox only; secrets stay outside docs and source |
-| `PROHIBITED_PRODUCTION_MUTATION` | Real payment/refund/settlement, withdrawal, wallet adjustment, destructive Admin action, production role change | Must not execute on current production `13c18f4`/`8157ffa` |
+| `PROHIBITED_PRODUCTION_MUTATION` | Real payment/refund/settlement, withdrawal, wallet adjustment, destructive Admin action, role change | Must not execute in the current `UAT_DEMO` runtime; historical production revisions `13c18f4`/`8157ffa` retain their original evidence labels |
 
 ## Visual persistence closeout
 

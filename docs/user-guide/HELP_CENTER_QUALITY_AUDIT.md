@@ -1,6 +1,6 @@
 # AntiFake Help Center Quality Audit
 
-Audit date: `2026-09-03`
+Audit date: `2026-09-04`
 
 This is the canonical step-level quality report for the Help Center and
 Journey Center. It records the local remediation separately from historical
@@ -16,8 +16,34 @@ VISUAL_GUIDANCE_STATUS=PASS_FOR_PUBLISHED_BINDINGS
 ADMIN_HELP_ACCESS_STATUS=PASS_PRODUCTION
 DOCUMENTATION_STATUS=COMPLETE_WITH_PRODUCTION_VERIFICATION
 JOURNEY_CENTER_STATUS=PASS_PRODUCTION_TARGETED
-VISUAL_EVIDENCE_STATUS=PASS_FOR_PUBLISHED_BINDINGS
+VISUAL_EVIDENCE_STATUS=PASS_FOR_PUBLISHED_BINDINGS_PLUS_UAT_B03_RESULT_B08_FEED
 GOAL_STATUS=COMPLETE_TARGETED_HELP_CENTER
+```
+
+## Current UAT/demo fixture reconciliation — 2026-09-04
+
+The owner confirmed `ANTIFAKE_CURRENT_ENVIRONMENT=UAT_DEMO` for the existing
+AntiFake runtime and classified all pre-existing records as
+`LEGACY_DEMO_DATA`. The guarded additive fixture system created only
+`DOCS_UAT_MANAGED` rows; no legacy row was renamed, updated, deleted or reset.
+The read-only verifier passed the Buyer/Seller/Admin graph, valid order
+lifecycle states and positive QR provenance. The dedicated Playwright capture
+test passed the B03 positive result and public B08 Community feed at Desktop
+`1440x900` and Mobile `390x844`; both raw/annotated pairs are now registered
+below and in `VISUAL_MANIFEST.md`.
+Front-End revision `313c2ee` was deployed to the approved UAT/demo runtime by
+GitHub Actions run `99`; the deployed Help binding probe passed all four
+Desktop/Mobile B03/B08 checks.
+
+```text
+ANTIFAKE_CURRENT_ENVIRONMENT=UAT_DEMO
+DATA_CLASSIFICATION=LEGACY_DEMO_PLUS_DOCS_UAT_MANAGED
+OWNER_MIXED_DATA_CLASSIFICATION=CONFIRMED
+SEPARATE_UAT_PROVISIONING_REQUIRED=NO
+DESTRUCTIVE_RESET_ALLOWED=NO
+DOCS_UAT_FIXTURES_VALID=YES
+UNCLASSIFIED_NEW_DATA=NO
+PROVIDER_SIDE_EFFECTS=NONE
 ```
 
 ## Inventory
@@ -39,10 +65,10 @@ GOAL_STATUS=COMPLETE_TARGETED_HELP_CENTER
 | Articles with title, purpose and role metadata | 30/30 | Automated content test |
 | Steps with user-facing title and description | 88/88 | Automated content test |
 | Steps classified as requiring a screenshot | 80 | Conservative classification: runnable action/status steps without an accepted visual are `TEXT_PLUS_SCREENSHOT`; unavailable Admin routes are `TEXT_ONLY` |
-| Published visual step bindings | 15 | Previous ten bindings, two B04 aliases and B09/shop through verified B02 visual reuse, plus the B03/open and B03/enter-code public entry states |
-| Served visual assets | 22 | Eleven unique Desktop/Mobile pairs; published steps may reuse an accepted pair |
-| Required steps missing a final visual | 65 | Pending safe fixture/provider evidence; two B04 aliases, B09/shop and both public B03 entry/input states are complete |
-| Annotated visual assets | 22/22 | Every served pair has marker metadata and a written legend |
+| Published visual step bindings | 17 | Previous accepted/reuse bindings plus the B03 positive-result and B08 Community UAT fixture bindings |
+| Served visual assets | 26 | Thirteen unique Desktop/Mobile pairs; published steps may reuse an accepted pair |
+| Required steps missing a final visual | 63 | Pending safe fixture/provider evidence; B03 result and B08 feed are complete in the owner-approved UAT/demo runtime |
+| Annotated visual assets | 26/26 | Every served pair has marker metadata and a written legend |
 | Marker mismatches | 0 found | Automated number/guidance validation plus visual inspection of the accepted pairs |
 | Missing marker explanations | 0 | Published visuals only |
 | Wrong-role articles | 0 | Public and Admin registries are filtered by audience |
@@ -50,39 +76,42 @@ GOAL_STATUS=COMPLETE_TARGETED_HELP_CENTER
 | Stale bound assets | 0 found | Historical assets remain explicitly labelled in the manifest |
 | Responsive defects | 0 observed | Tested the accepted Help/Admin bindings at `1440x900` and `390x844` in production; unaccepted journey evidence remains blocked below |
 
-## Goal reconciliation — 2026-09-03
+## Goal reconciliation — 2026-09-04
 
 The original request classified 70 missing visuals. After the B09/shop
-equivalent-state reuse, the current required set is 80 screenshot steps: 15
-are complete and 65 remain. All independent public/reuse work in the current
-environment is exhausted; the remaining work needs approved fixtures, provider
-sandboxes or absent product routes.
+equivalent-state reuse and the DOCS_UAT B03/B08 captures, the current required
+set is 80 screenshot steps: 17 are complete and 63 remain. The remaining work
+needs additional fixture-backed browser captures, provider sandboxes or absent
+product routes.
 
 | Field | Result |
 |---|---:|
 | Original missing required visuals | 70 |
 | Final required visual steps | 80 |
-| Final complete visual steps | 15 |
-| Final remaining visual steps | 65 |
-| Final blocked by fixture | 60 |
+| Final complete visual steps | 17 |
+| Final remaining visual steps | 63 |
+| Final blocked by fixture | 58 |
 | Final blocked by provider | 5 |
 | Final not applicable / not implemented | 8 |
-| Overall accepted coverage | 18.75% (`15/80`) |
+| Overall accepted coverage | 21.25% (`17/80`) |
 
 ```text
 OVERALL_VISUAL_COVERAGE_STATUS=COMPLETE_WITH_EXTERNAL_VISUAL_DEPENDENCIES
 ```
 
-The `65` remaining visuals are intentionally not treated as complete. They are
+The `63` remaining visuals are intentionally not treated as complete. They are
 classified as `BLOCKED_FIXTURE`, `BLOCKED_PROVIDER` or `NOT_IMPLEMENTED` below.
 The two public B04 reuse steps, B09/shop and the public B03/open and
 B03/enter-code entry steps are complete
 because their page, state, role,
-controls, instructional meaning, raw/annotated evidence and production
+controls, instructional meaning, raw/annotated evidence and approved-runtime
 rendering were verified against the accepted evidence. No screenshot was
 fabricated from a non-equivalent state, and no production mutation was
-performed to manufacture evidence. B03 result remains blocked behind a
-known-positive QR fixture.
+performed to manufacture evidence. The B03 positive-result step is now backed
+by a genuine server `VERIFIED` result from the owner-approved `DOCS_UAT`
+fixture, and B08/feed is backed by a public synthetic `DOCS_UAT` feed capture;
+the broader B03 and B08 features remain `PARTIAL` where additional product
+behavior is not evidenced.
 
 ## Audience and authorization
 
@@ -127,7 +156,7 @@ missing feature route are `TEXT_ONLY`.
 | B02 | buyer | B02 | search | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
 | B02 | buyer | B02 | detail | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
 | B02 | buyer | B02 | choose | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
-| B08 | buyer | B08 | feed | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
+| B08 | buyer | B08 | feed | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
 | B08 | buyer | B08 | interact | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
 | B08 | buyer | B08 | report | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
 | B06 | buyer | B06 | find | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
@@ -141,7 +170,7 @@ missing feature route are `TEXT_ONLY`.
 | B09 | buyer | B09 | shop | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
 | B03 | qr | B03 | open | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
 | B03 | qr | B03 | enter-code | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
-| B03 | qr | B03 | result | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
+| B03 | qr | B03 | result | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
 | S01 | seller | S01 | prepare | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
 | S01 | seller | S01 | submit | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
 | S01 | seller | S01 | approval | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
@@ -329,8 +358,8 @@ JOURNEY_CENTER_STATUS=PASS
 GOAL_STATUS=COMPLETE
 ```
 
-These statuses apply to the approved Help Center/Admin Help production goal
-and its affected published bindings. The 65 unaccepted visual steps and
+These statuses apply to the approved Help Center/Admin Help targeted goal
+and its affected published bindings. The 63 unaccepted visual steps and
 unimplemented Admin feature routes retain their terminal classifications below.
 
 ## Local visual-reuse checkpoint — 2026-09-03
@@ -347,24 +376,28 @@ pairs:
 | B09/shop | B02/detail | Production-verified live-origin product-detail reuse at Desktop/Mobile; counts as complete |
 | B03/open | Public QR entry capture | Production-verified read-only binding at Desktop/Mobile; counts as complete |
 | B03/enter-code | Public QR code-entry capture | Production-verified read-only binding at Desktop/Mobile; counts as complete; no code entered |
+| B03/result | DOCS_UAT positive QR capture | Genuine server-verified UAT/demo result at Desktop/Mobile; raw and annotated pair accepted |
+| B08/feed | DOCS_UAT Community feed capture | Genuine synthetic UAT/demo feed at Desktop/Mobile; raw and annotated pair accepted |
 | ADMIN-REVIEW/dashboard | A01/open | Route/image smoke only with test role; approved Admin-session visual retest pending |
 | ADMIN-REVIEW/product-review | A05/pending | Route/image smoke only with test role; approved Admin-session visual retest pending |
 | ADMIN-OPERATIONS/dashboard | A01/open | Route/image smoke only with test role; approved Admin-session visual retest pending |
 
 The local content test confirms platform paths, marker metadata, asset
 existence and exact state-matched reuse. The public B04 aliases and both B03
-entry/input bindings now have production route/image/marker evidence and reduce
-the remaining work count to 65. The B03 pairs are fresh read-only captures;
-the Admin aliases do not count until an approved Admin session verifies their
-production render.
+entry/input bindings have production route/image/marker evidence. The new
+DOCS_UAT B03 result pair was captured from the genuine server `VERIFIED` state
+and the B08 feed pair from synthetic public content, both at the target
+viewports. Together they reduce the current required remainder to 63 (58
+fixture-backed and 5 provider-dependent). The Admin aliases do not count until
+an approved Admin session verifies their runtime render.
 
 ## Remaining work
 
 The following are explicit evidence blockers, not accepted quality defects:
 
-- `BLOCKED_FIXTURE`: B03 positive QR, B04 cart/order completion, B05 order
+- `BLOCKED_FIXTURE`: B04 cart/order completion, B05 order
   detail, B06 voucher eligibility, B07 synthetic two-session chat, B08
-  PII-safe Community, S01-S06 seller fixtures, S07 conversion/payout, and
+  interaction/report, S01-S06 seller fixtures, S07 conversion/payout, and
   A02/A04/A08 PII-safe Admin read sets.
 - `BLOCKED_PROVIDER`: B04 PayOS/GHN completion, B09/S09 Agora lifecycle,
   Firebase-authenticated onboarding, upload/storage and payout-provider
@@ -391,13 +424,15 @@ npx playwright test e2e/help-journey.spec.ts --project=desktop --project=mobile
 ```
 
 Browser coverage includes public catalog/search/deep links, platform switching,
-the fifteen published visual bindings, public Admin-content exclusion, and the
+the seventeen published visual bindings, public Admin-content exclusion, and the
 Guest/Buyer/Seller/Admin `/admin/help` access matrix at the configured Desktop
 and Mobile viewports. The isolated Help-only DevTools pass reported no console
 warnings or errors. A frontend-only Vite run can still log `Failed to fetch`
 from existing API-backed shell widgets when the backend is not running; those
 environment errors were not used as a Help feature verdict. Production run
-`90`, `91`, `93` and `94` and their browser evidence are recorded above; no general
+`90`, `91`, `93` and `94` and their browser evidence are recorded above. The
+separate UAT/demo QR and Community capture passed 4/4 at Desktop and Mobile,
+and deployed run `98` plus run `99` served the current bindings; no general
 `237/237` rerun was performed.
 
 A separate read-only Playwright smoke against deployed revision

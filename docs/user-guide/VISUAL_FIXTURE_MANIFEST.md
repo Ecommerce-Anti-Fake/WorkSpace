@@ -8,52 +8,82 @@ approve Help screenshots or close/reset `ANTIFAKE VISUAL COVERAGE COMPLETION.md`
 Credentials, tokens, QR plaintext, connection strings and personal identity
 data intentionally do not appear.
 
+Current classification is owner-confirmed: `LEGACY_DEMO_DATA` is preserved and
+reported but is not owned by fixture tooling; only deterministic
+`DOCS_UAT_MANAGED` rows may be changed or cleaned up. The current runtime is
+`UAT_DEMO` at `https://antifake.io.vn` with API
+`https://api.antifake.io.vn`; separate UAT provisioning is not required.
+Destructive reset remains disabled.
+
 | FIXTURE_ID | ROLE | JOURNEYS_UNLOCKED | ENTITY_GRAPH | SOURCE | CREATION_METHOD | RESET_METHOD | MUTATION_SCOPE | PROVIDER_DEPENDENCY | PII_STATUS | RETENTION_POLICY | STATUS |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | `B02_EXISTING_PUBLIC_VISUALS` | buyer/public | B04 discover, B04 product detail | Accepted public catalog/product visual pairs | Existing accepted `Front-End/public/journey-visuals` assets | Existing accepted assets | None | Read-only | None | Existing evidence classification; no new PII | Immutable accepted assets | REUSE_VERIFIED_PRODUCTION |
 | `ACTIVE_BUYER_UAT` | buyer | B01, B04, B05, B06, B07, B09 applicable states | `BUYER_UAT` -> profile/address -> cart -> voucher -> orders -> chat/community | `back-end/scripts/uat/ensure-demo-fixtures.ts`, approved seed accounts | Guarded additive `npm run uat:ensure` | Rerun additive ensure; reviewed `npm run uat:cleanup` removes only reserved rows | Read-only capture by default; address/cart/message mutations only in approved UAT/demo | Firebase bridge only if configured; no payment/shipment completion | Synthetic fixture rows; approved account fields are not overwritten | Stable `DOCS_UAT` retention; cleanup by reviewed namespace operation | IMPLEMENTED_WAITING_FOR_RUNTIME_VERIFICATION |
 | `ACTIVE_SELLER_UAT` | seller | S01-S09 applicable states, B07 | `SELLER_UAT` -> approved Shop -> product/variant/inventory -> voucher/order/wallet | `back-end/scripts/uat/ensure-demo-fixtures.ts` | Guarded additive `npm run uat:ensure` | Rerun additive ensure; no uncontrolled reset | Read-only capture plus controlled business-object transitions | Cloudinary/GHN/Agora only for separately approved provider checks | Synthetic business graph and placeholder media | Stable `DOCS_UAT` retention; provider uploads require separate cleanup | IMPLEMENTED_WAITING_FOR_RUNTIME_VERIFICATION |
-| `QR_POSITIVE_LABEL_UAT` | public/qr | B03 | active label -> batch -> approved offer link -> VERIFIED provenance event | `back-end/scripts/uat/ensure-demo-fixtures.ts`, `libs/catalog-metadata`, verification controller | Injected UAT code hashed during additive ensure | Rerun ensure; plaintext code is never stored | Verification GET is read-only | None for database-backed verification | No plaintext QR or real identity | Stable namespaced row; rotate only with reviewed UAT code change | IMPLEMENTED_WAITING_FOR_RUNTIME_VERIFICATION |
+| `QR_POSITIVE_LABEL_UAT` | public/qr | B03 | active label -> batch -> approved offer link -> VERIFIED provenance event | `back-end/scripts/uat/ensure-demo-fixtures.ts`, `libs/catalog-metadata`, verification controller | Injected UAT code hashed during additive ensure | Rerun ensure; plaintext code is never stored | Verification GET is read-only | None for database-backed verification | No plaintext QR or real identity | Stable namespaced row; rotate only with reviewed UAT code change | VERIFIED_UAT_DESKTOP_MOBILE |
 | `ORDER_DETAIL_PII_SAFE_UAT` | buyer/seller | B04, B05, read-only S05/A01 | synthetic buyer -> order -> shop group/item -> payment/escrow/tracking projection | `back-end/scripts/uat/ensure-demo-fixtures.ts` | Additive upsert with fixed fixture IDs | Rerun additive ensure | Read-only list/detail; no receive/review/dispute by default | None for read-only state | Synthetic recipient/address/phone only | Stable namespaced rows | IMPLEMENTED_WAITING_FOR_RUNTIME_VERIFICATION |
 | `ORDER_FULFILLMENT_CONTROLLED_UAT` | buyer/seller | S05 and seller processing views | same order graph with valid `pending`, `paid`, `shipping`, `completed` states | `back-end/scripts/uat/ensure-demo-fixtures.ts`, order state machine | Additive upsert with explicit lifecycle fixtures | Rerun ensure or complete only a reviewed disposable transition | Controlled mutation in UAT/demo only | GHN only for sandbox quote/booking boundary | Synthetic order data only | Stable namespaced rows; no real shipment | IMPLEMENTED_WAITING_FOR_RUNTIME_VERIFICATION |
 | `SELLER_DISPOSABLE_BUSINESS_UAT` | seller | S01-S06, S09, B04/B06 | `SELLER_UAT` -> Shop -> product/variant/inventory/media/voucher/order | `back-end/scripts/uat/ensure-demo-fixtures.ts` | Guarded additive ensure with shared graph | Rerun ensure; no manual row editing | Read-only capture plus explicit seller controls | Cloudinary only with UAT folder/prefix; no provider claim from seeded URLs | Synthetic names, tax/stock/media values | Stable `DOCS_UAT` retention; clean provider uploads if enabled | IMPLEMENTED_WAITING_FOR_RUNTIME_VERIFICATION |
 | `KYC_SYNTHETIC_DOCUMENT_UAT` | seller/admin | S01, Admin KYC read view | synthetic review user -> KYC -> submission -> FRONT/BACK placeholder media | `back-end/scripts/uat/ensure-demo-fixtures.ts` | Additive upsert with placeholder documents | Rerun ensure; no real KYC submission | Read-only review; no external KYC submission | Firebase/Cloudinary/provider sandbox only if separately approved | No government ID or real person data | Stable namespaced rows; no public exposure | IMPLEMENTED_WAITING_FOR_RUNTIME_VERIFICATION |
 | `CHAT_SYNTHETIC_TWO_SESSION_UAT` | buyer/seller | B07 | buyer + seller + Shop -> ChatThread -> text-safe history | `back-end/scripts/uat/ensure-demo-fixtures.ts`, chat realtime service | Additive upsert; runtime send is optional controlled UAT mutation | Rerun ensure; delete only namespaced messages if reviewed | History is seeded; send/receive/reconnect require browser/runtime proof | Socket.IO in-process or isolated Redis; no personal cookies | Synthetic participants and messages only | Stable namespaced rows | HISTORY_READY_REALTIME_UNVERIFIED |
-| `COMMUNITY_PUBLIC_SAFE_UAT` | public/buyer | B08 | synthetic Shop author -> public SocialPost -> safe media/comments/reactions | `back-end/scripts/uat/ensure-demo-fixtures.ts` | Additive upsert | Rerun ensure; remove only namespaced rows after capture | Read-only; reaction/comment/report form only in UAT/demo | Storage only for placeholder media | Synthetic author/content aliases | Stable namespaced rows; provider media cleanup documented separately | IMPLEMENTED_WAITING_FOR_RUNTIME_VERIFICATION |
+| `COMMUNITY_PUBLIC_SAFE_UAT` | public/buyer | B08 | synthetic DOCS_UAT author -> public SocialPost feed -> safe media/comments/reactions | `back-end/scripts/uat/ensure-demo-fixtures.ts` | Additive upsert | Rerun ensure; remove only namespaced rows after capture | Read-only; reaction/comment/report form only in UAT/demo | Storage only for placeholder media | Synthetic author/content aliases | Stable namespaced rows; provider media cleanup documented separately | VERIFIED_UAT_PUBLIC_FEED_DESKTOP_MOBILE |
 | `AFFILIATE_CONVERSION_UAT` | affiliate/seller | S07 program/link/conversion/commission history | affiliate account on approved Buyer alias -> program -> code/link -> conversion -> commission ledger | `back-end/scripts/uat/ensure-demo-fixtures.ts` | Additive upsert; manual non-payable ledger | Rerun ensure; no payout reset/execution | Non-payable read-only ledger; no payout execution | Payout provider only for boundary/status | Synthetic attribution and ledger values | Stable namespaced rows; no financial liability | IMPLEMENTED_WAITING_FOR_RUNTIME_VERIFICATION |
 | `ADMIN_PIISAFE_READ_SET` | admin | A01, A02, A04, A05, A08, A09 implemented queues/overview | `ADMIN_UAT` -> synthetic users/KYC/Shop/product/voucher/wallet/moderation queues | `back-end/scripts/uat/ensure-demo-fixtures.ts`, implemented Admin services | Guarded additive ensure | Rerun ensure; no current-demo reset | Read-only review by default | Payout/provider status only; no financial action | Alias-only synthetic data and placeholder KYC docs | Stable namespaced rows | IMPLEMENTED_WAITING_FOR_RUNTIME_VERIFICATION |
+
+## DOCS_UAT deterministic fixture identifiers
+
+The identifiers below are reserved by
+`back-end/scripts/uat/demo-fixture-contract.ts` and are safe to record in
+documentation. Approved Buyer/Seller/Admin account IDs are resolved from the
+owner-approved aliases at runtime and are never overwritten. QR plaintext is
+injected privately; only the managed label ID is recorded here.
+
+| Logical fixture | Deterministic identifier |
+|---|---|
+| `SHOP_UAT` | `d0000000-0000-4000-8000-000000000010` |
+| `PRODUCT_UAT` | `d0000000-0000-4000-8000-000000000020` |
+| `VARIANT_UAT` | `d0000000-0000-4000-8000-000000000026` |
+| `VOUCHER_UAT` | `d0000000-0000-4000-8000-000000000042` |
+| `QR_POSITIVE_LABEL_UAT` batch | `d0000000-0000-4000-8000-000000000030` |
+| `QR_POSITIVE_LABEL_UAT` label | `d0000000-0000-4000-8000-000000000032` |
+| `CHAT_UAT` thread | `d0000000-0000-4000-8000-000000000050` |
+| `COMMUNITY_UAT` primary post | `d0000000-0000-4000-8000-000000000060` |
+| `COMMUNITY_UAT` secondary post | `d0c50000-0000-4000-8000-000000000002` |
+| `AFFILIATE_UAT` program | `d0000000-0000-4000-8000-000000000070` |
+| `WALLET_LEDGER_UAT` shop wallet | `d0000000-0000-4000-8000-000000000080` |
+| `ADMIN_REVIEW_UAT` synthetic review user | `d0000000-0000-4000-8000-000000000001` |
+| `ADMIN_REVIEW_UAT` pending Shop | `d0000000-0000-4000-8000-000000000090` |
+| `ADMIN_REVIEW_UAT` pending Offer | `d0000000-0000-4000-8000-000000000093` |
+| `ORDER_UAT_PENDING` | `d0000000-0000-4000-8000-000000000100` |
+| `ORDER_UAT_CONFIRMED` | `d0000000-0000-4000-8000-000000000101` |
+| `ORDER_UAT_SHIPPING` | `d0000000-0000-4000-8000-000000000102` |
+| `ORDER_UAT_COMPLETED` | `d0000000-0000-4000-8000-000000000103` |
 
 ## Runtime verification gate
 
 The owner has classified `https://antifake.io.vn` and
 `https://api.antifake.io.vn` as the approved current `UAT_DEMO` runtime.
-Separate UAT provisioning is not required. No fixture is `NOW_CAPTURABLE`
-until the guarded additive `uat:ensure`, read-only `uat:verify-demo` and
-dedicated isolated-browser smoke pass at both required viewports. Provider-
-dependent rows remain independently blocked.
+Separate UAT provisioning is not required. The guarded additive
+`uat:ensure` ran twice with stable IDs, `uat:verify-demo` passed the complete
+logical graph, and `uat:audit-demo` reported `LEGACY_DEMO_DATA_PRESENT`,
+`DOCS_UAT_FIXTURES_VALID`, `UNCLASSIFIED_NEW_DATA=NO` and provider actions
+denied by policy. The isolated QR browser smoke passed at both required
+viewports, so `QR_POSITIVE_LABEL_UAT` is now capturable and its B03 result
+visual is complete. Provider-dependent rows remain independently blocked.
 
-Current safety hold: a read-only audit of the configured demo database found
-five user accounts under an external `gmail.com` domain, all 13 user display
-names without synthetic markers, and six shop names without synthetic/seed/demo
-markers. This is a possible mixed-data signal under the owner's safety boundary.
-No fixture write, reset, cleanup or provider call was run, so the rows below
-remain implementation inventory rather than runtime evidence. Re-run the
-sanitized `npm run uat:audit-demo` check after any environment change. Resume
-only after owner confirmation that the current database is synthetic or after a
-reviewed disposable database target is supplied.
-
-The read-only fixture verifier found the approved aliases but no namespaced
-fixture graph and zero fixture lifecycle orders. The manifest statuses therefore
-remain implementation inventory, not capturable runtime evidence. The database
-schema audit also found only the shared `public` application schema, so no
-separate schema boundary is available to bypass the current safety hold.
+The audit still reports the pre-existing unmarked/external-domain rows, but the
+owner decision classifies them as immutable `LEGACY_DEMO_DATA`; they do not
+block additive `DOCS_UAT_MANAGED` creation. No legacy row was renamed, updated
+or deleted, and no reset or provider call was run. Re-run the sanitized
+`npm run uat:audit-demo` check after any environment change.
 
 The dedicated capture command is
 `npm run test:e2e:uat:visual`. It emits raw and temporary annotated Desktop /
 Mobile pairs under `.uat-runtime/test-results`; those files require an
 explicit privacy and marker review before being copied into `docs/images/` or
 bound in the Journey Center. The capture workflow is manual-only and does not
-deploy or mutate production code/data.
+deploy or mutate application code/data; all fixture writes are additive and
+guarded by the `DOCS_UAT` policy.
 
 Approved account aliases for the current demo are `BUYER_UAT` (`seed.user01@antifake.local`),
 `SELLER_UAT` (`seed.user02@antifake.local`) and `ADMIN_UAT`
