@@ -42,6 +42,10 @@ sanitized `npm run uat:audit-demo` check after any environment change. Resume
 only after owner confirmation that the current database is synthetic or after a
 reviewed disposable database target is supplied.
 
+The read-only fixture verifier found the approved aliases but no namespaced
+fixture graph and zero fixture lifecycle orders. The manifest statuses therefore
+remain implementation inventory, not capturable runtime evidence.
+
 The dedicated capture command is
 `npm run test:e2e:uat:visual`. It emits raw and temporary annotated Desktop /
 Mobile pairs under `.uat-runtime/test-results`; those files require an

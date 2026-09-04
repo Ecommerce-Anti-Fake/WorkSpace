@@ -98,6 +98,12 @@ and synthetic-marker signals, emits no credentials or personal fields, and
 returns a non-zero safety result when possible mixed data is detected. It never
 writes, resets, cleans up or calls a provider.
 
+The read-only `npm run uat:verify-demo` check was also run against this target
+with an injected synthetic QR value. The three approved aliases were found, but
+all namespaced fixture entities were missing and the pending/confirmed/shipping/
+completed fixture order counts were all zero. There is therefore no existing
+synthetic graph to consume while the data-classification hold is active.
+
 ## Isolation record
 
 These are the sanitized values future operators must record for the approved
