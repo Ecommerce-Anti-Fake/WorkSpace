@@ -45,6 +45,7 @@ The current demo mutation path is identified by these injected values:
 |---|---|
 | `ANTIFAKE_CURRENT_ENVIRONMENT=UAT_DEMO` | Owner-approved current environment classification. |
 | `UAT_DEMO_MUTATION_APPROVED=true` | Explicit opt-in required by additive fixture tooling. |
+| `UAT_DEMO_SYNTHETIC_DATA_CONFIRMED=true` | Separate owner/data-review confirmation required after a mixed-data audit; setting mutation approval alone is insufficient. |
 | `DATABASE_URL` | Current demo database connection string; never document its value. |
 | `UAT_DEMO_DATABASE_TARGET` | Non-secret current-demo target label containing `demo`, `uat`, `staging`, `test` or `local`. |
 | `UAT_DEMO_DATABASE_NAME` | Expected database name; it must match the URL database path. |
@@ -98,10 +99,11 @@ demo target; only labels and methods belong in this document:
 | `SEED_METHOD` | Guarded `npm run uat:ensure`, followed by read-only `npm run uat:verify-demo` |
 
 The additive fixture command is not accepted without the owner classification,
-explicit mutation approval, matching database name and exact remote host
-allowlist. It never calls the destructive reset path. The current target also
-has a safety hold because the read-only audit found possible non-synthetic
-records; do not set the mutation flag to bypass that hold.
+explicit mutation approval, separate synthetic-data confirmation, matching
+database name and exact remote host allowlist. It never calls the destructive
+reset path. The current target has a safety hold because the read-only audit
+found possible non-synthetic records; do not set either approval flag to bypass
+that hold.
 
 ## Reset and seed procedure
 
