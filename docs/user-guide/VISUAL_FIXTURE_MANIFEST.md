@@ -81,9 +81,10 @@ The dedicated capture command is
 `npm run test:e2e:uat:visual`. It emits raw and temporary annotated Desktop /
 Mobile pairs under `.uat-runtime/test-results`; those files require an
 explicit privacy and marker review before being copied into `docs/images/` or
-bound in the Journey Center. The capture workflow is manual-only and does not
-deploy or mutate application code/data; all fixture writes are additive and
-guarded by the `DOCS_UAT` policy.
+bound in the Journey Center. The capture workflow is available through manual
+`workflow_dispatch` or the dedicated `uat-capture` branch; it does not deploy
+or mutate application code/data. All fixture writes are additive and guarded
+by the `DOCS_UAT` policy.
 
 Approved account aliases for the current demo are `BUYER_UAT` (`seed.user01@antifake.local`),
 `SELLER_UAT` (`seed.user02@antifake.local`) and `ADMIN_UAT`

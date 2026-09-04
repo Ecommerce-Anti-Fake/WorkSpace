@@ -17,7 +17,7 @@ was not rerun for this change.
 | Front-End | Vite SPA. Existing Playwright config supports an injected `UAT_BASE_URL`, fresh browser contexts, and `1440x900` / `390x844` projects. |
 | Back-End | Nest API gateway with embedded deployment entrypoint. Prisma is PostgreSQL-only. Existing schema covers users, KYC, shops, offers/variants, inventory, orders, QR provenance, chat, community, affiliate, wallet, vouchers and moderation. |
 | WorkSpace | Canonical documentation is pushed on `main`; verify the current revision with `git rev-parse HEAD`. The supplied audit/spec inputs remain untracked and are not treated as canonical changes. |
-| CI/CD | The existing AntiFake deployment pipeline is the approved runtime path. The earlier separate-UAT workflows were removed after the owner clarification; the fixture and browser workflows remain manual-only. |
+| CI/CD | The existing AntiFake deployment pipeline is the approved runtime path. The earlier separate-UAT workflows were removed after the owner clarification; fixture writes remain manual-only, while browser capture is available through `workflow_dispatch` or the dedicated `uat-capture` branch. |
 | Infrastructure | The current approved runtime is `https://antifake.io.vn` with API `https://api.antifake.io.vn`; local PostgreSQL, Redis and Docker are unavailable in this workspace. |
 | Providers | PayOS, GHN, Agora, Cloudinary, Firebase, Redis/Socket.IO and VietQR/payout are environment-driven. An ignored local `.env` has configured provider key names, but no UAT classification or sandbox safety was proven; no values were recorded or used. |
 
