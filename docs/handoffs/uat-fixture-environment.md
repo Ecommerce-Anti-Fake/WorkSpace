@@ -249,8 +249,8 @@ were not supplied; they are not a pass.
 
 Current browser evidence: the positive QR and public `DOCS_UAT` Community feed
 capture tests passed 4/4 (both fixtures at Desktop and Mobile) in fresh
-contexts after Front-End revision `313c2ee` deployed in GitHub Actions run
-`99`. The narrow Help binding probe also passed 4/4 at both viewports. Both
+contexts after Front-End revision `c7dfc58` deployed in GitHub Actions run
+`100`. The narrow Help binding probe also passed 4/4 at both viewports. Both
 pairs were privacy-reviewed and promoted to the visual manifest. Authenticated
 Buyer/Seller/Admin capture tests remain pending until secure UAT credentials
 are injected; no personal browser profile or cookie was used.
@@ -296,15 +296,21 @@ and isolated browser capture for the positive QR and public Community feed
 steps at both target viewports. The current evidence calculation is:
 
 ```text
-FIXTURE_BLOCKED_AFTER=58
+FIXTURE_BLOCKED_AFTER=57
 PROVIDER_BLOCKED_AFTER=5
 VISUAL_STEPS_NOW_UNLOCKED=2
 NEWLY_COMPLETED_VISUAL=B03/result,B08/feed
 CURRENT_COMPLETE_VISUAL_STEPS=17
-CURRENT_MISSING_VISUALS=63
+CURRENT_REQUIRED_VISUAL_STEPS=79
+CURRENT_MISSING_VISUALS=62
 ```
 
-The remaining 58 fixture rows still require their own browser/runtime evidence;
+The prior 80-step calculation included B08/report as a screenshot-required
+fixture row. A current source and Desktop/Mobile UAT probe found no report
+control or form, so that row is now `NOT_IMPLEMENTED`; the current
+screenshot-required denominator is 79 and the remaining required visuals are
+62 (57 fixture-backed and 5 provider-dependent). The remaining 57 fixture rows
+still require their own browser/runtime evidence;
 fixture creation is not counted as a screenshot pass. The canonical
 `docs/user-guide/VISUAL_FIXTURE_MANIFEST.md` and the step-level matrix record
 the QR and Community captures and retain the other rows as pending. Each row uses:
@@ -316,7 +322,7 @@ NOW_CAPTURABLE | PROVIDER_STILL_REQUIRED
 
 The current step-by-step matrix is maintained at
 [`uat-visual-unlock-matrix.md`](uat-visual-unlock-matrix.md). Its current
-calculation is `FIXTURE_BLOCKED_AFTER=58`, `PROVIDER_BLOCKED_AFTER=5` and
+calculation is `FIXTURE_BLOCKED_AFTER=57`, `PROVIDER_BLOCKED_AFTER=5` and
 `VISUAL_STEPS_NOW_UNLOCKED=2`; provider rows remain independent.
 
 The current implementation unlocks the reusable graph. The QR result and

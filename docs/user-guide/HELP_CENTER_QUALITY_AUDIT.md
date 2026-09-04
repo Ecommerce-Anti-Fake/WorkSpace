@@ -31,8 +31,8 @@ lifecycle states and positive QR provenance. The dedicated Playwright capture
 test passed the B03 positive result and public B08 Community feed at Desktop
 `1440x900` and Mobile `390x844`; both raw/annotated pairs are now registered
 below and in `VISUAL_MANIFEST.md`.
-Front-End revision `313c2ee` was deployed to the approved UAT/demo runtime by
-GitHub Actions run `99`; the deployed Help binding probe passed all four
+Front-End revision `c7dfc58` was deployed to the approved UAT/demo runtime by
+GitHub Actions run `100`; the deployed Help binding probe passed all four
 Desktop/Mobile B03/B08 checks.
 
 ```text
@@ -64,10 +64,10 @@ PROVIDER_SIDE_EFFECTS=NONE
 |---|---:|---|
 | Articles with title, purpose and role metadata | 30/30 | Automated content test |
 | Steps with user-facing title and description | 88/88 | Automated content test |
-| Steps classified as requiring a screenshot | 80 | Conservative classification: runnable action/status steps without an accepted visual are `TEXT_PLUS_SCREENSHOT`; unavailable Admin routes are `TEXT_ONLY` |
+| Steps classified as requiring a screenshot | 79 | Conservative classification: runnable action/status steps without an accepted visual are `TEXT_PLUS_SCREENSHOT`; unavailable routes are `TEXT_ONLY`; B08/report is currently not implemented |
 | Published visual step bindings | 17 | Previous accepted/reuse bindings plus the B03 positive-result and B08 Community UAT fixture bindings |
 | Served visual assets | 26 | Thirteen unique Desktop/Mobile pairs; published steps may reuse an accepted pair |
-| Required steps missing a final visual | 63 | Pending safe fixture/provider evidence; B03 result and B08 feed are complete in the owner-approved UAT/demo runtime |
+| Required steps missing a final visual | 62 | Pending safe fixture/provider evidence; B03 result and B08 feed are complete in the owner-approved UAT/demo runtime; B08/report is not implemented |
 | Annotated visual assets | 26/26 | Every served pair has marker metadata and a written legend |
 | Marker mismatches | 0 found | Automated number/guidance validation plus visual inspection of the accepted pairs |
 | Missing marker explanations | 0 | Published visuals only |
@@ -80,26 +80,26 @@ PROVIDER_SIDE_EFFECTS=NONE
 
 The original request classified 70 missing visuals. After the B09/shop
 equivalent-state reuse and the DOCS_UAT B03/B08 captures, the current required
-set is 80 screenshot steps: 17 are complete and 63 remain. The remaining work
+set is 79 screenshot steps: 17 are complete and 62 remain. The remaining work
 needs additional fixture-backed browser captures, provider sandboxes or absent
 product routes.
 
 | Field | Result |
 |---|---:|
 | Original missing required visuals | 70 |
-| Final required visual steps | 80 |
+| Final required visual steps | 79 |
 | Final complete visual steps | 17 |
-| Final remaining visual steps | 63 |
-| Final blocked by fixture | 58 |
+| Final remaining visual steps | 62 |
+| Final blocked by fixture | 57 |
 | Final blocked by provider | 5 |
-| Final not applicable / not implemented | 8 |
-| Overall accepted coverage | 21.25% (`17/80`) |
+| Final not applicable / not implemented | 9 |
+| Overall accepted coverage | 21.52% (`17/79`) |
 
 ```text
 OVERALL_VISUAL_COVERAGE_STATUS=COMPLETE_WITH_EXTERNAL_VISUAL_DEPENDENCIES
 ```
 
-The `63` remaining visuals are intentionally not treated as complete. They are
+The `62` remaining visuals are intentionally not treated as complete. They are
 classified as `BLOCKED_FIXTURE`, `BLOCKED_PROVIDER` or `NOT_IMPLEMENTED` below.
 The two public B04 reuse steps, B09/shop and the public B03/open and
 B03/enter-code entry steps are complete
@@ -158,7 +158,7 @@ missing feature route are `TEXT_ONLY`.
 | B02 | buyer | B02 | choose | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
 | B08 | buyer | B08 | feed | Y | Y | DESKTOP_AND_MOBILE_SCREENSHOTS | Y | Y | Y | `1,2,3` | `1,2,3` | PASS | PASS | Y | Y | N | N | Y | PASS |
 | B08 | buyer | B08 | interact | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
-| B08 | buyer | B08 | report | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
+| B08 | buyer | B08 | report | Y | Y | TEXT_ONLY | N | N | - | - | - | N/A | N/A | Y | Y | N | N | - | NOT_IMPLEMENTED |
 | B06 | buyer | B06 | find | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
 | B06 | buyer | B06 | check-conditions | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
 | B06 | buyer | B06 | apply | Y | Y | TEXT_PLUS_SCREENSHOT | N | Y | N | - | - | BLOCKED | BLOCKED | Y | Y | N | N | PENDING | BLOCKED_FIXTURE |
@@ -359,7 +359,7 @@ GOAL_STATUS=COMPLETE
 ```
 
 These statuses apply to the approved Help Center/Admin Help targeted goal
-and its affected published bindings. The 63 unaccepted visual steps and
+and its affected published bindings. The 62 unaccepted visual steps and
 unimplemented Admin feature routes retain their terminal classifications below.
 
 ## Local visual-reuse checkpoint — 2026-09-03
@@ -387,8 +387,10 @@ existence and exact state-matched reuse. The public B04 aliases and both B03
 entry/input bindings have production route/image/marker evidence. The new
 DOCS_UAT B03 result pair was captured from the genuine server `VERIFIED` state
 and the B08 feed pair from synthetic public content, both at the target
-viewports. Together they reduce the current required remainder to 63 (58
-fixture-backed and 5 provider-dependent). The Admin aliases do not count until
+viewports. A current source/runtime audit also found no B08 report control or
+form, so that step is `NOT_IMPLEMENTED` rather than fixture-blocked. Together
+the captures reduce the current required remainder to 62 (57 fixture-backed
+and 5 provider-dependent). The Admin aliases do not count until
 an approved Admin session verifies their runtime render.
 
 ## Remaining work
@@ -397,15 +399,16 @@ The following are explicit evidence blockers, not accepted quality defects:
 
 - `BLOCKED_FIXTURE`: B04 cart/order completion, B05 order
   detail, B06 voucher eligibility, B07 synthetic two-session chat, B08
-  interaction/report, S01-S06 seller fixtures, S07 conversion/payout, and
+  interaction, S01-S06 seller fixtures, S07 conversion/payout, and
   A02/A04/A08 PII-safe Admin read sets.
 - `BLOCKED_PROVIDER`: B04 PayOS/GHN completion, B09/S09 Agora lifecycle,
   Firebase-authenticated onboarding, upload/storage and payout-provider
   portions where applicable.
-- `NOT_IMPLEMENTED`: A03 KYC, A06 moderation, A07 Order/Payment oversight and
-  A10 audit/monitoring have no corresponding frontend route in the current
-  product. Their Admin Help entries remain status-only and do not present
-  executable instructions.
+- `NOT_IMPLEMENTED`: B08/report has no current Community control or form.
+  A03 KYC, A06 moderation, A07 Order/Payment oversight and A10
+  audit/monitoring have no corresponding frontend route in the current product.
+  These Help entries remain status-only and do not present executable
+  instructions.
 
 Do not create these visuals by mutating production data, using real payment or
 payout flows, exposing identity documents, or copying unapproved customer

@@ -1,22 +1,26 @@
 # Visual Execution Inventory
 
-Reconciled: 2026-09-03
+Reconciled: 2026-09-04
 
 This inventory is the execution baseline for the 70 rows that were missing a
 final visual in `HELP_CENTER_QUALITY_AUDIT.md`. The eight A03/A06/A07/A10
 steps are not repeated here because their current frontend routes are absent
 and the audit already classifies them as `NOT_IMPLEMENTED` / `TEXT_ONLY`.
+The current source/runtime audit also classifies B08/report as
+`NOT_IMPLEMENTED` / `TEXT_ONLY` because Community exposes no report control or
+form.
 
-Current reconciliation: five rows (B04-discover, B04-product-detail, B03-open,
+Original reconciliation: five rows (B04-discover, B04-product-detail, B03-open,
 B03-enter-code and B09-shop) are complete through production-verified public
 evidence. B09-watch and B09-shop are now explicit in the inventory so the live
 journey boundary is traceable. The inventory retains all 70 original rows for
-traceability; 65 required visuals remain pending.
+traceability; 62 screenshot-required visuals remain pending. The original
+70-row classification remains available below for historical traceability.
 
 Source baselines checked:
 
-- Front-End: `65842923f7c3b33a3176653d651ff4c6a53b89e2`
-- Back-End: `3b59ab9`
+- Front-End: `c7dfc58e89950ce799a6c575988d0a5e78aeb96b`
+- Back-End: `b15e0f1`
 - Canonical evidence: `DOCUMENTATION_EVIDENCE_MATRIX.md`, `VISUAL_MANIFEST.md`
 - Seed source: `back-end/prisma/seed.ts` and `back-end/prisma/seeds/*`
 
@@ -52,13 +56,13 @@ screenshot, not merely present in seed code.
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | B03-open | qr | B03 / open | `/help/qr/verify-product/open` | `/qr` | COMPLETE_PRODUCTION_READ_ONLY | Y | — | Y | Y | None; public entry state is read-only | — | No code submission or production label creation | D+M | raw/annotated capture at `78646d7`; Help binding verified on deployed `303d816` / run `92` and rechecked on `91f545e` / run `93` |
 | B03-enter-code | qr | B03 / enter-code | `/help/qr/verify-product/enter-code` | `/qr` | COMPLETE_PRODUCTION_READ_ONLY | Y | — | Y | Y | None; public input state is read-only | — | No code entry/submission or production label creation | D+M | raw/annotated capture at `303d816`; Help binding verified on deployed `91f545e` / run `93` |
-| B03-result | qr | B03 / result | `/help/qr/verify-product/result` | `/qr` | BLOCKED_FIXTURE | Y | P | N | Y after fixture | `QR_POSITIVE_LABEL_UAT`; read-only result | — | No real product claim | D+M | active batch/link/provenance |
+| B03-result | qr | B03 / result | `/help/qr/verify-product/result` | `/qr` | COMPLETE_UAT_DEMO | Y | Y | Y | Y | `QR_POSITIVE_LABEL_UAT`; read-only result | — | No real product claim | D+M | Desktop/Mobile genuine `VERIFIED` capture accepted on deployed UAT/demo runtime |
 | B07-open | buyer | B07 / open | `/help/buyer/chat-shop/open` | `/chat` or `/messages` | BLOCKED_FIXTURE | Y | Y | N | Y after sanitization | `CHAT_SYNTHETIC_TWO_SESSION_UAT`; history read-only | Socket.IO / Redis | No real messages or participants | D+M | buyer/seller session and thread |
 | B07-send | buyer | B07 / send | `/help/buyer/chat-shop/send` | `/chat/:roomId` | BLOCKED_FIXTURE | Y | Y | N | N | Synthetic text; controlled message mutation | Socket.IO / Redis | No real customer communication | D+M | two-session thread and cleanup |
 | B07-reconnect | buyer | B07 / reconnect | `/help/buyer/chat-shop/reconnect` | `/chat/:roomId` | BLOCKED_FIXTURE | Y | P | N | N | Synthetic thread; transport recovery test | Socket.IO / Redis | No claim without second live session | D+M | real two-session runtime |
-| B08-feed | buyer | B08 / feed | `/help/buyer/community/feed` | `/community` | BLOCKED_FIXTURE | Y | Y | N | Y after sanitization | `COMMUNITY_PUBLIC_SAFE_UAT`; read-only | — | No seeded author/customer data | D+M | synthetic public alias/post |
+| B08-feed | buyer | B08 / feed | `/help/buyer/community/feed` | `/community` | COMPLETE_UAT_DEMO | Y | Y | Y | Y | `COMMUNITY_PUBLIC_SAFE_UAT`; read-only | — | No seeded author/customer data | D+M | Desktop/Mobile synthetic public alias/post capture accepted |
 | B08-interact | buyer | B08 / interact | `/help/buyer/community/interact` | `/community` | BLOCKED_FIXTURE | Y | Y | N | N | Synthetic post; controlled reaction/comment if needed | — | No real content interaction | D+M | safe public post and cleanup |
-| B08-report | buyer | B08 / report | `/help/buyer/community/report` | `/community` | BLOCKED_FIXTURE | Y | P | N | Y if form-only | `COMMUNITY_PUBLIC_SAFE_UAT`; show report form without submit | — | No harmful moderation report | D+M | report surface and safe cancellation |
+| B08-report | buyer | B08 / report | `/help/buyer/community/report` | `/community` | NOT_IMPLEMENTED | Y | P | N | — | No current report control or form | — | No report mutation attempted | D+M | Implement a current report surface before capture |
 | B09-watch | buyer | B09 / watch | `/help/buyer/livestream/watch` | `/live/:id` | BLOCKED_PROVIDER | Y | Y | N | N | Public room shell observed; no chat/media mutation | Agora | Desktop chat exposes participant data; no production media or chat action | D+M | Mobile shell was read-only; approved provider/UAT state and PII-safe Desktop capture remain pending |
 | B09-shop | buyer | B09 / shop | `/help/buyer/livestream/shop` | `/live/:id` -> `/product/:id?live=...` | COMPLETE_REUSED_PRODUCTION | Y | Y | Y via B02 visual | Y | Reuse accepted B02 detail; none | — | No purchase, order or live-session mutation | D+M | Public live-origin product detail matched B02; Help binding verified on Front-End `6584292` / run `94` |
 
@@ -140,7 +144,7 @@ accepted.
 | Firebase Auth / FCM | Source integration | Unknown | No | Unknown | Public auth shell only | Account/token/push mutation |
 | VietQR / payout | Source integration; masked read state exists in seed source | Unknown | Withdrawal is prohibited in production | Unknown | Masked read-only status only | Bank resolution, payout and withdrawal |
 
-## Reconciliation summary
+## Original 2026-09-03 reconciliation snapshot
 
 | Classification | Rows | Current disposition |
 |---|---:|---|
@@ -157,3 +161,19 @@ All visual acceptance still requires raw Desktop and Mobile captures,
 separate annotation copies, marker/text validation, manifest registration,
 quality-matrix update, and production rendering verification. Inventory status
 alone never upgrades a Help step.
+
+## Current UAT/demo reconciliation — 2026-09-04
+
+The current DOCS_UAT evidence supersedes the pending status of B03/result and
+B08/feed. A source inspection and fresh public UAT probes also found no
+Community report control or form, so B08/report is `NOT_IMPLEMENTED` /
+`TEXT_ONLY`, not fixture-blocked.
+
+```text
+CURRENT_REQUIRED_VISUAL_STEPS=79
+CURRENT_COMPLETE_VISUAL_STEPS=17
+CURRENT_MISSING_VISUALS=62
+FIXTURE_BLOCKED_AFTER=57
+PROVIDER_BLOCKED_AFTER=5
+NOT_IMPLEMENTED_OR_NA_AFTER=9
+```

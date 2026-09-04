@@ -29,10 +29,14 @@ side effect occurred. The B03 positive-result and B08 Community feed captures
 passed at both required viewports and are registered in the visual manifest. The functional
 `237/237` baseline was not rerun.
 
+The current Community source and fresh public UAT probes expose reaction,
+comment and share controls but no report control or report form. `B08/report`
+is therefore `NOT_IMPLEMENTED`, not a fixture or provider blocker.
+
 ## Current UAT/demo binding verification — 2026-09-04
 
-Front-End revision `313c2ee3c980b49be2c49602bb0642facea47ba3` deployed through
-the existing workflow in GitHub Actions run `99`. An isolated Playwright
+Front-End revision `c7dfc58e89950ce799a6c575988d0a5e78aeb96b` deployed through
+the existing workflow in GitHub Actions run `100`. An isolated Playwright
 probe against the deployed UAT/demo runtime passed the B03 positive-result and
 B08 Community Help bindings at Desktop `1440x900` and Mobile `390x844` (4/4).
 The final raw/annotated captures were then promoted after privacy review. This
@@ -116,8 +120,9 @@ pair after a read-only live-origin product-detail check:
 served asset pairs locally. This historical checkpoint records the two B04
 aliases, both B03 entry/input states and B09/shop as already accepted; the
 current UAT/demo B03 result and B08 feed additions are recorded above and
-reduce the required visual remainder to 63 and the fixture-blocked remainder
-to 58. The three Admin aliases do not count until approved session evidence
+reduce the required visual remainder to 62 and the fixture-blocked remainder
+to 57. The B08/report step is `NOT_IMPLEMENTED` after current source/runtime
+inspection. The three Admin aliases do not count until approved session evidence
 exists.
 
 ## Evidence-axis status
@@ -131,7 +136,7 @@ exists.
 | B05 Order management | Buyer | SOURCE_VERIFIED | PARTIAL | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | PII-safe owned order and receive/review/dispute state: `BLOCKED_FIXTURE` |
 | B06 Voucher | Buyer | SOURCE_VERIFIED | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Active eligible voucher and matching offer/order: `BLOCKED_FIXTURE` |
 | B07 Chat with Shop | Buyer/Seller | SOURCE_VERIFIED | PARTIAL | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Synthetic two-session thread: `BLOCKED_FIXTURE`; realtime delivery/reconnect: `BLOCKED_PROVIDER_SANDBOX` |
-| B08 Community | Buyer/Guest | SOURCE_VERIFIED | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | Public DOCS_UAT feed visual is accepted; interaction/report fixture evidence remains `BLOCKED_FIXTURE` |
+| B08 Community | Buyer/Guest | SOURCE_VERIFIED | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | Public DOCS_UAT feed visual is accepted; interaction remains `BLOCKED_FIXTURE`; report surface is `NOT_IMPLEMENTED` |
 | B09 Livestream | Buyer | SOURCE_VERIFIED | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | Public discovery and live-origin product-detail visual complete via accepted B02 reuse; authenticated join/media/interactions and safe room capture: `BLOCKED_PROVIDER_SANDBOX` (Agora) plus live fixture |
 | S01 Shop registration | Seller | SOURCE_VERIFIED | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Disposable seller onboarding with synthetic KYC/media: `BLOCKED_FIXTURE` plus upload/auth provider |
 | S02 Shop setup | Seller | SOURCE_VERIFIED | PARTIAL | BLOCKED_FIXTURE | BLOCKED_FIXTURE | BLOCKED_FIXTURE | PARTIAL | PARTIAL | Isolated owned Shop for edit/reload evidence: `BLOCKED_FIXTURE` |
@@ -180,7 +185,7 @@ historical production evidence remains labelled separately.
 | Evidence axis | Local result | Remaining boundary |
 |---|---|---|
 | Runtime/text completeness | 30 articles and 88 steps are registered; every article and step has user-facing title/description text | Full feature-flow UAT remains `PARTIAL` where the product fixture or provider is unavailable |
-| Visual completeness | 17 accepted step bindings with 26 unique served assets, including the UAT B03 result and B08 feed pairs; the current required remainder is 63 | 58 fixture-backed steps, 5 provider-dependent steps and 8 `NOT_IMPLEMENTED` Admin routes remain; Admin aliases still need approved-session verification |
+| Visual completeness | 17 accepted step bindings with 26 unique served assets, including the UAT B03 result and B08 feed pairs; the current required remainder is 62 | 57 fixture-backed steps, 5 provider-dependent steps, 8 `NOT_IMPLEMENTED` Admin routes and the `NOT_IMPLEMENTED` B08/report step remain; Admin aliases still need approved-session verification |
 | Marker correctness | All 18 local visual bindings declare marker metadata and written guidance; automated sequence checks pass | Automated checks do not replace the pending approved-session visual review of the 3 Admin aliases |
 | Role visibility | Public registry/search excludes `admin`; Admin registry is rendered only in Admin Help; B09/shop is visible on the public route after run `94` | New approved Admin-session visual verification remains unavailable |
 | Authorization | `/admin/help/*` is under the existing Admin parent `ProtectedRoute roles=["admin"]`; approved guest/buyer/seller/admin checks remain the run `90` baseline | No new approved Admin-session regression was available on run `94` |

@@ -40,7 +40,7 @@ effects remain denied.
 | B07/reconnect | `BLOCKED_FIXTURE` | `CHAT_SYNTHETIC_TWO_SESSION_UAT` | `/chat/:roomId` | No — two isolated sessions/browser proof pending | Socket.IO/Redis runtime |
 | B08/feed | `BLOCKED_FIXTURE` | `COMMUNITY_PUBLIC_SAFE_UAT` | `/community` | Yes — synthetic DOCS_UAT feed captured at Desktop/Mobile; raw and annotated evidence accepted | None for seeded public content |
 | B08/interact | `BLOCKED_FIXTURE` | `COMMUNITY_PUBLIC_SAFE_UAT` | `/community` | No — controlled UAT interaction/browser proof pending | None |
-| B08/report | `BLOCKED_FIXTURE` | `COMMUNITY_PUBLIC_SAFE_UAT` | `/community` | No — form surface/browser proof pending | None; do not submit harmful reports |
+| B08/report | `BLOCKED_FIXTURE` | `COMMUNITY_PUBLIC_SAFE_UAT` | `/community` | No — current source and Desktop/Mobile probes expose no report control or report surface; `NOT_IMPLEMENTED` | None |
 | B09/watch-shell | `BLOCKED_FIXTURE` | `ACTIVE_SELLER_UAT` + `SELLER_DISPOSABLE_BUSINESS_UAT` | `/live`, `/live/:id` | No — live fixture/browser proof pending | Agora for authenticated media lifecycle |
 | S01/registration-form | `BLOCKED_FIXTURE` | `SELLER_UAT` + `KYC_SYNTHETIC_DOCUMENT_UAT` | `/register` | No — UAT form/browser proof pending | Firebase/Cloudinary/KYC provider for submission |
 | S01/post-approved-state | `BLOCKED_FIXTURE` | `SELLER_DISPOSABLE_BUSINESS_UAT` | `/seller/shop-info` | No — isolated target/browser proof pending | None for seeded approved state |
@@ -94,18 +94,23 @@ evidence for the positive QR and public Community feed:
 
 ```text
 FIXTURE_BLOCKED_BEFORE=60
-FIXTURE_BLOCKED_AFTER=58
+FIXTURE_BLOCKED_AFTER=57
 PROVIDER_BLOCKED_BEFORE=5
 PROVIDER_BLOCKED_AFTER=5
 VISUAL_STEPS_NOW_UNLOCKED=2
 NEWLY_COMPLETED_VISUALS=B03/positive-result,B08/feed
+NOT_IMPLEMENTED_OR_NA_AFTER=9
 ```
 
-The current UAT/demo binding commit `313c2ee3c980b49be2c49602bb0642facea47ba3`
-was deployed through GitHub Actions run `99`. The isolated deployed Help probe
+The current UAT/demo binding commit `c7dfc58e89950ce799a6c575988d0a5e78aeb96b`
+was deployed through GitHub Actions run `100`. The isolated deployed Help probe
 passed all four B03/B08 Desktop/Mobile checks; raw and annotated pairs were
 privacy-reviewed before promotion.
 
-The remaining 58 fixture rows still require their own browser/runtime evidence;
+The remaining 57 fixture rows still require their own browser/runtime evidence;
 fixture creation alone is not a capture pass. This document intentionally does
 not claim that source code or a seed manifest alone makes a visual capturable.
+
+The B08/report row was reclassified from fixture-blocked to `NOT_IMPLEMENTED`
+after a current source inspection and fresh public UAT probes at both target
+viewports found no report control or form. No report mutation was attempted.
