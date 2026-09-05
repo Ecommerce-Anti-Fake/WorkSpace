@@ -190,8 +190,8 @@ passes. No second VPS, DNS target, reverse-proxy route or deployment workflow
 is required.
 
 The current deployed revisions are Back-End `70f9bb5` (GitHub Actions run `44`)
-and Front-End `a2b4f13` (GitHub Actions deployment run `33942797381`; the
-current capture workflow run is `33942801646`). The
+and Front-End `105e77a` (GitHub Actions deployment run `33942966282`; the
+current capture workflow run is `33942979317`). The
 Front-End changes are capture-harness-only:
 they add environment-aware capture preflight, independent role-scoped capture
 behavior and viewport-safe scheduled-live markers. Accepted visual evidence
@@ -536,6 +536,28 @@ and no fixture, legacy record, provider state or visual count changed.
 FRONTEND_RUNTIME_SHA=a2b4f138b03237dfadd193f59fafc1171a8829d5
 FRONTEND_DEPLOY_RUN=33942797381
 UAT_CAPTURE_RUN=33942801646
+CI_ROLE_INPUT_STATUS=PARTIAL
+CI_PUBLIC_CAPTURE_RESULT=4_PASSED
+CI_AUTHENTICATED_CAPTURE_RESULT=8_SKIPPED
+FIXTURE_BLOCKED_AFTER=57
+PROVIDER_BLOCKED_AFTER=5
+NEW_AUTHENTICATED_VISUALS=0
+```
+
+## Latest fail-closed smoke guard - 2026-09-05
+
+Front-End `105e77a` adds an explicit manual browser-smoke guard: independent
+role/QR checks remain runnable when inputs are partial, while an entirely empty
+input set fails closed instead of producing a misleading green no-op. The
+capture runner accepted the workflow revision and completed run `33942979317`
+with four public pairs passed and eight authenticated/QR cases skipped after
+sanitized Buyer, Seller and Admin availability checks returned false. No
+fixture, legacy record, provider state, credential, or storage state changed.
+
+```text
+FRONTEND_RUNTIME_SHA=105e77a3bdff137642797e71315b662e53ecceb1
+FRONTEND_DEPLOY_RUN=33942966282
+UAT_CAPTURE_RUN=33942979317
 CI_ROLE_INPUT_STATUS=PARTIAL
 CI_PUBLIC_CAPTURE_RESULT=4_PASSED
 CI_AUTHENTICATED_CAPTURE_RESULT=8_SKIPPED
