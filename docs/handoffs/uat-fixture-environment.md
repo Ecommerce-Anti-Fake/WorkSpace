@@ -498,6 +498,37 @@ PROVIDER_BLOCKED_AFTER=5
 NEW_AUTHENTICATED_VISUALS=0
 ```
 
+## Local `.env` versus authenticated capture process - 2026-09-05
+
+The owner reports that the approved UAT role inputs are configured in the
+ignored Back-End local `.env`, and that the account can sign in through the
+running application. This is valid evidence for the Back-End runtime only:
+the Back-End service loads its own environment, while a Playwright command
+started from `Front-End` is a separate process and does not inherit
+`back-end/.env`.
+
+The authenticated capture contract intentionally reads only the six
+`ANTIFAKE_UAT_*` variables already present in the launching process. It does
+not auto-load `back-end/.env`, because that file may also contain database,
+JWT and provider secrets. CI likewise receives the six inputs only from the
+configured GitHub environment secrets. `UAT_ENV_FILE` is a Back-End UAT
+script option and does not configure Front-End Playwright.
+
+The current shell and latest CI preflight reported all three role pairs as
+unavailable; no values were printed or read into WorkSpace. To run local
+authenticated capture, inject only the six approved role variables into the
+same process that launches the existing Front-End UAT command, together with
+the approved UAT base URL and fixture-smoke flag. Do not copy the local `.env`,
+storage states or credentials into source, artifacts or documentation.
+
+```text
+BACKEND_LOCAL_ENV_SCOPE=BACKEND_RUNTIME_ONLY
+PLAYWRIGHT_AUTH_SOURCE=LAUNCH_PROCESS_ENV_ONLY
+CI_AUTH_SOURCE=GITHUB_ENVIRONMENT_SECRETS_ONLY
+LOCAL_ENV_AUTOLOAD=DISABLED
+STORAGE_STATE_SCOPE=IGNORED_TEMPORARY_RUNTIME_ONLY
+```
+
 ## Independent fixture-smoke gates - 2026-09-05
 
 The browser fixture-smoke suite now gates Buyer, Seller, Admin and QR checks
