@@ -207,6 +207,12 @@ and the served copies now point to those UAT annotations. No legacy record was
 modified, no record was deleted, and no payment, shipment, payout, KYC or other
 provider side effect occurred.
 
+Post-deploy verification completed on Front-End SHA
+`b6f076f48214712d6a59d1f3368b7f1167985bd2` in Actions run `33949213451`.
+The isolated Admin pack passed at Desktop `1440x900` and Mobile `390x844`;
+the real-login Help binding probe passed B04/order and all three Admin reuse
+routes at both viewports.
+
 ```text
 PREVIOUS_COMPLETE_VISUAL_STEPS=22
 NEWLY_COMPLETED_THIS_EXPANSION=4

@@ -196,6 +196,11 @@ real Buyer/Admin browser verification and privacy review:
 | ADMIN-REVIEW-product-review | COMPLETE_REUSED_UAT | Real Admin DOCS_UAT product-review raw/annotated Desktop/Mobile pair | Decision mutation remains unverified |
 | ADMIN-OPERATIONS-dashboard | COMPLETE_REUSED_UAT | Real Admin dashboard raw/annotated Desktop/Mobile pair | Wider operations actions remain partial |
 
+Post-deploy verification used Front-End SHA
+`b6f076f48214712d6a59d1f3368b7f1167985bd2` from Actions run `33949213451`.
+The Admin pack and real-login Help binding probe passed at both target
+viewports.
+
 ```text
 CURRENT_COMPLETE_VISUAL_STEPS=26
 CURRENT_REQUIRED_VISUAL_STEPS=79

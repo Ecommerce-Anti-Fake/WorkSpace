@@ -147,8 +147,10 @@ B03/open binding was deployed on `303d816` / run `92` and rechecked on
 `91f545e` / run `93`; B09/shop is deployed and verified on `6584292` / run
 `94`. The current UAT/demo capture adds B03 `result` from the genuine
 `DOCS_UAT` positive QR state and B08 `feed` from the synthetic public
-`DOCS_UAT` Community state at both target viewports; the three Admin aliases
-remain pending approved-session verification.
+`DOCS_UAT` Community state at both target viewports. At the time of this
+historical entry, the three Admin aliases remained pending approved-session
+verification; the current authenticated UAT checkpoint below supersedes that
+classification.
 The route migration for
 Admin Help is `/admin/help/admin/...`; historical production evidence below
 remains historical unless explicitly updated.
@@ -464,6 +466,12 @@ The same deployed evidence also closes four exact state reuses:
 | ADMIN-REVIEW/dashboard | A01 dashboard Desktop/Mobile pair | Real Admin-session UAT capture; markers 1-3 visible at both viewports |
 | ADMIN-REVIEW/product-review | A05 product-review Desktop/Mobile pair | Real Admin-session UAT capture filtered to `DOCS_UAT`; markers 1-3 visible at both viewports |
 | ADMIN-OPERATIONS/dashboard | A01 dashboard Desktop/Mobile pair | Real Admin-session UAT capture; markers 1-3 visible at both viewports |
+
+Post-deploy UAT verification used Front-End SHA
+`b6f076f48214712d6a59d1f3368b7f1167985bd2` from Actions run `33949213451`.
+The isolated Admin capture pack passed at Desktop `1440x900` and Mobile
+`390x844`; the real-login Help binding probe passed B04/order and all three
+Admin reuse routes at both target viewports.
 
 The bracketed filename notation above means the same stem with and without
 the `-annotated` suffix; the exact files and served-byte rule are listed in

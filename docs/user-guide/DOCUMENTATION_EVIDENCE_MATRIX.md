@@ -595,6 +595,11 @@ The expansion introduced no new database rows and no mutation of legacy records.
 Seller remains role-blocked by HTTP 401; provider-dependent and mutation-driven
 steps remain unaccepted.
 
+The deployed runtime check used Front-End SHA
+`b6f076f48214712d6a59d1f3368b7f1167985bd2` from Actions run `33949213451`.
+Admin capture and the real-login Help binding probe passed at both target
+viewports; no legacy or provider state changed.
+
 ```text
 PREVIOUS_COMPLETE_VISUAL_STEPS=22
 NEWLY_COMPLETED_THIS_EXPANSION=4

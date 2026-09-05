@@ -195,6 +195,10 @@ The existing managed fixtures now unlock four additional step-level bindings:
 
 The four bindings have raw and annotated Desktop/Mobile evidence. No fixture,
 legacy record or provider state was modified by the capture expansion.
+Post-deploy runtime verification used Front-End SHA
+`b6f076f48214712d6a59d1f3368b7f1167985bd2` from Actions run `33949213451`;
+the same managed graph rendered through the real Admin session at both target
+viewports.
 
 ```text
 CURRENT_COMPLETE_VISUAL_STEPS=26

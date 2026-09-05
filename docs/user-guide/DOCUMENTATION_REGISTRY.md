@@ -159,12 +159,12 @@ requested.
 | B03/open public binding | The QR entry Help step selected the expected Desktop/Mobile asset, returned HTTP `200`, matched the target natural dimensions and rendered marker numbers `1,2,3`; no code was submitted. |
 | B03/enter-code public binding | The QR code-entry Help step selected the expected Desktop/Mobile asset, returned HTTP `200`, matched the target natural dimensions and rendered marker numbers `1,2,3`; no code was entered or submitted. |
 
-The current run `94` B09/shop verification, run `93` B03/open recheck and
+The historical run `94` B09/shop verification, run `93` B03/open recheck and
 B03/enter-code verification, plus prior run `91` public smoke and
-targeted B04 probe do not include an
-approved Admin session; the three Admin reuse aliases therefore remain
-pending real-session visual verification. The affected article rows remain
-`PARTIAL` where their wider journey still has
+targeted B04 probe did not include an approved Admin session. The three Admin
+reuse aliases were pending real-session visual verification at that checkpoint;
+the current authenticated UAT checkpoint below supersedes that classification.
+The affected article rows remain `PARTIAL` where their wider journey still has
 unverified mutation, provider or fixture steps. The targeted published
 bindings, the two public B04 reuse aliases and B09/shop are production-verified and do
 not upgrade those wider journey statuses.
@@ -234,6 +234,11 @@ VISUAL_GOAL_REMAINS_OPEN=YES
 | ADMIN-REVIEW | `dashboard` | Admin dashboard Desktop/Mobile bindings | Accepted real Admin-session reuse |
 | ADMIN-REVIEW | `product-review` | Admin product-review Desktop/Mobile bindings | Accepted real Admin-session reuse |
 | ADMIN-OPERATIONS | `dashboard` | Admin dashboard Desktop/Mobile bindings | Accepted real Admin-session reuse |
+
+Post-deploy runtime verification used Front-End SHA
+`b6f076f48214712d6a59d1f3368b7f1167985bd2` from Actions run `33949213451`.
+The Admin capture pack and real-login Help binding probe passed at Desktop
+`1440x900` and Mobile `390x844`.
 
 ```text
 PREVIOUS_COMPLETE_VISUAL_STEPS=22

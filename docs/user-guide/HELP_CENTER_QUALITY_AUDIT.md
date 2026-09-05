@@ -68,6 +68,12 @@ product-review captures; all four have Desktop and Mobile raw/annotated pairs.
 | ADMIN-REVIEW/product-review | `ADMIN_PIISAFE_READ_SET` | Real Admin `/admin/product-registrations`, DOCS_UAT queue, markers 1-3 visible | Accepted reuse |
 | ADMIN-OPERATIONS/dashboard | `ADMIN_PIISAFE_READ_SET` | Real Admin `/admin` dashboard, markers 1-3 visible at both target viewports | Accepted reuse |
 
+Post-deploy verification used Front-End SHA
+`b6f076f48214712d6a59d1f3368b7f1167985bd2` from Actions run `33949213451`.
+The isolated Admin pack passed at both target viewports, and the real-login
+Help binding probe passed B04/order plus all three Admin reuse routes at both
+viewports.
+
 ```text
 PREVIOUS_COMPLETE_VISUAL_STEPS=22
 NEWLY_COMPLETED_THIS_EXPANSION=4
