@@ -54,6 +54,36 @@ UNCLASSIFIED_NEW_DATA=NO
 PROVIDER_SIDE_EFFECTS=NONE
 ```
 
+## Authenticated reuse expansion - 2026-09-05 (current)
+
+Four additional visual steps are now accepted from existing evidence-backed
+states. B04/order reuses the exact synthetic completed-order state captured for
+B05/detail. The three Admin aliases reuse the real Admin-session dashboard or
+product-review captures; all four have Desktop and Mobile raw/annotated pairs.
+
+| Step | Fixture | Runtime result | Status |
+|---|---|---|---|
+| B04/order | `ORDER_DETAIL_PII_SAFE_UAT` | Buyer `/profile/orders/:id` rendered the same synthetic order detail as B05/detail | Accepted |
+| ADMIN-REVIEW/dashboard | `ADMIN_PIISAFE_READ_SET` | Real Admin `/admin` dashboard, markers 1-3 visible at both target viewports | Accepted reuse |
+| ADMIN-REVIEW/product-review | `ADMIN_PIISAFE_READ_SET` | Real Admin `/admin/product-registrations`, DOCS_UAT queue, markers 1-3 visible | Accepted reuse |
+| ADMIN-OPERATIONS/dashboard | `ADMIN_PIISAFE_READ_SET` | Real Admin `/admin` dashboard, markers 1-3 visible at both target viewports | Accepted reuse |
+
+```text
+PREVIOUS_COMPLETE_VISUAL_STEPS=22
+NEWLY_COMPLETED_THIS_EXPANSION=4
+CURRENT_COMPLETE_VISUAL_STEPS=26
+CURRENT_REQUIRED_VISUAL_STEPS=79
+CURRENT_REMAINING_VISUAL_STEPS=53
+FIXTURE_BLOCKED_AFTER=48
+PROVIDER_BLOCKED_AFTER=5
+COVERAGE_PERCENT=32.91
+VISUAL_GOAL_REMAINS_OPEN=YES
+```
+
+Seller authentication remains HTTP 401; A04 detail remains unaccepted because
+the synthetic KYC placeholder media is unavailable. No legacy data or provider
+state was mutated.
+
 ## Inventory
 
 | Scope | Articles | Steps |

@@ -190,6 +190,37 @@ AUTHENTICATED_CAPTURE_STATUS=RUNTIME_INPUTS_UNAVAILABLE_TO_CURRENT_SHELL
 VISUAL_GOAL_REMAINS_OPEN=YES
 ```
 
+## Authenticated reuse expansion - 2026-09-05 (current)
+
+The real Admin-session capture and the accepted Buyer order-detail capture
+unlock four additional step-level visuals without a new database write:
+
+| VISUAL_STEP | PREVIOUS_BLOCKER | UAT_FIXTURE | UAT_ROUTE | RUNTIME_STATE_VERIFIED | NOW_CAPTURABLE | PROVIDER_STILL_REQUIRED | REMAINING_BLOCKER |
+|---|---|---|---|---|---|---|---|
+| B04-order | `BLOCKED_FIXTURE` | `ORDER_DETAIL_PII_SAFE_UAT` (reuse B05/detail) | `/profile/orders/:id` | Buyer PASS; identical synthetic completed-order state | Yes | None | Checkout remains partial |
+| ADMIN-REVIEW-dashboard | `LOCAL_REUSE_PENDING_ADMIN_SESSION` | `ADMIN_PIISAFE_READ_SET` | `/admin` | Admin PASS; dashboard markers visible at Desktop/Mobile | Yes | None | Wider review journey remains partial |
+| ADMIN-REVIEW-product-review | `LOCAL_REUSE_PENDING_ADMIN_SESSION` | `ADMIN_PIISAFE_READ_SET` | `/admin/product-registrations` | Admin PASS; DOCS_UAT-filtered product queue visible at Desktop/Mobile | Yes | None | Decision mutation remains unverified |
+| ADMIN-OPERATIONS-dashboard | `LOCAL_REUSE_PENDING_ADMIN_SESSION` | `ADMIN_PIISAFE_READ_SET` | `/admin` | Admin PASS; dashboard markers visible at Desktop/Mobile | Yes | None | Wider operations journey remains partial |
+
+The Admin dashboard and product-review raw/annotated pairs were privacy-reviewed
+and the served copies now point to those UAT annotations. No legacy record was
+modified, no record was deleted, and no payment, shipment, payout, KYC or other
+provider side effect occurred.
+
+```text
+PREVIOUS_COMPLETE_VISUAL_STEPS=22
+NEWLY_COMPLETED_THIS_EXPANSION=4
+CURRENT_COMPLETE_VISUAL_STEPS=26
+CURRENT_REQUIRED_VISUAL_STEPS=79
+CURRENT_REMAINING_VISUAL_STEPS=53
+FIXTURE_BLOCKED_BEFORE=57
+FIXTURE_BLOCKED_AFTER=48
+PROVIDER_BLOCKED_BEFORE=5
+PROVIDER_BLOCKED_AFTER=5
+COVERAGE_PERCENT=32.91
+VISUAL_GOAL_REMAINS_OPEN=YES
+```
+
 The post-push `uat-capture` run `33941303277` used Front-End SHA
 `79313d79ab8edbfc1cdc9fc7118e7bce5d0dd7df` and completed successfully. Its
 role preflight reported Buyer, Seller and Admin unavailable; four public pairs

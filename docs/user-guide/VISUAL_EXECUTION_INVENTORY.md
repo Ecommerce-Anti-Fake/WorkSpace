@@ -183,3 +183,24 @@ FIXTURE_BLOCKED_AFTER=57
 PROVIDER_BLOCKED_AFTER=5
 NOT_IMPLEMENTED_OR_NA_AFTER=9
 ```
+
+## Current authenticated reuse checkpoint - 2026-09-05
+
+The following rows supersede their historical pending classifications after
+real Buyer/Admin browser verification and privacy review:
+
+| VISUAL_ID | CURRENT | EVIDENCE | REMAINING_BOUNDARY |
+|---|---|---|---|
+| B04-order | COMPLETE_REUSED_UAT | B05/detail raw/annotated Desktop/Mobile pair; identical synthetic order-detail state | Checkout/provider and next actions remain partial |
+| ADMIN-REVIEW-dashboard | COMPLETE_REUSED_UAT | Real Admin dashboard raw/annotated Desktop/Mobile pair | Wider review actions remain partial |
+| ADMIN-REVIEW-product-review | COMPLETE_REUSED_UAT | Real Admin DOCS_UAT product-review raw/annotated Desktop/Mobile pair | Decision mutation remains unverified |
+| ADMIN-OPERATIONS-dashboard | COMPLETE_REUSED_UAT | Real Admin dashboard raw/annotated Desktop/Mobile pair | Wider operations actions remain partial |
+
+```text
+CURRENT_COMPLETE_VISUAL_STEPS=26
+CURRENT_REQUIRED_VISUAL_STEPS=79
+CURRENT_REMAINING_VISUAL_STEPS=53
+FIXTURE_BLOCKED_AFTER=48
+PROVIDER_BLOCKED_AFTER=5
+COVERAGE_PERCENT=32.91
+```

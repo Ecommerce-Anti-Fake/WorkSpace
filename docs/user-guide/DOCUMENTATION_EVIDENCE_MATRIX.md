@@ -581,3 +581,27 @@ LEGACY_RECORDS_MODIFIED=0
 LEGACY_RECORDS_DELETED=0
 PROVIDER_SIDE_EFFECTS=NONE
 ```
+
+## Current authenticated reuse expansion - 2026-09-05
+
+| Visual step | Evidence source | Runtime verification | Accepted result |
+|---|---|---|---|
+| B04/order | B05/detail UAT raw/annotated pair | Buyer real login; same `/profile/orders/:id` synthetic completed-order state | Desktop/Mobile accepted reuse |
+| ADMIN-REVIEW/dashboard | A01 Admin UAT raw/annotated pair | Admin real login; `/admin` dashboard | Desktop/Mobile accepted reuse |
+| ADMIN-REVIEW/product-review | A05 Admin UAT raw/annotated pair | Admin real login; `/admin/product-registrations` filtered to DOCS_UAT | Desktop/Mobile accepted reuse |
+| ADMIN-OPERATIONS/dashboard | A01 Admin UAT raw/annotated pair | Admin real login; `/admin` dashboard | Desktop/Mobile accepted reuse |
+
+The expansion introduced no new database rows and no mutation of legacy records.
+Seller remains role-blocked by HTTP 401; provider-dependent and mutation-driven
+steps remain unaccepted.
+
+```text
+PREVIOUS_COMPLETE_VISUAL_STEPS=22
+NEWLY_COMPLETED_THIS_EXPANSION=4
+CURRENT_COMPLETE_VISUAL_STEPS=26
+CURRENT_REQUIRED_VISUAL_STEPS=79
+CURRENT_REMAINING_VISUAL_STEPS=53
+FIXTURE_BLOCKED_AFTER=48
+PROVIDER_BLOCKED_AFTER=5
+COVERAGE_PERCENT=32.91
+```

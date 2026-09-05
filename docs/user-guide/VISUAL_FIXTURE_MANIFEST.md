@@ -183,3 +183,24 @@ All accepted files contain only namespaced synthetic data. No legacy record was
 changed, deleted or renamed, and no payment, payout, shipment, KYC or other
 irreversible provider action was attempted. The five accepted visual bindings
 are recorded in `VISUAL_MANIFEST.md`; the wider visual goal remains open.
+
+## Authenticated reuse expansion - 2026-09-05 (current)
+
+The existing managed fixtures now unlock four additional step-level bindings:
+
+| FIXTURE_ID | ROLE | JOURNEYS_UNLOCKED | ENTITY_GRAPH | SOURCE | CREATION_METHOD | RESET_METHOD | MUTATION_SCOPE | PROVIDER_DEPENDENCY | PII_STATUS | RETENTION_POLICY | STATUS |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| `ORDER_DETAIL_PII_SAFE_UAT` | Buyer | B04/order | Synthetic completed order reused from B05/detail | Existing guarded `DOCS_UAT` graph | Additive/idempotent seed (no new write this capture) | Existing managed fixture reseed | No legacy mutation | None for read-only view | Synthetic only | Retain namespaced demo state | VERIFIED_REUSE |
+| `ADMIN_PIISAFE_READ_SET` | Admin | ADMIN-REVIEW/dashboard, ADMIN-REVIEW/product-review, ADMIN-OPERATIONS/dashboard | Synthetic Admin dashboard and review queue | Existing guarded `DOCS_UAT` graph plus real Admin capture | Additive/idempotent seed (no new write this capture) | Existing managed fixture reseed | No legacy mutation | None for read-only view | Synthetic only | Retain namespaced demo state | VERIFIED_REUSE |
+
+The four bindings have raw and annotated Desktop/Mobile evidence. No fixture,
+legacy record or provider state was modified by the capture expansion.
+
+```text
+CURRENT_COMPLETE_VISUAL_STEPS=26
+CURRENT_REQUIRED_VISUAL_STEPS=79
+CURRENT_REMAINING_VISUAL_STEPS=53
+FIXTURE_BLOCKED_AFTER=48
+PROVIDER_BLOCKED_AFTER=5
+VISUAL_GOAL_REMAINS_OPEN=YES
+```

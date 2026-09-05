@@ -225,3 +225,23 @@ FIXTURE_BLOCKED_AFTER=52
 PROVIDER_BLOCKED_AFTER=5
 VISUAL_GOAL_REMAINS_OPEN=YES
 ```
+
+## Current authenticated reuse registry checkpoint - 2026-09-05
+
+| Article | Step | Binding | Evidence status |
+|---|---|---|---|
+| B04 | `order` | B05/detail Desktop/Mobile bindings | Accepted synthetic Buyer reuse |
+| ADMIN-REVIEW | `dashboard` | Admin dashboard Desktop/Mobile bindings | Accepted real Admin-session reuse |
+| ADMIN-REVIEW | `product-review` | Admin product-review Desktop/Mobile bindings | Accepted real Admin-session reuse |
+| ADMIN-OPERATIONS | `dashboard` | Admin dashboard Desktop/Mobile bindings | Accepted real Admin-session reuse |
+
+```text
+PREVIOUS_COMPLETE_VISUAL_STEPS=22
+NEWLY_COMPLETED_THIS_EXPANSION=4
+CURRENT_COMPLETE_VISUAL_STEPS=26
+CURRENT_REQUIRED_VISUAL_STEPS=79
+CURRENT_REMAINING_VISUAL_STEPS=53
+FIXTURE_BLOCKED_AFTER=48
+PROVIDER_BLOCKED_AFTER=5
+VISUAL_GOAL_REMAINS_OPEN=YES
+```
