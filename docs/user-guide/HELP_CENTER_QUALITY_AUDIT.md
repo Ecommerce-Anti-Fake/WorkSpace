@@ -487,3 +487,11 @@ verified by capture run `33941303277`. The run passed four public fixture pairs
 and skipped eight authenticated/QR cases after sanitized Buyer, Seller and
 Admin availability checks returned false. It produced no new accepted Help
 visual and did not change the 17/79 accepted coverage count.
+
+The auth-context navigation defect was corrected in Front-End commit
+`8c5d027ba4e82ad0e4947e787c2b7672f9c3c884` by propagating the configured UAT
+base URL into fresh Playwright contexts. Deploy run `33941828311` and capture
+run `33941840279` completed successfully. The capture preflight still reported
+all three role inputs unavailable; four public pairs passed and eight
+authenticated/QR cases were skipped. Help visual acceptance therefore remains
+unchanged at 17/79.

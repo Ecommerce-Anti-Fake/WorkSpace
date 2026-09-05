@@ -131,3 +131,10 @@ The post-push capture run `33941303277` completed successfully at Front-End
 SHA `79313d79ab8edbfc1cdc9fc7118e7bce5d0dd7df`. It passed four public fixture
 pairs and skipped eight authenticated/QR cases because all three role-input
 availability checks were false. No new authenticated visual was accepted.
+
+The helper correction `8c5d027ba4e82ad0e4947e787c2b7672f9c3c884` now passes
+the configured UAT base URL into each real-login and storage-state context. It
+was deployed and exercised by capture run `33941840279`; the sanitized role
+inputs were still unavailable, so four public pairs passed, eight
+authenticated/QR cases were skipped and the fixture manifest has no new
+accepted visual rows.

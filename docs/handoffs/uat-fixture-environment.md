@@ -456,3 +456,27 @@ CI_PUBLIC_CAPTURE_RESULT=4_PASSED
 CI_AUTHENTICATED_CAPTURE_RESULT=8_SKIPPED
 NEW_AUTHENTICATED_VISUALS=0
 ```
+
+## Auth context correction and follow-up - 2026-09-05
+
+The authenticated helper was corrected to carry the configured UAT `baseURL`
+into both fresh Playwright contexts. This closes the relative-navigation defect
+that would have prevented real login even when approved role inputs are
+available. Focused auth-contract tests, targeted TypeScript, lint, build and
+guarded desktop/mobile discovery passed. The correction was deployed, and the
+follow-up capture run again reported all three role inputs unavailable; it
+passed four public pairs and skipped eight authenticated/QR cases. No legacy
+record, provider or accepted visual was changed.
+
+```text
+FRONTEND_AUTH_FIX_COMMIT=8c5d027ba4e82ad0e4947e787c2b7672f9c3c884
+FRONTEND_DEPLOY_RUN=33941828311
+UAT_CAPTURE_RUN=33941840279
+VERIFIED_RUNTIME_SHA=8c5d027ba4e82ad0e4947e787c2b7672f9c3c884
+CI_ROLE_INPUT_STATUS=PARTIAL
+CI_PUBLIC_CAPTURE_RESULT=4_PASSED
+CI_AUTHENTICATED_CAPTURE_RESULT=8_SKIPPED
+FIXTURE_BLOCKED_AFTER=57
+PROVIDER_BLOCKED_AFTER=5
+NEW_AUTHENTICATED_VISUALS=0
+```

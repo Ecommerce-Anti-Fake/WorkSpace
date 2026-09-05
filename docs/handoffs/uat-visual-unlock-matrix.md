@@ -195,3 +195,11 @@ The post-push `uat-capture` run `33941303277` used Front-End SHA
 role preflight reported Buyer, Seller and Admin unavailable; four public pairs
 passed and eight authenticated/QR cases were skipped. No new visual was
 accepted, so the matrix remains at 57 fixture-blocked and 5 provider-blocked.
+
+The auth-context correction commit `8c5d027ba4e82ad0e4947e787c2b7672f9c3c884`
+was deployed in run `33941828311`. It explicitly propagates the configured UAT
+base URL into login and storage-state contexts; focused auth-contract,
+TypeScript, lint, build and guarded test-discovery checks passed. Follow-up
+capture run `33941840279` completed successfully, but its sanitized preflight
+again found Buyer, Seller and Admin inputs unavailable. Four public pairs passed
+and eight authenticated/QR cases were skipped, so no unlock-matrix row changed.

@@ -533,3 +533,10 @@ Capture run `33941303277` completed against Front-End SHA
 eight authenticated/QR cases were skipped, and no new visual evidence was
 promoted. The role availability result was false for Buyer, Seller and Admin;
 no credential or storage-state value was recorded.
+
+Follow-up capture run `33941840279` exercised deployed Front-End commit
+`8c5d027ba4e82ad0e4947e787c2b7672f9c3c884`, which includes explicit UAT base-URL
+propagation for fresh authenticated contexts. Four public pairs passed and
+eight authenticated/QR cases were skipped because the sanitized role inputs
+remained unavailable. Evidence classification and the 17 complete / 62
+remaining totals are unchanged.

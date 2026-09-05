@@ -188,3 +188,10 @@ SHA `79313d79ab8edbfc1cdc9fc7118e7bce5d0dd7df`. It passed four public fixture
 pairs and skipped eight authenticated/QR cases after all three role availability
 checks returned false. Registry bindings and accepted visual counts are
 unchanged.
+
+Capture run `33941840279` verified the deployed Front-End correction
+`8c5d027ba4e82ad0e4947e787c2b7672f9c3c884`, which propagates the UAT base URL
+into fresh authenticated contexts. Sanitized preflight still found all three
+role inputs unavailable; four public pairs passed and eight authenticated/QR
+cases were skipped. Registry bindings and accepted visual counts remain
+unchanged.

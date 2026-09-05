@@ -402,3 +402,9 @@ was exercised by capture run `33941303277`. Four public pairs passed and eight
 authenticated/QR cases were skipped because the three role inputs were not
 available to CI. Existing bindings remain unchanged; no new visual was
 accepted.
+
+The authenticated context helper was corrected in deployed Front-End commit
+`8c5d027ba4e82ad0e4947e787c2b7672f9c3c884` to pass the configured UAT base URL
+to both fresh browser contexts. Capture run `33941840279` completed with four
+public pairs passed and eight authenticated/QR cases skipped because all three
+role inputs were unavailable. No visual binding or accepted count changed.
