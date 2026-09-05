@@ -243,6 +243,8 @@ The Admin capture pack and real-login Help binding probe passed at Desktop
 B01 profile/address and A08 reconciliation were runtime-reachable but rejected
 by privacy review; no seed contact data or legacy financial/bank-account state
 was promoted into the registry's served evidence.
+B06 cart was also runtime-reachable but rejected because the cart displayed
+legacy Shop/Product records instead of a `DOCS_UAT`-only state.
 
 ```text
 PREVIOUS_COMPLETE_VISUAL_STEPS=22

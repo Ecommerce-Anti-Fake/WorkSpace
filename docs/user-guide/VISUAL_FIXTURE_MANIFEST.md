@@ -203,7 +203,8 @@ viewports.
 The Buyer profile/address and Admin wallet routes remain unaccepted because
 their current read-only state includes seed contact data or legacy financial
 and masked bank-account fields. The fixture manifest therefore records no new
-fixture ownership for those rejected captures.
+fixture ownership for those rejected captures. B06 cart remains similarly
+unaccepted until a `DOCS_UAT`-only cart state can be rendered.
 
 ```text
 CURRENT_COMPLETE_VISUAL_STEPS=26

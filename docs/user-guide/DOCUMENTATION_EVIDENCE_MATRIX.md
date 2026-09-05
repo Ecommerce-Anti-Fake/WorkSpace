@@ -603,7 +603,9 @@ viewports; no legacy or provider state changed.
 Privacy recheck: B01/profile, B01/address and A08/reconciliation reached their
 runtime routes and markers, but were classified `REJECTED_PRIVACY` because the
 seed contact data or legacy financial/bank-account state was visible. They do
-not count as accepted visual evidence.
+not count as accepted visual evidence. B06/cart was classified
+`REJECTED_PRIVACY_LEGACY_MIXED` because its runtime list included legacy
+Shop/Product records.
 
 ```text
 PREVIOUS_COMPLETE_VISUAL_STEPS=22

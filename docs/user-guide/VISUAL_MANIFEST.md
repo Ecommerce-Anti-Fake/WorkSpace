@@ -476,7 +476,9 @@ Admin reuse routes at both target viewports.
 The authenticated Buyer profile/address and Admin wallet read-only routes also
 rendered, but their captures were rejected by privacy review because they
 exposed seed contact data or legacy financial/bank-account state. They are not
-served bindings and do not change the accepted count.
+served bindings and do not change the accepted count. The Buyer cart capture
+was likewise rejected because the cart was not `DOCS_UAT`-only and displayed
+legacy Shop/Product records.
 
 The bracketed filename notation above means the same stem with and without
 the `-annotated` suffix; the exact files and served-byte rule are listed in

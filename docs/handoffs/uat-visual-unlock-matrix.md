@@ -223,9 +223,10 @@ the published-evidence privacy contract:
 |---|---|---|---|
 | B01/profile | Buyer route and markers passed at both viewports | `REJECTED_PRIVACY` | Seed account email/phone and unmarked profile identity are visible; require a PII-safe managed identity or approved redaction path |
 | B01/address | Buyer route and markers passed at both viewports | `REJECTED_PRIVACY` | Seed contact/address data is visible; require a DOCS_UAT-owned synthetic address state |
+| B06/cart | Buyer cart route and markers passed at Desktop; no checkout submitted | `REJECTED_PRIVACY_LEGACY_MIXED` | Cart renders legacy Shop/Product records alongside the managed state; require a DOCS_UAT-only cart view |
 | A08/reconciliation | Admin route and markers passed at Desktop; no provider call | `REJECTED_PRIVACY` | Legacy financial totals and masked bank-account state are visible; require a DOCS_UAT-managed non-financial read set |
 
-No raw or annotated files from these three rejected targets were promoted to
+No raw or annotated files from these four rejected targets were promoted to
 WorkSpace or served assets; temporary rejected evidence was removed.
 
 ```text

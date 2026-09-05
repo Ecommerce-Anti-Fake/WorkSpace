@@ -78,7 +78,9 @@ The same authenticated run reached B01 profile/address and A08 wallet
 reconciliation, but those captures were rejected by privacy review: the seed
 profile/address exposed account/contact data, and the wallet view exposed
 legacy financial totals plus masked bank-account state. No rejected raw or
-annotated file was promoted or served; the current accepted count is unchanged.
+annotated file was promoted or served. The Buyer cart route also rendered
+legacy Shop/Product records, so its capture was rejected as mixed data. The
+current accepted count is unchanged.
 
 ```text
 PREVIOUS_COMPLETE_VISUAL_STEPS=22
