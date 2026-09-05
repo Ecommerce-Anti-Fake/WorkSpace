@@ -495,3 +495,27 @@ FIXTURE_BLOCKED_AFTER=57
 PROVIDER_BLOCKED_AFTER=5
 NEW_AUTHENTICATED_VISUALS=0
 ```
+
+## Independent fixture-smoke gates - 2026-09-05
+
+The browser fixture-smoke suite now gates Buyer, Seller, Admin and QR checks
+independently. A missing role or QR input can no longer skip unrelated fixture
+checks. Front-End commit `f73f27214452f6fa212fc6d9412ecfdd31911e4d` passed
+focused TypeScript, auth-contract tests, lint, build and guarded discovery,
+then deployed successfully in run `33942425336`. Capture run `33942432429`
+also completed successfully; its sanitized preflight still found all three
+role inputs unavailable, so four public pairs passed and eight authenticated/QR
+cases were skipped. No fixture, legacy record, provider state or visual count
+changed.
+
+```text
+FRONTEND_FIXTURE_SMOKE_COMMIT=f73f27214452f6fa212fc6d9412ecfdd31911e4d
+FRONTEND_DEPLOY_RUN=33942425336
+UAT_CAPTURE_RUN=33942432429
+CI_ROLE_INPUT_STATUS=PARTIAL
+CI_PUBLIC_CAPTURE_RESULT=4_PASSED
+CI_AUTHENTICATED_CAPTURE_RESULT=8_SKIPPED
+FIXTURE_BLOCKED_AFTER=57
+PROVIDER_BLOCKED_AFTER=5
+NEW_AUTHENTICATED_VISUALS=0
+```
