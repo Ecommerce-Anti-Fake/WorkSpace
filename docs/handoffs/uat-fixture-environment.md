@@ -457,6 +457,21 @@ CI_AUTHENTICATED_CAPTURE_RESULT=8_SKIPPED
 NEW_AUTHENTICATED_VISUALS=0
 ```
 
+## Current-shell safety recheck - 2026-09-05
+
+The existing read-only `uat:audit-demo` command was invoked from the current
+shell and failed closed before database inspection because the required UAT
+environment identity/database inputs were not present. No rows were read or
+changed by that invocation, and no raw command output was retained. The prior
+passing `DOCS_UAT` graph verification remains the latest database-backed
+fixture evidence.
+
+The managed fixture contract and the owner-supplied Seller runtime selection
+currently reference different Seller account aliases. No account, shop or
+fixture was renamed or mutated; reconcile the approved Seller alias before
+running authenticated Seller capture so the session is tied to the managed
+`DOCS_UAT` business graph.
+
 ## Auth context correction and follow-up - 2026-09-05
 
 The authenticated helper was corrected to carry the configured UAT `baseURL`
