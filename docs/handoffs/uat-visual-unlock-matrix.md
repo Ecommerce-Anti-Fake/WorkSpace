@@ -161,3 +161,31 @@ visual capturable.
 The B08/report row was reclassified from fixture-blocked to `NOT_IMPLEMENTED`
 after a current source inspection and fresh public UAT probes at both target
 viewports found no report control or form. No report mutation was attempted.
+
+## Authenticated capture re-evaluation — 2026-09-05
+
+The Front-End capture harness now reads only the six role-scoped
+`ANTIFAKE_UAT_*` runtime variables, performs the real login, checks the server
+role and expected role route, and uses a fresh Playwright storage state for the
+capture context. Storage states live under ignored `.uat-runtime/auth/`, are
+excluded from uploaded capture artifacts and are deleted when the context
+closes. Missing one role does not suppress public or other role captures.
+
+The current shell preflight returned `BUYER_CREDENTIAL_AVAILABLE=false`,
+`SELLER_CREDENTIAL_AVAILABLE=false` and `ADMIN_CREDENTIAL_AVAILABLE=false`.
+No authenticated visual was therefore counted in this checkpoint. The
+fixture graph remains `DOCS_UAT_FIXTURES_VALID`; no legacy entity or provider
+was mutated. Shell Playwright's public attempt was blocked by
+`ERR_NETWORK_ACCESS_DENIED`, while the isolated DevTools browser independently
+rendered the synthetic Community feed at `1440x900` and `390x844` with no
+console messages.
+
+```text
+FIXTURE_BLOCKED_BEFORE=57
+CAPTURABLE_AFTER_AUTH=ROLE_INPUTS_UNAVAILABLE_TO_CURRENT_SHELL
+FIXTURE_BLOCKED_AFTER=57
+PROVIDER_BLOCKED_AFTER=5
+NEWLY_COMPLETED_VISUALS=0
+AUTHENTICATED_CAPTURE_STATUS=RUNTIME_INPUTS_UNAVAILABLE_TO_CURRENT_SHELL
+VISUAL_GOAL_REMAINS_OPEN=YES
+```

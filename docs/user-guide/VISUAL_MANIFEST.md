@@ -377,3 +377,22 @@ checks at Desktop `1440x900`. The targeted B04 reuse probe passed at both
 Desktop and Mobile; the smoke did not exercise fixture-backed or
 provider-dependent flows, and the Admin aliases still lack approved-session
 evidence.
+
+## Authenticated capture re-evaluation — 2026-09-05
+
+The UAT capture harness now reads only the six role-scoped
+`ANTIFAKE_UAT_*` variables, authenticates through the real login surface,
+checks the server role and expected route, and loads a fresh temporary
+Playwright storage state for each role. State files are ignored, are not
+uploaded with capture artifacts and are removed when the context closes.
+
+The current capture process reported Buyer, Seller and Admin credential
+availability as false. No new visual was promoted or counted. Existing
+accepted bindings and the `DOCS_UAT` fixture graph remain unchanged; no legacy
+data or provider operation was touched.
+
+```text
+AUTHENTICATED_CAPTURE_STATUS=RUNTIME_INPUTS_UNAVAILABLE_TO_CURRENT_SHELL
+NEWLY_ACCEPTED_VISUALS=0
+VISUAL_GOAL_REMAINS_OPEN=YES
+```

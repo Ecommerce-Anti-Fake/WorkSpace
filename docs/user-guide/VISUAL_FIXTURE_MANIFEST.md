@@ -102,3 +102,27 @@ Approved account aliases for the current demo are `BUYER_UAT` (`seed.user01@anti
 
 The step-level handoff and current honest before/after calculation are in
 [`../handoffs/uat-visual-unlock-matrix.md`](../handoffs/uat-visual-unlock-matrix.md).
+
+## Authenticated capture contract — 2026-09-05
+
+Authenticated capture is now wired to the role-scoped runtime contract
+`ANTIFAKE_UAT_BUYER_*`, `ANTIFAKE_UAT_SELLER_*` and `ANTIFAKE_UAT_ADMIN_*`.
+The harness performs a real login, verifies the server role and expected route,
+then creates a fresh temporary Playwright storage state. State files are
+ignored, excluded from capture uploads and deleted after the role context
+closes; no credential value belongs in this manifest.
+
+```text
+FIXTURE_GRAPH_STATUS=DOCS_UAT_FIXTURES_VALID
+BUYER_CREDENTIAL_AVAILABLE=false
+SELLER_CREDENTIAL_AVAILABLE=false
+ADMIN_CREDENTIAL_AVAILABLE=false
+AUTHENTICATED_CAPTURE_STATUS=RUNTIME_INPUTS_UNAVAILABLE_TO_CURRENT_SHELL
+NEW_VISUALS_ACCEPTED=0
+```
+
+The availability booleans are the sanitized result from the current capture
+process. No legacy data was changed and no provider side effect was attempted.
+The existing B03 result, B08 feed and scheduled-live shell evidence remain the
+accepted/reviewed UAT evidence recorded above; authenticated fixture rows stay
+pending until a capture process inherits the approved role inputs.

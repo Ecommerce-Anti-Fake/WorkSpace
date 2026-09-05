@@ -168,3 +168,17 @@ pending real-session visual verification. The affected article rows remain
 unverified mutation, provider or fixture steps. The targeted published
 bindings, the two public B04 reuse aliases and B09/shop are production-verified and do
 not upgrade those wider journey statuses.
+
+## Authenticated capture re-evaluation — 2026-09-05
+
+The capture tooling now consumes only role-scoped `ANTIFAKE_UAT_*` runtime
+variables and verifies the server role before creating an ephemeral
+Playwright storage state. State files remain under ignored `.uat-runtime/`,
+are excluded from uploaded artifacts and are deleted after the context closes.
+No credential values belong in the registry or visual metadata.
+
+The current shell reported Buyer, Seller and Admin credential availability as
+false, so no authenticated visual status changed. Existing accepted bindings,
+the `DOCS_UAT` graph and the independent `237/237` functional baseline remain
+unchanged. The visual goal remains open pending a capture process that inherits
+the approved role inputs.

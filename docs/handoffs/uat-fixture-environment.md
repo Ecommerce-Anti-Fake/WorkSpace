@@ -263,23 +263,24 @@ npm run test:e2e:uat
 npm run test:e2e:uat:visual
 ```
 
-The command uses injected account variables (`UAT_USER_EMAIL`,
-`UAT_SELLER_EMAIL`, `UAT_ADMIN_EMAIL`, `UAT_TEST_PASSWORD`) and the injected
-`UAT_QR_CODE`. It runs representative buyer, QR, order, seller, chat,
-community and Admin routes at both required viewports when the target is
-available. `test:e2e:uat:visual` writes raw and temporary annotated pairs only
-to `.uat-runtime/test-results`; review privacy and marker placement before
-promoting any pair into WorkSpace. Skipped tests mean the target/credentials
-were not supplied; they are not a pass.
+The command reads only the role-scoped runtime variables
+`ANTIFAKE_UAT_BUYER_EMAIL`, `ANTIFAKE_UAT_BUYER_PASSWORD`,
+`ANTIFAKE_UAT_SELLER_EMAIL`, `ANTIFAKE_UAT_SELLER_PASSWORD`,
+`ANTIFAKE_UAT_ADMIN_EMAIL` and `ANTIFAKE_UAT_ADMIN_PASSWORD`, plus the
+optional injected `UAT_QR_CODE`. It runs representative buyer, QR, order,
+seller, chat, community and Admin routes at both required viewports when the
+target is available. `test:e2e:uat:visual` writes raw and temporary annotated
+pairs only to `.uat-runtime/test-results`; review privacy and marker placement
+before promoting any pair into WorkSpace. Skipped role tests mean that role's
+inputs were not supplied or verified; they are not a pass.
 
 The same workflow is available through manual `workflow_dispatch` or the
 dedicated `uat-capture` branch. A push to that branch runs the full capture
-job without invoking the `main`-only deployment workflow. Its required-secret
-preflight checks only secret presence and approved namespaces, never values.
-Missing inputs do not prevent public or independently configured Buyer, Seller
-or Admin captures from running; the job preserves those artifacts and fails
-closed after the capture step until the complete authenticated input set is
-configured.
+job without invoking the `main`-only deployment workflow. Its preflight
+checks only role-input availability, approved namespaces and non-placeholder
+passwords, never values. Missing inputs do not prevent public or independently
+configured Buyer, Seller or Admin captures from running; the job reports a
+partial input status without failing the available role work.
 The first branch run (Front-End `d47ab80`, run `1`) failed closed because all
 five required secret names were unset; it produced no capture artifacts.
 The follow-up branch run (Front-End `e139e5a`, run `2`) exercised the revised
@@ -295,8 +296,9 @@ capture tests passed 4/4 (both fixtures at Desktop and Mobile) in fresh
 contexts after Front-End revision `c7dfc58` deployed in GitHub Actions run
 `100`. The narrow Help binding probe also passed 4/4 at both viewports. Both
 pairs were privacy-reviewed and promoted to the visual manifest. Authenticated
-Buyer/Seller/Admin capture tests remain pending until secure UAT credentials
-are injected; no personal browser profile or cookie was used.
+Buyer/Seller/Admin capture tests remain pending until the six secure role
+variables are available to the capture process; no personal browser profile
+or cookie was used.
 
 The manual `UAT demo visual capture` workflow uploads those temporary files as
 a seven-day artifact. It does not deploy code or modify canonical visual
@@ -378,9 +380,10 @@ scheduled live shell also has separate raw/annotated Desktop/Mobile evidence
 from capture workflow run `33862241536`; its mobile marker contract uses the
 in-frame summary/title/chat targets because the responsive layout stacks the
 player above chat. The capture test passed 4/4 public pairs and skipped the
-credentialed tests; the final workflow gate remains intentionally failed until
-approved auth secrets are injected. The visual coverage goal remains open for
-the other fixture/provider rows.
+credentialed tests because the current shell did not inherit the role inputs.
+The workflow now reports partial role availability without failing public or
+available-role work. The visual coverage goal remains open for the other
+fixture/provider rows.
 
 ## Current environment classification
 
@@ -401,3 +404,34 @@ write guard additionally requires the injected mutation-approval flag, valid
 legacy cutoff, additive namespace/mode, deny-by-default side-effect flags, the
 sanitized database identity and the exact database-host allowlist before any
 additive write. Only `DOCS_UAT_MANAGED` rows may be modified or cleaned up.
+
+## Authenticated capture contract — 2026-09-05
+
+The capture harness now uses separate role credentials, verifies the server
+role returned by the real login response, verifies the role route, and then
+uses a fresh Playwright context loaded from a temporary storage state. The
+current domain model exposes Buyer and Seller as the generic `user` role, so
+Seller verification additionally requires the returned owned-shop claim and
+the protected Seller route; Admin must return the exact `admin` role. The
+state is written only under ignored `.uat-runtime/auth/`, is never uploaded
+with capture artifacts, and is removed when the role context closes.
+
+```text
+AUTH_CAPTURE_CONTRACT=ANTIFAKE_UAT_ROLE_SCOPED
+BUYER_CREDENTIAL_AVAILABLE=false
+SELLER_CREDENTIAL_AVAILABLE=false
+ADMIN_CREDENTIAL_AVAILABLE=false
+AUTHENTICATED_CAPTURE_STATUS=RUNTIME_INPUTS_UNAVAILABLE_TO_CURRENT_SHELL
+STORAGE_STATE_UPLOAD=DENIED
+STORAGE_STATE_CLEANUP=CONTEXT_CLOSE
+```
+
+The booleans above are the sanitized availability result from the current
+capture process; no `.env` file was read and no credential value was printed.
+This does not reopen UAT provisioning or mixed-data classification. The
+approved runtime remains `UAT_DEMO`; the current limitation is only that this
+shell did not inherit the six role variables. The isolated DevTools browser
+verified the public synthetic Community feed at Desktop `1440x900` and Mobile
+`390x844` with no console messages. Shell Playwright navigation was separately
+blocked by `ERR_NETWORK_ACCESS_DENIED`, so no authenticated visual was counted
+from that attempt.

@@ -505,3 +505,25 @@ above `PARTIAL`.
 | Canonical repository | `Ecommerce-Anti-Fake/WorkSpace` (`main`) |
 | Commit possible | YES |
 | Required action | Commit/push documentation and evidence assets in WorkSpace; repository integration of the root mirror remains separate owner workflow |
+
+## Authenticated capture re-evaluation — 2026-09-05
+
+The capture path now uses only the role-scoped runtime variables
+`ANTIFAKE_UAT_BUYER_*`, `ANTIFAKE_UAT_SELLER_*` and `ANTIFAKE_UAT_ADMIN_*`.
+It performs real login and server-role verification before loading a fresh
+Playwright storage state. The state is confined to ignored `.uat-runtime/auth/`,
+excluded from uploaded capture artifacts and deleted at context close.
+
+The current shell preflight reported `BUYER_CREDENTIAL_AVAILABLE=false`,
+`SELLER_CREDENTIAL_AVAILABLE=false` and `ADMIN_CREDENTIAL_AVAILABLE=false`.
+No authenticated visual was accepted in this checkpoint. The fixture graph and
+the accepted B03/B08/scheduled-shell evidence remain unchanged; no legacy row,
+provider or functional UAT baseline was modified.
+
+```text
+AUTHENTICATED_CAPTURE_STATUS=RUNTIME_INPUTS_UNAVAILABLE_TO_CURRENT_SHELL
+FIXTURE_BLOCKED_AFTER=57
+PROVIDER_BLOCKED_AFTER=5
+VISUAL_COMPLETE=17
+VISUAL_REMAINING=62
+```

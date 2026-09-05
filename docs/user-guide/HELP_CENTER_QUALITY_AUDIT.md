@@ -458,3 +458,26 @@ checks at Desktop `1440x900`. The targeted B04 reuse probe and the B09/shop
 live-origin product-detail reuse probe then passed at both Desktop and Mobile;
 they did not exercise fixture-backed journeys or provider flows, and the Admin
 aliases still lack approved-session evidence.
+
+## Authenticated capture re-evaluation — 2026-09-05
+
+The dedicated capture harness now consumes only the six role-scoped
+`ANTIFAKE_UAT_*` runtime variables. It authenticates through the current login
+surface, checks the server-returned role and expected protected route, and
+creates an ephemeral storage state in ignored `.uat-runtime/auth/`. The state
+is not uploaded or copied into WorkSpace and is removed after the capture
+context closes. Each role is independent, so missing one role does not block
+the public or other role suites.
+
+The current shell reported all three role credential pairs unavailable. This
+checkpoint therefore adds no visual completion and leaves the existing totals
+unchanged: 17 complete of 79 required, 57 fixture-blocked and 5
+provider-blocked. The public synthetic Community feed remained verified in an
+isolated DevTools browser at `1440x900` and `390x844` with no console messages;
+shell Playwright was separately blocked by `ERR_NETWORK_ACCESS_DENIED`.
+
+```text
+AUTHENTICATED_CAPTURE_STATUS=RUNTIME_INPUTS_UNAVAILABLE_TO_CURRENT_SHELL
+NEWLY_COMPLETED_VISUALS=0
+VISUAL_GOAL_REMAINS_OPEN=YES
+```
