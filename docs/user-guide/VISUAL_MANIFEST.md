@@ -417,6 +417,13 @@ NEWLY_ACCEPTED_VISUALS=0
 VISUAL_GOAL_REMAINS_OPEN=YES
 ```
 
+Post-deploy UAT verification completed against Front-End SHA
+`7e51de3272e4d19a5cf3d11f24366354a282bf06` (Actions run `33948126984`). Fresh
+Desktop and Mobile browser contexts loaded the five new served bindings with
+non-zero image dimensions; Admin bindings were checked after real Admin login.
+Buyer/Admin capture packs passed in both viewports. Seller remains blocked by
+the observed HTTP 401 and no provider or legacy-data mutation was performed.
+
 The current UAT deployment SHA `79313d79ab8edbfc1cdc9fc7118e7bce5d0dd7df`
 was exercised by capture run `33941303277`. Four public pairs passed and eight
 authenticated/QR cases were skipped because the three role inputs were not

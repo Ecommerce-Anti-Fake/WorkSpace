@@ -511,6 +511,30 @@ VISUAL_STEPS_UNLOCKED=5
 VISUAL_GOAL_REMAINS_OPEN=YES
 ```
 
+## Post-deploy authenticated UAT verification - 2026-09-05 (current)
+
+Front-End commit `7e51de3272e4d19a5cf3d11f24366354a282bf06` deployed through
+Actions run `33948126984` with a successful conclusion. Fresh isolated browser
+contexts verified the Buyer and Admin capture packs at Desktop `1440x900` and
+Mobile `390x844`; the Seller login was independently rechecked and returned
+HTTP 401. A follow-up Help binding probe loaded all five newly served visuals
+with non-zero natural dimensions at both viewports, including Admin Help after
+real Admin authentication. No legacy record, provider state or functional UAT
+baseline was changed.
+
+```text
+FRONTEND_RUNTIME_SHA=7e51de3272e4d19a5cf3d11f24366354a282bf06
+FRONTEND_DEPLOY_RUN=33948126984
+BUYER_CAPTURE_DESKTOP=PASS
+BUYER_CAPTURE_MOBILE=PASS
+ADMIN_CAPTURE_DESKTOP=PASS
+ADMIN_CAPTURE_MOBILE=PASS
+HELP_BINDINGS_DESKTOP=PASS
+HELP_BINDINGS_MOBILE=PASS
+SELLER_LOGIN=HTTP_401_ROLE_INPUT_BLOCKED
+PRODUCTION_CHANGED=NO
+```
+
 The A04 Shop detail route renders synthetic data, but its KYC document URL is
 an unavailable placeholder; do not use that capture as accepted visual
 evidence until the media path is repaired or replaced by an approved safe UAT
