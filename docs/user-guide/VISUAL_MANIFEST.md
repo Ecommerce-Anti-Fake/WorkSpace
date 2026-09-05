@@ -43,6 +43,11 @@ asset. The current served copies are kept in
 | B04 cart | `/journey-visuals/b04-cart-desktop.png` | `/journey-visuals/b04-cart-mobile.png` | Production binding retested after deployed revision `13c18f4`; accepted seeded-cart Desktop/Mobile evidence remains at `8157ffa`; B04 remains `PARTIAL` |
 | B04 discover (production-verified reuse) | `/journey-visuals/b02-discovery-desktop.png` | `/journey-visuals/b02-discovery-mobile.png` | Reuses the accepted public B02 discovery state; route, asset load and marker order verified at `78646d7` on Desktop/Mobile; B04 remains `PARTIAL` for later steps |
 | B04 product-detail (production-verified reuse) | `/journey-visuals/b02-product-detail-desktop.png` | `/journey-visuals/b02-product-detail-mobile.png` | Reuses the accepted public B02 product-detail state; route, asset load and marker order verified at `78646d7` on Desktop/Mobile; B04 remains `PARTIAL` for later steps |
+| B05 list | `/journey-visuals/b05-orders-desktop.png` | `/journey-visuals/b05-orders-mobile.png` | Authenticated Buyer `DOCS_UAT` order-list capture at both target viewports; list step accepted while order transitions remain `PARTIAL` |
+| B05 detail | `/journey-visuals/b05-order-detail-desktop.png` | `/journey-visuals/b05-order-detail-mobile.png` | Authenticated Buyer `DOCS_UAT` order-detail capture at both target viewports; read-only detail accepted while next actions remain `PARTIAL` |
+| B07 open/history | `/journey-visuals/b07-chat-open-desktop.png` | `/journey-visuals/b07-chat-open-mobile.png` | Authenticated Buyer `DOCS_UAT` chat history capture at both target viewports; send/realtime/reconnect remain unverified |
+| A02 search | `/journey-visuals/admin-users-desktop.png` | `/journey-visuals/admin-users-mobile.png` | Authenticated Admin list filtered to the synthetic `DOCS_UAT` review user; queue search accepted while mutations remain `PARTIAL` |
+| A02 detail | `/journey-visuals/admin-user-detail-desktop.png` | `/journey-visuals/admin-user-detail-mobile.png` | Authenticated Admin detail of a synthetic `DOCS_UAT` review user; read-only detail accepted while mutations remain `PARTIAL` |
 | ADMIN-REVIEW dashboard (local reuse) | `/journey-visuals/admin-dashboard-desktop.png` | `/journey-visuals/admin-dashboard-mobile.png` | Local branch binding reuses the accepted Admin dashboard shell; route/image smoke passed with a test role, approved Admin-session production retest pending |
 | ADMIN-REVIEW product-review (local reuse) | `/journey-visuals/admin-product-review-desktop.png` | `/journey-visuals/admin-product-review-mobile.png` | Local branch binding reuses the accepted Admin product-review queue; route/image smoke passed with a test role, approved Admin-session production retest pending |
 | ADMIN-OPERATIONS dashboard (local reuse) | `/journey-visuals/admin-dashboard-desktop.png` | `/journey-visuals/admin-dashboard-mobile.png` | Local branch binding reuses the accepted Admin dashboard shell; route/image smoke passed with a test role, approved Admin-session production retest pending |
@@ -57,6 +62,10 @@ review and is never used as the runtime binding.
 |---|---|---|---|
 | `/journey-visuals/admin-dashboard-desktop.png` | `docs/images/admin/admin-dashboard-desktop-production-bb0eee1.png` | `docs/images/admin/admin-dashboard-desktop-production-bb0eee1-annotated.png` | Served bytes equal annotated bytes |
 | `/journey-visuals/admin-dashboard-mobile.png` | `docs/images/admin/admin-dashboard-mobile-production-bb0eee1.png` | `docs/images/admin/admin-dashboard-mobile-production-bb0eee1-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/admin-users-desktop.png` | `docs/images/admin/a02-users-desktop-uat-20260905.png` | `docs/images/admin/a02-users-desktop-uat-20260905-annotated.png` | Served bytes equal annotated bytes; authenticated UAT capture |
+| `/journey-visuals/admin-users-mobile.png` | `docs/images/admin/a02-users-mobile-uat-20260905.png` | `docs/images/admin/a02-users-mobile-uat-20260905-annotated.png` | Served bytes equal annotated bytes; authenticated UAT capture |
+| `/journey-visuals/admin-user-detail-desktop.png` | `docs/images/admin/a02-user-detail-desktop-uat-20260905.png` | `docs/images/admin/a02-user-detail-desktop-uat-20260905-annotated.png` | Served bytes equal annotated bytes; authenticated UAT capture |
+| `/journey-visuals/admin-user-detail-mobile.png` | `docs/images/admin/a02-user-detail-mobile-uat-20260905.png` | `docs/images/admin/a02-user-detail-mobile-uat-20260905-annotated.png` | Served bytes equal annotated bytes; authenticated UAT capture |
 | `/journey-visuals/admin-product-review-desktop.png` | `docs/images/admin/admin-product-registrations-desktop-production-9637e9f.png` | `docs/images/admin/admin-product-registrations-desktop-production-9637e9f-annotated.png` | Served bytes equal annotated bytes |
 | `/journey-visuals/admin-product-review-mobile.png` | `docs/images/admin/admin-product-registrations-mobile-production-9637e9f.png` | `docs/images/admin/admin-product-registrations-mobile-production-9637e9f-annotated.png` | Served bytes equal annotated bytes |
 | `/journey-visuals/admin-promotions-desktop.png` | `docs/images/admin/admin-vouchers-desktop-production-9637e9f.png` | `docs/images/admin/admin-vouchers-desktop-production-9637e9f-annotated.png` | Served bytes equal annotated bytes |
@@ -79,6 +88,12 @@ review and is never used as the runtime binding.
 | `/journey-visuals/b08-community-feed-mobile.png` | `docs/images/community/b08-community-feed-mobile-uat-20260904.png` | `docs/images/community/b08-community-feed-mobile-uat-20260904-annotated.png` | Served bytes equal annotated bytes; public UAT feed verified |
 | `/journey-visuals/b04-cart-desktop.png` | `docs/images/buyer/cart-desktop-production-8157ffa.png` | `docs/images/buyer/cart-desktop-production-8157ffa-annotated.png` | Served bytes equal annotated bytes |
 | `/journey-visuals/b04-cart-mobile.png` | `docs/images/buyer/cart-mobile-production-8157ffa.png` | `docs/images/buyer/cart-mobile-production-8157ffa-annotated.png` | Served bytes equal annotated bytes |
+| `/journey-visuals/b05-orders-desktop.png` | `docs/images/order/b05-orders-desktop-uat-20260905.png` | `docs/images/order/b05-orders-desktop-uat-20260905-annotated.png` | Served bytes equal annotated bytes; authenticated UAT capture |
+| `/journey-visuals/b05-orders-mobile.png` | `docs/images/order/b05-orders-mobile-uat-20260905.png` | `docs/images/order/b05-orders-mobile-uat-20260905-annotated.png` | Served bytes equal annotated bytes; authenticated UAT capture |
+| `/journey-visuals/b05-order-detail-desktop.png` | `docs/images/order/b05-order-detail-desktop-uat-20260905.png` | `docs/images/order/b05-order-detail-desktop-uat-20260905-annotated.png` | Served bytes equal annotated bytes; authenticated UAT capture |
+| `/journey-visuals/b05-order-detail-mobile.png` | `docs/images/order/b05-order-detail-mobile-uat-20260905.png` | `docs/images/order/b05-order-detail-mobile-uat-20260905-annotated.png` | Served bytes equal annotated bytes; authenticated UAT capture |
+| `/journey-visuals/b07-chat-open-desktop.png` | `docs/images/chat/b07-chat-open-desktop-uat-20260905.png` | `docs/images/chat/b07-chat-open-desktop-uat-20260905-annotated.png` | Served bytes equal annotated bytes; authenticated UAT history capture |
+| `/journey-visuals/b07-chat-open-mobile.png` | `docs/images/chat/b07-chat-open-mobile-uat-20260905.png` | `docs/images/chat/b07-chat-open-mobile-uat-20260905-annotated.png` | Served bytes equal annotated bytes; authenticated UAT history capture |
 | `/journey-visuals/b09-live-discovery-desktop.png` | `docs/images/buyer/live-discovery-desktop-production-6b24be3.png` | `docs/images/buyer/live-discovery-desktop-production-6b24be3-annotated.png` | Served bytes equal annotated bytes |
 | `/journey-visuals/b09-live-discovery-mobile.png` | `docs/images/buyer/live-discovery-mobile-production-6b24be3.png` | `docs/images/buyer/live-discovery-mobile-production-6b24be3-annotated.png` | Served bytes equal annotated bytes |
 
@@ -102,6 +117,11 @@ an absent number.
 | B08 feed | `1` Community feed, `2` synthetic DOCS_UAT author, `3` post interaction controls |
 | B03 enter-code | `1` selected Mã xác thực method, `2` verification-code field, `3` verification action |
 | B04 cart | `1` cart quantity/badge, `2` quantity controls |
+| B05 list | `1` Buyer order list, `2` synthetic recipient/order card, `3` detail action |
+| B05 detail | `1` order identity/status, `2` synthetic product/recipient/shipping information, `3` payment summary |
+| B07 open/history | Desktop: `1` Chat area, `2` DOCS_UAT room list, `3` message history; Mobile: `1` conversation content, `2` conversation header, `3` seeded synthetic messages |
+| A02 search | Desktop: `1` users heading, `2` server summary statistics, `3` DOCS_UAT-filtered table; Mobile: `1` table toolbar, `2` DOCS_UAT search field, `3` synthetic result table |
+| A02 detail | `1` DOCS_UAT profile card, `2` server-provided display name and role, `3` server information matrix |
 | B09 discover | `1` live-shopping section, `2` search/state controls, `3` live card |
 | B09 shop (reuse) | `1` product media, `2` variant/quantity, `3` AntiFake verification; Mobile: product image, name/price, variant selector |
 | S07 program | `1` discovery tab, `2` program summary, `3` referral/join area |
@@ -408,3 +428,39 @@ The authenticated context helper was corrected in deployed Front-End commit
 to both fresh browser contexts. Capture run `33941840279` completed with four
 public pairs passed and eight authenticated/QR cases skipped because all three
 role inputs were unavailable. No visual binding or accepted count changed.
+
+## Authenticated UAT visual checkpoint - 2026-09-05 (current)
+
+The local runner loaded the approved role-scoped inputs without logging their
+values. Buyer and Admin real-login sessions passed; the Seller input was
+available but login returned HTTP 401. Captures used isolated Playwright
+contexts at Desktop `1440x900` and Mobile `390x844`.
+
+The following five bindings are accepted after raw/annotated review:
+
+| Step | Served Desktop | Served Mobile | Raw + annotated evidence | Privacy / marker result |
+|---|---|---|---|---|
+| B05/list | `/journey-visuals/b05-orders-desktop.png` | `/journey-visuals/b05-orders-mobile.png` | `docs/images/order/b05-orders-{desktop,mobile}-uat-20260905[ -annotated].png` | Synthetic order graph; markers 1-3 explained |
+| B05/detail | `/journey-visuals/b05-order-detail-desktop.png` | `/journey-visuals/b05-order-detail-mobile.png` | `docs/images/order/b05-order-detail-{desktop,mobile}-uat-20260905[ -annotated].png` | Synthetic recipient/product/shipping data; markers 1-3 explained |
+| B07/open | `/journey-visuals/b07-chat-open-desktop.png` | `/journey-visuals/b07-chat-open-mobile.png` | `docs/images/chat/b07-chat-open-{desktop,mobile}-uat-20260905[ -annotated].png` | Synthetic seeded history only; markers 1-3 explained |
+| A02/search | `/journey-visuals/admin-users-desktop.png` | `/journey-visuals/admin-users-mobile.png` | `docs/images/admin/a02-users-{desktop,mobile}-uat-20260905[ -annotated].png` | DOCS_UAT-filtered synthetic row; markers 1-3 explained |
+| A02/detail | `/journey-visuals/admin-user-detail-desktop.png` | `/journey-visuals/admin-user-detail-mobile.png` | `docs/images/admin/a02-user-detail-{desktop,mobile}-uat-20260905[ -annotated].png` | Synthetic review user; markers 1-3 explained |
+
+The bracketed filename notation above means the same stem with and without
+the `-annotated` suffix; the exact files and served-byte rule are listed in
+the integrity table above. No credential, token, legacy record, financial
+identifier or provider side effect is present in the accepted set. A04 detail
+was not promoted because its synthetic KYC placeholder media is unavailable.
+
+```text
+NEWLY_ACCEPTED_VISUALS=5
+FIXTURE_BLOCKED_BEFORE=57
+FIXTURE_BLOCKED_AFTER=52
+PROVIDER_BLOCKED_BEFORE=5
+PROVIDER_BLOCKED_AFTER=5
+CURRENT_COMPLETE_VISUAL_STEPS=22
+CURRENT_REQUIRED_VISUAL_STEPS=79
+CURRENT_REMAINING_VISUAL_STEPS=57
+COVERAGE_PERCENT=27.85
+VISUAL_GOAL_REMAINS_OPEN=YES
+```

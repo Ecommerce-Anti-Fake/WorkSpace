@@ -540,3 +540,44 @@ propagation for fresh authenticated contexts. Four public pairs passed and
 eight authenticated/QR cases were skipped because the sanitized role inputs
 remained unavailable. Evidence classification and the 17 complete / 62
 remaining totals are unchanged.
+
+## Authenticated UAT evidence checkpoint - 2026-09-05 (current)
+
+The local capture runner reads only the six role-scoped authentication inputs
+from the approved runtime boundary. It performs real UI login, verifies the
+server role and uses an isolated temporary Playwright context. Values and
+storage states are never written to this matrix. The runner does not load the
+Back-End database or provider secrets into the Front-End child process.
+
+| Step | Previous blocker | Fixture | UAT route | Runtime state verified | Now capturable | Remaining blocker |
+|---|---|---|---|---|---|---|
+| B05/list | `BLOCKED_FIXTURE` | `ORDER_DETAIL_PII_SAFE_UAT` | `/profile/orders` | Buyer login PASS; synthetic order card visible | Yes - Desktop/Mobile raw + annotated accepted | None for read-only list |
+| B05/detail | `BLOCKED_FIXTURE` | `ORDER_DETAIL_PII_SAFE_UAT` | `/profile/orders/:id` | Buyer login PASS; synthetic recipient, product and shipping state visible | Yes - Desktop/Mobile raw + annotated accepted | Next-action transition remains unverified |
+| B07/open | `BLOCKED_FIXTURE` | `CHAT_SYNTHETIC_TWO_SESSION_UAT` | `/chat` | Buyer login PASS; DOCS_UAT room and seeded message history visible | Yes - Desktop/Mobile raw + annotated accepted | Send/realtime/reconnect not verified |
+| A02/search | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/users` | Admin login PASS; DOCS_UAT filter returns synthetic review row | Yes - Desktop/Mobile raw + annotated accepted | Mutations remain unverified |
+| A02/detail | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/users/:userId` | Admin login PASS; synthetic review-user detail visible | Yes - Desktop/Mobile raw + annotated accepted | Mutations remain unverified |
+
+The local input availability was Buyer `AVAILABLE`, Seller `AVAILABLE` and
+Admin `AVAILABLE`. Seller authentication returned HTTP 401, so Seller capture
+remains role-blocked and no Seller or legacy entity was mutated. The A04 Shop
+detail runtime rendered, but its synthetic KYC document URL is unavailable;
+the resulting broken media state is recorded as a visual-quality defect and is
+not promoted as accepted evidence. B05 next-action, B07 send/reconnect, cart /
+voucher mutation, Seller, Affiliate and provider-dependent states remain
+unaccepted. A03, A06, A07 and A10 remain `NOT_IMPLEMENTED`.
+
+```text
+FIXTURE_BLOCKED_BEFORE=57
+FIXTURE_BLOCKED_AFTER=52
+PROVIDER_BLOCKED_BEFORE=5
+PROVIDER_BLOCKED_AFTER=5
+PREVIOUS_COMPLETE_VISUAL_STEPS=17
+NEWLY_COMPLETED_VISUAL_STEPS=5
+CURRENT_COMPLETE_VISUAL_STEPS=22
+CURRENT_REQUIRED_VISUAL_STEPS=79
+CURRENT_REMAINING_VISUAL_STEPS=57
+COVERAGE_PERCENT=27.85
+LEGACY_RECORDS_MODIFIED=0
+LEGACY_RECORDS_DELETED=0
+PROVIDER_SIDE_EFFECTS=NONE
+```

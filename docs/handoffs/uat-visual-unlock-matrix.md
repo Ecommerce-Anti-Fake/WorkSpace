@@ -203,3 +203,45 @@ TypeScript, lint, build and guarded test-discovery checks passed. Follow-up
 capture run `33941840279` completed successfully, but its sanitized preflight
 again found Buyer, Seller and Admin inputs unavailable. Four public pairs passed
 and eight authenticated/QR cases were skipped, so no unlock-matrix row changed.
+
+## Authenticated local capture checkpoint - 2026-09-05 (current)
+
+The owner-approved local credential bridge now feeds isolated real-login
+Playwright contexts without exposing values. Buyer and Admin role verification
+passed; Seller input was available but the observed login response was HTTP 401.
+The fixture graph remained `DOCS_UAT_FIXTURES_VALID`, and no legacy record or
+provider state was changed.
+
+| VISUAL_STEP | PREVIOUS_BLOCKER | UAT_FIXTURE | UAT_ROUTE | RUNTIME_STATE_VERIFIED | NOW_CAPTURABLE | PROVIDER_STILL_REQUIRED | REMAINING_BLOCKER |
+|---|---|---|---|---|---|---|---|
+| B05-list | `BLOCKED_FIXTURE` | `ORDER_DETAIL_PII_SAFE_UAT` | `/profile/orders` | Buyer PASS; synthetic DOCS_UAT order list visible | Yes | None | None for read-only list |
+| B05-detail | `BLOCKED_FIXTURE` | `ORDER_DETAIL_PII_SAFE_UAT` | `/profile/orders/:id` | Buyer PASS; synthetic order detail visible | Yes | None | Next-action transition not verified |
+| B07-open | `BLOCKED_FIXTURE` | `CHAT_SYNTHETIC_TWO_SESSION_UAT` | `/chat` | Buyer PASS; DOCS_UAT room with two seeded messages visible | Yes | None for history | Send/realtime/reconnect not verified |
+| A02-search | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/users` | Admin PASS; DOCS_UAT filter and synthetic review row visible | Yes | None | Mutations not verified |
+| A02-detail | `BLOCKED_FIXTURE` | `ADMIN_PIISAFE_READ_SET` | `/admin/users/:userId` | Admin PASS; synthetic review-user detail visible | Yes | None | Mutations not verified |
+
+For each accepted row, Desktop and Mobile raw captures were created at
+`1440x900` and `390x844`, privacy-reviewed, annotated on copies, marker-mapped
+to Help prose and promoted only after integrity checks. The exact raw and
+annotated asset paths are recorded in `VISUAL_MANIFEST.md`.
+
+A04 inspect was exercised but not promoted: the synthetic KYC document URL
+returns unavailable placeholder media in the current runtime. This remains a
+visual-quality defect. Seller journeys remain role-blocked by HTTP 401; B05
+next-action, B07 send/reconnect, B06/cart mutation, Affiliate, Seller, wallet
+mutation and provider-dependent steps remain unaccepted.
+
+```text
+FIXTURE_BLOCKED_BEFORE=57
+FIXTURE_BLOCKED_AFTER=52
+PROVIDER_BLOCKED_BEFORE=5
+PROVIDER_BLOCKED_AFTER=5
+VISUAL_STEPS_NOW_UNLOCKED=5
+NEWLY_COMPLETED_VISUALS=B05/list,B05/detail,B07/open,A02/search,A02/detail
+CURRENT_COMPLETE_VISUAL_STEPS=22
+CURRENT_REQUIRED_VISUAL_STEPS=79
+CURRENT_REMAINING_VISUAL_STEPS=57
+COVERAGE_PERCENT=27.85
+GOAL_STATUS=IN_PROGRESS
+VISUAL_GOAL_REMAINS_OPEN=YES
+```

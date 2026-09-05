@@ -195,3 +195,33 @@ into fresh authenticated contexts. Sanitized preflight still found all three
 role inputs unavailable; four public pairs passed and eight authenticated/QR
 cases were skipped. Registry bindings and accepted visual counts remain
 unchanged.
+
+## Current authenticated UAT registry checkpoint - 2026-09-05
+
+The local allowlisted capture runner successfully supplied role-scoped inputs
+without recording their values. Buyer and Admin real-login sessions passed
+role verification; the configured Seller input was available but returned HTTP
+401. Five step-level visual bindings were accepted after Desktop `1440x900`
+and Mobile `390x844` raw/annotated review.
+
+| Article | Step | Current visual binding | Evidence status |
+|---|---|---|---|
+| B05 | `list` | `/journey-visuals/b05-orders-desktop.png`, `/journey-visuals/b05-orders-mobile.png` | Accepted synthetic Buyer read-only evidence |
+| B05 | `detail` | `/journey-visuals/b05-order-detail-desktop.png`, `/journey-visuals/b05-order-detail-mobile.png` | Accepted synthetic Buyer read-only evidence |
+| B07 | `open` | `/journey-visuals/b07-chat-open-desktop.png`, `/journey-visuals/b07-chat-open-mobile.png` | Accepted seeded history evidence; realtime not claimed |
+| A02 | `search` | `/journey-visuals/admin-users-desktop.png`, `/journey-visuals/admin-users-mobile.png` | Accepted filtered synthetic Admin evidence |
+| A02 | `detail` | `/journey-visuals/admin-user-detail-desktop.png`, `/journey-visuals/admin-user-detail-mobile.png` | Accepted synthetic Admin detail evidence |
+
+The article statuses remain `PARTIAL`: wider mutations and provider/runtime
+states are not upgraded by read-only captures. A04 detail was not promoted due
+to unavailable synthetic KYC placeholder media. A03, A06, A07 and A10 remain
+`NOT_IMPLEMENTED`; no legacy record or provider state was changed.
+
+```text
+CURRENT_COMPLETE_VISUAL_STEPS=22
+CURRENT_REQUIRED_VISUAL_STEPS=79
+CURRENT_REMAINING_VISUAL_STEPS=57
+FIXTURE_BLOCKED_AFTER=52
+PROVIDER_BLOCKED_AFTER=5
+VISUAL_GOAL_REMAINS_OPEN=YES
+```

@@ -176,9 +176,8 @@ database boundary and UAT frontend URL, then starts the compiled gateway. A
 production deployment continues to use its existing start path.
 
 Logical account aliases are `BUYER_UAT`, `SELLER_UAT`, `AFFILIATE_UAT` when
-the affiliate state is required, and `ADMIN_UAT`. The approved identifiers are
-`seed.user01@antifake.local`, `seed.user02@antifake.local` and
-`admin@antifake.io.vn`; passwords and tokens are injected, never documented.
+the affiliate state is required, and `ADMIN_UAT`. Authentication inputs,
+passwords and tokens are injected at runtime and never documented.
 All seeded names, addresses, shops, products, posts and messages use the
 synthetic UAT namespace.
 
@@ -459,6 +458,65 @@ CI_AUTHENTICATED_CAPTURE_RESULT=8_SKIPPED
 NEW_AUTHENTICATED_VISUALS=0
 ```
 
+## Authenticated local capture checkpoint - 2026-09-05 (current)
+
+The current approved runtime remains `ANTIFAKE_CURRENT_ENVIRONMENT=UAT_DEMO` at
+`https://antifake.io.vn`, with API `https://api.antifake.io.vn`. The owner’s
+Back-End `.env` is not loaded wholesale: the Front-End runner reads only the
+six `ANTIFAKE_UAT_*` authentication variables in memory, while CI uses GitHub
+secrets. Passwords, tokens, database URLs and provider secrets are never
+printed, persisted in storage states, or copied into WorkSpace.
+
+Run locally from `Front-End`:
+
+```text
+npm run test:uat-auth
+npm run test:e2e:uat:visual:local -- desktop "buyer fixture pack"
+npm run test:e2e:uat:visual:local -- mobile "buyer fixture pack"
+npm run test:e2e:uat:visual:local -- desktop "Admin review pack"
+npm run test:e2e:uat:visual:local -- mobile "Admin review pack"
+```
+
+The runner creates isolated Playwright contexts and temporary storage states
+under ignored `.uat-runtime/auth/`, then removes them when the context closes.
+It logs only role availability booleans. The current local result is Buyer
+login PASS, Admin login PASS and Seller input AVAILABLE but login HTTP 401.
+The Seller failure is role-specific; it does not block Buyer/Admin evidence.
+
+Current accepted authenticated visual steps are B05 list/detail, B07 open/history,
+A02 search and A02 detail. Each has raw and marker-annotated Desktop `1440x900`
+and Mobile `390x844` files. The Admin mobile queue/detail capture uses a
+content-targeted scroll so the markers identify the visible table or detail
+surface rather than the static mobile sidebar.
+
+Safety checkpoint:
+
+```text
+FIXTURE_SYSTEM_STATUS=PASS_GRAPH_VERIFIED
+FIXTURE_MODE=ADDITIVE_IDEMPOTENT
+LEGACY_DATA_MUTATION=DENIED
+DESTRUCTIVE_RESET=DISABLED
+LEGACY_ENTITIES_MODIFIED=0
+LEGACY_ENTITIES_DELETED=0
+REAL_PAYMENT=DENIED
+REAL_PAYOUT=DENIED
+REAL_SHIPMENT=DENIED
+REAL_EXTERNAL_KYC=DENIED
+PROVIDER_SIDE_EFFECTS=NONE
+FIXTURE_BLOCKED_BEFORE=57
+FIXTURE_BLOCKED_AFTER=52
+PROVIDER_BLOCKED_BEFORE=5
+PROVIDER_BLOCKED_AFTER=5
+VISUAL_STEPS_UNLOCKED=5
+VISUAL_GOAL_REMAINS_OPEN=YES
+```
+
+The A04 Shop detail route renders synthetic data, but its KYC document URL is
+an unavailable placeholder; do not use that capture as accepted visual
+evidence until the media path is repaired or replaced by an approved safe UAT
+asset. Do not use the Admin wallet/withdrawal images as public evidence because
+they expose financial summaries. Do not run the general `237/237` UAT again.
+
 ## Current-shell safety recheck - 2026-09-05
 
 The existing read-only `uat:audit-demo` command was invoked from the current
@@ -507,9 +565,10 @@ the Back-End service loads its own environment, while a Playwright command
 started from `Front-End` is a separate process and does not inherit
 `back-end/.env`.
 
-The authenticated capture contract intentionally reads only the six
+Historical note: this section records the pre-runner contract. At that time,
+the authenticated capture contract intentionally read only the six
 `ANTIFAKE_UAT_*` variables already present in the launching process. It does
-not auto-load `back-end/.env`, because that file may also contain database,
+not load `back-end/.env` wholesale, because that file may also contain database,
 JWT and provider secrets. CI likewise receives the six inputs only from the
 configured GitHub environment secrets. `UAT_ENV_FILE` is a Back-End UAT
 script option and does not configure Front-End Playwright.
@@ -525,9 +584,14 @@ storage states or credentials into source, artifacts or documentation.
 BACKEND_LOCAL_ENV_SCOPE=BACKEND_RUNTIME_ONLY
 PLAYWRIGHT_AUTH_SOURCE=LAUNCH_PROCESS_ENV_ONLY
 CI_AUTH_SOURCE=GITHUB_ENVIRONMENT_SECRETS_ONLY
-LOCAL_ENV_AUTOLOAD=DISABLED
+LOCAL_ENV_AUTOLOAD=DISABLED_HISTORICAL
 STORAGE_STATE_SCOPE=IGNORED_TEMPORARY_RUNTIME_ONLY
 ```
+
+The current local runner supersedes that snapshot: it reads the ignored
+Back-End `.env` only in memory and forwards only the six role-scoped auth keys
+plus optional `UAT_QR_CODE`; unrelated database, JWT and provider values are
+not imported. The current setting is `LOCAL_ENV_AUTOLOAD=ALLOWLIST_ONLY`.
 
 ## Independent fixture-smoke gates - 2026-09-05
 

@@ -96,9 +96,9 @@ bound in the Journey Center. The capture workflow is available through manual
 or mutate application code/data. All fixture writes are additive and guarded
 by the `DOCS_UAT` policy.
 
-Approved account aliases for the current demo are `BUYER_UAT` (`seed.user01@antifake.local`),
-`SELLER_UAT` (`seed.user02@antifake.local`) and `ADMIN_UAT`
-(`admin@antifake.io.vn`). Passwords, tokens and QR plaintext are injected only.
+Approved account aliases for the current demo are `BUYER_UAT`, `SELLER_UAT` and
+`ADMIN_UAT`. Authentication inputs, passwords, tokens and QR plaintext are
+injected only at runtime and are never recorded in this manifest.
 
 The step-level handoff and current honest before/after calculation are in
 [`../handoffs/uat-visual-unlock-matrix.md`](../handoffs/uat-visual-unlock-matrix.md).
@@ -138,3 +138,48 @@ was deployed and exercised by capture run `33941840279`; the sanitized role
 inputs were still unavailable, so four public pairs passed, eight
 authenticated/QR cases were skipped and the fixture manifest has no new
 accepted visual rows.
+
+## Authenticated capture checkpoint - 2026-09-05 (current)
+
+The owner-provided local `.env` is bridged only into the Front-End capture
+process through `scripts/run-uat-visual-capture.mjs`. The runner allowlists the
+six role-scoped authentication variables, never prints their values, and does
+not merge database or provider variables into the child process. CI continues
+to use repository secret injection.
+
+```text
+ANTIFAKE_CURRENT_ENVIRONMENT=UAT_DEMO
+FIXTURE_GRAPH_STATUS=DOCS_UAT_FIXTURES_VALID
+BUYER_CREDENTIAL_AVAILABLE=true
+SELLER_CREDENTIAL_AVAILABLE=true
+ADMIN_CREDENTIAL_AVAILABLE=true
+BUYER_LOGIN=PASS
+SELLER_LOGIN=HTTP_401_ROLE_INPUT_BLOCKED
+ADMIN_LOGIN=PASS
+AUTHENTICATED_CAPTURE_STATUS=PARTIAL
+NEW_VISUALS_ACCEPTED=5
+LEGACY_ENTITIES_MODIFIED=0
+LEGACY_ENTITIES_DELETED=0
+DESTRUCTIVE_RESET=DISABLED
+PROVIDER_SIDE_EFFECTS=NONE
+```
+
+The local read-only audit reconfirmed the owner-approved UAT/demo boundary and
+the legacy-data policy. It verified ownership signals for the additive graph;
+the positive QR value was not locally rechecked because no `UAT_QR_CODE` input
+was supplied to that process. The previously deployed fixture verification
+remains the QR source of truth. The Seller credential pair is available as
+input but its login returns HTTP 401, so no Seller entity was mutated.
+
+The current accepted authenticated evidence is:
+
+| Fixture ID | Role | Journeys unlocked | Runtime state | Evidence |
+|---|---|---|---|---|
+| `ORDER_DETAIL_PII_SAFE_UAT` | Buyer | B05/list, B05/detail | Real Buyer login; `/profile/orders` and detail render synthetic order graph | Desktop/Mobile raw and annotated pairs accepted |
+| `CHAT_SYNTHETIC_TWO_SESSION_UAT` | Buyer | B07/open | Real Buyer login; `/chat` renders seeded synthetic history | Desktop/Mobile raw and annotated pairs accepted; realtime send/reconnect not claimed |
+| `ADMIN_PIISAFE_READ_SET` | Admin | A02/search, A02/detail | Real Admin login; filtered `DOCS_UAT` queue and synthetic user detail render | Desktop/Mobile raw and annotated pairs accepted |
+
+All accepted files contain only namespaced synthetic data. No legacy record was
+changed, deleted or renamed, and no payment, payout, shipment, KYC or other
+irreversible provider action was attempted. The five accepted visual bindings
+are recorded in `VISUAL_MANIFEST.md`; the wider visual goal remains open.

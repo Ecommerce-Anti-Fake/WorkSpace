@@ -495,3 +495,64 @@ run `33941840279` completed successfully. The capture preflight still reported
 all three role inputs unavailable; four public pairs passed and eight
 authenticated/QR cases were skipped. Help visual acceptance therefore remains
 unchanged at 17/79.
+
+## Authenticated UAT capture checkpoint - 2026-09-05 (current)
+
+The owner-approved local Back-End `.env` is now bridged into the Front-End
+capture process by an allowlisted runtime runner. It reads only the six
+role-scoped authentication variables (and an optional QR input), keeps values
+in memory, creates isolated real-login Playwright contexts and removes the
+temporary storage state at close. No credential value is written to Help,
+WorkSpace, screenshots or test output.
+
+```text
+ANTIFAKE_CURRENT_ENVIRONMENT=UAT_DEMO
+BUYER_AUTH_INPUT=AVAILABLE
+BUYER_LOGIN=PASS
+SELLER_AUTH_INPUT=AVAILABLE
+SELLER_LOGIN=HTTP_401_ROLE_INPUT_BLOCKED
+ADMIN_AUTH_INPUT=AVAILABLE
+ADMIN_LOGIN=PASS
+FIXTURE_GRAPH_STATUS=DOCS_UAT_FIXTURES_VALID
+LEGACY_ENTITIES_MODIFIED=0
+PROVIDER_SIDE_EFFECTS=NONE
+```
+
+The authenticated capture passed at Desktop `1440x900` and Mobile `390x844`
+for five step-level visuals. The raw/annotated pairs were inspected for
+synthetic-only content and bound to the corresponding Help steps:
+
+| Step | Runtime evidence | Visual result |
+|---|---|---|
+| B05/list | Buyer `/profile/orders`, synthetic DOCS_UAT order card | Accepted Desktop/Mobile raw + annotated |
+| B05/detail | Buyer order detail for the synthetic order graph | Accepted Desktop/Mobile raw + annotated |
+| B07/open | Buyer `/chat`, DOCS_UAT room and two seeded messages | Accepted history-only Desktop/Mobile raw + annotated |
+| A02/search | Admin `/admin/users`, `DOCS_UAT` filter | Accepted Desktop/Mobile raw + annotated |
+| A02/detail | Admin detail for the synthetic review user | Accepted Desktop/Mobile raw + annotated |
+
+The Seller role remains independently blocked by the observed HTTP 401, with no
+fallback credential or legacy-record mutation attempted. B07 send/reconnect,
+B05 next-action, voucher/cart mutations, affiliate states and provider-backed
+flows remain unaccepted. A04 Shop detail was not promoted because the seeded
+KYC placeholder media URL is unavailable in the current runtime; this is
+recorded as a visual-quality defect rather than masked with a fake browser
+response. A03, A06, A07 and A10 remain `NOT_IMPLEMENTED` unless source status
+changes.
+
+```text
+FIXTURE_BLOCKED_BEFORE=57
+FIXTURE_BLOCKED_AFTER=52
+PROVIDER_BLOCKED_BEFORE=5
+PROVIDER_BLOCKED_AFTER=5
+PREVIOUS_COMPLETE_VISUAL_STEPS=17
+NEWLY_COMPLETED_VISUAL_STEPS=5
+CURRENT_COMPLETE_VISUAL_STEPS=22
+CURRENT_REQUIRED_VISUAL_STEPS=79
+CURRENT_REMAINING_VISUAL_STEPS=57
+COVERAGE_PERCENT=27.85
+VISUAL_GOAL_REMAINS_OPEN=YES
+```
+
+No general `237/237` functional UAT was rerun. No legacy record was modified,
+renamed or deleted; destructive reset remains disabled; and no PayOS, GHN,
+payout, KYC, livestream or other irreversible provider action was attempted.
