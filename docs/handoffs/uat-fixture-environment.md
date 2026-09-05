@@ -190,8 +190,8 @@ passes. No second VPS, DNS target, reverse-proxy route or deployment workflow
 is required.
 
 The current deployed revisions are Back-End `70f9bb5` (GitHub Actions run `44`)
-and Front-End `f73f272` (GitHub Actions deployment run `33942425336`; the
-current capture workflow run is `33942432429`). The
+and Front-End `a2b4f13` (GitHub Actions deployment run `33942797381`; the
+current capture workflow run is `33942801646`). The
 Front-End changes are capture-harness-only:
 they add environment-aware capture preflight, independent role-scoped capture
 behavior and viewport-safe scheduled-live markers. Accepted visual evidence
@@ -514,6 +514,28 @@ changed.
 FRONTEND_FIXTURE_SMOKE_COMMIT=f73f27214452f6fa212fc6d9412ecfdd31911e4d
 FRONTEND_DEPLOY_RUN=33942425336
 UAT_CAPTURE_RUN=33942432429
+CI_ROLE_INPUT_STATUS=PARTIAL
+CI_PUBLIC_CAPTURE_RESULT=4_PASSED
+CI_AUTHENTICATED_CAPTURE_RESULT=8_SKIPPED
+FIXTURE_BLOCKED_AFTER=57
+PROVIDER_BLOCKED_AFTER=5
+NEW_AUTHENTICATED_VISUALS=0
+```
+
+## Latest capture preflight - 2026-09-05
+
+Front-End `a2b4f13` added sanitized input-status reporting to the manual
+browser-smoke workflow without changing capture behavior or application data.
+Deployment run `33942797381` and UAT capture run `33942801646` completed
+successfully. The capture preflight again reported Buyer, Seller and Admin
+inputs unavailable; four public pairs passed and eight authenticated/QR cases
+were skipped. The artifact contained no authentication storage-state upload,
+and no fixture, legacy record, provider state or visual count changed.
+
+```text
+FRONTEND_RUNTIME_SHA=a2b4f138b03237dfadd193f59fafc1171a8829d5
+FRONTEND_DEPLOY_RUN=33942797381
+UAT_CAPTURE_RUN=33942801646
 CI_ROLE_INPUT_STATUS=PARTIAL
 CI_PUBLIC_CAPTURE_RESULT=4_PASSED
 CI_AUTHENTICATED_CAPTURE_RESULT=8_SKIPPED
