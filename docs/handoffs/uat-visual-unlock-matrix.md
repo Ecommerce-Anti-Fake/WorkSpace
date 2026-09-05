@@ -189,3 +189,9 @@ NEWLY_COMPLETED_VISUALS=0
 AUTHENTICATED_CAPTURE_STATUS=RUNTIME_INPUTS_UNAVAILABLE_TO_CURRENT_SHELL
 VISUAL_GOAL_REMAINS_OPEN=YES
 ```
+
+The post-push `uat-capture` run `33941303277` used Front-End SHA
+`79313d79ab8edbfc1cdc9fc7118e7bce5d0dd7df` and completed successfully. Its
+role preflight reported Buyer, Seller and Admin unavailable; four public pairs
+passed and eight authenticated/QR cases were skipped. No new visual was
+accepted, so the matrix remains at 57 fixture-blocked and 5 provider-blocked.

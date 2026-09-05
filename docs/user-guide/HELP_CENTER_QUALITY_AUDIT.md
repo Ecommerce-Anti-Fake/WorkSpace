@@ -481,3 +481,9 @@ AUTHENTICATED_CAPTURE_STATUS=RUNTIME_INPUTS_UNAVAILABLE_TO_CURRENT_SHELL
 NEWLY_COMPLETED_VISUALS=0
 VISUAL_GOAL_REMAINS_OPEN=YES
 ```
+
+The deployed Front-End SHA `79313d79ab8edbfc1cdc9fc7118e7bce5d0dd7df` was
+verified by capture run `33941303277`. The run passed four public fixture pairs
+and skipped eight authenticated/QR cases after sanitized Buyer, Seller and
+Admin availability checks returned false. It produced no new accepted Help
+visual and did not change the 17/79 accepted coverage count.

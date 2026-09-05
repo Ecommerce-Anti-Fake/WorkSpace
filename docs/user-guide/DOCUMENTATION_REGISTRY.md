@@ -182,3 +182,9 @@ false, so no authenticated visual status changed. Existing accepted bindings,
 the `DOCS_UAT` graph and the independent `237/237` functional baseline remain
 unchanged. The visual goal remains open pending a capture process that inherits
 the approved role inputs.
+
+The post-push capture run `33941303277` completed successfully for Front-End
+SHA `79313d79ab8edbfc1cdc9fc7118e7bce5d0dd7df`. It passed four public fixture
+pairs and skipped eight authenticated/QR cases after all three role availability
+checks returned false. Registry bindings and accepted visual counts are
+unchanged.

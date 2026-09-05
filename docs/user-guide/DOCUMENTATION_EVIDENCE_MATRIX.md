@@ -527,3 +527,9 @@ PROVIDER_BLOCKED_AFTER=5
 VISUAL_COMPLETE=17
 VISUAL_REMAINING=62
 ```
+
+Capture run `33941303277` completed against Front-End SHA
+`79313d79ab8edbfc1cdc9fc7118e7bce5d0dd7df`: four public fixture pairs passed,
+eight authenticated/QR cases were skipped, and no new visual evidence was
+promoted. The role availability result was false for Buyer, Seller and Admin;
+no credential or storage-state value was recorded.

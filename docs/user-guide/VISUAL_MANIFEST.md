@@ -396,3 +396,9 @@ AUTHENTICATED_CAPTURE_STATUS=RUNTIME_INPUTS_UNAVAILABLE_TO_CURRENT_SHELL
 NEWLY_ACCEPTED_VISUALS=0
 VISUAL_GOAL_REMAINS_OPEN=YES
 ```
+
+The current UAT deployment SHA `79313d79ab8edbfc1cdc9fc7118e7bce5d0dd7df`
+was exercised by capture run `33941303277`. Four public pairs passed and eight
+authenticated/QR cases were skipped because the three role inputs were not
+available to CI. Existing bindings remain unchanged; no new visual was
+accepted.

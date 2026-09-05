@@ -435,3 +435,24 @@ verified the public synthetic Community feed at Desktop `1440x900` and Mobile
 `390x844` with no console messages. Shell Playwright navigation was separately
 blocked by `ERR_NETWORK_ACCESS_DENIED`, so no authenticated visual was counted
 from that attempt.
+
+## Post-push authenticated capture checkpoint - 2026-09-05
+
+The Front-End deploy run `33941283194` completed successfully for runtime SHA
+`79313d79ab8edbfc1cdc9fc7118e7bce5d0dd7df`. The dedicated capture run
+`33941303277` also completed successfully against that SHA. Its sanitized
+preflight reported all three role credential pairs unavailable, then passed
+four public fixture pairs and skipped eight authenticated or QR cases. No
+credential values, storage states or authenticated visual assets were
+published. The public Community runtime remained clean at both target
+viewports; the accepted visual totals are unchanged.
+
+```text
+FRONTEND_DEPLOY_RUN=33941283194
+UAT_CAPTURE_RUN=33941303277
+VERIFIED_RUNTIME_SHA=79313d79ab8edbfc1cdc9fc7118e7bce5d0dd7df
+CI_ROLE_INPUT_STATUS=PARTIAL
+CI_PUBLIC_CAPTURE_RESULT=4_PASSED
+CI_AUTHENTICATED_CAPTURE_RESULT=8_SKIPPED
+NEW_AUTHENTICATED_VISUALS=0
+```
