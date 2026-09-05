@@ -473,6 +473,11 @@ The isolated Admin capture pack passed at Desktop `1440x900` and Mobile
 `390x844`; the real-login Help binding probe passed B04/order and all three
 Admin reuse routes at both target viewports.
 
+The authenticated Buyer profile/address and Admin wallet read-only routes also
+rendered, but their captures were rejected by privacy review because they
+exposed seed contact data or legacy financial/bank-account state. They are not
+served bindings and do not change the accepted count.
+
 The bracketed filename notation above means the same stem with and without
 the `-annotated` suffix; the exact files and served-byte rule are listed in
 the integrity table above. No credential, token, legacy record, financial

@@ -600,6 +600,11 @@ The deployed runtime check used Front-End SHA
 Admin capture and the real-login Help binding probe passed at both target
 viewports; no legacy or provider state changed.
 
+Privacy recheck: B01/profile, B01/address and A08/reconciliation reached their
+runtime routes and markers, but were classified `REJECTED_PRIVACY` because the
+seed contact data or legacy financial/bank-account state was visible. They do
+not count as accepted visual evidence.
+
 ```text
 PREVIOUS_COMPLETE_VISUAL_STEPS=22
 NEWLY_COMPLETED_THIS_EXPANSION=4

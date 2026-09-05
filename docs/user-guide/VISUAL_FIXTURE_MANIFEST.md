@@ -200,6 +200,11 @@ Post-deploy runtime verification used Front-End SHA
 the same managed graph rendered through the real Admin session at both target
 viewports.
 
+The Buyer profile/address and Admin wallet routes remain unaccepted because
+their current read-only state includes seed contact data or legacy financial
+and masked bank-account fields. The fixture manifest therefore records no new
+fixture ownership for those rejected captures.
+
 ```text
 CURRENT_COMPLETE_VISUAL_STEPS=26
 CURRENT_REQUIRED_VISUAL_STEPS=79

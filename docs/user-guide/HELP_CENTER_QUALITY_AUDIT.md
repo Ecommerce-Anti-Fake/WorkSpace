@@ -74,6 +74,12 @@ The isolated Admin pack passed at both target viewports, and the real-login
 Help binding probe passed B04/order plus all three Admin reuse routes at both
 viewports.
 
+The same authenticated run reached B01 profile/address and A08 wallet
+reconciliation, but those captures were rejected by privacy review: the seed
+profile/address exposed account/contact data, and the wallet view exposed
+legacy financial totals plus masked bank-account state. No rejected raw or
+annotated file was promoted or served; the current accepted count is unchanged.
+
 ```text
 PREVIOUS_COMPLETE_VISUAL_STEPS=22
 NEWLY_COMPLETED_THIS_EXPANSION=4

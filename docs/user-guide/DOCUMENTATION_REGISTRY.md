@@ -240,6 +240,10 @@ Post-deploy runtime verification used Front-End SHA
 The Admin capture pack and real-login Help binding probe passed at Desktop
 `1440x900` and Mobile `390x844`.
 
+B01 profile/address and A08 reconciliation were runtime-reachable but rejected
+by privacy review; no seed contact data or legacy financial/bank-account state
+was promoted into the registry's served evidence.
+
 ```text
 PREVIOUS_COMPLETE_VISUAL_STEPS=22
 NEWLY_COMPLETED_THIS_EXPANSION=4

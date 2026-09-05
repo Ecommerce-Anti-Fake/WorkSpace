@@ -213,6 +213,21 @@ The isolated Admin pack passed at Desktop `1440x900` and Mobile `390x844`;
 the real-login Help binding probe passed B04/order and all three Admin reuse
 routes at both viewports.
 
+## Authenticated capture privacy recheck - 2026-09-05 (current)
+
+Additional read-only Buyer and Admin routes rendered with real sessions, but
+their screenshots were not promoted because the runtime state did not satisfy
+the published-evidence privacy contract:
+
+| VISUAL_STEP | RUNTIME_RESULT | CAPTURE_DECISION | REMAINING_BLOCKER |
+|---|---|---|---|
+| B01/profile | Buyer route and markers passed at both viewports | `REJECTED_PRIVACY` | Seed account email/phone and unmarked profile identity are visible; require a PII-safe managed identity or approved redaction path |
+| B01/address | Buyer route and markers passed at both viewports | `REJECTED_PRIVACY` | Seed contact/address data is visible; require a DOCS_UAT-owned synthetic address state |
+| A08/reconciliation | Admin route and markers passed at Desktop; no provider call | `REJECTED_PRIVACY` | Legacy financial totals and masked bank-account state are visible; require a DOCS_UAT-managed non-financial read set |
+
+No raw or annotated files from these three rejected targets were promoted to
+WorkSpace or served assets; temporary rejected evidence was removed.
+
 ```text
 PREVIOUS_COMPLETE_VISUAL_STEPS=22
 NEWLY_COMPLETED_THIS_EXPANSION=4

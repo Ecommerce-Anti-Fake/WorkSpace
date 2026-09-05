@@ -201,6 +201,10 @@ Post-deploy verification used Front-End SHA
 The Admin pack and real-login Help binding probe passed at both target
 viewports.
 
+Privacy-rejected runtime targets: B01/profile, B01/address and
+A08/reconciliation. Their route/marker checks passed where exercised, but no
+visual completion is claimed until the state is DOCS_UAT-owned and PII-safe.
+
 ```text
 CURRENT_COMPLETE_VISUAL_STEPS=26
 CURRENT_REQUIRED_VISUAL_STEPS=79
