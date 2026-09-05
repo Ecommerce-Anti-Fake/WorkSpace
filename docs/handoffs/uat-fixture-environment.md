@@ -190,8 +190,8 @@ passes. No second VPS, DNS target, reverse-proxy route or deployment workflow
 is required.
 
 The current deployed revisions are Back-End `70f9bb5` (GitHub Actions run `44`)
-and Front-End `4e24bef` (GitHub Actions deployment run `118`; the current
-capture workflow run is recorded with the capture evidence below). The
+and Front-End `f73f272` (GitHub Actions deployment run `33942425336`; the
+current capture workflow run is `33942432429`). The
 Front-End changes are capture-harness-only:
 they add environment-aware capture preflight, independent role-scoped capture
 behavior and viewport-safe scheduled-live markers. Accepted visual evidence
@@ -291,11 +291,13 @@ artifact uploaded successfully. This proves the workflow preserves available
 public evidence while refusing to call an authenticated capture complete; no
 new asset was promoted from that artifact without a separate privacy review.
 
-Current browser evidence: the positive QR and public `DOCS_UAT` Community feed
-capture tests passed 4/4 (both fixtures at Desktop and Mobile) in fresh
-contexts after Front-End revision `c7dfc58` deployed in GitHub Actions run
-`100`. The narrow Help binding probe also passed 4/4 at both viewports. Both
-pairs were privacy-reviewed and promoted to the visual manifest. Authenticated
+Previously accepted browser evidence: the positive QR and public `DOCS_UAT`
+Community feed capture tests passed 4/4 (both fixtures at Desktop and Mobile)
+in fresh contexts after Front-End revision `c7dfc58` deployed in GitHub Actions
+run `100`. The narrow Help binding probe also passed 4/4 at both viewports.
+Both pairs were privacy-reviewed and promoted to the visual manifest. The
+current Front-End runtime is `f73f272`; its capture run added no accepted
+visual. Authenticated
 Buyer/Seller/Admin capture tests remain pending until the six secure role
 variables are available to the capture process; no personal browser profile
 or cookie was used.
