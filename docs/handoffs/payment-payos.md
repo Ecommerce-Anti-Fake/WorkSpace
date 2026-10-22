@@ -176,3 +176,11 @@ payOS handles buyer online payment. Backend creates payment links, receives webh
   API returned `PAID`, wallet became 1,510,000 VND, and the transaction list
   contains one completed `TOP_UP` credit of 10,000 VND. No second payment was
   created.
+
+## 2026-10-22 lifecycle update
+
+See [PayOS lifecycle handoff](payos-payment-lifecycle.md) and
+[verification evidence](../evidence/payos-lifecycle/verification.md) for the
+coordinated order/user-wallet/shop-wallet expiry, resume, explicit cancellation,
+background reconciliation and financial idempotency changes. Earlier sections
+remain historical evidence; use the new handoff for current behavior.
