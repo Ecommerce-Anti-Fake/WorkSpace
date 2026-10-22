@@ -1,0 +1,35 @@
+{
+  "frontendSha": "3f7e31c7e0e7c6cab6629a125dc6e68b584cf5bf",
+  "frontendPR": 2,
+  "prCI": {
+    "run": 39713566601,
+    "status": "success"
+  },
+  "mainCI": {
+    "run": 39714452186,
+    "status": "success"
+  },
+  "deploy": {
+    "run": 39714452220,
+    "status": "success"
+  },
+  "deployedAsset": "/assets/index-BAmKuWrf.js",
+  "frontendBranchDeleted": true,
+  "files": [
+    "src/components/payment/paymentModel.tsx",
+    "src/css/components/payment/paymentModel.css",
+    "e2e/payos-lifecycle.spec.ts"
+  ],
+  "backendChanged": false,
+  "apiOrDatabaseChanged": false,
+  "unitTestsPassed": 11,
+  "browserTestsPassed": 12,
+  "deployedMockedCombinationsPassed": 9,
+  "dns": {
+    "system": "name resolution failed",
+    "google": "SERVFAIL",
+    "cloudflare": "103.173.226.189",
+    "verification": "browser-scoped mapping only, normal TLS validation"
+  },
+  "realPaymentOperations": 0
+}

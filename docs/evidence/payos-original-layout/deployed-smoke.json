@@ -1,0 +1,109 @@
+{
+  "deployedSite": "https://antifake.io.vn",
+  "apiMode": "all /api requests intercepted; no actual payment requests",
+  "dns": "Browser-scoped host mapping to Cloudflare DNS answer103.173.226.189; normal Google/system resolver failed. No system/server DNS changed.",
+  "entry": "https://antifake.io.vn/assets/index-BAmKuWrf.js",
+  "apiIntercepts": 9,
+  "pageErrors": [],
+  "results": [
+    {
+      "flow": "ORDER",
+      "width": 1440,
+      "qr": 250,
+      "red": "rgb(165, 0, 23)",
+      "steps": 3,
+      "noOverflow": true,
+      "sideBySide": true,
+      "stacked": false,
+      "headingFont": "28px"
+    },
+    {
+      "flow": "ORDER",
+      "width": 768,
+      "qr": 250,
+      "red": "rgb(165, 0, 23)",
+      "steps": 3,
+      "noOverflow": true,
+      "sideBySide": false,
+      "stacked": true,
+      "headingFont": "25px"
+    },
+    {
+      "flow": "ORDER",
+      "width": 390,
+      "qr": 250,
+      "red": "rgb(165, 0, 23)",
+      "steps": 3,
+      "noOverflow": true,
+      "sideBySide": false,
+      "stacked": true,
+      "headingFont": "23px"
+    },
+    {
+      "flow": "USER_WALLET_TOP_UP",
+      "width": 1440,
+      "qr": 250,
+      "red": "rgb(165, 0, 23)",
+      "steps": 3,
+      "noOverflow": true,
+      "sideBySide": true,
+      "stacked": false,
+      "headingFont": "28px"
+    },
+    {
+      "flow": "USER_WALLET_TOP_UP",
+      "width": 768,
+      "qr": 250,
+      "red": "rgb(165, 0, 23)",
+      "steps": 3,
+      "noOverflow": true,
+      "sideBySide": false,
+      "stacked": true,
+      "headingFont": "25px"
+    },
+    {
+      "flow": "USER_WALLET_TOP_UP",
+      "width": 390,
+      "qr": 250,
+      "red": "rgb(165, 0, 23)",
+      "steps": 3,
+      "noOverflow": true,
+      "sideBySide": false,
+      "stacked": true,
+      "headingFont": "23px"
+    },
+    {
+      "flow": "SHOP_WALLET_TOP_UP",
+      "width": 1440,
+      "qr": 250,
+      "red": "rgb(165, 0, 23)",
+      "steps": 3,
+      "noOverflow": true,
+      "sideBySide": true,
+      "stacked": false,
+      "headingFont": "28px"
+    },
+    {
+      "flow": "SHOP_WALLET_TOP_UP",
+      "width": 768,
+      "qr": 250,
+      "red": "rgb(165, 0, 23)",
+      "steps": 3,
+      "noOverflow": true,
+      "sideBySide": false,
+      "stacked": true,
+      "headingFont": "25px"
+    },
+    {
+      "flow": "SHOP_WALLET_TOP_UP",
+      "width": 390,
+      "qr": 250,
+      "red": "rgb(165, 0, 23)",
+      "steps": 3,
+      "noOverflow": true,
+      "sideBySide": false,
+      "stacked": true,
+      "headingFont": "23px"
+    }
+  ]
+}
