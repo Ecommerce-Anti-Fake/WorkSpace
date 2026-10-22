@@ -1,0 +1,21 @@
+{
+  "sha": "70f9bb5028ae18d8e772c59dc2e06a093b92ce6d",
+  "suites": 248,
+  "failedSuites": 12,
+  "passedTests": 834,
+  "failedTests": 44,
+  "failedFiles": [
+    "libs\\offers\\src\\application\\use-cases\\create-offer.use-case.spec.ts",
+    "libs\\orders\\src\\application\\use-cases\\quote-cart-shipping-options.use-case.spec.ts",
+    "libs\\offers\\src\\infrastructure\\persistence\\offers.repository.spec.ts",
+    "libs\\orders\\src\\infrastructure\\adapters\\local-wholesale-pricing.adapter.spec.ts",
+    "libs\\affiliate\\src\\application\\use-cases\\join-affiliate-program.use-case.spec.ts",
+    "libs\\offers\\src\\application\\use-cases\\create-offer-variant.use-case.spec.ts",
+    "libs\\orders\\src\\application\\use-cases\\get-shop-best-selling-products.use-case.spec.ts",
+    "libs\\offers\\src\\application\\use-cases\\update-offer.use-case.spec.ts",
+    "libs\\offers\\src\\application\\use-cases\\allocate-offer-batches.use-case.spec.ts",
+    "libs\\orders\\src\\application\\use-cases\\quote-cart-item-shipping-options.use-case.spec.ts",
+    "apps\\api-gateway\\src\\modules\\review\\review.controller.spec.ts",
+    "libs\\offers\\src\\application\\use-cases\\list-admin-offers.use-case.spec.ts"
+  ]
+}

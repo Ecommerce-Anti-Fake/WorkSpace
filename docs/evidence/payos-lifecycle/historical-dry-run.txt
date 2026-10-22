@@ -1,0 +1,167 @@
+﻿
+> back-end@0.0.1 payos:audit
+> ts-node -r tsconfig-paths/register scripts/audit-payos-payments.ts --dry-run --provider
+
+{
+  "dryRun": true,
+  "writes": 0,
+  "pendingOrders": 0,
+  "pendingWalletTopUps": 17,
+  "limitPerKind": 100,
+  "sampled": 17,
+  "rows": [
+    {
+      "kind": "WALLET_TOP_UP",
+      "record": "9c8dd6628203",
+      "createdAt": "2026-08-03T12:09:37.979Z",
+      "hasPaymentLink": true,
+      "providerStatus": "PROVIDER_ERROR",
+      "providerHttpStatus": 200,
+      "providerCode": "214"
+    },
+    {
+      "kind": "WALLET_TOP_UP",
+      "record": "12a0f3095c8a",
+      "createdAt": "2026-08-03T12:09:38.233Z",
+      "hasPaymentLink": true,
+      "providerStatus": "PROVIDER_ERROR",
+      "providerHttpStatus": 200,
+      "providerCode": "214"
+    },
+    {
+      "kind": "WALLET_TOP_UP",
+      "record": "963b2255e3f3",
+      "createdAt": "2026-08-04T01:21:33.889Z",
+      "hasPaymentLink": true,
+      "providerStatus": "PROVIDER_ERROR",
+      "providerHttpStatus": 200,
+      "providerCode": "214"
+    },
+    {
+      "kind": "WALLET_TOP_UP",
+      "record": "109de6fce848",
+      "createdAt": "2026-08-04T01:25:31.148Z",
+      "hasPaymentLink": true,
+      "providerStatus": "PROVIDER_ERROR",
+      "providerHttpStatus": 200,
+      "providerCode": "214"
+    },
+    {
+      "kind": "WALLET_TOP_UP",
+      "record": "4a821325a49e",
+      "createdAt": "2026-08-04T01:32:26.187Z",
+      "hasPaymentLink": true,
+      "providerStatus": "PROVIDER_ERROR",
+      "providerHttpStatus": 200,
+      "providerCode": "214"
+    },
+    {
+      "kind": "WALLET_TOP_UP",
+      "record": "91265cb91722",
+      "createdAt": "2026-08-04T01:33:27.591Z",
+      "hasPaymentLink": true,
+      "providerStatus": "PROVIDER_ERROR",
+      "providerHttpStatus": 200,
+      "providerCode": "214"
+    },
+    {
+      "kind": "WALLET_TOP_UP",
+      "record": "0c74cec2f8c8",
+      "createdAt": "2026-08-04T01:48:38.149Z",
+      "hasPaymentLink": true,
+      "providerStatus": "PROVIDER_ERROR",
+      "providerHttpStatus": 200,
+      "providerCode": "214"
+    },
+    {
+      "kind": "WALLET_TOP_UP",
+      "record": "7994502cc2ce",
+      "createdAt": "2026-08-04T02:00:16.158Z",
+      "hasPaymentLink": true,
+      "providerStatus": "PROVIDER_ERROR",
+      "providerHttpStatus": 200,
+      "providerCode": "214"
+    },
+    {
+      "kind": "WALLET_TOP_UP",
+      "record": "b4df6941445e",
+      "createdAt": "2026-08-04T02:19:00.924Z",
+      "hasPaymentLink": true,
+      "providerStatus": "PROVIDER_ERROR",
+      "providerHttpStatus": 200,
+      "providerCode": "214"
+    },
+    {
+      "kind": "WALLET_TOP_UP",
+      "record": "68dfa425a3ab",
+      "createdAt": "2026-08-04T02:25:11.743Z",
+      "hasPaymentLink": true,
+      "providerStatus": "PROVIDER_ERROR",
+      "providerHttpStatus": 200,
+      "providerCode": "214"
+    },
+    {
+      "kind": "WALLET_TOP_UP",
+      "record": "d5c50936b426",
+      "createdAt": "2026-09-15T19:34:05.345Z",
+      "hasPaymentLink": true,
+      "providerStatus": "PROVIDER_ERROR",
+      "providerHttpStatus": 200,
+      "providerCode": "214"
+    },
+    {
+      "kind": "WALLET_TOP_UP",
+      "record": "94e6898ffcd4",
+      "createdAt": "2026-10-12T22:02:37.279Z",
+      "hasPaymentLink": true,
+      "providerStatus": "PROVIDER_ERROR",
+      "providerHttpStatus": 200,
+      "providerCode": "214"
+    },
+    {
+      "kind": "WALLET_TOP_UP",
+      "record": "9a5b92861b7f",
+      "createdAt": "2026-10-20T11:19:07.042Z",
+      "hasPaymentLink": true,
+      "providerStatus": "PROVIDER_ERROR",
+      "providerHttpStatus": 200,
+      "providerCode": "214"
+    },
+    {
+      "kind": "WALLET_TOP_UP",
+      "record": "062f62e62485",
+      "createdAt": "2026-10-21T11:34:07.870Z",
+      "hasPaymentLink": true,
+      "providerStatus": "PROVIDER_ERROR",
+      "providerHttpStatus": 200,
+      "providerCode": "214"
+    },
+    {
+      "kind": "WALLET_TOP_UP",
+      "record": "f60a9eca383b",
+      "createdAt": "2026-10-21T13:05:55.839Z",
+      "hasPaymentLink": true,
+      "providerStatus": "PROVIDER_ERROR",
+      "providerHttpStatus": 200,
+      "providerCode": "214"
+    },
+    {
+      "kind": "WALLET_TOP_UP",
+      "record": "9f1a43128924",
+      "createdAt": "2026-10-21T14:01:39.817Z",
+      "hasPaymentLink": true,
+      "providerStatus": "PROVIDER_ERROR",
+      "providerHttpStatus": 200,
+      "providerCode": "214"
+    },
+    {
+      "kind": "WALLET_TOP_UP",
+      "record": "66f8bcae1a6f",
+      "createdAt": "2026-10-22T01:32:40.833Z",
+      "hasPaymentLink": true,
+      "providerStatus": "PROVIDER_ERROR",
+      "providerHttpStatus": 200,
+      "providerCode": "214"
+    }
+  ]
+}

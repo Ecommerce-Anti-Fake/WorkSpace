@@ -1,0 +1,23 @@
+{
+  "baselineSha": "70f9bb5028ae18d8e772c59dc2e06a093b92ce6d",
+  "head": "ce7897d",
+  "totalSuites": 250,
+  "failedSuites": 12,
+  "passedTests": 879,
+  "failedTests": 44,
+  "sameFailedFilesAsBaseline": true,
+  "failedFiles": [
+    "allocate-offer-batches.use-case.spec.ts",
+    "create-offer-variant.use-case.spec.ts",
+    "create-offer.use-case.spec.ts",
+    "get-shop-best-selling-products.use-case.spec.ts",
+    "join-affiliate-program.use-case.spec.ts",
+    "list-admin-offers.use-case.spec.ts",
+    "local-wholesale-pricing.adapter.spec.ts",
+    "offers.repository.spec.ts",
+    "quote-cart-item-shipping-options.use-case.spec.ts",
+    "quote-cart-shipping-options.use-case.spec.ts",
+    "review.controller.spec.ts",
+    "update-offer.use-case.spec.ts"
+  ]
+}

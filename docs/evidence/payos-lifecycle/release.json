@@ -1,0 +1,48 @@
+{
+  "backend": {
+    "mergedSha": "dec24b72688c556a2e473c46a9c6dcb1c7077d02",
+    "pr": 2,
+    "prCI": [
+      39710877403,
+      39710877361
+    ],
+    "mainCI": [
+      39711666434,
+      39711666553
+    ],
+    "deployRun": 39711666404,
+    "deploy": "success",
+    "healthStartedAt": "2026-10-22T02:34:35.774Z",
+    "unauthenticatedResumeAndWalletLists": 401,
+    "temporaryBranchDeleted": true,
+    "mainCIStatus": "success"
+  },
+  "frontend": {
+    "mergedSha": "ec8c7b59db1bea572af36fd28ad3e627d9fb8d43",
+    "pr": 1,
+    "prCI": 39711420262,
+    "mainCI": 39712267787,
+    "deployRun": 39712267759,
+    "deploy": "success",
+    "asset": "/assets/index-BWbCrlLw.js",
+    "publicHomepageStatus": 200,
+    "freshBrowserEntryMatchesAsset": true,
+    "publicHomepageConsoleErrors": 0,
+    "guestPaymentRedirect": "/auth",
+    "expectedGuestRefreshStatus": 401,
+    "mainCIStatus": "success",
+    "temporaryBranchDeleted": true,
+    "sdkReady": true
+  },
+  "migrationReadOnlyCheck": {
+    "orderAttemptMigrationFinishedAt": "2026-10-22T02:32:14.928Z",
+    "walletMetadataMigrationFinishedAt": "2026-10-22T02:32:14.967Z",
+    "rolledBack": false,
+    "tableAndColumnsPresent": true
+  },
+  "financialOperations": {
+    "realLinksCreated": 0,
+    "transfers": 0,
+    "historicalCleanup": false
+  }
+}
