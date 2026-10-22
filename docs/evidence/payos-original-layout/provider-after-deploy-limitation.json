@@ -1,0 +1,11 @@
+{
+  "frontendSha": "098779e7a63d6700e0512b34ff73c230f809dfa1",
+  "entry": "/assets/index-D5MD2h-q.js",
+  "liveQrAcceptance": "NOT_VERIFIED",
+  "reason": "Existing provider link expired before post-deploy check; zero unexpired PENDING wallet links found by READ ONLY count.",
+  "providerMessage": {
+    "type": "error",
+    "message": "Link thanh toán đã hết hạn."
+  },
+  "scope": "Actual SDK and existing PayOS link; internal API mocked PENDING; no new links/cancellations/transfers. No payment/account identifiers recorded."
+}

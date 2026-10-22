@@ -95,3 +95,56 @@ and PayOS network/service workers are blocked in this smoke; it does not verify
 live-provider acceptance/artwork. See native-deployed-smoke.json in the evidence
 directory. Post-merge CI 39752910564 passed on d216d35.
 The merged frontend temporary branch was deleted remotely and locally.
+
+## Provider INVALID_PARAM correction and clearer Cancel (2026-10-22)
+
+This section supersedes the earlier assumption that percent encoding a durable
+query URL was sufficient. The previous mocked SDK checks did not establish real
+provider acceptance. A read-only browser A/B check reused the existing payment
+reported in the screenshot: both encoded and unencoded query-bearing redirect_uri
+values rendered the provider INVALID_PARAM message; a plain origin + /payment
+rendered the QR and transfer tabs. No new link, cancellation or transfer was used.
+The precise existing wallet row was read inside BEGIN READ ONLY / ROLLBACK.
+Identifiers, bank details and QR payload are not stored in this evidence.
+
+The SDK now receives a canonical path-only return URL. The parent URL retains
+flow/reference/shopId for refresh/reopen; callbacks continue to request server
+reconciliation only. Financial logic, API and DB are unchanged. Cancel is now a
+42px outlined red button with 14px semibold text and a pale red background.
+Confirmation and server-confirmed cancellation remain required.
+
+Regression: ESLint, TypeScript/build, 11 unit tests and 12 browser scenarios passed
+(51.1s). Unit/browser checks assert the path-only provider URL and independent
+parent identity for all three flows. Pre-release live-provider checks used the
+existing link and actual SDK with a request-scoped path override, internal API
+fixtures, at 1440/768/390 for all three FE presentations: all 9 passed; switching
+to transfer details succeeded for each flow, with zero page errors. This reuses
+one real provider link; it does not establish three distinct financial payments.
+See provider-before-path-override.json. Post-deploy checks must repeat without
+any URL override before reporting this issue fixed.
+
+Dependency audit (unchanged lockfile): npm audit --omit=dev reports six existing
+high findings; no dependency changes or automatic audit fixes are in this UI fix.
+PR: https://github.com/Ecommerce-Anti-Fake/Front-End/pull/4
+Source commit: 8505c46bce87f8192216392c72d7726a3349d863.
+PR CI 39757582927 passed. Merged SHA 098779e7a63d6700e0512b34ff73c230f809dfa1;
+post-merge CI 39758258288 and deployment 39758257975 passed. Deployed entry:
+/assets/index-D5MD2h-q.js. The merged frontend temporary branch was removed
+remotely and locally after checking ancestry and successful CI/deploy.
+
+Post-deploy outer-layout/URI smoke: all 9 flow/viewport combinations passed with
+no URL override, correct path-only redirect_uri, retained parent identity, one
+iframe, no overflow and zero page errors. Cancel measures 42px minimum with
+1px red border; confirmation opens and dismisses without a cancel request.
+See redirect-deployed-smoke.json and cancel-clear-{1440,768,390}.png. This smoke
+uses API/SDK fixtures and is not evidence of live QR rendering.
+
+Live-provider post-deploy attempt did NOT pass the QR acceptance check: the
+existing link had expired by the time deployment finished. Actual SDK/provider
+message was type error, message "Link thanh toán đã hết hạn."; the SDK removed
+its iframe. The test uses a mocked PENDING API response, so that blank mock frame
+is not evidence of the real backend returning PENDING or an expiry business bug.
+A separate READ ONLY count found zero PENDING wallet links with expires_at > now().
+No new production link was created to work around this limitation. End-to-end
+post-deploy live QR acceptance remains pending an authorized unexpired payment
+session. Do not present mocked checks as live-provider acceptance.

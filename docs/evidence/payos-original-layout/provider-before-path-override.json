@@ -1,0 +1,200 @@
+{
+  "scope": "Real PayOS SDK and existing provider link; internal API mocked and DB READ ONLY. No link creation/cancellation/transfer. Same provider link reused to exercise all three FE presentations.",
+  "override": true,
+  "results": [
+    {
+      "flow": "ORDER",
+      "width": 1440,
+      "frames": 1,
+      "returnPathOnly": false,
+      "parentReference": true,
+      "cancelColor": "rgb(154, 106, 106)",
+      "cancelBorder": "0px",
+      "cancelHeight": 36,
+      "noOverflow": true,
+      "invalid": false,
+      "qrTab": true,
+      "transferTab": true,
+      "provider": {
+        "canvases": 0,
+        "qrImages": 1,
+        "providerIcons": 0,
+        "scrollWidth": 320,
+        "clientWidth": 320
+      }
+    },
+    {
+      "flow": "ORDER",
+      "width": 768,
+      "frames": 1,
+      "returnPathOnly": false,
+      "parentReference": true,
+      "cancelColor": "rgb(154, 106, 106)",
+      "cancelBorder": "0px",
+      "cancelHeight": 36,
+      "noOverflow": true,
+      "invalid": false,
+      "qrTab": true,
+      "transferTab": true,
+      "provider": {
+        "canvases": 0,
+        "qrImages": 1,
+        "providerIcons": 0,
+        "scrollWidth": 358,
+        "clientWidth": 358
+      }
+    },
+    {
+      "flow": "ORDER",
+      "width": 390,
+      "frames": 1,
+      "returnPathOnly": false,
+      "parentReference": true,
+      "cancelColor": "rgb(154, 106, 106)",
+      "cancelBorder": "0px",
+      "cancelHeight": 36,
+      "noOverflow": true,
+      "invalid": false,
+      "qrTab": true,
+      "transferTab": true,
+      "provider": {
+        "canvases": 0,
+        "qrImages": 1,
+        "providerIcons": 0,
+        "scrollWidth": 334,
+        "clientWidth": 334
+      },
+      "transferDetailsVisible": true
+    },
+    {
+      "flow": "USER_WALLET_TOP_UP",
+      "width": 1440,
+      "frames": 1,
+      "returnPathOnly": false,
+      "parentReference": true,
+      "cancelColor": "rgb(154, 106, 106)",
+      "cancelBorder": "0px",
+      "cancelHeight": 36,
+      "noOverflow": true,
+      "invalid": false,
+      "qrTab": true,
+      "transferTab": true,
+      "provider": {
+        "canvases": 0,
+        "qrImages": 1,
+        "providerIcons": 0,
+        "scrollWidth": 320,
+        "clientWidth": 320
+      }
+    },
+    {
+      "flow": "USER_WALLET_TOP_UP",
+      "width": 768,
+      "frames": 1,
+      "returnPathOnly": false,
+      "parentReference": true,
+      "cancelColor": "rgb(154, 106, 106)",
+      "cancelBorder": "0px",
+      "cancelHeight": 36,
+      "noOverflow": true,
+      "invalid": false,
+      "qrTab": true,
+      "transferTab": true,
+      "provider": {
+        "canvases": 0,
+        "qrImages": 1,
+        "providerIcons": 0,
+        "scrollWidth": 358,
+        "clientWidth": 358
+      }
+    },
+    {
+      "flow": "USER_WALLET_TOP_UP",
+      "width": 390,
+      "frames": 1,
+      "returnPathOnly": false,
+      "parentReference": true,
+      "cancelColor": "rgb(154, 106, 106)",
+      "cancelBorder": "0px",
+      "cancelHeight": 36,
+      "noOverflow": true,
+      "invalid": false,
+      "qrTab": true,
+      "transferTab": true,
+      "provider": {
+        "canvases": 0,
+        "qrImages": 1,
+        "providerIcons": 0,
+        "scrollWidth": 334,
+        "clientWidth": 334
+      },
+      "transferDetailsVisible": true
+    },
+    {
+      "flow": "SHOP_WALLET_TOP_UP",
+      "width": 1440,
+      "frames": 1,
+      "returnPathOnly": false,
+      "parentReference": true,
+      "cancelColor": "rgb(154, 106, 106)",
+      "cancelBorder": "0px",
+      "cancelHeight": 36,
+      "noOverflow": true,
+      "invalid": false,
+      "qrTab": true,
+      "transferTab": true,
+      "provider": {
+        "canvases": 0,
+        "qrImages": 1,
+        "providerIcons": 0,
+        "scrollWidth": 380,
+        "clientWidth": 320
+      }
+    },
+    {
+      "flow": "SHOP_WALLET_TOP_UP",
+      "width": 768,
+      "frames": 1,
+      "returnPathOnly": false,
+      "parentReference": true,
+      "cancelColor": "rgb(154, 106, 106)",
+      "cancelBorder": "0px",
+      "cancelHeight": 36,
+      "noOverflow": true,
+      "invalid": false,
+      "qrTab": true,
+      "transferTab": true,
+      "provider": {
+        "canvases": 0,
+        "qrImages": 1,
+        "providerIcons": 0,
+        "scrollWidth": 358,
+        "clientWidth": 358
+      }
+    },
+    {
+      "flow": "SHOP_WALLET_TOP_UP",
+      "width": 390,
+      "frames": 1,
+      "returnPathOnly": false,
+      "parentReference": true,
+      "cancelColor": "rgb(154, 106, 106)",
+      "cancelBorder": "0px",
+      "cancelHeight": 36,
+      "noOverflow": true,
+      "invalid": false,
+      "qrTab": true,
+      "transferTab": true,
+      "provider": {
+        "canvases": 0,
+        "qrImages": 1,
+        "providerIcons": 0,
+        "scrollWidth": 334,
+        "clientWidth": 334
+      },
+      "transferDetailsVisible": true
+    }
+  ],
+  "pageErrors": [],
+  "entry": "/assets/index-PQK7Awul.js"
+}
