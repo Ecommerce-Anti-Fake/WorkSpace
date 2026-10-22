@@ -48,3 +48,50 @@ unqualified normal-DNS reachability cannot be claimed from this environment.
 Previous lifecycle documentation/evidence was pending commit when an earlier tool
 usage limit stopped the handoff. It is finalized in this WorkSpace change without
 modifying the already deployed backend.
+
+## Native PayOS follow-up (2026-10-22)
+
+The custom SVG QR and the added form/status buttons did not match the requested
+PayOS appearance. Pending payments now open the official embedded checkout by
+default, preserving its QR/transfer tabs, central VietQR mark and provider icons.
+The red guide, outer method icons, Back/Support, countdown and compact cancellation
+remain. Automatic server reconciliation remains every 5 seconds and on focus.
+
+The official SDK concatenates RETURN_URL into redirect_uri without escaping. Our
+durable payment URL includes multiple query parameters; encode it before passing
+it into the SDK so flow/reference/shopId remain inside redirect_uri. Clear the SDK
+container on entry and cleanup, and clean up before DOM removal. There is no
+custom QR/form toggle to reuse an imperatively modified div as a React SVG host.
+SDK callbacks request reconciliation only; they do not set PAID or cancel locally.
+
+The provider controls QR size and artwork inside its cross-origin iframe. The
+outer iframe is at most 360px wide and 360px high, responsive and unscaled. The
+earlier 250px custom-SVG measurement above does not apply to this revision.
+
+Regression tests verify native checkout default, nested callback query, exactly
+one iframe after automatic polling, absence of added buttons, refresh/reopen,
+cancellation and terminal/expiry/retry handling for all 3 flows. Browser tests use
+SDK/API fixtures applied to the entire isolated context, including reopened tabs.
+They verify the outer layout at 320/390/768/1024/1440, not the live provider artwork.
+No real payment link, transfer or production financial mutation is performed.
+Live-provider acceptance and internal rendering require a suitable authorized
+payment session; mocked browser tests alone cannot establish them.
+
+Local validation: ESLint and TypeScript/build passed; 11 unit tests and 12 browser
+scenarios passed (57.8s). Build retains the existing large-chunk warning.
+Frontend commit d10c670d89d26830254ecbc90327db3c2c0aaf3f, PR #3:
+https://github.com/Ecommerce-Anti-Fake/Front-End/pull/3
+Follow-up test commit e698c0d9d9884c07271b1ffbe40738768957c975 allows 8s
+for the 5s automatic poll. Initial CI 39752059636 exposed this timing boundary
+(11 passed, ORDER poll assertion timed out); it was corrected without changing
+application behavior. Targeted three-flow expiry/poll tests passed locally.
+PR CI 39752535950 passed. PR #3 merged as
+d216d35d7f820d98168823012d504b2fb634a6d9.
+Deployment 39752910213 passed. Public entry is /assets/index-PQK7Awul.js.
+Deployed-asset smoke passed all 9 flow/viewport combinations (1440/768/390),
+with one iframe, complete flow/reference/shop callback values, red guide, three
+steps, no added buttons, no overflow and zero page errors. API and SDK are mocked
+and PayOS network/service workers are blocked in this smoke; it does not verify
+live-provider acceptance/artwork. See native-deployed-smoke.json in the evidence
+directory. Post-merge CI 39752910564 passed on d216d35.
+The merged frontend temporary branch was deleted remotely and locally.
